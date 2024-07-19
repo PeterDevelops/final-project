@@ -1,9 +1,9 @@
 import React from 'react';
 
-import HamburgerMenu from './NavBar Components/HamburgerMenu';
-import Cart from './NavBar Components/Cart';
-import Inbox from './NavBar Components/Inbox';
-import SearchBar from './NavBar Components/SearchBar';
+import HamburgerMenu from './NavBar-Components/HamburgerMenu';
+import Cart from './NavBar-Components/Cart';
+import Inbox from './NavBar-Components/Inbox';
+import SearchBar from './NavBar-Components/SearchBar';
 
 const NavBar = () => {
   return (
