@@ -25,6 +25,7 @@ app.use(cors());
 // app.use('/users', usersRoutes);
 
 // temp route to set up server
+// Create the rest of the routes in routes folder
 app.get("/greeting", (req, res) => {
   res.json({ message: 'Hello World!' })
 });
