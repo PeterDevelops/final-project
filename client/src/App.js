@@ -5,7 +5,7 @@ import axios from 'axios';
 function App() {
   const [greeting, setGreeting] = useState('');
 
-  // we use axios to send a request to the node server
+  // temp route to send request to node server
   useEffect(() => {
     axios.get('/greeting')
       .then(response => {
