@@ -5,12 +5,16 @@ require("dotenv").config();
 const express = require("express");
 const PORT = process.env.PORT || 8080;
 const morgan = require("morgan");
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
+const path = require('path');
+const app = express();
+const cors = require('cors');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 app.use(express.static("public"));
 app.use(cookieParser());
+app.use(cors());
 
 // Routes for each resource
 // Example:
@@ -20,11 +24,11 @@ app.use(cookieParser());
 // Example:
 // app.use('/users', usersRoutes);
 
-app.get("/", (req, res) => {
-  res.redirect("/index");
+// temp route to set up server
+app.get("/greeting", (req, res) => {
+  res.json({ message: 'Hello World!' })
 });
 
-
 app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`);
+  console.log(`Server is listening on port ${PORT}`);
 });
