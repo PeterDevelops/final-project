@@ -17,9 +17,9 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className='bg-purple-200'>
       <header>
-        <h1>{greeting}</h1>
+        <h1 className="text-6xl text-red-500 underline decoration-blue-500">{greeting}</h1>
       </header>
     </div>
   );
