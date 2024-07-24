@@ -6,7 +6,6 @@ const express = require("express");
 const PORT = process.env.PORT || 8080;
 const morgan = require("morgan");
 const cookieParser = require('cookie-parser');
-const path = require('path');
 const app = express();
 const cors = require('cors');
 
@@ -27,7 +26,7 @@ app.use(cors());
 // temp route to set up server
 // Create the rest of the routes in routes folder
 app.get("/greeting", (req, res) => {
-  res.json({ message: 'Hello World!' })
+  res.json({ message: 'Hello World!!!' })
 });
 
 app.listen(PORT, () => {
