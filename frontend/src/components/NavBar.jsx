@@ -2,7 +2,12 @@ import React from 'react'
 
 const NavBar = () => {
   return (
-    <div></div>
+    <div>
+      <HamburgerMenu />
+      <Cart />
+      <Inbox />
+      <SearchBar />
+    </div>
 
   )
 
