@@ -7,7 +7,7 @@ function App() {
 
   // temp route to send request to node server
   useEffect(() => {
-    axios.get('/greeting')
+    axios.get('/api')
       .then(response => {
         setGreeting(response.data.message);
       })
