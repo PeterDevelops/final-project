@@ -9,8 +9,8 @@ const Map = ({ center, zoom, className }) => {
     if (!mapRef.current) {
       mapRef.current = L.map('map').setView(center, zoom);
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap contributors',
+      L.tileLayer(`https://{s}.tile.thunderforest.com/neighbourhood/{z}/{x}/{y}.png?apikey=${process.env.REACT_APP_THUNDERFOREST_API_KEY}`, {
+        attribution: '&copy; <a href="https://www.thunderforest.com">Thunderforest</a>'
       }).addTo(mapRef.current);
     }
 
