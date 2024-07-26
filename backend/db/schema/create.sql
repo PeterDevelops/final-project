@@ -13,7 +13,7 @@ CREATE TABLE users (
   email VARCHAR(255) NOT NULL,
   hashed_password VARCHAR(255) NOT NULL,
   profile_photo_url VARCHAR(255) NOT NULL,
-  admin_status BOOLEAN, 
+  admin_status BOOLEAN,
   inbox_id INTEGER REFERENCES inboxes(id) ON DELETE CASCADE
 );
 
