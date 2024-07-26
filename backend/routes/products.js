@@ -6,7 +6,12 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
   getAllProducts()
-  .then(results => console.log(results))
+  .then(results => {
+    res.json(results)
+  })
+  .catch((err) => {
+    console.log(err.message)
+  })
 
 })
 
