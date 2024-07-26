@@ -17,12 +17,12 @@ export default function Grouped() {
         id="grouped-demo"
         options={options}
         groupBy={(option) => option.category}
-        getOptionLabel={(option) => option.title}
+        getOptionLabel={(option) => option.name}
         sx={{ width: '100%' }}
         renderOption={(props, option) => (
           <li {...props} className="flex items-center p-2 border border-gray-300 rounded-md cursor-pointer">
             <FontAwesomeIcon icon={option.icon} className="mr-2" />
-            <span>{option.title}</span>
+            <span>{option.name}</span>
           </li>
         )}
         renderInput={(params) => (
@@ -58,7 +58,7 @@ function getIconForCategory(category) {
 }
 
 const productsVendorsAndLocations = [
-  { title: 'Stock - Beef, White', category: 'Product' },
-  { title: 'Nitzsche Inc', category: 'Vendor' },
-  { title: 'Bellamy\'s Beet Booth', category: 'Location' },
+  { name: 'A Single Tomato', category: 'Product' },
+  { name: 'Bellamy\'s Beet Booth', category: 'Vendor' },
+  { name: 'Port Moody', category: 'Location' },
 ];
