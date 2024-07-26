@@ -18,10 +18,12 @@ app.use(cors());
 // Routes for each resource
 // Example:
 // const usersRoutes = require('./routes/users');
+const productsRoute = require("./routes/products");
 
-// Mount all resource routes
+// Mount all resource routes - the route paths will always start the path provided as the first argument below
 // Example:
 // app.use('/users', usersRoutes);
+app.use("/api/products", productsRoute);
 
 // temp route to set up server
 // Create the rest of the routes in routes folder

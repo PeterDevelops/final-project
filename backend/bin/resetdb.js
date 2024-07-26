@@ -3,8 +3,8 @@ require('dotenv').config();
 
 // other dependencies
 const fs = require('fs');
-const chalk = require('chalk');
 const db = require('../db/connection');
+const chalk = require('chalk');
 
 // PG connection setup
 // const connectionString = process.env.DATABASE_URL ||
@@ -23,6 +23,7 @@ const runSchemaFiles = async () => {
   }
 };
 
+// Seeds the db with files from db/seeds
 const runSeedFiles = async () => {
   console.log(chalk.cyan(`-> Loading Seeds ...`));
   const schemaFilenames = fs.readdirSync('./db/seeds');
@@ -34,6 +35,7 @@ const runSeedFiles = async () => {
   }
 };
 
+// Resets the database
 const runResetDB = async () => {
   try {
     process.env.DB_HOST &&

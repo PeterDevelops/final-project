@@ -13,8 +13,7 @@ CREATE TABLE users (
   email VARCHAR(255) NOT NULL,
   hashed_password VARCHAR(255) NOT NULL,
   profile_photo_url VARCHAR(255) NOT NULL,
-  admin_status BOOLEAN,
-  inbox_id INTEGER REFERENCES inboxes(id) ON DELETE CASCADE
+  admin_status BOOLEAN
 );
 
 CREATE TABLE vendors (
@@ -25,8 +24,7 @@ CREATE TABLE vendors (
   longitude DECIMAL NOT NULL,
   latitude DECIMAL NOT NULL,
   vendor_logo_url VARCHAR(255) NOT NULL,
-  admin_user INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  inbox_id INTEGER REFERENCES inboxes(id) ON DELETE CASCADE
+  admin_user INTEGER REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE products (
@@ -43,8 +41,8 @@ CREATE TABLE products (
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  time_ordered TIMESTAMPZ DEFAULT CURRENT_TIMESTAMP,
-  total_cost INTERGER
+  time_ordered TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+  total_cost INTEGER
 );
 
 CREATE TABLE order_items (
@@ -54,24 +52,26 @@ CREATE TABLE order_items (
   quantity INTEGER
 );
 
-CREATE TABLE inboxes (
-  id SERIAL PRIMARY KEY,
-  chat_id INTEGER REFERENCES chats(id) ON DELETE CASCADE,
-);
-
 CREATE TABLE chats (
   id SERIAL PRIMARY KEY,
-  inbox_id INTEGER REFERENCES inboxes(id) ON DELETE CASCADE,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   contact_user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   last_message VARCHAR(1000)
 );
 
+CREATE TABLE inboxes (
+  id SERIAL PRIMARY KEY,
+  chat_id INTEGER REFERENCES chats(id) ON DELETE CASCADE,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE
+);
+
 CREATE TABLE chat_messages (
   id SERIAL PRIMARY KEY,
   message VARCHAR(1000),
-  created_at TIMESTAMPZ DEFAULT CURRENT_TIMESTAMP,
+  created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
   sender_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  chat_id INTEGER REFERENCES chats(id) ON DELETE CASCADE,
+  chat_id INTEGER REFERENCES chats(id) ON DELETE CASCADE
 );
+
+
 
