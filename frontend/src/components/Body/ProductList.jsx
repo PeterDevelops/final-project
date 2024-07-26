@@ -3,12 +3,17 @@ import ProductListItem from './ProductListItem'
 
 const ProductList = (props) => {
   const { products } = props;
-  console.log("products: ", products);
 
-  const productListArr = products.map((product) => <ProductListItem key={product.id} productData={product}/> )
+  // if statement required to not throw TypeError: products.map is not a function
+  const productListArr = () => {
+    if (products.length > 0) {
+      return products.map((product) => <ProductListItem key={product.id} productData={product}/>)
+    }
+  }
+
   return (
-    <div class="flex flex-wrap">
-      {productListArr}
+    <div className="flex flex-wrap">
+      {productListArr()}
     </div>
 
   )

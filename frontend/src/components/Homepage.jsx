@@ -7,7 +7,7 @@ const Homepage = (props) => {
   return (
     <div>
       <NavBar />
-      <ProductList products={products}/>
+      {/* <ProductList products={products}/> */}
     </div>
 
   )

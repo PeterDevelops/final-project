@@ -7,7 +7,7 @@ import Homepage from './components/Homepage';
 function App() {
   const [products, setProducts] = useState('');
 
-  // temp route to send request to node server
+  // a route to pull products data from the db (backend)
   useEffect(() => {
     axios.get('/api/products')
       .then(response => {
@@ -17,8 +17,7 @@ function App() {
         console.error('There was an error!', error);
       });
   }, []);
-
-  console.log("Products Data:", products)
+  
   return (
   <div className="Homepage">
     <div className='bg-purple-200'>
