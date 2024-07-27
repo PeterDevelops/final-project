@@ -6,7 +6,7 @@ const Cart = () => {
   return (
     <div className="flex items-center">
       <a href="#" className="text-gray-700 hover:text-gray-900">
-        <FontAwesomeIcon icon={faCartShopping} className="w-6 h-6" />
+        <FontAwesomeIcon icon={faCartShopping} size="2x" />
       </a>
     </div>
   );
