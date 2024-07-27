@@ -3,6 +3,9 @@ import './App.css';
 import axios from 'axios';
 
 import Homepage from './components/Homepage';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Cart from './components/NavBar-Components/Cart';
+import Inbox from './components/NavBar-Components/Inbox'
 
 function App() {
   const [products, setProducts] = useState('');
@@ -17,16 +20,24 @@ function App() {
         console.error('There was an error!', error);
       });
   }, []);
-  
+
   return (
-  <div className="Homepage">
-    <div className='bg-purple-200'>
-      <header>
-        <h1 className="text-6xl text-red-500 underline decoration-blue-500">Mrkt</h1>
-      </header>
+    <Router>
+      <div className="Homepage">
+        <div className='bg-purple-200'>
+          <header>
+            <h1 className="text-6xl text-red-500 underline decoration-blue-500">Mrkt</h1>
+          </header>
+        </div>
+        <Homepage products={products} />
+        {/* Route resource path */}
+        <Routes>
+
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/inbox" element={<Inbox />} />
+        </Routes>
       </div>
-    <Homepage products={products}/>
-  </div>
+    </Router>
   );
 };
 

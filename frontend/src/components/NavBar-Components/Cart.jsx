@@ -3,8 +3,21 @@ import React from 'react';
 const Cart = () => {
   return (
     <div>
-      <a href="#" className="nav-bar__cart">Cart</a>
+
+      <div>
+
+        <span>Vendor Photo</span>
+        <span>Vendor Name</span>
+      </div>
+
+      <div>
+        Your Cart
+      </div>
+
+
+
     </div>
+
   );
 };
 
