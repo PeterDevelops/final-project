@@ -1,8 +1,6 @@
 import React from 'react';
-import NavBar from './NavBar';
-import Map from './Map'
-import ProductList from './Body/ProductList'
-import VendorList from './Body/VendorList'
+import NavBar from '../NavBar';
+import Map from '../Map'
 
 const Homepage = (props) => {
   const { products, vendors } = props;
