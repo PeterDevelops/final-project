@@ -3,7 +3,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  height: 72px;
+  height: 70px;
   padding: 1rem;
   background-color: #F7F4F0;
 }
@@ -20,4 +20,8 @@
   font-weight: bold;
   font-size: 1.5rem;
   color: black;
+}
+
+.search-bar-container {
+  background-color: #F7F4F0;
 }
