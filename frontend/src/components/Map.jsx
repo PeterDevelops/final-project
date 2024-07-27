@@ -7,11 +7,15 @@ const Map = ({ center, zoom, className }) => {
 
   useEffect(() => {
     const initializeMap = (latitude, longitude) => {
-      mapRef.current = L.map('map').setView([latitude, longitude], zoom);
+      if (mapRef.current) {
+        mapRef.current.setView([latitude, longitude], zoom);
+      } else {
+        mapRef.current = L.map('map').setView([latitude, longitude], zoom);
 
-      L.tileLayer(`https://{s}.tile.thunderforest.com/neighbourhood/{z}/{x}/{y}.png?apikey=${process.env.REACT_APP_THUNDERFOREST_API_KEY}`, {
-        attribution: '&copy; <a href="https://www.thunderforest.com">Thunderforest</a>',
-      }).addTo(mapRef.current);
+        L.tileLayer(`https://{s}.tile.thunderforest.com/neighbourhood/{z}/{x}/{y}.png?apikey=${process.env.REACT_APP_THUNDERFOREST_API_KEY}`, {
+          attribution: '&copy; <a href="https://www.thunderforest.com">Thunderforest</a>',
+        }).addTo(mapRef.current);
+      }
     };
 
     if (navigator.geolocation) {
@@ -22,16 +26,12 @@ const Map = ({ center, zoom, className }) => {
         },
         (error) => {
           console.error('Error getting location:', error.message);
-          if (!mapRef.current) {
-            initializeMap(center[0], center[1]);
-          }
+          initializeMap(center[0], center[1]);
         }
       );
     } else {
       console.error('Geolocation is not supported by this browser.');
-      if (!mapRef.current) {
-        initializeMap(center[0], center[1]);
-      }
+      initializeMap(center[0], center[1]);
     }
 
     return () => {
