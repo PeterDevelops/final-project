@@ -11,6 +11,7 @@ const HamburgerMenu = () => {
       <Link to="/products" className="menu-item">Products</Link>
       <Link to="/vendors" className="menu-item">Vendors</Link>
       <Link to="/locations" className="menu-item">Locations</Link>
+      <Link to="/categories" className="menu-item">Categories</Link>
     </Menu>
 
   );
