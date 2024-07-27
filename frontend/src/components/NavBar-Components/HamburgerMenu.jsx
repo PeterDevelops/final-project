@@ -8,9 +8,9 @@ const HamburgerMenu = () => {
     <Menu>
       {/* <a className="menu-item" href="#">Home</a> */}
       <Link to="/" >Home</Link>
-      <a className="menu-item" href="#">Products</a>
-      <a className="menu-item" href="#">Vendors</a>
-      <a className="menu-item" href="#">Locations</a>
+      <Link to="/vendor-list" >Vendors</Link>
+      <Link to="/product-list" >Products</Link>
+      <Link to="/category-list" >Categories</Link>
     </Menu>
 
   );

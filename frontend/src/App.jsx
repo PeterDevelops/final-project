@@ -3,9 +3,12 @@ import './App.css';
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import Homepage from './components/Homepage';
+import Homepage from './components/Routes/Homepage';
 import Cart from './components/Routes/Cart';
 import Inbox from './components/Routes/Inbox';
+import VendorList from './components/Routes/VendorList';
+import ProductList from './components/Routes/ProductList';
+import CategoryList from './components/Routes/CategoryList';
 
 function App() {
   const [products, setProducts] = useState('');
@@ -53,7 +56,10 @@ function App() {
         <Route path="/" element={<Homepage products={products} vendors={vendors} />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/inbox" element={<Inbox />} />
-        
+        <Route path="/vendors" element={<VendorList vendors={vendors} />} />
+        <Route path="/products" element={<ProductList />}/>
+        <Route path="/categories" element={<CategoryList />}/>
+
       </Routes>
 
     </Router>
