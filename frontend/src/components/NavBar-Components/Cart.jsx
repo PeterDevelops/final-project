@@ -5,9 +5,9 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 const Cart = () => {
   return (
     <div className="flex items-center">
-      <a href="#" className="text-gray-700 hover:text-gray-900">
+      {/* <a href="#" className="text-gray-700 hover:text-gray-900">
         <FontAwesomeIcon icon={faCartShopping} size="2x" />
-      </a>
+      </a> */}
     </div>
   );
 };
