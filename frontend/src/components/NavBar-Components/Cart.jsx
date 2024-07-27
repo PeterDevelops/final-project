@@ -1,9 +1,13 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
 const Cart = () => {
   return (
-    <div>
-      Cart
+    <div className="flex items-center">
+      <a href="#" className="text-gray-700 hover:text-gray-900">
+        <FontAwesomeIcon icon={faCartShopping} size="2x" />
+      </a>
     </div>
   );
 };

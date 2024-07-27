@@ -1,8 +1,10 @@
 import React from 'react'
 import NavBar from './NavBar';
 import Map from './Map'
+import ProductList from './Body/ProductList'
 
-const Homepage = () => {
+const Homepage = (props) => {
+  const { products } = props;
   return (
     <div>
       <NavBar />
@@ -11,6 +13,7 @@ const Homepage = () => {
         zoom={12}
         className = 'h-50vh w-80vw mx-auto border-2 border-custom-gray shadow-md rounded-lg'
       />
+      {/* <ProductList products={products}/> */}
     </div>
 
   )
