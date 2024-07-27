@@ -5,7 +5,17 @@ module.exports = {
     "./public/index.html"
   ],
   theme: {
-    extend: {},
+    extend: {
+      height: {
+        '50vh': '50vh',
+      },
+      width: {
+        '80vw': '80vw',
+      },
+      colors: {
+        'custom-gray': '#d1d5db',
+      },
+    },
   },
   plugins: [],
 }

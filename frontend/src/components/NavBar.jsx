@@ -1,6 +1,4 @@
-import React, { useState} from 'react';
-import '../styles/NavBar.scss';
-
+import React from 'react';
 import HamburgerMenu from './NavBar-Components/HamburgerMenu';
 import Cart from './NavBar-Components/Cart';
 import Inbox from './NavBar-Components/Inbox';
@@ -11,20 +9,25 @@ const NavBar = () => {
   return (
 
     <div>
-      <nav className="nav-bar">
+      <nav className="flex items-center justify-between h-16 px-4 bg-[#F7F4F0]">
+
           <HamburgerMenu />
-        <span className="nav-bar__logo">Mrkt</span>
-        <div className="nav-bar__links">
-
-          <Link to="/cart">Cart</Link>
-          <Link to="/inbox">Inbox</Link>
-
+        
+        <img
+          src="/Logo.png"
+          alt="Mrkt Logo"
+          className="w-20 h-20 mt-6"
+        />
+        <div className="flex items-center gap-4 mt-6">
+          <Cart />
+          <Inbox />
         </div>
       </nav>
-      <div className="search-bar-container">
+      <div className="bg-[#F7F4F0] p-4">
         <SearchBar />
       </div>
     </div>
+
 
 
   );
