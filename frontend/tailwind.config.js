@@ -12,6 +12,9 @@ module.exports = {
       width: {
         '80vw': '80vw',
       },
+      colors: {
+        'custom-gray': '#d1d5db',
+      },
     },
   },
   plugins: [],

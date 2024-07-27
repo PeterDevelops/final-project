@@ -9,7 +9,7 @@ const Homepage = () => {
       <Map
         center={[49.2824, -122.8277]}
         zoom={14}
-        className = 'h-50vh w-80vw mx-auto'
+        className = 'h-50vh w-80vw mx-auto border-2 border-custom-gray shadow-md rounded-lg'
       />
     </div>
 
