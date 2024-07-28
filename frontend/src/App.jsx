@@ -37,6 +37,7 @@ function App() {
       <Routes>
         <Route path="/cart" element={<Cart />} />
         <Route path="/inbox" element={<Inbox />} />
+        {/* <Route path="/" element={<Homepage />} /> */}
       </Routes>
     </Router>
   );
