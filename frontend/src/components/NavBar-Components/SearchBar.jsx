@@ -4,18 +4,26 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSeedling, faStore, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 
-export default function Grouped() {
-  const options = productsVendorsAndLocations.map((option) => ({
-    ...option,
-    category: option.category || 'Unknown',
-    icon: getIconForCategory(option.category),
-  }));
+export default function Grouped(props) {
+  const { products } = props;
+
+
+  const optionsFunc = () => {
+    if (products.length > 0) {
+      const options = products.map((product) => ({
+        ...product,
+        category: 'Product',
+        icon: getIconForCategory('Product'),
+      }));
+      return options
+    }
+  }
 
   return (
     <div className="p-4 max-w-md mx-auto">
       <Autocomplete
         id="grouped-demo"
-        options={options}
+        options={optionsFunc()}
         groupBy={(option) => option.category}
         getOptionLabel={(option) => option.name}
         sx={{ width: '100%' }}
@@ -57,8 +65,8 @@ function getIconForCategory(category) {
   }
 }
 
-const productsVendorsAndLocations = [
-  { name: 'A Single Tomato', category: 'Product' },
-  { name: 'Bellamy\'s Beet Booth', category: 'Vendor' },
-  { name: 'Port Moody', category: 'Location' },
-];
+// const productsVendorsAndLocations = [
+//   { name: 'A Single Tomato', category: 'Product' },
+//   { name: 'Bellamy\'s Beet Booth', category: 'Vendor' },
+//   { name: 'Port Moody', category: 'Location' },
+// ];

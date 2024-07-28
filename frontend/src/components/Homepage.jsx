@@ -7,7 +7,7 @@ const Homepage = (props) => {
   const { products } = props;
   return (
     <div>
-      <NavBar />
+      <NavBar products={products} />
       <Map
         center={[49.2824, -122.8277]}
         zoom={12}

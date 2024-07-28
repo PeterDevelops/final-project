@@ -4,7 +4,8 @@ import Cart from './NavBar-Components/Cart';
 import Inbox from './NavBar-Components/Inbox';
 import SearchBar from './NavBar-Components/SearchBar';
 
-const NavBar = () => {
+const NavBar = (props) => {
+  const { products } = props;
   return (
     <div>
       <nav className="flex items-center justify-between h-16 px-4 bg-[#F7F4F0]">
@@ -22,7 +23,7 @@ const NavBar = () => {
         </div>
       </nav>
       <div className="bg-[#F7F4F0] p-4">
-        <SearchBar />
+        <SearchBar products={products}/>
       </div>
     </div>
   );
