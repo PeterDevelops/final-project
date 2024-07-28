@@ -7,8 +7,13 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const NavBar = () => {
+
+  const noSearchBar = ['/cart', '/inbox'];
+  const location = useLocation();
+
   return (
     <div>
       <nav className="flex items-center justify-between h-16 px-4 bg-[#F7F4F0]">
@@ -21,7 +26,7 @@ const NavBar = () => {
           className="w-20 h-20 mt-6"
         />
         <div className="flex items-center gap-4 mt-6">
-          
+
           <Link to="/cart">
             <div className="flex items-center">
               <a href="#" className="text-gray-700 hover:text-gray-900">
@@ -41,7 +46,11 @@ const NavBar = () => {
         </div>
       </nav>
       <div className="bg-[#F7F4F0] p-4">
-        <SearchBar />
+        
+        {!noSearchBar.includes(location.pathname) && (
+          <SearchBar />
+        )}
+
       </div>
     </div>
   );

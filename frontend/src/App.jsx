@@ -9,7 +9,7 @@ import Inbox from './components/NavBar-Components/Inbox';
 
 function App() {
   const [products, setProducts] = useState('');
-
+  
   // a route to pull products data from the db (backend)
   useEffect(() => {
     axios.get('/api/products')

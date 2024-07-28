@@ -8,7 +8,8 @@ const Cart = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  console.log(location.pathname) // '/cart'
+  // '/cart'
+  console.log(location.pathname);
 
   return (
     <div className="flex items-center">
