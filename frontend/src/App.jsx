@@ -66,11 +66,11 @@ function App() {
       {/* Path to routes */}
       <Routes>
         <Route path="/" element={<Homepage products={products} vendors={vendors} locations={locations}/>} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/inbox" element={<Inbox />} />
-        <Route path="/vendors" element={<VendorList vendors={vendors} products={products} />} />
-        <Route path="/products" element={<ProductList vendors={vendors} products={products} />}/>
-        <Route path="/categories" element={<CategoryList />}/>
+        <Route path="/cart" element={<Cart products={products} vendors={vendors} locations={locations}/>} />
+        <Route path="/inbox" element={<Inbox products={products} vendors={vendors} locations={locations}/>} />
+        <Route path="/vendors" element={<VendorList products={products} vendors={vendors} locations={locations} />} />
+        <Route path="/products" element={<ProductList products={products} vendors={vendors} locations={locations} />}/>
+        <Route path="/categories" element={<CategoryList products={products} vendors={vendors} locations={locations}/>}/>
 
       </Routes>
 
