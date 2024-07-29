@@ -7,16 +7,15 @@ import { faSeedling, faStore, faMapMarkerAlt } from '@fortawesome/free-solid-svg
 export default function Grouped(props) {
   const { products } = props;
 
-
   const optionsFunc = () => {
     if (products.length > 0) {
-      const options = products.map((product) => ({
+      return products.map((product) => ({
         ...product,
         category: 'Product',
         icon: getIconForCategory('Product'),
       }));
-      return options
     }
+    return [];
   }
 
   return (
