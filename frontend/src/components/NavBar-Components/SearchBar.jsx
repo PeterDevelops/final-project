@@ -7,8 +7,8 @@ import { faSeedling, faStore, faMapMarkerAlt } from '@fortawesome/free-solid-svg
 export default function Grouped(props) {
   const { products, vendors } = props;
     
-  console.log("Products Data---", products)
-  console.log("Vendors Data---", vendors)
+  // console.log("Products Data---", products)
+  // console.log("Vendors Data---", vendors)
 
   const categorizeProducts = () => {
     if (products.length > 0) {
@@ -32,16 +32,30 @@ export default function Grouped(props) {
       }));
       return categorizedVendors
     }
-  }
+  };
+
+  const categorizeLocations = () => {
+    if (vendors.length > 0) {
+      const categorizedLocations = vendors.map((location) => ({
+        key: location.id,
+        name: location.city,
+        category: 'Location',
+        icon: getIconForCategory('Location'),
+      }));
+      return categorizedLocations
+    }
+  };
 
   const combinedData = () => {
     const productData = categorizeProducts();
-    console.log("ProductData---", productData)
+    // console.log("ProductData---", productData)
     const vendorData = categorizeVendors();
-    console.log("VendorData---", vendorData)
+    // console.log("VendorData---", vendorData)
+    const locationData = categorizeLocations();
+    // console.log("LocationData---", locationData)
 
     if (productData && vendorData) {
-      const options = [...productData, ...vendorData]
+      const options = [...productData, ...vendorData, ...locationData]
       return options
     }
   };
