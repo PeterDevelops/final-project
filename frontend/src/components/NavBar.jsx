@@ -8,8 +8,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
-const NavBar = () => {
-
+const NavBar = (props) => {
+  const { products } = props;
   return (
     <div>
       <nav className="flex items-center justify-between h-16 px-4 bg-[#F7F4F0]">
@@ -43,7 +43,7 @@ const NavBar = () => {
       </nav>
 
       <div className="bg-[#F7F4F0] p-4">
-          <SearchBar />
+        <SearchBar products={products}/>
       </div>
 
     </div>

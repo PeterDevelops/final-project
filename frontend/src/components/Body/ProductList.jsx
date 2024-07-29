@@ -15,7 +15,6 @@ const ProductList = (props) => {
     <div className="flex flex-wrap">
       {productListArr()}
     </div>
-
   )
 
 };

@@ -9,6 +9,7 @@ import Inbox from './components/Routes/Inbox';
 
 function App() {
   const [products, setProducts] = useState('');
+  const [vendors, setVendors] = useState('');
 
   // a route to pull products data from the db (backend)
   useEffect(() => {
@@ -20,6 +21,20 @@ function App() {
         console.error('There was an error!', error);
       });
   }, []);
+
+  // a route to pull vendors data from the db (backend)
+  useEffect(() => {
+    axios.get('/api/vendors')
+      .then(response => {
+        setVendors(response.data);
+      })
+      .catch(error => {
+        console.error('There was an error!', error);
+      });
+  }, []);
+
+  console.log("Products Data---", products)
+  console.log("Vendors Data---", vendors)
 
   return (
     // Router must be in the top level of the app
@@ -35,13 +50,15 @@ function App() {
 
       {/* Path to routes */}
       <Routes>
-        <Route path="/" element={<Homepage products={products} />} />
+        <Route path="/" element={<Homepage products={products} vendors={vendors} />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/inbox" element={<Inbox />} />
-
+        
       </Routes>
 
     </Router>
+    // <Homepage products={products} vendors={vendors}/>
+
   );
 };
 
