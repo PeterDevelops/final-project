@@ -8,7 +8,7 @@ const Homepage = (props) => {
   const { products, vendors } = props;
   return (
     <div>
-      <NavBar products={products} />
+      <NavBar products={products} vendors={vendors}/>
       <Map
         center={[49.2824, -122.8277]}
         zoom={12}

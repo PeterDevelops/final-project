@@ -30,8 +30,8 @@ function App() {
       });
   }, []);
   
-  console.log("Products Data---", products)
-  console.log("Vendors Data---", vendors)
+  // console.log("Products Data---", products)
+  // console.log("Vendors Data---", vendors)
 
   return (
   <div className="Homepage">

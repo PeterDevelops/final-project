@@ -5,25 +5,52 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSeedling, faStore, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 
 export default function Grouped(props) {
-  const { products } = props;
+  const { products, vendors } = props;
+    
+  console.log("Products Data---", products)
+  console.log("Vendors Data---", vendors)
 
-
-  const optionsFunc = () => {
+  const categorizeProducts = () => {
     if (products.length > 0) {
-      const options = products.map((product) => ({
+      const categorizedProducts = products.map((product) => ({
         ...product,
+        key: product.id,
         category: 'Product',
         icon: getIconForCategory('Product'),
       }));
-      return options
+      return categorizedProducts
     }
   }
+
+  const categorizeVendors = () => {
+    if (vendors.length > 0) {
+      const categorizedVendors = vendors.map((vendor) => ({
+        ...vendor,
+        key: vendor.id,
+        category: 'Vendor',
+        icon: getIconForCategory('Vendor'),
+      }));
+      return categorizedVendors
+    }
+  }
+
+  const combinedData = () => {
+    const productData = categorizeProducts();
+    console.log("ProductData---", productData)
+    const vendorData = categorizeVendors();
+    console.log("VendorData---", vendorData)
+
+    if (productData && vendorData) {
+      const options = [...productData, ...vendorData]
+      return options
+    }
+  };
 
   return (
     <div className="p-4 max-w-md mx-auto">
       <Autocomplete
         id="grouped-demo"
-        options={optionsFunc()}
+        options={combinedData()}
         groupBy={(option) => option.category}
         getOptionLabel={(option) => option.name}
         sx={{ width: '100%' }}
@@ -35,7 +62,9 @@ export default function Grouped(props) {
         )}
         renderInput={(params) => (
           <TextField
+          // input
             {...params}
+            //placeholder
             label="Search by Product, Vendor or Location"
             className="bg-gray-100 shadow-md"
             sx={{
