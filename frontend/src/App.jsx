@@ -52,7 +52,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage products={products} vendors={vendors} />} />
         <Route path="/cart" element={<Cart products={products}/>} />
-        <Route path="/inbox" element={<Inbox />} />
+        <Route path="/inbox" element={<Inbox products={products}/>} />
 
       </Routes>
 
