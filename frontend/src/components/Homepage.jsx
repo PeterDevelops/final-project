@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import NavBar from './NavBar';
 import Map from './Map'
 import ProductList from './Body/ProductList'
@@ -18,7 +18,7 @@ const Homepage = (props) => {
       {/* <VendorList vendors={vendors} /> */}
     </div>
 
-  )
+  );
 
 };
 

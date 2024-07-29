@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import axios from 'axios';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import Homepage from './components/Homepage';
+import Cart from './components/Routes/Cart';
+import Inbox from './components/Routes/Inbox';
 
 function App() {
   const [products, setProducts] = useState('');
@@ -34,14 +37,28 @@ function App() {
   // console.log("Vendors Data---", vendors)
 
   return (
-  <div className="Homepage">
-    <div className='bg-purple-200'>
-      <header>
-        {/* <h1 className="text-6xl text-red-500 underline decoration-blue-500">Mrkt</h1> */}
-      </header>
+    // Router must be in the top level of the app
+    <Router>
+      <div className="Homepage">
+        <div className='bg-purple-200'>
+          <header>
+            {/* <h1 className="text-6xl text-red-500 underline decoration-blue-500">Mrkt</h1> */}
+          </header>
+        </div>
+        {/* <Homepage products={products} /> */}
       </div>
-    <Homepage products={products} vendors={vendors}/>
-  </div>
+
+      {/* Path to routes */}
+      <Routes>
+        <Route path="/" element={<Homepage products={products} vendors={vendors} />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/inbox" element={<Inbox />} />
+        
+      </Routes>
+
+    </Router>
+    // <Homepage products={products} vendors={vendors}/>
+
   );
 };
 
