@@ -5,45 +5,17 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate, useLocation } from 'react-router-dom';
 import HamburgerMenu from '../NavBar-Components/HamburgerMenu';
 import { Link } from 'react-router-dom';
+import NavBar from '../NavBar';
 
-const Cart = () => {
+const Cart = ({ products }) => {
 
   const navigate = useNavigate();
 
   return (
 
     <div>
+      <NavBar products={products} />
 
-        <nav className="flex items-center justify-between h-16 px-4 bg-[#F7F4F0]">
-          <div>
-            <HamburgerMenu />
-          </div>
-          <img
-            src="/Logo.png"
-            alt="Mrkt Logo"
-            className="w-20 h-20 mt-6"
-          />
-          <div className="flex items-center gap-4 mt-6">
-
-            <Link to="/cart">
-              <div className="flex items-center">
-                <a href="#" className="text-gray-700 hover:text-gray-900">
-                  <FontAwesomeIcon icon={faCartShopping} size="2x" />
-                </a>
-              </div>
-            </Link>
-
-            <Link to="/inbox">
-              <div className="flex items-center">
-                <a href="#" className="text-gray-700 hover:text-gray-900">
-                  <FontAwesomeIcon icon={faEnvelope} size="2x" />
-                </a>
-              </div>
-            </Link>
-
-          </div>
-        </nav>
-      
       <div>
         Your Cart
       </div>

@@ -64,8 +64,3 @@ function getIconForCategory(category) {
   }
 }
 
-// const productsVendorsAndLocations = [
-//   { name: 'A Single Tomato', category: 'Product' },
-//   { name: 'Bellamy\'s Beet Booth', category: 'Vendor' },
-//   { name: 'Port Moody', category: 'Location' },
-// ];
