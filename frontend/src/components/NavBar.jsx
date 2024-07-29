@@ -22,23 +22,12 @@ const NavBar = (props) => {
           className="w-20 h-20 mt-6"
         />
         <div className="flex items-center gap-4 mt-6">
-
-          <Link to="/cart">
-            <div className="flex items-center">
-              <a href="#" className="text-gray-700 hover:text-gray-900">
-                <FontAwesomeIcon icon={faCartShopping} size="2x" />
-              </a>
-            </div>
+          <Link to="/cart" className="text-gray-700 hover:text-gray-900 flex items-center">
+            <FontAwesomeIcon icon={faCartShopping} size="2x" />
           </Link>
-
-          <Link to="/inbox">
-            <div className="flex items-center">
-              <a href="#" className="text-gray-700 hover:text-gray-900">
-                <FontAwesomeIcon icon={faEnvelope} size="2x" />
-              </a>
-            </div>
+          <Link to="/inbox" className="text-gray-700 hover:text-gray-900 flex items-center">
+            <FontAwesomeIcon icon={faEnvelope} size="2x" />
           </Link>
-
         </div>
       </nav>
 
