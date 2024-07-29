@@ -26,7 +26,7 @@ export default function Grouped(props) {
         groupBy={(option) => option.category}
         getOptionLabel={(option) => option.name}
         sx={{ width: '100%' }}
-        renderOption={(props, option) => (
+        renderOption={({ key, ...props }, option) => (
           <li {...props} className="flex items-center p-2 border border-gray-300 rounded-md cursor-pointer">
             <FontAwesomeIcon icon={option.icon} className="mr-2" />
             <span>{option.name}</span>
