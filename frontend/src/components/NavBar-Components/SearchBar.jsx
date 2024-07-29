@@ -7,16 +7,15 @@ import { faSeedling, faStore, faMapMarkerAlt } from '@fortawesome/free-solid-svg
 export default function Grouped(props) {
   const { products } = props;
 
-
   const optionsFunc = () => {
     if (products.length > 0) {
-      const options = products.map((product) => ({
+      return products.map((product) => ({
         ...product,
         category: 'Product',
         icon: getIconForCategory('Product'),
       }));
-      return options
     }
+    return [];
   }
 
   return (
@@ -27,8 +26,8 @@ export default function Grouped(props) {
         groupBy={(option) => option.category}
         getOptionLabel={(option) => option.name}
         sx={{ width: '100%' }}
-        renderOption={(props, option) => (
-          <li {...props} className="flex items-center p-2 border border-gray-300 rounded-md cursor-pointer">
+        renderOption={({ props }, option) => (
+          <li {...props} key={option.id} className="flex items-center p-2 border border-gray-300 rounded-md cursor-pointer">
             <FontAwesomeIcon icon={option.icon} className="mr-2" />
             <span>{option.name}</span>
           </li>
@@ -65,8 +64,3 @@ function getIconForCategory(category) {
   }
 }
 
-// const productsVendorsAndLocations = [
-//   { name: 'A Single Tomato', category: 'Product' },
-//   { name: 'Bellamy\'s Beet Booth', category: 'Vendor' },
-//   { name: 'Port Moody', category: 'Location' },
-// ];
