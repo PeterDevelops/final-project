@@ -4,12 +4,12 @@ import axios from 'axios';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import Homepage from './components/Homepage';
-import Cart from './components/NavBar-Components/Cart';
-import Inbox from './components/NavBar-Components/Inbox';
+import Cart from './components/Routes/Cart';
+import Inbox from './components/Routes/Inbox';
 
 function App() {
   const [products, setProducts] = useState('');
-  
+
   // a route to pull products data from the db (backend)
   useEffect(() => {
     axios.get('/api/products')
@@ -30,15 +30,17 @@ function App() {
             {/* <h1 className="text-6xl text-red-500 underline decoration-blue-500">Mrkt</h1> */}
           </header>
         </div>
-        <Homepage products={products} />
+        {/* <Homepage products={products} /> */}
       </div>
 
       {/* Path to routes */}
       <Routes>
+        <Route path="/" element={<Homepage products={products} />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/inbox" element={<Inbox />} />
-        {/* <Route path="/" element={<Homepage />} /> */}
+
       </Routes>
+
     </Router>
   );
 };

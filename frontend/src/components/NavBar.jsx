@@ -1,18 +1,14 @@
 import React from 'react';
 import HamburgerMenu from './NavBar-Components/HamburgerMenu';
-import Cart from './NavBar-Components/Cart';
-import Inbox from './NavBar-Components/Inbox';
+import Cart from './Routes/Cart';
+import Inbox from './Routes/Inbox';
 import SearchBar from './NavBar-Components/SearchBar';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate, useLocation } from 'react-router-dom';
 
 const NavBar = () => {
-
-  const noSearchBar = ['/cart', '/inbox'];
-  const location = useLocation();
 
   return (
     <div>
@@ -45,13 +41,11 @@ const NavBar = () => {
 
         </div>
       </nav>
-      <div className="bg-[#F7F4F0] p-4">
-        
-        {!noSearchBar.includes(location.pathname) && (
-          <SearchBar />
-        )}
 
+      <div className="bg-[#F7F4F0] p-4">
+          <SearchBar />
       </div>
+
     </div>
   );
 };
