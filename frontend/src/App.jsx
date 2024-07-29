@@ -3,13 +3,17 @@ import './App.css';
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import Homepage from './components/Homepage';
+import Homepage from './components/Routes/Homepage';
 import Cart from './components/Routes/Cart';
 import Inbox from './components/Routes/Inbox';
+import VendorList from './components/Routes/VendorList';
+import ProductList from './components/Routes/ProductList';
+import CategoryList from './components/Routes/CategoryList';
 
 function App() {
   const [products, setProducts] = useState('');
   const [vendors, setVendors] = useState('');
+  const [locations, setLocations] = useState('');
 
   // a route to pull products data from the db (backend)
   useEffect(() => {
@@ -18,7 +22,7 @@ function App() {
         setProducts(response.data);
       })
       .catch(error => {
-        console.error('There was an error!', error);
+        console.error('There was an error with products data!', error);
       });
   }, []);
 
@@ -29,12 +33,23 @@ function App() {
         setVendors(response.data);
       })
       .catch(error => {
-        console.error('There was an error!', error);
+        console.error('There was an error with vendor data!', error);
       });
   }, []);
 
-  console.log("Products Data---", products)
-  console.log("Vendors Data---", vendors)
+  // a route to pull location data from the db (backend)
+  useEffect(() => {
+    axios.get('/api/locations')
+      .then(response => {
+        setLocations(response.data);
+      })
+      .catch(error => {
+        console.error('There was an error with locations data!', error);
+      });
+  }, []);
+
+  // console.log("Products Data---", products)
+  // console.log("Vendors Data---", vendors)
 
   return (
     // Router must be in the top level of the app
@@ -50,9 +65,12 @@ function App() {
 
       {/* Path to routes */}
       <Routes>
-        <Route path="/" element={<Homepage products={products} vendors={vendors} />} />
-        <Route path="/cart" element={<Cart products={products}/>} />
-        <Route path="/inbox" element={<Inbox products={products}/>} />
+        <Route path="/" element={<Homepage products={products} vendors={vendors} locations={locations}/>} />
+        <Route path="/cart" element={<Cart products={products} vendors={vendors} locations={locations}/>} />
+        <Route path="/inbox" element={<Inbox products={products} vendors={vendors} locations={locations}/>} />
+        <Route path="/vendors" element={<VendorList products={products} vendors={vendors} locations={locations} />} />
+        <Route path="/products" element={<ProductList products={products} vendors={vendors} locations={locations} />}/>
+        <Route path="/categories" element={<CategoryList products={products} vendors={vendors} locations={locations}/>}/>
 
       </Routes>
 

@@ -125,7 +125,7 @@ INSERT INTO products (id, name, description, photo_url, inventory, price_cents, 
 VALUES (42, 'Icecream Cone - Areo Chocolate', 'pede libero quis orci nullam molestie', 'http://dummyimage.com/369x323.png/ff4444/ffffff', 69, 1948, 4, 1);
 
 INSERT INTO products (id, name, description, photo_url, inventory, price_cents, vendor_id, category) 
-VALUES (43, 'Tea - Black Currant', 'dictumst morbi vestibulum velit id pretium', 'http://dummyimage.com/369x323.png/cc0000/ffffff', 83, 1941, 6, 4);
+VALUES (43, 'Tea - Earl Grey', 'dictumst morbi vestibulum velit id pretium', 'http://dummyimage.com/369x323.png/cc0000/ffffff', 83, 1941, 6, 4);
 
 INSERT INTO products (id, name, description, photo_url, inventory, price_cents, vendor_id, category) 
 VALUES (44, 'Chick Peas - Canned', 'tempus semper est quam pharetra magna ac', 'http://dummyimage.com/369x323.png/dddddd/000000', 86, 761, 2, 2);
@@ -227,7 +227,7 @@ INSERT INTO products (id, name, description, photo_url, inventory, price_cents, 
 VALUES (76, 'Capon - Breast, Wing On', 'lacinia nisi venenatis tristique fusce', 'http://dummyimage.com/369x323.png/cc0000/ffffff', 31, 1020, 3, 2);
 
 INSERT INTO products (id, name, description, photo_url, inventory, price_cents, vendor_id, category) 
-VALUES (77, 'Asparagus - White, Fresh', 'sed tincidunt eu felis fusce posuere felis', 'http://dummyimage.com/369x323.png/cc0000/ffffff', 14, 1146, 6, 2);
+VALUES (77, 'Asparagus - Green, Fresh', 'sed tincidunt eu felis fusce posuere felis', 'http://dummyimage.com/369x323.png/cc0000/ffffff', 14, 1146, 6, 2);
 
 INSERT INTO products (id, name, description, photo_url, inventory, price_cents, vendor_id, category) 
 VALUES (78, 'Mayonnaise', 'elit sodales scelerisque mauris sit', 'http://dummyimage.com/369x323.png/ff4444/ffffff', 66, 536, 3, 3);

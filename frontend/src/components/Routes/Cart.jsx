@@ -7,18 +7,18 @@ import HamburgerMenu from '../NavBar-Components/HamburgerMenu';
 import { Link } from 'react-router-dom';
 import NavBar from '../NavBar';
 
-const Cart = ({ products }) => {
+const Cart = ({ products, vendors, locations }) => {
 
   const navigate = useNavigate();
 
   return (
 
     <div>
-      <NavBar products={products} />
+      <NavBar products={products} vendors={vendors} locations={locations} />
 
       <div>
-      <span>Vendor Photo</span>
-      <span>Vendor Name</span>
+        <span>Vendor Photo</span>
+        <span>Vendor Name</span>
       </div>
 
       <div>
