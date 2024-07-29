@@ -17,6 +17,11 @@ const Cart = ({ products }) => {
       <NavBar products={products} />
 
       <div>
+      <span>Vendor Photo</span>
+      <span>Vendor Name</span>
+      </div>
+
+      <div>
         Your Cart
       </div>
 
