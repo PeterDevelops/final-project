@@ -21,6 +21,7 @@ CREATE TABLE vendors (
   name VARCHAR(255) NOT NULL,
   bio VARCHAR(255) NOT NULL,
   address VARCHAR(255) NOT NULL,
+  city VARCHAR(255) NOT NULL,
   longitude DECIMAL NOT NULL,
   latitude DECIMAL NOT NULL,
   vendor_logo_url VARCHAR(255) NOT NULL,
