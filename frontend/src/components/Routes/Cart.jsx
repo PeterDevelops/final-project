@@ -7,14 +7,14 @@ import HamburgerMenu from '../NavBar-Components/HamburgerMenu';
 import { Link } from 'react-router-dom';
 import NavBar from '../NavBar';
 
-const Cart = ({ products }) => {
+const Cart = ({ products, vendors }) => {
 
   const navigate = useNavigate();
 
   return (
 
     <div>
-      <NavBar products={products} />
+      <NavBar products={products} vendors={vendors} />
 
       <div>
         Your Cart

@@ -5,13 +5,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import NavBar from '../NavBar';
 
 
-const Inbox = ({ products }) => {
+const Inbox = ({ products, vendors }) => {
 
   const navigate = useNavigate();
 
   return (
     <div>
-      <NavBar products={products} />
+      <NavBar products={products} vendors={vendors} />
       <button onClick={() => navigate('/')}>Go to home page</button>
     </div>
   );
