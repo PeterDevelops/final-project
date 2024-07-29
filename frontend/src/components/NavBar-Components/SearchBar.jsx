@@ -1,14 +1,15 @@
-import * as React from 'react';
+import { React, useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSeedling, faStore, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 
 export default function Grouped(props) {
-  const { products, vendors } = props;
-    
+  const { products, vendors, locations } = props;
+
   // console.log("Products Data---", products)
   // console.log("Vendors Data---", vendors)
+  // console.log("Locations Data---", locations)
 
   const categorizeProducts = () => {
     if (products.length > 0) {
@@ -35,8 +36,9 @@ export default function Grouped(props) {
   };
 
   const categorizeLocations = () => {
-    if (vendors.length > 0) {
-      const categorizedLocations = vendors.map((location) => ({
+    if (locations.length > 0) {
+      const categorizedLocations = locations.map((location) => ({
+        ...location,
         key: location.id,
         name: location.city,
         category: 'Location',
@@ -54,11 +56,26 @@ export default function Grouped(props) {
     const locationData = categorizeLocations();
     // console.log("LocationData---", locationData)
 
-    if (productData && vendorData) {
-      const options = [...productData, ...vendorData, ...locationData]
-      return options
+    if (productData && vendorData && locationData) {
+      const options = [...productData, ...vendorData, ...locationData];
+      return options;
     }
   };
+
+  function getIconForCategory(category) {
+    switch (category) {
+      case 'Product':
+        return faSeedling;
+      case 'Vendor':
+        return faStore;
+      case 'Location':
+        return faMapMarkerAlt;
+      default:
+        return null;
+    }
+  }
+
+  // console.log('combined data-------', combinedData());
 
   return (
     <div className="p-4 max-w-md mx-auto">
@@ -76,7 +93,7 @@ export default function Grouped(props) {
         )}
         renderInput={(params) => (
           <TextField
-          // input
+            // input
             {...params}
             //placeholder
             label="Search by Product, Vendor or Location"
@@ -95,16 +112,5 @@ export default function Grouped(props) {
   );
 }
 
-function getIconForCategory(category) {
-  switch (category) {
-    case 'Product':
-      return faSeedling;
-    case 'Vendor':
-      return faStore;
-    case 'Location':
-      return faMapMarkerAlt;
-    default:
-      return null;
-  }
-}
+
 

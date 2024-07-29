@@ -9,7 +9,7 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 const NavBar = (props) => {
-  const { products, vendors } = props;
+  const { products, vendors, locations } = props;
   return (
     <div>
       <nav className="flex items-center justify-between h-16 px-4 bg-[#F7F4F0]">
@@ -32,7 +32,7 @@ const NavBar = (props) => {
       </nav>
 
       <div className="bg-[#F7F4F0] p-4">
-        <SearchBar products={products} vendors={vendors}/>
+        <SearchBar products={products} vendors={vendors} locations={locations}/>
       </div>
 
     </div>

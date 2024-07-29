@@ -5,10 +5,10 @@ import ProductList from './Body/ProductList'
 import VendorList from './Body/VendorList'
 
 const Homepage = (props) => {
-  const { products, vendors } = props;
+  const { products, vendors, locations } = props;
   return (
     <div>
-      <NavBar products={products} vendors={vendors}/>
+      <NavBar products={products} vendors={vendors} locations={locations}/>
       <Map
         center={[49.2824, -122.8277]}
         zoom={12}
