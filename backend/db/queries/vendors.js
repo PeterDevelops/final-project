@@ -13,14 +13,18 @@ const getAllVendors = () => {
 
 // get all locations
 const getAllLocations = () => {
-  const queryString = 'SELECT DISTINCT ON (city) city, vendors.longitude, vendors.latitude FROM vendors;'
+  const queryString = 'SELECT DISTINCT ON (city) city, vendors.longitude, vendors.latitude FROM vendors;';
 
   return db.query(queryString)
-  .then(results => results.rows)
-  .catch((err) => {
-    return err.message;
-  })
-
+    .then(results => {
+      return results.rows.map((row, index) => ({
+        id: `${row.longitude},${row.latitude}`,
+        ...row
+      }));
+    })
+    .catch((err) => {
+      return err.message;
+    });
 };
 
 
