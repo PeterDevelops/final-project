@@ -8,6 +8,7 @@ const morgan = require("morgan");
 const cookieParser = require('cookie-parser');
 const app = express();
 const cors = require('cors');
+const path = require('path');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
@@ -29,7 +30,9 @@ const categoriesRoute = require("./routes/categories");
 app.use("/api/products", productsRoute);
 app.use("/api/vendors", vendorsRoute);
 app.use("/api/locations", locationsRoute);
+app.use(express.static(path.join(__dirname, '../public')));
 app.use("/api/categories", categoriesRoute);
+
 
 // temp route to set up server
 // Create the rest of the routes in routes folder

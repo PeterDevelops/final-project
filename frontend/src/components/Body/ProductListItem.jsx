@@ -16,7 +16,7 @@ const ProductListItem = (props) => {
   const { productData } = props;
   return (
     <article >
-      <img src={productData.photo_url} alt="produce image"/>
+      <img src={productData.photo_url} alt="produce image" className="w-1/4"/>
       <h1>{productData.name}</h1>
       <p>Description: {productData.description}</p>
       <h3>${(productData.price_cents  / 100.00).toFixed(2)}</h3>
