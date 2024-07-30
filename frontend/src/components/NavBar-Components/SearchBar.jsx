@@ -2,10 +2,12 @@ import { React } from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSeedling, faStore, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import { faAppleWhole, faSeedling, faStore, faMapMarkerAlt, faDrumstickBite, faBreadSlice } from '@fortawesome/free-solid-svg-icons';
 
 export default function Grouped(props) {
   const { products, vendors, locations, categories } = props;
+  console.log('Vendors: ', vendors);
+
 
   // console.log("Products Data---", products)
   // console.log("Vendors Data---", vendors)
@@ -17,8 +19,8 @@ export default function Grouped(props) {
       return products.map((product) => ({
         ...product,
         key: product.id,
-        category: 'Product',
-        icon: getIconForCategory('Product'),
+        category: product.category,
+        icon: getIconForCategory(product.category),
       }));
     }
     return [];
@@ -50,22 +52,25 @@ export default function Grouped(props) {
   };
 
   const combinedData = () => {
-    const productData = categorizeProducts() || [];
-    // console.log("ProductData---", productData)
-    const vendorData = categorizeVendors() || [];
-    // console.log("VendorData---", vendorData)
-    const locationData = categorizeLocations() || [];
-    // console.log("LocationData---", locationData)
+    const productData = categorizeProducts();
+    const vendorData = categorizeVendors();
+    const locationData = categorizeLocations();
 
-    const options = [...productData, ...vendorData, ...locationData];
+    const allData = [...productData, ...vendorData, ...locationData];
 
-    return options;
+    return allData.sort((a, b) => a.category.localeCompare(b.category));
   };
 
   function getIconForCategory(category) {
     switch (category) {
-      case 'Product':
+      case 'Vegetable':
         return faSeedling;
+      case 'Fruit':
+        return faAppleWhole;
+      case 'Meat':
+        return faDrumstickBite;
+      case 'Miscellaneous':
+        return faBreadSlice;
       case 'Vendor':
         return faStore;
       case 'Location':
@@ -76,12 +81,13 @@ export default function Grouped(props) {
   }
 
   // console.log('combined data-------', combinedData());
+  // console.log('Products: ', categorizeProducts());
 
-  //filter the NUMBER of suggestions that show (how to show 2 in each category)
-  const filterOptions = createFilterOptions({
-    limit: 2,
+  // // filter the NUMBER of suggestions that show (how to show 2 in each category)
+  // const filterOptions = createFilterOptions({
+  //   limit: 2,
 
-  });
+  // });
 
   return (
     <div className="p-4 max-w-md mx-auto">
@@ -91,7 +97,7 @@ export default function Grouped(props) {
         groupBy={(option) => option.category}
         getOptionLabel={(option) => option.name}
         sx={{ width: '100%' }}
-        filterOptions={filterOptions}
+        // filterOptions={filterOptions}
         renderOption={({ props }, option) => (
 
           <li {...props} key={option.id} className="flex items-center p-2 border border-gray-300 rounded-md cursor-pointer">
