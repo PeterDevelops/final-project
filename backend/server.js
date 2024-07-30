@@ -28,6 +28,7 @@ const locationsRoute = require("./routes/locations");
 app.use("/api/products", productsRoute);
 app.use("/api/vendors", vendorsRoute);
 app.use("/api/locations", locationsRoute);
+app.use(express.static(path.join(__dirname, '../public')));
 
 // temp route to set up server
 // Create the rest of the routes in routes folder
