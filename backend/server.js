@@ -22,6 +22,7 @@ app.use(cors());
 const productsRoute = require("./routes/products");
 const vendorsRoute = require("./routes/vendors");
 const locationsRoute = require("./routes/locations");
+const categoriesRoute = require("./routes/categories");
 
 // Mount all resource routes - the route paths will always start the path provided as the first argument below
 // Example:
@@ -30,6 +31,8 @@ app.use("/api/products", productsRoute);
 app.use("/api/vendors", vendorsRoute);
 app.use("/api/locations", locationsRoute);
 app.use(express.static(path.join(__dirname, '../public')));
+app.use("/api/categories", categoriesRoute);
+
 
 // temp route to set up server
 // Create the rest of the routes in routes folder

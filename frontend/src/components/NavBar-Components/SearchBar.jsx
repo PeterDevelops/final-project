@@ -1,18 +1,19 @@
 import { React } from 'react';
 import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
+import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSeedling, faStore, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 
 export default function Grouped(props) {
-  const { products, vendors, locations } = props;
+  const { products, vendors, locations, categories } = props;
 
   // console.log("Products Data---", products)
   // console.log("Vendors Data---", vendors)
   // console.log("Locations Data---", locations)
+  // console.log("category data:-----", categories);
 
   const categorizeProducts = () => {
-    if (products.length > 0) {
+    if (Array.isArray(products) && products.length > 0) {
       return products.map((product) => ({
         ...product,
         key: product.id,
@@ -24,7 +25,7 @@ export default function Grouped(props) {
   }
 
   const categorizeVendors = () => {
-    if (vendors.length > 0) {
+    if (Array.isArray(locations) && locations.length > 0) {
       return vendors.map((vendor) => ({
         ...vendor,
         key: vendor.id,
@@ -76,6 +77,12 @@ export default function Grouped(props) {
 
   // console.log('combined data-------', combinedData());
 
+  //filter the NUMBER of suggestions that show (how to show 2 in each category)
+  const filterOptions = createFilterOptions({
+    limit: 2,
+
+  });
+
   return (
     <div className="p-4 max-w-md mx-auto">
       <Autocomplete
@@ -84,7 +91,9 @@ export default function Grouped(props) {
         groupBy={(option) => option.category}
         getOptionLabel={(option) => option.name}
         sx={{ width: '100%' }}
+        filterOptions={filterOptions}
         renderOption={({ props }, option) => (
+
           <li {...props} key={option.id} className="flex items-center p-2 border border-gray-300 rounded-md cursor-pointer">
             <FontAwesomeIcon icon={option.icon} className="mr-2" />
             <span>{option.name}</span>
@@ -106,6 +115,7 @@ export default function Grouped(props) {
             }}
           />
         )}
+
       />
     </div>
   );

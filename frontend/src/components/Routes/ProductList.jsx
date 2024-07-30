@@ -3,22 +3,24 @@ import ProductListItem from '../Body/ProductListItem'
 import NavBar from '../NavBar';
 
 const ProductList = (props) => {
-  const { vendors, products, locations } = props;
+  const { vendors, products, locations, categories } = props;
 
   // if statement required to not throw TypeError: products.map is not a function
   const productListArr = () => {
     if (Array.isArray(products) && products.length > 0) {
-      console.log("product list items:", products)
+      // console.log("product list items:", products)
       return products.map((product) => (
-      <ProductListItem key={product.id} productData={product}/>
+        <ProductListItem key={product.id} productData={product} />
       ));
     }
   };
 
   return (
-    <div className="flex flex-wrap">
-      <NavBar products={products} vendors={vendors} locations={locations}/>
-      {productListArr()}
+    <div>
+      <NavBar products={products} vendors={vendors} locations={locations} categories={categories} />
+      <div className="flex flex-wrap">
+        {productListArr()}
+      </div>
     </div>
   )
 
