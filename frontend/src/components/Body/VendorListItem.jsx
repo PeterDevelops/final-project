@@ -1,30 +1,22 @@
-// {
-//   "id": 1,
-//   "name": "Torp, McDermott and Cassin",
-//   "bio": "sit amet nunc viverra dapibus nulla suscipit ligula in lacus curabitur at ipsum ac tellus semper interdum mauris ullamcorper purus sit amet nulla quisque",
-//   "address": "409 Donald Center",
-//   "city": "Port Moody, BC",
-//   "longitude": "-122.8677562",
-//   "latitude": "49.2849107",
-//   "vendor_logo_url": "http://dummyimage.com/369x323.png/dddddd/000000",
-//   "admin_user": 1
-// }
-
-
-import React from 'react'
+import React from 'react';
 
 const VendorListItem = (props) => {
   const { vendorData } = props;
 
   return (
-    <article >
-      <img src={vendorData.vendor_logo_url} alt="vendor logo"/>
-      <h1>{vendorData.name}</h1>
-      <p>Bio: {vendorData.bio}</p>
+    <article className="flex flex-col md:flex-row md:items-center border rounded-lg shadow-md m-5 overflow-hidden">
+      <img
+        src={vendorData.vendor_logo_url}
+        alt="vendor logo"
+        className="w-full md:w-1/3 md:object-cover md:object-contain"
+      />
+      <div className="p-5 w-full md:w-2/3">
+        <h3 className="text-xl font-semibold">{vendorData.name}</h3>
+        <p className="mt-2">{vendorData.bio}</p>
+      </div>
     </article>
-
-  )
-
+  );
 };
 
 export default VendorListItem;
+

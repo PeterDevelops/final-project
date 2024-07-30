@@ -12,9 +12,10 @@ import CategoryList from './components/Routes/CategoryList';
 import Checkout from './components/Routes/Checkout'
 
 function App() {
-  const [products, setProducts] = useState('');
-  const [vendors, setVendors] = useState('');
-  const [locations, setLocations] = useState('');
+  const [products, setProducts] = useState([]);
+  const [vendors, setVendors] = useState([]);
+  const [locations, setLocations] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   // a route to pull products data from the db (backend)
   useEffect(() => {
@@ -49,8 +50,20 @@ function App() {
       });
   }, []);
 
+  // a route to pull all category data from the db (backend)
+  useEffect(() => {
+    axios.get('/api/categories')
+    .then(response => {
+      setCategories(response.data);
+    })
+    .catch(error => {
+      console.error('There was an error with category data!', error);
+    });
+}, []);
+
   // console.log("Products Data---", products)
   // console.log("Vendors Data---", vendors)
+  // console.log("categories data: ------- ", categories)
 
   return (
     // Router must be in the top level of the app

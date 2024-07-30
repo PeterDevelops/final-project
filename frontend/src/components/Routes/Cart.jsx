@@ -4,14 +4,14 @@ import NavBar from '../NavBar';
 import '../../styles/Cart.scss';
 import { Link } from 'react-router-dom';
 
-const Cart = ({ products, vendors, locations }) => {
+const Cart = ({ products, vendors, locations, categories }) => {
 
   const navigate = useNavigate();
 
   return (
 
     <div>
-      <NavBar products={products} vendors={vendors} locations={locations} />
+      <NavBar products={products} vendors={vendors} locations={locations} categories={categories} />
 
       <div className='cart-container'>
         <div className='cart-center'>

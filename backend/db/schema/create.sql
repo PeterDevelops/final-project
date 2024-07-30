@@ -36,7 +36,8 @@ CREATE TABLE products (
   inventory SMALLINT,
   price_cents INTEGER,
   vendor_id INTEGER REFERENCES vendors(id) ON DELETE CASCADE,
-  category VARCHAR(255) NOT NULL
+  category VARCHAR(255) NOT NULL,
+  sub_category VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE orders (
