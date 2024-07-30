@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React } from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,53 +13,52 @@ export default function Grouped(props) {
 
   const categorizeProducts = () => {
     if (products.length > 0) {
-      const categorizedProducts = products.map((product) => ({
+      return products.map((product) => ({
         ...product,
         key: product.id,
         category: 'Product',
         icon: getIconForCategory('Product'),
       }));
-      return categorizedProducts
     }
+    return [];
   }
 
   const categorizeVendors = () => {
     if (vendors.length > 0) {
-      const categorizedVendors = vendors.map((vendor) => ({
+      return vendors.map((vendor) => ({
         ...vendor,
         key: vendor.id,
         category: 'Vendor',
         icon: getIconForCategory('Vendor'),
       }));
-      return categorizedVendors
     }
+    return [];
   };
 
   const categorizeLocations = () => {
     if (locations.length > 0) {
-      const categorizedLocations = locations.map((location) => ({
+      return locations.map((location) => ({
         ...location,
         key: location.id,
         name: location.city,
         category: 'Location',
         icon: getIconForCategory('Location'),
       }));
-      return categorizedLocations
     }
+    return [];
   };
 
   const combinedData = () => {
-    const productData = categorizeProducts();
+    const productData = categorizeProducts() || [];
     // console.log("ProductData---", productData)
-    const vendorData = categorizeVendors();
+    const vendorData = categorizeVendors() || [];
     // console.log("VendorData---", vendorData)
-    const locationData = categorizeLocations();
+    const locationData = categorizeLocations() || [];
     // console.log("LocationData---", locationData)
 
-    if (productData && vendorData && locationData) {
-      const options = [...productData, ...vendorData, ...locationData];
-      return options;
-    }
+    const options = [...productData, ...vendorData, ...locationData];
+
+    return options;
   };
 
   function getIconForCategory(category) {
