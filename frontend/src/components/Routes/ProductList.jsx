@@ -10,15 +10,17 @@ const ProductList = (props) => {
     if (Array.isArray(products) && products.length > 0) {
       console.log("product list items:", products)
       return products.map((product) => (
-      <ProductListItem key={product.id} productData={product}/>
+        <ProductListItem key={product.id} productData={product} />
       ));
     }
   };
 
   return (
-    <div className="flex flex-wrap">
-      <NavBar products={products} vendors={vendors} locations={locations}/>
-      {productListArr()}
+    <div>
+      <NavBar products={products} vendors={vendors} locations={locations} />
+      <div className="flex flex-wrap">
+        {productListArr()}
+      </div>
     </div>
   )
 

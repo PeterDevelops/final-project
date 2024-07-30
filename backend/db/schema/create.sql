@@ -74,5 +74,5 @@ CREATE TABLE chat_messages (
   chat_id INTEGER REFERENCES chats(id) ON DELETE CASCADE
 );
 
-
+ALTER SEQUENCE products_id_seq RESTART WITH 10000;
 

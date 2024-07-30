@@ -1,6 +1,6 @@
-import { React, useState } from 'react';
+import { React } from 'react';
 import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
+import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSeedling, faStore, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
 
@@ -13,53 +13,52 @@ export default function Grouped(props) {
 
   const categorizeProducts = () => {
     if (products.length > 0) {
-      const categorizedProducts = products.map((product) => ({
+      return products.map((product) => ({
         ...product,
         key: product.id,
         category: 'Product',
         icon: getIconForCategory('Product'),
       }));
-      return categorizedProducts
     }
+    return [];
   }
 
   const categorizeVendors = () => {
     if (vendors.length > 0) {
-      const categorizedVendors = vendors.map((vendor) => ({
+      return vendors.map((vendor) => ({
         ...vendor,
         key: vendor.id,
         category: 'Vendor',
         icon: getIconForCategory('Vendor'),
       }));
-      return categorizedVendors
     }
+    return [];
   };
 
   const categorizeLocations = () => {
     if (locations.length > 0) {
-      const categorizedLocations = locations.map((location) => ({
+      return locations.map((location) => ({
         ...location,
         key: location.id,
         name: location.city,
         category: 'Location',
         icon: getIconForCategory('Location'),
       }));
-      return categorizedLocations
     }
+    return [];
   };
 
   const combinedData = () => {
-    const productData = categorizeProducts();
+    const productData = categorizeProducts() || [];
     // console.log("ProductData---", productData)
-    const vendorData = categorizeVendors();
+    const vendorData = categorizeVendors() || [];
     // console.log("VendorData---", vendorData)
-    const locationData = categorizeLocations();
+    const locationData = categorizeLocations() || [];
     // console.log("LocationData---", locationData)
 
-    if (productData && vendorData && locationData) {
-      const options = [...productData, ...vendorData, ...locationData];
-      return options;
-    }
+    const options = [...productData, ...vendorData, ...locationData];
+
+    return options;
   };
 
   function getIconForCategory(category) {
@@ -77,6 +76,12 @@ export default function Grouped(props) {
 
   // console.log('combined data-------', combinedData());
 
+  //filter the NUMBER of suggestions that show (how to show 2 in each category)
+  const filterOptions = createFilterOptions({
+    limit: 2,
+   
+  });
+
   return (
     <div className="p-4 max-w-md mx-auto">
       <Autocomplete
@@ -85,7 +90,9 @@ export default function Grouped(props) {
         groupBy={(option) => option.category}
         getOptionLabel={(option) => option.name}
         sx={{ width: '100%' }}
+        filterOptions={filterOptions}
         renderOption={({ props }, option) => (
+          
           <li {...props} key={option.id} className="flex items-center p-2 border border-gray-300 rounded-md cursor-pointer">
             <FontAwesomeIcon icon={option.icon} className="mr-2" />
             <span>{option.name}</span>
@@ -107,6 +114,7 @@ export default function Grouped(props) {
             }}
           />
         )}
+        
       />
     </div>
   );

@@ -54,28 +54,19 @@ function App() {
   return (
     // Router must be in the top level of the app
     <Router>
-      <div className="Homepage">
-        <div className='bg-purple-200'>
-          <header>
-            {/* <h1 className="text-6xl text-red-500 underline decoration-blue-500">Mrkt</h1> */}
-          </header>
-        </div>
-        {/* <Homepage products={products} /> */}
-      </div>
+      <div className="Homepage"></div>
 
       {/* Path to routes */}
       <Routes>
-        <Route path="/" element={<Homepage products={products} vendors={vendors} locations={locations}/>} />
-        <Route path="/cart" element={<Cart products={products} vendors={vendors} locations={locations}/>} />
-        <Route path="/inbox" element={<Inbox products={products} vendors={vendors} locations={locations}/>} />
+        <Route path="/" element={<Homepage products={products} vendors={vendors} locations={locations} />} />
+        <Route path="/cart" element={<Cart products={products} vendors={vendors} locations={locations} />} />
+        <Route path="/inbox" element={<Inbox products={products} vendors={vendors} locations={locations} />} />
         <Route path="/vendors" element={<VendorList products={products} vendors={vendors} locations={locations} />} />
-        <Route path="/products" element={<ProductList products={products} vendors={vendors} locations={locations} />}/>
-        <Route path="/categories" element={<CategoryList products={products} vendors={vendors} locations={locations}/>}/>
-
+        <Route path="/products" element={<ProductList products={products} vendors={vendors} locations={locations} />} />
+        <Route path="/categories" element={<CategoryList products={products} vendors={vendors} locations={locations} />} />
       </Routes>
 
     </Router>
-    // <Homepage products={products} vendors={vendors}/>
 
   );
 };
