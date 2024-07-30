@@ -16,7 +16,7 @@ const ProductList = (props) => {
   };
 
   return (
-    <div className="flex flex-wrap">
+    <div>
       <NavBar products={products} vendors={vendors} locations={locations}/>
       {productListArr()}
     </div>
