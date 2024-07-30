@@ -17,10 +17,12 @@ const VendorListItem = (props) => {
   const { vendorData } = props;
 
   return (
-    <article >
+    <article className="flex m-5">
       <img src={vendorData.vendor_logo_url} alt="vendor logo" className="w-1/3 rounded-full"/>
-      <h1>{vendorData.name}</h1>
-      <p>Bio: {vendorData.bio}</p>
+      <div>
+        <h3>{vendorData.name}</h3>
+        <p className="w-1/3 m-5">Bio: {vendorData.bio}</p>
+      </div>
     </article>
 
   )
