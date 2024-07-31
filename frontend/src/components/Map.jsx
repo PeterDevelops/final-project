@@ -2,10 +2,14 @@ import React, { useEffect, useRef } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-const Map = ({ center, zoom, className }) => {
+const Map = ({ locations, center, zoom, className }) => {
   const mapRef = useRef(null);
+  // const markersRef = useRef([]);
 
   useEffect(() => {
+    // if (!mapRef.current) {
+    //   mapRef.current = L.map('map').setView(center, zoom);
+
     const initializeMap = (latitude, longitude) => {
       if (mapRef.current) {
         mapRef.current.setView([latitude, longitude], zoom);
@@ -42,8 +46,26 @@ const Map = ({ center, zoom, className }) => {
     };
   }, [center, zoom]);
 
+  // //show markers for corresponding locations on LocationList page
+  //   useEffect(() => {
+  //     if (mapRef.current) {
+  //       // remove existing markers
+  //       markersRef.current.forEach(marker => marker.remove());
+  //       markersRef.current = [];
+
+  //       console.log('Adding markers for locations:', locations);
+
+  //     // add new markers
+  //     locations.forEach(location => {
+  //       const marker = L.marker([location.latitude, location.longitude])
+  //       .addTo(mapRef.current)
+  //       .bindPopup(`<p>${location.name}, ${location.city}</p>`);
+  //       markersRef.current.push(marker);
+  //     });
+  //   }
+  // }, [locations]);
+
   return <div id="map" className={className}></div>;
 };
 
 export default Map;
-

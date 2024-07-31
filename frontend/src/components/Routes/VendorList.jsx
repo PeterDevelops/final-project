@@ -16,11 +16,9 @@ const VendorList = (props) => {
   };
 
   return (
-    <div >
+    <div>
       <NavBar products={products} vendors={vendors} locations={locations} categories={categories} />
-      <div className="flex flex-wrap">
-        {vendorListArr()}
-      </div>
+      {vendorListArr()}
     </div>
   );
 };
