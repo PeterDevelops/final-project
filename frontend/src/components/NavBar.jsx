@@ -3,19 +3,24 @@ import HamburgerMenu from './NavBar-Components/HamburgerMenu';
 import Cart from './Routes/Cart';
 import Inbox from './Routes/Inbox';
 import SearchBar from './NavBar-Components/SearchBar';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 const NavBar = (props) => {
   const { products, vendors, locations, categories } = props;
+
+  const location = useLocation();
+  const noSearchBar = ['/cart', '/checkout', '/inbox'];
+
   return (
+
     <div>
       <nav className="flex items-center justify-between h-16 px-4 bg-[#F7F4F0]">
-        <div>
-          <HamburgerMenu />
-        </div>
+
+        <HamburgerMenu />
+
         <img
           src="/Logo.png"
           alt="Mrkt Logo"
@@ -31,11 +36,20 @@ const NavBar = (props) => {
         </div>
       </nav>
 
-      <div className="bg-[#F7F4F0] p-4">
-        <SearchBar products={products} vendors={vendors} locations={locations} categories={categories}/>
-      </div>
-
+      {/* exclude SearchBar from specified routes */}
+      {!noSearchBar.includes(location.pathname) && (
+        <div className="bg-[#F7F4F0] p-4">
+          <SearchBar products={products} vendors={vendors} locations={locations} categories={categories} />
+        </div>
+      )}
+      {/* Add spacer where search bar would be */}
+      {noSearchBar.includes(location.pathname) && (
+        <div className='bg-[#F7F4F0] p-4'></div>
+      )}
     </div>
+
+
+
   );
 };
 

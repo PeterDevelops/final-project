@@ -9,6 +9,7 @@ import Inbox from './components/Routes/Inbox';
 import VendorList from './components/Routes/VendorList';
 import ProductList from './components/Routes/ProductList';
 import CategoryList from './components/Routes/CategoryList';
+import Checkout from './components/Routes/Checkout'
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -71,12 +72,13 @@ function App() {
 
       {/* Path to routes */}
       <Routes>
-        <Route path="/" element={<Homepage products={products} vendors={vendors} locations={locations} categories={categories} />} />
-        <Route path="/cart" element={<Cart products={products} vendors={vendors} locations={locations} categories={categories} />} />
-        <Route path="/inbox" element={<Inbox products={products} vendors={vendors} locations={locations} categories={categories} />} />
-        <Route path="/vendors" element={<VendorList products={products} vendors={vendors} locations={locations} categories={categories} />} />
-        <Route path="/products" element={<ProductList products={products} vendors={vendors} locations={locations} categories={categories} />} />
-        <Route path="/categories" element={<CategoryList products={products} vendors={vendors} locations={locations} categories={categories}/>} />
+        <Route path="/" element={<Homepage products={products} vendors={vendors} locations={locations} />} />
+        <Route path="/cart" element={<Cart products={products} vendors={vendors} locations={locations} />} />
+        <Route path="/inbox" element={<Inbox products={products} vendors={vendors} locations={locations} />} />
+        <Route path="/vendors" element={<VendorList products={products} vendors={vendors} locations={locations} />} />
+        <Route path="/products" element={<ProductList products={products} vendors={vendors} locations={locations} />} />
+        <Route path="/categories" element={<CategoryList products={products} vendors={vendors} locations={locations} />} />
+        <Route path="/checkout" element={<Checkout products={products} vendors={vendors} locations={locations} />} />
       </Routes>
 
     </Router>
