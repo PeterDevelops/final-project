@@ -22,11 +22,13 @@ const NavBar = (props) => {
 
         <HamburgerMenu />
 
-        <img
+        {/* LOGO */}
+        <Link to="/"><img
           src="/Logo.png"
           alt="Mrkt Logo"
           className="w-20 h-20 mt-6"
-        />
+        /></Link>
+
         <div className="flex items-center gap-4 mt-6">
           <LoginBtn products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />
           <Link to="/cart" className="text-gray-700 hover:text-gray-900 flex items-center">
