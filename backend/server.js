@@ -15,6 +15,7 @@ app.use(morgan("dev"));
 app.use(express.static("public"));
 app.use(cookieParser());
 app.use(cors());
+app.use(express.json());
 
 // Routes for each resource
 // Example:
@@ -24,6 +25,7 @@ const vendorsRoute = require("./routes/vendors");
 const locationsRoute = require("./routes/locations");
 const categoriesRoute = require("./routes/categories");
 const loginRoute = require("./routes/login")
+const logoutRoute = require("./routes/logout")
 
 // Mount all resource routes - the route paths will always start the path provided as the first argument below
 // Example:
@@ -34,6 +36,7 @@ app.use("/api/locations", locationsRoute);
 app.use(express.static(path.join(__dirname, '../public')));
 app.use("/api/categories", categoriesRoute);
 app.use("/login", loginRoute);
+app.use("/logout", logoutRoute);
 
 
 // temp route to set up server

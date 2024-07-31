@@ -1,8 +1,8 @@
 const db = require('../connection')
 
-const getUser = (id) => {
-  const queryString = `SELECT * FROM users WHERE users.id = $1;`;
-  const queryParams = [id];
+const getUser = (email) => {
+  const queryString = `SELECT * FROM users WHERE users.email = $1;`;
+  const queryParams = [email];
 
   return db.query(queryString, queryParams)
   .then(results => results.rows)
