@@ -57,6 +57,7 @@ function App() {
   useEffect(() => {
     axios.get('/api/categories')
     .then(response => {
+      console.log('fetched categories:', response.data)
       setCategories(response.data);
     })
     .catch(error => {
@@ -66,7 +67,7 @@ function App() {
 
   // console.log("Products Data---", products)
   // console.log("Vendors Data---", vendors)
-  // console.log("categories data: ------- ", categories)
+  console.log("categories in the App component: ------- ", categories)
 
   return (
     // Router must be in the top level of the app
@@ -80,7 +81,7 @@ function App() {
         <Route path="/inbox" element={<Inbox products={products} vendors={vendors} locations={locations} user={user} setUser={setUser}/>} />
         <Route path="/vendors" element={<VendorList products={products} vendors={vendors} locations={locations} user={user} setUser={setUser} />} />
         <Route path="/products" element={<ProductList products={products} vendors={vendors} locations={locations} user={user} setUser={setUser}/>} />
-        <Route path="/categories" element={<CategoryList products={products} vendors={vendors} locations={locations} user={user} setUser={setUser} />} />
+        <Route path="/categories" element={<CategoryList products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />} />
         <Route path="/checkout" element={<Checkout products={products} vendors={vendors} locations={locations} user={user} setUser={setUser} />} />
         <Route path="/login" element={<Login products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />} />
         <Route path="/locations" element={<LocationList products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />} />
