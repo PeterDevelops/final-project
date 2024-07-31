@@ -3,7 +3,7 @@ import ProductListItem from '../Body/ProductListItem'
 import NavBar from '../NavBar';
 
 const ProductList = (props) => {
-  const { vendors, products, locations, categories } = props;
+  const { vendors, products, locations, categories, user, setUser } = props;
 
   // if statement required to not throw TypeError: products.map is not a function
   const productListArr = () => {
@@ -17,7 +17,7 @@ const ProductList = (props) => {
 
   return (
     <div>
-      <NavBar products={products} vendors={vendors} locations={locations} categories={categories}/>
+      <NavBar products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser}/>
       {productListArr()}
     </div>
   )

@@ -4,14 +4,14 @@ import NavBar from '../NavBar';
 import '../../styles/Cart.scss';
 import DeliveryToggle from '../DeliveryToggle';
 
-const Checkout = ({ products, vendors, locations }) => {
+const Checkout = ({ products, vendors, locations, user, setUser }) => {
 
   const navigate = useNavigate();
 
   return (
 
     <div>
-      <NavBar products={products} vendors={vendors} locations={locations} />
+      <NavBar products={products} vendors={vendors} locations={locations} user={user} setUser={setUser}/>
 
 
       <div className='cart-container'>

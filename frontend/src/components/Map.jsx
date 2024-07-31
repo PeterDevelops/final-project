@@ -46,6 +46,7 @@ const Map = ({ locations, center, zoom, className }) => {
     };
   }, [center, zoom]);
 
+<<<<<<< HEAD
   // //show markers for corresponding locations on LocationList page
   //   useEffect(() => {
   //     if (mapRef.current) {
@@ -66,6 +67,9 @@ const Map = ({ locations, center, zoom, className }) => {
   // }, [locations]);
 
   return <div id="map" className={className}></div>;
+=======
+  return (<div id="map" className={className}></div>);
+>>>>>>> 2015c50b675ca83d4576240b1da1d1247a9b997c
 };
 
 export default Map;
