@@ -2,7 +2,7 @@ import React from 'react';
 import NavBar from '../NavBar';
 
 const CategoryList = (props) => {
-  const { vendors, products, locations, categories } = props;
+  const { vendors, products, locations, categories, user, setUser } = props;
 
   const categoryListArr = () => {
     if (Array.isArray(categories) && categories.length > 0) {
@@ -19,7 +19,7 @@ const CategoryList = (props) => {
 
   return (
     <div>
-      <NavBar products={products} vendors={vendors} locations={locations} categories={categories} />
+      <NavBar products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser}/>
       <div className="grid gap-5 grid-cols-2 grid-rows-2">
         {categoryListArr()}
       </div>
