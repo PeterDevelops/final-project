@@ -42,7 +42,7 @@ const Map = ({ center, zoom, className }) => {
     };
   }, [center, zoom]);
 
-  return <div id="map" className={className}></div>;
+  return (<div id="map" className={className}></div>);
 };
 
 export default Map;
