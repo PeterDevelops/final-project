@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import NavBar from '../NavBar';
 import '../../styles/Cart.scss';
-import DeliveryToggle from '../DeliveryToggle';
+import DeliveryToggle from '../Body/DeliveryToggle';
 
 const Checkout = ({ products, vendors, locations }) => {
 
@@ -27,7 +27,7 @@ const Checkout = ({ products, vendors, locations }) => {
         <div className='cart-center'>
           <span>Cart Item Photo</span>
           <span className='span-tag'>Cart Item Info</span>
-          
+
         </div>
 
         <div className='total'>
