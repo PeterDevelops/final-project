@@ -6,25 +6,28 @@ import { faAppleWhole, faSeedling, faStore, faMapMarkerAlt, faDrumstickBite, faB
 
 export default function Grouped(props) {
   const { products, vendors, locations, categories } = props;
-  console.log('Vendors: ', vendors);
-
-
-  // console.log("Products Data---", products)
-  // console.log("Vendors Data---", vendors)
-  // console.log("Locations Data---", locations)
-  // console.log("category data:-----", categories);
 
   const categorizeProducts = () => {
     if (Array.isArray(products) && products.length > 0) {
-      return products.map((product) => ({
-        ...product,
-        key: product.id,
-        category: product.category,
-        icon: getIconForCategory(product.category),
-      }));
+      const subCategories = {};
+
+      products.forEach(product => {
+        if (product.sub_category) {
+          const id = `${product.category}-${product.sub_category}`;
+          if (!subCategories[id]) {
+            subCategories[id] = {
+              id,
+              category: product.category,
+              name: product.sub_category,
+              icon: getIconForCategory(product.category),
+            };
+          }
+        }
+      });
+      return Object.values(subCategories);
     }
     return [];
-  }
+  };
 
   const categorizeVendors = () => {
     if (Array.isArray(locations) && locations.length > 0) {
@@ -61,6 +64,9 @@ export default function Grouped(props) {
     return allData.sort((a, b) => a.category.localeCompare(b.category));
   };
 
+  console.log('Combined: ', combinedData());
+
+
   function getIconForCategory(category) {
     switch (category) {
       case 'Vegetable':
@@ -80,9 +86,6 @@ export default function Grouped(props) {
     }
   }
 
-  // console.log('combined data-------', combinedData());
-  // console.log('Products: ', categorizeProducts());
-
   // // filter the NUMBER of suggestions that show (how to show 2 in each category)
   // const filterOptions = createFilterOptions({
   //   limit: 2,
@@ -99,7 +102,6 @@ export default function Grouped(props) {
         sx={{ width: '100%' }}
         // filterOptions={filterOptions}
         renderOption={({ props }, option) => (
-
           <li {...props} key={option.id} className="flex items-center p-2 border border-gray-300 rounded-md cursor-pointer">
             <FontAwesomeIcon icon={option.icon} className="mr-2" />
             <span>{option.name}</span>
