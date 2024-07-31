@@ -16,6 +16,7 @@ function App() {
   const [vendors, setVendors] = useState([]);
   const [locations, setLocations] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [orders, setOrders] = useState([]);
 
   // a route to pull products data from the db (backend)
   useEffect(() => {
@@ -61,6 +62,17 @@ function App() {
     });
 }, []);
 
+  // a route to pull all orders data from the db (backend)
+  useEffect(() => {
+    axios.get('/api/orders')
+    .then(response => {
+      setOrders(response.data);
+    })
+    .catch(error => {
+      console.error('There was an error with order data!', error);
+    });
+}, []);
+
   // console.log("Products Data---", products)
   // console.log("Vendors Data---", vendors)
   // console.log("categories data: ------- ", categories)
@@ -73,7 +85,7 @@ function App() {
       {/* Path to routes */}
       <Routes>
         <Route path="/" element={<Homepage products={products} vendors={vendors} locations={locations} />} />
-        <Route path="/cart" element={<Cart products={products} vendors={vendors} locations={locations} />} />
+        <Route path="/cart" element={<Cart products={products} vendors={vendors} locations={locations} orders={orders} />} />
         <Route path="/inbox" element={<Inbox products={products} vendors={vendors} locations={locations} />} />
         <Route path="/vendors" element={<VendorList products={products} vendors={vendors} locations={locations} />} />
         <Route path="/products" element={<ProductList products={products} vendors={vendors} locations={locations} />} />

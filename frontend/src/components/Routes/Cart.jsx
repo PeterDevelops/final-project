@@ -4,10 +4,10 @@ import NavBar from '../NavBar';
 import '../../styles/Cart.scss';
 import { Link } from 'react-router-dom';
 
-const Cart = ({ products, vendors, locations, categories }) => {
+const Cart = ({ products, vendors, locations, categories, orders }) => {
 
   const navigate = useNavigate();
-
+  console.log('Orders:', orders);
   return (
 
     <div>
@@ -24,9 +24,9 @@ const Cart = ({ products, vendors, locations, categories }) => {
         </div>
 
         <div className='cart-center'>
-          <span>Cart Item Photo</span>
-          <span className='span-tag'>Cart Item Info</span>
-          <span className='span-tag'>Cart Item Subtotal</span>
+          <span>Order Item Photo</span>
+          <span className='span-tag'>Order Item Info</span>
+          <span className='span-tag'>Product Item Subtotal</span>
         </div>
 
         <div className='total'>
