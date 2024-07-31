@@ -14,6 +14,7 @@ function App() {
   const [products, setProducts] = useState('');
   const [vendors, setVendors] = useState('');
   const [locations, setLocations] = useState('');
+  const [user, setUser] = useState([]);
 
   // a route to pull products data from the db (backend)
   useEffect(() => {
