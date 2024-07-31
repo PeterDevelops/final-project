@@ -8,6 +8,7 @@ const morgan = require("morgan");
 const cookieParser = require('cookie-parser');
 const app = express();
 const cors = require('cors');
+const path = require('path');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
@@ -21,6 +22,7 @@ app.use(cors());
 const productsRoute = require("./routes/products");
 const vendorsRoute = require("./routes/vendors");
 const locationsRoute = require("./routes/locations");
+const categoriesRoute = require("./routes/categories");
 const loginRoute = require("./routes/login");
 
 // Mount all resource routes - the route paths will always start the path provided as the first argument below
@@ -29,7 +31,6 @@ const loginRoute = require("./routes/login");
 app.use("/api/products", productsRoute);
 app.use("/api/vendors", vendorsRoute);
 app.use("/api/locations", locationsRoute);
-app.use("/login", loginRoute);
 
 // temp route to set up server
 // Create the rest of the routes in routes folder
