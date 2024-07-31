@@ -1,8 +1,15 @@
-import { React } from 'react';
+import React from 'react';
 import TextField from '@mui/material/TextField';
-import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
+import Autocomplete from '@mui/material/Autocomplete';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAppleWhole, faSeedling, faStore, faMapMarkerAlt, faDrumstickBite, faBreadSlice } from '@fortawesome/free-solid-svg-icons';
+import {
+  faAppleWhole,
+  faSeedling,
+  faStore,
+  faMapMarkerAlt,
+  faDrumstickBite,
+  faBreadSlice
+} from '@fortawesome/free-solid-svg-icons';
 
 export default function Grouped(props) {
   const { products, vendors, locations, categories } = props;
@@ -64,7 +71,6 @@ export default function Grouped(props) {
     return allData.sort((a, b) => a.category.localeCompare(b.category));
   };
 
-  console.log('Combined: ', combinedData());
 
 
   function getIconForCategory(category) {
