@@ -12,8 +12,6 @@ const CategoryList = (props) => {
           {category.category}
         </div>
       ));
-    } else {
-      return <p>No categories available</p>;
     }
   };
 
