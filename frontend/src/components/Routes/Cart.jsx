@@ -8,11 +8,14 @@ const Cart = ({ products, vendors, locations, categories, orders }) => {
 
   const navigate = useNavigate();
   console.log('Orders:', orders);
+
+  const totalCost = Array.isArray(orders) && orders.length > 0 ? orders[0].total_cost : 0;
+
   return (
 
     <div>
       <NavBar products={products} vendors={vendors} locations={locations} categories={categories} />
-
+      
       <div className='cart-container'>
         <div className='cart-center'>
           <span>Vendor Photo</span>
@@ -30,7 +33,7 @@ const Cart = ({ products, vendors, locations, categories, orders }) => {
         </div>
 
         <div className='total'>
-          Total: $$$
+          Total: ${totalCost / 100}
         </div>
         <Link to='/checkout'>
           <div className='cart-center'>

@@ -9,7 +9,7 @@ import Inbox from './components/Routes/Inbox';
 import VendorList from './components/Routes/VendorList';
 import ProductList from './components/Routes/ProductList';
 import CategoryList from './components/Routes/CategoryList';
-import Checkout from './components/Routes/Checkout'
+import Checkout from './components/Routes/Checkout';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -17,6 +17,7 @@ function App() {
   const [locations, setLocations] = useState([]);
   const [categories, setCategories] = useState([]);
   const [orders, setOrders] = useState([]);
+  const userId = 1;
 
   // a route to pull products data from the db (backend)
   useEffect(() => {
@@ -64,7 +65,7 @@ function App() {
 
   // a route to pull all orders data from the db (backend)
   useEffect(() => {
-    axios.get('/api/orders')
+    axios.get(`/api/orders/${userId}`)
     .then(response => {
       setOrders(response.data);
     })

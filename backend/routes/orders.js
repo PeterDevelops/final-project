@@ -1,11 +1,13 @@
 // path = localhost:8080/api/orders
 
 const express = require('express');
-const { getAllOrders } = require('../db/queries/orders');
+const { getOrdersByUserId } = require('../db/queries/orders');
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  getAllOrders()
+router.get("/:userId", (req, res) => {
+  const { userId } = req.params;
+
+  getOrdersByUserId(userId)
     .then(results => {
       res.json(results);
     })
