@@ -3,8 +3,9 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import NavBar from '../NavBar';
 import '../../styles/Cart.scss';
 import DeliveryToggle from '../Body/DeliveryToggle';
+import CartListItem from '../Body/CartListItem';
 
-const Checkout = ({ products, vendors, locations, totalCost }) => {
+const Checkout = ({ products, vendors, locations, cartItems, totalCost }) => {
 
   const navigate = useNavigate();
 
@@ -20,15 +21,19 @@ const Checkout = ({ products, vendors, locations, totalCost }) => {
           <DeliveryToggle />
         </div>
 
-        <div className='cart-center'>
+        <div>
           Order Summary
         </div>
 
-        <div className='cart-center'>
-          <span>Cart Item Photo</span>
-          <span className='span-tag'>Cart Item Info</span>
-
-        </div>
+        {cartItems.map(item => (
+        <CartListItem
+          key={item.order_item_id}
+          product_photo_url={item.product_photo_url}
+          product_name={item.product_name}
+          quantity={item.quantity}
+          price_cents={item.price_cents}
+          />
+       ))}
 
         <div className='total'>
           Total: ${totalCost / 100}

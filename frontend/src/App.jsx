@@ -96,7 +96,7 @@ function App() {
         <Route path="/vendors" element={<VendorList products={products} vendors={vendors} locations={locations} />} />
         <Route path="/products" element={<ProductList products={products} vendors={vendors} locations={locations} />} />
         <Route path="/categories" element={<CategoryList products={products} vendors={vendors} locations={locations} />} />
-        <Route path="/checkout" element={<Checkout products={products} vendors={vendors} locations={locations} totalCost={totalCost} />} />
+        <Route path="/checkout" element={<Checkout products={products} vendors={vendors} locations={locations} cartItems={cartItems} totalCost={totalCost} />} />
       </Routes>
 
     </Router>

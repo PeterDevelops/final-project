@@ -1,9 +1,13 @@
 import React from 'react'
 import '../../styles/Cart.scss';
+import { useLocation } from 'react-router-dom';
 
 const CartListItem = ({product_photo_url, product_name, quantity, price_cents}) => {
 
   const subtotal = (price_cents * quantity / 100)
+
+  const location = useLocation();
+  const noSubtotal = ['/checkout'];
 
   return (
     <div className='cart-center'>
@@ -14,7 +18,12 @@ const CartListItem = ({product_photo_url, product_name, quantity, price_cents}) 
     />
     <span className='span-tag'>{product_name}</span>
     <span className='span-tag'>Quantity: {quantity}</span>
-    <span className='span-tag'>Subtotal: ${subtotal}</span>
+
+    {!noSubtotal.includes(location.pathname) && (
+      <span className='span-tag'>Subtotal: ${subtotal}</span>
+    )}
+
+
   </div>
 
   )
