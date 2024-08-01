@@ -5,14 +5,14 @@ import '../../styles/Cart.scss';
 import DeliveryToggle from '../Body/DeliveryToggle';
 import CartListItem from '../Body/CartListItem';
 
-const Checkout = ({ products, vendors, locations, cartItems, totalCost }) => {
+const Checkout = ({ products, vendors, locations, user, setUser, cartItems, totalCost }) => {
 
   const navigate = useNavigate();
 
   return (
 
     <div>
-      <NavBar products={products} vendors={vendors} locations={locations} />
+      <NavBar products={products} vendors={vendors} locations={locations} user={user} setUser={setUser}/>
 
 
       <div className='cart-container'>

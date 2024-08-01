@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllCategories } = require('../db/queries/categories');
+const { getAllCategories } = require('../db/queries/products');
 const router = express.Router();
 
 router.get("/", (req, res) => {
