@@ -10,7 +10,7 @@ const Cart = ({ products, vendors, locations, categories, user, setUser, cartIte
 
   const navigate = useNavigate();
 
-  console.log('cartItems:', cartItems);
+  // console.log('cartItems:', cartItems);
   // const vendorPhoto = Array.isArray(cartItems) && cartItems.length > 0 ? cartItems[0].vendor_logo_url : "Vendor Name";
 
   // const topicList
