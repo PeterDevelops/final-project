@@ -7,16 +7,8 @@ const VendorProfile = (props) => {
   const { vendors, products, setProducts, allProducts, locations, categories, user, setUser } = props;
   const { vendorId } = useParams();
 
-   // Loading check
-    if (!Array.isArray(vendors) || vendors.length === 0) {
-    return <div>Loading vendor...</div>;
-  }
-
+  //iterate over vendors array to check if vendor id matches vendorId integer
   const vendor = vendors.find(v => v.id === parseInt(vendorId));
-
-  if (!vendor) {
-    return <div>Vendor not found</div>;
-  }
 
   return (
     <div>

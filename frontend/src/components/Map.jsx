@@ -12,17 +12,21 @@ const Map = (props) => {
   const {
     locations,
     zoom,
-    className
+    className,
+    allowUserLocation
   } = props;
   const [center, setCenter] = useState([49.2824, -122.8277]) // default center in port moody
 
+  //allow geolocation based on user's acception or denial
   useEffect (() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      setCenter([position.coords.latitude, position.coords.longitude]);
-    }, (error) => {
-      console.error("geolocation permission denied", error);
-    })
-  }, []);
+    if (allowUserLocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setCenter([position.coords.latitude, position.coords.longitude]);
+      }, (error) => {
+        console.error("geolocation permission denied", error);
+      })
+    }
+  }, [allowUserLocation]);
 
   return (
     <MapContainer
