@@ -10,8 +10,8 @@ const Homepage = (props) => {
     <div>
       <NavBar products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser}/>
       <Map
-        center={[49.2824, -122.8277]}
-        zoom={12}
+        locations={locations}
+        zoom={10}
         className='h-50vh w-80vw mx-auto border-2 border-custom-gray shadow-md rounded-lg'
       />
     </div>
