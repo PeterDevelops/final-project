@@ -12,6 +12,7 @@ import CategoryList from './components/Routes/CategoryList';
 import Checkout from './components/Routes/Checkout';
 import Login from './components/Routes/Login';
 import LocationList from './components/Routes/LocationList';
+import VendorProfile from './components/Routes/VendorProfile';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -103,6 +104,7 @@ function App() {
         <Route path="/checkout" element={<Checkout products={products} vendors={vendors} locations={locations} user={user} setUser={setUser} cartItems={cartItems} totalCost={totalCost} />} />
         <Route path="/login" element={<Login products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />} />
         <Route path="/locations" element={<LocationList products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />} />
+        <Route path="/vendors/:vendorId" element={<VendorProfile products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />} />
       </Routes>
 
     </Router>
