@@ -4,7 +4,7 @@ import NavBar from '../NavBar';
 import '../../styles/Cart.scss';
 import DeliveryToggle from '../Body/DeliveryToggle';
 
-const Checkout = ({ products, vendors, locations }) => {
+const Checkout = ({ products, vendors, locations, totalCost }) => {
 
   const navigate = useNavigate();
 
@@ -31,7 +31,7 @@ const Checkout = ({ products, vendors, locations }) => {
         </div>
 
         <div className='total'>
-          Total: $$$
+          Total: ${totalCost / 100}
         </div>
 
         <div className='cart-center'>

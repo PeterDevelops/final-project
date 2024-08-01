@@ -1,37 +1,56 @@
 import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import NavBar from '../NavBar';
 import '../../styles/Cart.scss';
 import { Link } from 'react-router-dom';
+import CartListItem from '../Body/CartListItem';
 
-const Cart = ({ products, vendors, locations, categories, orders }) => {
+const Cart = ({ products, vendors, locations, categories, cartItems, totalCost }) => {
 
   const navigate = useNavigate();
-  console.log('Orders:', orders);
 
-  const totalCost = Array.isArray(orders) && orders.length > 0 ? orders[0].total_cost : 0;
+  console.log('cartItems:', cartItems);
+  // const vendorPhoto = Array.isArray(cartItems) && cartItems.length > 0 ? cartItems[0].vendor_logo_url : "Vendor Name";
+
+  // const topicList
 
   return (
 
     <div>
       <NavBar products={products} vendors={vendors} locations={locations} categories={categories} />
-      
+
+
       <div className='cart-container'>
         <div className='cart-center'>
-          <span>Vendor Photo</span>
-          <span className='span-tag'>Vendor Name</span>
+          {cartItems.length > 0 && (
+
+            <span>
+              <img
+                className='vendor-logo'
+                src={cartItems[0].vendor_logo_url}
+                alt='vendor logo'
+              />
+            </span>
+          )}
+
+          <span className='span-tag'>
+            {cartItems.length > 0 ? cartItems[0].vendor_name : "Vendor Name"}
+          </span>
         </div>
 
         <div className='cart-center'>
           Your Cart
         </div>
 
-        <div className='cart-center'>
-          <span>Order Item Photo</span>
-          <span className='span-tag'>Order Item Info</span>
-          <span className='span-tag'>Product Item Subtotal</span>
-        </div>
-
+       {cartItems.map(item => (
+        <CartListItem
+          key={item.order_item_id}
+          product_photo_url={item.product_photo_url}
+          product_name={item.product_name}
+          quantity={item.quantity}
+          price_cents={item.price_cents}
+          />
+       ))}
         <div className='total'>
           Total: ${totalCost / 100}
         </div>
