@@ -6,8 +6,7 @@ import SearchBar from './NavBar-Components/SearchBar';
 import LoginBtn from './NavBar-Components/LoginBtn'
 import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingBasket, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 const NavBar = (props) => {
   const { products, vendors, locations, categories, user, setUser } = props;
@@ -32,7 +31,7 @@ const NavBar = (props) => {
         <div className="flex items-center gap-4 mt-6">
           <LoginBtn products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />
           <Link to="/cart" className="text-gray-700 hover:text-gray-900 flex items-center">
-            <FontAwesomeIcon icon={faCartShopping} size="2x" />
+            <FontAwesomeIcon icon={faShoppingBasket} size="2x" />
           </Link>
           <Link to="/inbox" className="text-gray-700 hover:text-gray-900 flex items-center">
             <FontAwesomeIcon icon={faEnvelope} size="2x" />
