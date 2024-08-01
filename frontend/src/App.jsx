@@ -61,7 +61,7 @@ function App() {
   useEffect(() => {
     axios.get('/api/categories')
     .then(response => {
-      console.log('fetched categories:', response.data)
+      // console.log('fetched categories:', response.data)
       setCategories(response.data);
     })
     .catch(error => {
@@ -85,7 +85,7 @@ function App() {
 
   // console.log("Products Data---", products)
   // console.log("Vendors Data---", vendors)
-  console.log("categories in the App component: ------- ", categories)
+  // console.log("categories in the App component: ------- ", categories)
 
   return (
     // Router must be in the top level of the app
