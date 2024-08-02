@@ -59,7 +59,10 @@ CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   time_ordered TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-  total_cost INTEGER
+  total_cost INTEGER,
+  delivery_type VARCHAR(50),
+  delivery_address VARCHAR(255),
+  delivery_city VARCHAR(255)
 );
 
 CREATE TABLE order_items (

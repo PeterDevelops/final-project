@@ -3,11 +3,13 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import '../../styles/Cart.scss';
 
-export default function ColorToggleButton() {
-  const [alignment, setAlignment] = React.useState('web');
+export default function DeliveryToggle({ alignment, setAlignment }) {
+  // const [alignment, setAlignment] = React.useState('web');
 
   const handleChange = (event, newAlignment) => {
-    setAlignment(newAlignment);
+    if (newAlignment !== null) {
+      setAlignment(newAlignment);
+    }
   };
 
   return (

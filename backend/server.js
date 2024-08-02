@@ -25,6 +25,7 @@ const vendorsRoute = require("./routes/vendors");
 const locationsRoute = require("./routes/locations");
 const categoriesRoute = require("./routes/categories");
 const cartsRoute = require("./routes/carts");
+const ordersRoute = require("./routes/orders");
 const loginRoute = require("./routes/login")
 const logoutRoute = require("./routes/logout")
 
@@ -37,6 +38,7 @@ app.use("/api/locations", locationsRoute);
 app.use(express.static(path.join(__dirname, '../public')));
 app.use("/api/categories", categoriesRoute);
 app.use("/api/cart", cartsRoute);
+app.use("/api/orders", ordersRoute);
 app.use("/login", loginRoute);
 app.use("/logout", logoutRoute);
 

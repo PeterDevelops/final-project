@@ -10,6 +10,8 @@ const getOrdersByUserId = (user_id) => {
   cart_items.quantity,
   products.price_cents,
   vendors.name AS vendor_name,
+  vendors.address AS vendor_address,
+  vendors.city AS vendor_city,
   vendors.vendor_logo_url
   FROM cart_items
   JOIN products ON cart_items.product_id = products.id

@@ -10,20 +10,14 @@ const Cart = ({ products, vendors, locations, categories, user, setUser, cartIte
 
   const navigate = useNavigate();
 
-  // console.log('cartItems:', cartItems);
-  // const vendorPhoto = Array.isArray(cartItems) && cartItems.length > 0 ? cartItems[0].vendor_logo_url : "Vendor Name";
-
-  // const topicList
-
   return (
 
     <div>
       <NavBar products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser}/>
 
-
+    {cartItems.length > 0 ? (
       <div className='cart-container'>
         <div className='cart-center'>
-          {cartItems.length > 0 && (
 
             <span>
               <img
@@ -32,10 +26,10 @@ const Cart = ({ products, vendors, locations, categories, user, setUser, cartIte
                 alt='vendor logo'
               />
             </span>
-          )}
+
 
           <span className='span-tag'>
-            {cartItems.length > 0 ? cartItems[0].vendor_name : "Vendor Name"}
+            {cartItems[0].vendor_name}
           </span>
         </div>
 
@@ -43,7 +37,7 @@ const Cart = ({ products, vendors, locations, categories, user, setUser, cartIte
           Your Cart
         </div>
 
-       {Array.isArray(cartItems) && cartItems.map(item => (
+       {cartItems.map(item => (
         <CartListItem
           key={item.order_item_id}
           product_photo_url={item.product_photo_url}
@@ -70,6 +64,9 @@ const Cart = ({ products, vendors, locations, categories, user, setUser, cartIte
         </div>
 
       </div>
+    ) : (
+      <div>Your Cart Is Empty</div>
+    )}
     </div>
   );
 };
