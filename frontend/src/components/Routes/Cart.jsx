@@ -43,7 +43,7 @@ const Cart = ({ products, vendors, locations, categories, user, setUser, cartIte
           Your Cart
         </div>
 
-       {cartItems.map(item => (
+       {Array.isArray(cartItems) && cartItems.map(item => (
         <CartListItem
           key={item.order_item_id}
           product_photo_url={item.product_photo_url}

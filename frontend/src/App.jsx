@@ -71,15 +71,15 @@ function App() {
 
   // a route to pull all orders data from the db (backend)
   useEffect(() => {
-    axios.get(`/api/orders/${userId}`)
+    axios.get(`/api/cart/${userId}`)
     .then(response => {
       setCartItems(response.data);
-
+      console.log("api/carts:",response.data)
       const totalCost = response.data.reduce((acc, item) => acc + item.price_cents * item.quantity, 0);
       setTotalCost(totalCost);
     })
     .catch(error => {
-      console.error('There was an error with order data!', error);
+      console.error('There was an error with cart data!', error);
     });
 }, []);
 

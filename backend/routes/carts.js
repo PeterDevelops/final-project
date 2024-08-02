@@ -1,7 +1,7 @@
 // path = localhost:8080/api/orders
 
 const express = require('express');
-const { getOrdersByUserId } = require('../db/queries/orders');
+const { getOrdersByUserId } = require('../db/queries/carts');
 const router = express.Router();
 
 router.get("/:userId", (req, res) => {

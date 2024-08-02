@@ -1,23 +1,21 @@
 const db = require("../connection");
 
-//get all products
 const getOrdersByUserId = (user_id) => {
   const cartItemsQuery = `
   SELECT
-  order_items.id AS order_item_id,
+  cart_items.id AS cart_item_id,
   products.id AS product_id,
   products.name AS product_name,
   products.photo_url AS product_photo_url,
-  order_items.quantity,
+  cart_items.quantity,
   products.price_cents,
-  orders.total_cost,
   vendors.name AS vendor_name,
   vendors.vendor_logo_url
-  FROM order_items
-  JOIN products ON order_items.product_id = products.id
-  JOIN orders ON order_items.order_id = orders.id
+  FROM cart_items
+  JOIN products ON cart_items.product_id = products.id
+  JOIN carts ON cart_items.cart_id = carts.id
   JOIN vendors ON products.vendor_id = vendors.id
-  WHERE orders.user_id = $1;
+  WHERE carts.user_id = $1;
   `
 
   const queryParam = [user_id];
