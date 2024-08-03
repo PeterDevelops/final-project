@@ -4,7 +4,7 @@ import NavBar from '../NavBar';
 import { useNavigate } from 'react-router-dom'
 
 const Login = (props) => {
-  const { products, vendors, locations, categories, user, setUser } = props;
+  const { products, setProducts, allProducts, vendors, locations, categories, user, setUser } = props;
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -29,7 +29,7 @@ const Login = (props) => {
 
   return (
     <>
-        <NavBar products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />
+        <NavBar products={products} setProducts={setProducts} allProducts={allProducts} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />
 
         <section className="m-3 p-3">
           <div className="w-full max-w-xs">

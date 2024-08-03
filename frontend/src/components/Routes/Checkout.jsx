@@ -5,14 +5,14 @@ import '../../styles/Cart.scss';
 import DeliveryToggle from '../Body/DeliveryToggle';
 import CartListItem from '../Body/CartListItem';
 
-const Checkout = ({ products, vendors, locations, user, setUser, cartItems, totalCost }) => {
+const Checkout = ({ products, setProducts, allProducts, vendors, locations, user, setUser, cartItems, totalCost }) => {
 
   const navigate = useNavigate();
 
   return (
 
     <div>
-      <NavBar products={products} vendors={vendors} locations={locations} user={user} setUser={setUser}/>
+      <NavBar products={products} setProducts={setProducts} allProducts={allProducts} vendors={vendors} locations={locations} user={user} setUser={setUser}/>
 
 
       <div className='cart-container'>
@@ -33,7 +33,7 @@ const Checkout = ({ products, vendors, locations, user, setUser, cartItems, tota
           quantity={item.quantity}
           price_cents={item.price_cents}
           />
-       ))}
+        ))}
 
         <div className='total'>
           Total: ${totalCost / 100}

@@ -5,7 +5,7 @@ import '../../styles/Cart.scss';
 import { Link } from 'react-router-dom';
 import CartListItem from '../Body/CartListItem';
 
-const Cart = ({ products, vendors, locations, categories, user, setUser, cartItems, totalCost }) => {
+const Cart = ({ products, setProducts, allProducts, vendors, locations, categories, user, setUser, cartItems, totalCost }) => {
 
 
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ const Cart = ({ products, vendors, locations, categories, user, setUser, cartIte
   return (
 
     <div>
-      <NavBar products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser}/>
+      <NavBar products={products} setProducts={setProducts} allProducts={allProducts} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser}/>
 
 
       <div className='cart-container'>

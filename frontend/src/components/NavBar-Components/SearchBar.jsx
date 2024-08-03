@@ -14,16 +14,16 @@ import { useNavigate } from 'react-router-dom';
 
 
 export default function SearchBar(props) {
-  const { products, setProducts, vendors, locations, categories } = props;
+  const { products, setProducts, allProducts, vendors, locations, categories } = props;
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState('');
 
 
   const categorizeProducts = () => {
-    if (Array.isArray(products) && products.length > 0) {
+    if (Array.isArray(allProducts) && allProducts.length > 0) {
       const subCategories = {};
 
-      products.forEach(product => {
+      allProducts.forEach(product => {
         if (product.sub_category) {
           const id = `${product.category}-${product.sub_category}`;
           if (!subCategories[id]) {
@@ -97,19 +97,19 @@ export default function SearchBar(props) {
     }
   }
 
-  const handleOptionSelect = (event, value) => {
-    if (value && value.category === 'Fruit') {
-      const filtered = products.filter(product => product.sub_category === value.name);
-      setProducts(filtered);
-      navigate('/products');
-    }
-  };
+  // const handleOptionSelect = (event, value) => {
+  //   if (value && value.category === 'Fruit') {
+  //     const filtered = products.filter(product => product.sub_category === value.name);
+  //     setProducts(filtered);
+  //     navigate('/products');
+  //   }
+  // };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const filtered = products.filter(product => product.sub_category.toLowerCase() === inputValue.toLowerCase());
+    const filtered = allProducts.filter(product => product.sub_category.toLowerCase() === inputValue.toLowerCase());
     setProducts(filtered);
-    navigate('/products');
+    navigate('/products', { state: { allProducts }});
   };
 
   return (
@@ -120,7 +120,7 @@ export default function SearchBar(props) {
           options={combinedData()}
           groupBy={(option) => option.category}
           getOptionLabel={(option) => option.name}
-          onChange={handleOptionSelect}
+          // onChange={handleOptionSelect}
           inputValue={inputValue}
           onInputChange={(event, newInputValue) => setInputValue(newInputValue)}
           sx={{ width: '100%' }}
