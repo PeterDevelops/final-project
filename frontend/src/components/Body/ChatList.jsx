@@ -1,13 +1,17 @@
-import ChatListItem from './ChatListItem'
+import React from 'react';
 
 const ChatList = (props) => {
-  const { user } = props;
+  const { chat, user } = props;
+
   return (
-    <div className="flex flex-row justify-center m-5">
-      <ChatListItem user={user}/>
-    </div>
+    
+      <article>
+        <img src={chat.contact_photo} />
+        <h1>{chat.contact_name}</h1>
+        <p>Last message will go here</p>
+      </article>
 
   )
-}
+};
 
 export default ChatList;

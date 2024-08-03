@@ -1,4 +1,6 @@
 import React from 'react';
+import { useState } from 'react';
+import axios from 'axios';
 import HamburgerMenu from './NavBar-Components/HamburgerMenu';
 import Cart from './Routes/Cart';
 import Inbox from './Routes/Inbox';
@@ -12,8 +14,32 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 const NavBar = (props) => {
   const { products, vendors, locations, categories, user, setUser } = props;
 
+  const [inboxData, setInboxData] = useState([]);
+
   const location = useLocation();
   const noSearchBar = ['/cart', '/checkout', '/inbox'];
+
+  const handleClick = async () => {
+    // console.log("inbox clicked")
+    
+    if (user !== null) {
+      // console.log("front end user id", user.id)
+      const response = await axios.get(`/inboxes/${user.id}`);
+      const userInboxData = response.data;
+      // console.log("user inbox data from backend", userInboxData) ;
+      // console.log("inbox data length", userInboxData.length);
+
+      if (userInboxData.length > 0) {
+        setInboxData(userInboxData)
+      } else {
+        console.log("Error retrieving inbox data")
+      }
+    }
+
+    else {
+      console.log("Not logged in")
+    }
+  }
 
   return (
 
@@ -34,8 +60,8 @@ const NavBar = (props) => {
           <Link to="/cart" className="text-gray-700 hover:text-gray-900 flex items-center">
             <FontAwesomeIcon icon={faCartShopping} size="2x" />
           </Link>
-          <Link to="/inbox" className="text-gray-700 hover:text-gray-900 flex items-center">
-            <FontAwesomeIcon icon={faEnvelope} size="2x" />
+          <Link to="/inbox" className="text-gray-700 hover:text-gray-900 flex items-center" state={{inboxData: inboxData}}>
+            <FontAwesomeIcon onClick={handleClick} icon={faEnvelope} size="2x" />
           </Link>
         </div>
       </nav>

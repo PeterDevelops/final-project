@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios';
 import NavBar from '../NavBar';
 import { useNavigate } from 'react-router-dom'
@@ -22,10 +22,15 @@ const Login = (props) => {
       // console.log(response.data)
       setEmail(response.data.email);
       setPassword(response.data.hashed_password);
-      setUser(response.data);
+      setUser(response.data[0]);
+      console.log("USER-----", response.data[0])
       navigate('/');
     }
   }
+
+  // useEffect(() => {
+  //   console.log("USER******", user)
+  // })
 
   return (
     <>

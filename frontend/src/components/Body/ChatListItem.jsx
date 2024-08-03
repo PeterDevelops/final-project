@@ -6,7 +6,7 @@ import io from 'socket.io-client'
 const socket = io.connect("http://localhost:8080")
 
 const ChatListItem = (props) => {
-  const { user } = props;
+  const { chat, user } = props;
   // specific chat (1-1) [should be in inbox]
   // const [chat, setChat] = useState("")
 
@@ -24,14 +24,17 @@ const ChatListItem = (props) => {
   // }
 
   const sendMessage = () => {
-    //emit an event by send message to server (listening) [add chat state to message object]
-    socket.emit("send_message", { message });
+    if (message !== '') {
+      //emit an event by send message to server (listening) [add chat state to message object]
+      socket.emit("send_message", { message });
+      setMessage('');
+    }
   }
 
   // runs everytime an event on the server is emitted
   useEffect(() => {
     socket.on("receive_message", (data) => {
-      setMessageReceived(data.message);
+      setMessageReceived(data);
     })
   }, [socket])
 
@@ -41,9 +44,8 @@ const ChatListItem = (props) => {
         <div className="bg-[#F7F4F0] rounded p-2">
           <div className="bg-[#F7F4F0] rounded px-8 pt-6 pb-8 mb-4">
             <div>
-              <h1>
-                {messageReceived}
-              </h1>
+              <h1>Message: {messageReceived}</h1>
+             
             </div>
           </div>
           <div className="bg-white flex flex-row items-center rounded border border-black p-1">

@@ -39,6 +39,7 @@ const locationsRoute = require("./routes/locations");
 const categoriesRoute = require("./routes/categories");
 const loginRoute = require("./routes/login")
 const logoutRoute = require("./routes/logout")
+const inboxesRoute = require("./routes/inboxes")
 
 // Mount all resource routes - the route paths will always start the path provided as the first argument below
 // Example:
@@ -50,6 +51,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use("/api/categories", categoriesRoute);
 app.use("/login", loginRoute);
 app.use("/logout", logoutRoute);
+app.use("/inboxes", inboxesRoute);
 
 
 // temp route to set up server
@@ -68,9 +70,10 @@ io.on("connection", (socket) => {
   console.log(`User connected to chat: ${socket.id}`);
 
   // listens for client joining a chat [should pull chat.id and load chat page with that data]
-  // socket.on("join_chat", (data) => {
-  //   socket.join(data);
-  // })
+  socket.on("join_chat", (data) => {
+    socket.join(data);
+  })
+  
   //websocket server listening for a message
   socket.on("send_message", (data) => {
     socket.broadcast.emit("receive_message", data)
