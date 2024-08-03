@@ -112,10 +112,21 @@ export default function SearchBar(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const filtered = allProducts.filter(product => product.sub_category.toLowerCase() === inputValue.toLowerCase());
-    setProducts(filtered);
-    navigate('/products', { state: { allProducts }});
+
+    const matchedVendor = vendors.find(vendor => vendor.name.toLowerCase() === inputValue.toLowerCase());
+    const matchedSubCategory = allProducts.find(product => product.sub_category.toLowerCase() === inputValue.toLowerCase());
+
+    if (matchedVendor) {
+      const filteredByVendor = allProducts.filter(product => product.vendor_id === matchedVendor.id);
+      setProducts(filteredByVendor);
+      navigate('/products', { state: { allProducts } });
+    } else if (matchedSubCategory) {
+      const filteredBySubCategory = allProducts.filter(product => product.sub_category.toLowerCase() === inputValue.toLowerCase());
+      setProducts(filteredBySubCategory);
+      navigate('/products', { state: { allProducts } });
+    }
   };
+
 
   return (
     <div className="p-4 max-w-md mx-auto">
