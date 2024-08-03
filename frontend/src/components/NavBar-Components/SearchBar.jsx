@@ -18,7 +18,6 @@ export default function SearchBar(props) {
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState('');
 
-
   const categorizeProducts = () => {
     if (Array.isArray(allProducts) && allProducts.length > 0) {
       const subCategories = {};
@@ -97,13 +96,11 @@ export default function SearchBar(props) {
     }
   }
 
-  // const handleOptionSelect = (event, value) => {
-  //   if (value && value.category === 'Fruit') {
-  //     const filtered = products.filter(product => product.sub_category === value.name);
-  //     setProducts(filtered);
-  //     navigate('/products');
-  //   }
-  // };
+  const handleOptionClick = (option) => {
+    const filtered = allProducts.filter(product => product.sub_category === option.name);
+    setProducts(filtered);
+    navigate('/products', { state: { allProducts } });
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -120,12 +117,16 @@ export default function SearchBar(props) {
           options={combinedData()}
           groupBy={(option) => option.category}
           getOptionLabel={(option) => option.name}
-          // onChange={handleOptionSelect}
           inputValue={inputValue}
           onInputChange={(event, newInputValue) => setInputValue(newInputValue)}
           sx={{ width: '100%' }}
           renderOption={({ props }, option) => (
-            <li {...props} key={option.id} className="flex items-center p-2 border border-gray-300 rounded-md cursor-pointer">
+            <li
+              {...props}
+              key={option.id}
+              className="flex items-center p-2 border border-gray-300 rounded-md cursor-pointer"
+              onClick={() => handleOptionClick(option)}
+            >
               <FontAwesomeIcon icon={option.icon} className="mr-2" />
               <span>{option.name}</span>
             </li>
