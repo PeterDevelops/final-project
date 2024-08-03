@@ -12,6 +12,7 @@ import CategoryList from './components/Routes/CategoryList';
 import Checkout from './components/Routes/Checkout';
 import Login from './components/Routes/Login';
 import LocationList from './components/Routes/LocationList';
+import OrderConfirmation from './components/Routes/OrderConfirmation';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -101,6 +102,7 @@ function App() {
         <Route path="/products" element={<ProductList products={products} vendors={vendors} locations={locations} user={user} setUser={setUser}/>} />
         <Route path="/categories" element={<CategoryList products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />} />
         <Route path="/checkout" element={<Checkout products={products} vendors={vendors} locations={locations} user={user} setUser={setUser} cartItems={cartItems} totalCost={totalCost} />} />
+        <Route path="/order-confirmation" element={<OrderConfirmation products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />} />
         <Route path="/login" element={<Login products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />} />
         <Route path="/locations" element={<LocationList products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />} />
       </Routes>

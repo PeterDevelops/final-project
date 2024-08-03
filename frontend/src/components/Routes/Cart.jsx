@@ -65,7 +65,10 @@ const Cart = ({ products, vendors, locations, categories, user, setUser, cartIte
 
       </div>
     ) : (
+      <div>
       <div>Your Cart Is Empty</div>
+      <button onClick={() => navigate('/')}>Go back to home page</button>
+      </div>
     )}
     </div>
   );

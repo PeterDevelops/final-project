@@ -45,6 +45,12 @@ const Checkout = ({ products, vendors, locations, user, setUser, cartItems, tota
     axios.post('/api/orders', { orderData, orderItems })
       .then(response => {
         console.log('Order and order items created successfully:', response.data);
+        // delete cart item after order completion
+        return axios.delete(`/api/cart/${userId}`);
+      })
+      .then(() => {
+        console.log('Cart and cart item deleted successfully');
+        navigate('/order-confirmation');
       })
       .catch(error => {
         console.error('There was an error creating the order!', error);
