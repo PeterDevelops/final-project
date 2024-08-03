@@ -18,6 +18,8 @@ export default function SearchBar(props) {
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState('');
 
+  console.log('AllProducts:', allProducts);
+
   const categorizeProducts = () => {
     if (Array.isArray(allProducts) && allProducts.length > 0) {
       const subCategories = {};
@@ -97,9 +99,15 @@ export default function SearchBar(props) {
   }
 
   const handleOptionClick = (option) => {
-    const filtered = allProducts.filter(product => product.sub_category === option.name);
-    setProducts(filtered);
-    navigate('/products', { state: { allProducts } });
+    if (option.vendor_logo_url) {
+      const filteredByVendor = allProducts.filter(product => product.vendor_id === option.id);
+      setProducts(filteredByVendor);
+      navigate('/products', { state: { allProducts } });
+    } else {
+      const filteredBySubCategory = allProducts.filter(product => product.sub_category === option.name);
+      setProducts(filteredBySubCategory);
+      navigate('/products', { state: { allProducts } });
+    }
   };
 
   const handleSubmit = (event) => {
