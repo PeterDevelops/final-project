@@ -90,25 +90,22 @@ function App() {
 
   return (
     // Router must be in the top level of the app
-    <Router>
-      <div className="Homepage"></div>
-
-      {/* Path to routes */}
-      <Routes>
-      <Route path="/" element={<Homepage products={products} vendors={vendors} locations={locations} user={user} setUser={setUser}/>} />
-        <Route path="/cart" element={<Cart products={products} vendors={vendors} locations={locations} user={user} setUser={setUser} cartItems={cartItems} totalCost={totalCost} />} />
-        <Route path="/inbox" element={<Inbox products={products} vendors={vendors} locations={locations} user={user} setUser={setUser}/>} />
-        <Route path="/vendors" element={<VendorList products={products} vendors={vendors} locations={locations} user={user} setUser={setUser} />} />
-        <Route path="/products" element={<ProductList products={products} vendors={vendors} locations={locations} user={user} setUser={setUser}/>} />
-        <Route path="/categories" element={<CategoryList products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />} />
-        <Route path="/checkout" element={<Checkout products={products} vendors={vendors} locations={locations} user={user} setUser={setUser} cartItems={cartItems} totalCost={totalCost} />} />
-        <Route path="/login" element={<Login products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />} />
-        <Route path="/locations" element={<LocationList products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />} />
-        <Route path="/vendors/:vendorId" element={<VendorProfile products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />} />
-      </Routes>
-
-    </Router>
-
+      <Router>
+        <div className="Homepage"></div>
+        {/* Path to routes */}
+        <Routes>
+        <Route path="/" element={<Homepage products={products} setProducts={setProducts} vendors={vendors} locations={locations} user={user} setUser={setUser}/>} />
+          <Route path="/cart" element={<Cart products={products} vendors={vendors} locations={locations} user={user} setUser={setUser} cartItems={cartItems} totalCost={totalCost} />} />
+          <Route path="/inbox" element={<Inbox products={products} vendors={vendors} locations={locations} user={user} setUser={setUser}/>} />
+          <Route path="/vendors" element={<VendorList products={products} vendors={vendors} locations={locations} user={user} setUser={setUser} />} />
+          <Route path="/products" element={<ProductList products={products} vendors={vendors} locations={locations} user={user} setUser={setUser}/>} />
+          <Route path="/categories" element={<CategoryList products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />} />
+          <Route path="/checkout" element={<Checkout products={products} vendors={vendors} locations={locations} user={user} setUser={setUser} cartItems={cartItems} totalCost={totalCost} />} />
+          <Route path="/login" element={<Login products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />} />
+          <Route path="/locations" element={<LocationList products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />} />
+          <Route path="/vendors/:vendorId" element={<VendorProfile products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />} />
+        </Routes>
+      </Router>
   );
 };
 

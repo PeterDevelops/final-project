@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingBasket, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 const NavBar = (props) => {
-  const { products, vendors, locations, categories, user, setUser } = props;
+  const { products, setProducts, vendors, locations, categories, user, setUser } = props;
 
   const location = useLocation();
   const noSearchBar = ['/cart', '/checkout', '/inbox'];
@@ -42,7 +42,7 @@ const NavBar = (props) => {
       {/* exclude SearchBar from specified routes */}
       {!noSearchBar.includes(location.pathname) && (
         <div className="bg-[#F7F4F0] p-4">
-          <SearchBar products={products} vendors={vendors} locations={locations} categories={categories} />
+          <SearchBar products={products} setProducts={setProducts} vendors={vendors} locations={locations} categories={categories} />
         </div>
       )}
       {/* Add spacer where search bar would be */}

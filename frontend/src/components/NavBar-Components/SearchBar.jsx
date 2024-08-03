@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,9 +10,14 @@ import {
   faDrumstickBite,
   faBreadSlice
 } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
-export default function Grouped(props) {
-  const { products, vendors, locations, categories } = props;
+
+export default function SearchBar(props) {
+  const { products, setProducts, vendors, locations, categories } = props;
+  const navigate = useNavigate();
+  const [inputValue, setInputValue] = useState('');
+
 
   const categorizeProducts = () => {
     if (Array.isArray(products) && products.length > 0) {
@@ -92,48 +97,55 @@ export default function Grouped(props) {
     }
   }
 
-  // // filter the NUMBER of suggestions that show (how to show 2 in each category)
-  // const filterOptions = createFilterOptions({
-  //   limit: 2,
+  const handleOptionSelect = (event, value) => {
+    if (value && value.category === 'Fruit') {
+      const filtered = products.filter(product => product.sub_category === value.name);
+      setProducts(filtered);
+      navigate('/products');
+    }
+  };
 
-  // });
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const filtered = products.filter(product => product.sub_category.toLowerCase() === inputValue.toLowerCase());
+    setProducts(filtered);
+    navigate('/products');
+  };
 
   return (
     <div className="p-4 max-w-md mx-auto">
-      <Autocomplete
-        id="grouped-demo"
-        options={combinedData()}
-        groupBy={(option) => option.category}
-        getOptionLabel={(option) => option.name}
-        sx={{ width: '100%' }}
-        // filterOptions={filterOptions}
-        renderOption={({ props }, option) => (
-          <li {...props} key={option.id} className="flex items-center p-2 border border-gray-300 rounded-md cursor-pointer">
-            <FontAwesomeIcon icon={option.icon} className="mr-2" />
-            <span>{option.name}</span>
-          </li>
-        )}
-        renderInput={(params) => (
-          <TextField
-            // input
-            {...params}
-            //placeholder
-            label="Search by Product, Vendor or Location"
-            className="bg-gray-100 shadow-md"
-            sx={{
-              borderRadius: '9999px',
-              '& .MuiOutlinedInput-root': {
+      <form onSubmit={handleSubmit}>
+        <Autocomplete
+          id="grouped-demo"
+          options={combinedData()}
+          groupBy={(option) => option.category}
+          getOptionLabel={(option) => option.name}
+          onChange={handleOptionSelect}
+          inputValue={inputValue}
+          onInputChange={(event, newInputValue) => setInputValue(newInputValue)}
+          sx={{ width: '100%' }}
+          renderOption={({ props }, option) => (
+            <li {...props} key={option.id} className="flex items-center p-2 border border-gray-300 rounded-md cursor-pointer">
+              <FontAwesomeIcon icon={option.icon} className="mr-2" />
+              <span>{option.name}</span>
+            </li>
+          )}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label="Search by Product, Vendor or Location"
+              className="bg-gray-100 shadow-md"
+              sx={{
                 borderRadius: '9999px',
-                border: '1px solid #d1d5db',
-              },
-            }}
-          />
-        )}
-
-      />
+                '& .MuiOutlinedInput-root': {
+                  borderRadius: '9999px',
+                  border: '1px solid #d1d5db',
+                },
+              }}
+            />
+          )}
+        />
+      </form>
     </div>
   );
 }
-
-
-

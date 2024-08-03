@@ -5,10 +5,10 @@ import Login from './Login'
 
 
 const Homepage = (props) => {
-  const { products, vendors, locations, categories, user, setUser } = props;
+  const { products, setProducts, vendors, locations, categories, user, setUser } = props;
   return (
     <div>
-      <NavBar products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser}/>
+      <NavBar products={products} setProducts={setProducts} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser}/>
       <Map
         locations={locations}
         zoom={10}
