@@ -8,8 +8,17 @@ import ChatList from '../Body/ChatList'
 import io from 'socket.io-client'
 const socket = io.connect("http://localhost:8080")
 
-const Inbox = ({ products, vendors, locations, categories, user, setUser }) => {
-
+const Inbox = (props) => {
+  const {
+    products,
+    setProducts,
+    allProducts,
+    vendors,
+    locations,
+    categories,
+    user,
+    setUser
+  } = props;
   const [username, setUsername] = useState("");
   const [chatData, setChatData] = useState([]);
   // const [chat, setChat] = useState('');
@@ -51,7 +60,16 @@ const Inbox = ({ products, vendors, locations, categories, user, setUser }) => {
 
   return (
     <div>
-      <NavBar products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />
+      <NavBar
+        products={products}
+        setProducts={setProducts}
+        allProducts={allProducts}
+        vendors={vendors}
+        locations={locations}
+        categories={categories}
+        user={user}
+        setUser={setUser} 
+      />
       <h1 className="text-xl font-semibold m-3 p-3">Inbox </h1>
 
       <div className="flex flex-col justify-content">

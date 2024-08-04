@@ -37,6 +37,7 @@ const productsRoute = require("./routes/products");
 const vendorsRoute = require("./routes/vendors");
 const locationsRoute = require("./routes/locations");
 const categoriesRoute = require("./routes/categories");
+const ordersRoute = require("./routes/orders");
 const loginRoute = require("./routes/login")
 const logoutRoute = require("./routes/logout")
 const chatsRoute = require("./routes/chats")
@@ -50,6 +51,7 @@ app.use("/api/vendors", vendorsRoute);
 app.use("/api/locations", locationsRoute);
 app.use(express.static(path.join(__dirname, '../public')));
 app.use("/api/categories", categoriesRoute);
+app.use("/api/orders", ordersRoute);
 app.use("/login", loginRoute);
 app.use("/logout", logoutRoute);
 app.use("/api/chats", chatsRoute);

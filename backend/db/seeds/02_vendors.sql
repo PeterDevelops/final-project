@@ -8,10 +8,10 @@ INSERT INTO vendors (name, bio, address, city, longitude, latitude, vendor_logo_
 VALUES ('Green Leafy Greens', 'Specializing in fresh, leafy greens and herbs, perfect for salads and cooking.', '54166 Hanover Alley', 'Nanaimo, BC', -123.940063, 49.165882, '/images/vendor-logos/green-leafy-greens-high-resolution-logo.png', 3);
 
 INSERT INTO vendors (name, bio, address, city, longitude, latitude, vendor_logo_url, admin_user)
-VALUES ('Sweet Bee Honey', 'Pure, raw honey straight from our local apiaries, along with beeswax products.', '1 Gale Street', 'Chilliwack, BC', -121.951469, 49.057940, '/images/vendor-logos/artisan-cheese-co-high-resolution-logo.png', 4);
+VALUES ('Sweet Bee Honey', 'Pure, raw honey straight from our local apiaries, along with beeswax products.', '1 Gale Street', 'Chilliwack, BC', -121.951469, 49.057940, '/images/vendor-logos/sweet-bee-honey-high-resolution-logo.png', 4);
 
 INSERT INTO vendors (name, bio, address, city, longitude, latitude, vendor_logo_url, admin_user)
-VALUES ('Artisan Cheese Co.', 'Handcrafted cheeses made from locally sourced milk, available in a variety of flavors.', '1283 Moland Junction', 'Port Moody, BC', -122.8677562, 49.2649107, '/images/vendor-logos/fresh-harvest-produce-high-resolution-logo.png', 5);
+VALUES ('Artisan Cheese Co.', 'Handcrafted cheeses made from locally sourced milk, available in a variety of flavors.', '1283 Moland Junction', 'Port Moody, BC', -122.8677562, 49.2649107, '/images/vendor-logos/artisan-cheese-co-high-resolution-logo.png', 5);
 
 INSERT INTO vendors (name, bio, address, city, longitude, latitude, vendor_logo_url, admin_user)
 VALUES ('Berry Bliss', 'Seasonal berries, jams, and preserves, grown and made with care and love.', '675 Scoville Avenue', 'Nanaimo, BC', -123.940063, 49.065882, '/images/vendor-logos/berry-bliss-high-resolution-logo.png', 6);
