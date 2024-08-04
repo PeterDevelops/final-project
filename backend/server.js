@@ -40,6 +40,7 @@ const categoriesRoute = require("./routes/categories");
 const loginRoute = require("./routes/login")
 const logoutRoute = require("./routes/logout")
 const chatsRoute = require("./routes/chats")
+const messagesRoute = require("./routes/messages")
 
 // Mount all resource routes - the route paths will always start the path provided as the first argument below
 // Example:
@@ -52,6 +53,7 @@ app.use("/api/categories", categoriesRoute);
 app.use("/login", loginRoute);
 app.use("/logout", logoutRoute);
 app.use("/api/chats", chatsRoute);
+app.use("/api/messages", messagesRoute);
 
 
 // temp route to set up server
