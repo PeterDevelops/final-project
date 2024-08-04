@@ -18,8 +18,6 @@ export default function SearchBar(props) {
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState('');
 
-  console.log('AllProducts:', allProducts);
-
   const categorizeProducts = () => {
     if (Array.isArray(allProducts) && allProducts.length > 0) {
       const subCategories = {};
