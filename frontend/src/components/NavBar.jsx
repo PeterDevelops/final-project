@@ -9,27 +9,42 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingBasket, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 const NavBar = (props) => {
-  const { products, vendors, locations, categories, user, setUser } = props;
+  const {
+    products,
+    setProducts,
+    allProducts,
+    vendors,
+    locations,
+    categories,
+    user,
+    setUser
+  } = props;
 
   const location = useLocation();
   const noSearchBar = ['/cart', '/checkout', '/inbox'];
 
   return (
-
     <div>
       <nav className="flex items-center justify-between h-16 px-4 bg-[#F7F4F0]">
-
-        <HamburgerMenu />
-
+        <HamburgerMenu setProducts={setProducts} allProducts={allProducts} />
         {/* LOGO */}
-        <Link to="/"><img
-          src="/Logo.png"
-          alt="Mrkt Logo"
-          className="w-20 h-20 mt-6"
-        /></Link>
+        <Link to="/">
+          <img
+            src="/Logo.png"
+            alt="Mrkt Logo"
+            className="w-20 h-20 mt-6"
+          />
+        </Link>
 
         <div className="flex items-center gap-4 mt-6">
-          <LoginBtn products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />
+          <LoginBtn
+            products={products}
+            vendors={vendors}
+            locations={locations}
+            categories={categories}
+            user={user}
+            setUser={setUser}
+          />
           <Link to="/cart" className="text-gray-700 hover:text-gray-900 flex items-center">
             <FontAwesomeIcon icon={faShoppingBasket} size="2x" />
           </Link>
@@ -42,7 +57,14 @@ const NavBar = (props) => {
       {/* exclude SearchBar from specified routes */}
       {!noSearchBar.includes(location.pathname) && (
         <div className="bg-[#F7F4F0] p-4">
-          <SearchBar products={products} vendors={vendors} locations={locations} categories={categories} />
+          <SearchBar
+            products={products}
+            setProducts={setProducts}
+            allProducts={allProducts}
+            vendors={vendors}
+            locations={locations}
+            categories={categories}
+          />
         </div>
       )}
       {/* Add spacer where search bar would be */}
@@ -50,9 +72,6 @@ const NavBar = (props) => {
         <div className='bg-[#F7F4F0] p-4'></div>
       )}
     </div>
-
-
-
   );
 };
 

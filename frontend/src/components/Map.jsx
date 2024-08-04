@@ -8,7 +8,12 @@ const customIcon = new Icon ({
   iconSize: [35, 35]
 });
 
-const Map = ({ locations, zoom, className }) => {
+const Map = (props) => {
+  const {
+    locations,
+    zoom,
+    className
+  } = props;
   const [center, setCenter] = useState([49.2824, -122.8277]) // default center in port moody
 
   useEffect (() => {
@@ -20,13 +25,23 @@ const Map = ({ locations, zoom, className }) => {
   }, []);
 
   return (
-    <MapContainer center={center} zoom={zoom} scrollWheelZoom={true} className={className} key={`${center[0]}-${center[1]}`} >
+    <MapContainer
+      center={center}
+      zoom={zoom}
+      scrollWheelZoom={true}
+      className={className}
+      key={`${center[0]}-${center[1]}`}
+    >
       <TileLayer
         attribution='&copy; <a href="https://www.thunderforest.com">Thunderforest</a>'
         url={`https://{s}.tile.thunderforest.com/neighbourhood/{z}/{x}/{y}.png?apikey=${process.env.REACT_APP_THUNDERFOREST_API_KEY}`}
       />
       {locations.map((location) => (
-        <Marker key={location.id} position={[location.latitude, location.longitude]} icon={customIcon }>
+        <Marker
+          key={location.id}
+          position={[location.latitude, location.longitude]}
+          icon={customIcon}
+        >
           <Popup>
             {location.name}, {location.city}
           </Popup>

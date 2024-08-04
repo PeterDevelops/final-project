@@ -4,27 +4,27 @@ VALUES
 
 ('Golden Delicious Apple', 'Sweet and mellow apples, great for pies.', 'https://images.unsplash.com/photo-1608569569104-208fbb5ee52e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 80, 179, 1, 'Fruit', 'Apple'),
 
-('Broccoli', 'Fresh broccoli with a crisp texture.', 'https://images.unsplash.com/photo-1692956705964-14c55d0dd6b4?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 50, 299, 2, 'Vegetable', 'Cruciferous'),
+('Broccoli', 'Fresh broccoli with a crisp texture.', 'https://images.unsplash.com/photo-1692956705964-14c55d0dd6b4?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 50, 299, 3, 'Vegetable', 'Cruciferous'),
 
-('Whole Wheat Bread', 'Whole grain bread, perfect for sandwiches.', 'https://images.unsplash.com/photo-1537200275355-4f0c0714f777?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 30, 499, 3, 'Miscellaneous', 'Bakery'),
+('Whole Wheat Bread', 'Whole grain bread, perfect for sandwiches.', 'https://images.unsplash.com/photo-1537200275355-4f0c0714f777?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 30, 499, 2, 'Miscellaneous', 'Bakery'),
 
-('Sourdough Bread', 'Tangy sourdough bread with a chewy crust.', 'https://images.unsplash.com/photo-1638788449271-9bb9121c1bfc?q=80&w=1337&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 20, 549, 3, 'Miscellaneous', 'Bakery'),
+('Sourdough Bread', 'Tangy sourdough bread with a chewy crust.', 'https://images.unsplash.com/photo-1638788449271-9bb9121c1bfc?q=80&w=1337&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 20, 549, 2, 'Miscellaneous', 'Bakery'),
 
-('Spinach', 'Fresh spinach, perfect for salads and smoothies.', 'https://images.unsplash.com/photo-1634731201932-9bd92839bea2?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 60, 349, 4, 'Vegetable', 'Leafy Green'),
+('Spinach', 'Fresh spinach, perfect for salads and smoothies.', 'https://images.unsplash.com/photo-1634731201932-9bd92839bea2?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 60, 349, 3, 'Vegetable', 'Leafy Green'),
 
-('Basil', 'Aromatic basil, great for pesto and cooking.', 'https://images.unsplash.com/photo-1610970884954-4d376ecba53f?q=80&w=1518&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 40, 199, 4, 'Vegetable', 'Herb'),
+('Basil', 'Aromatic basil, great for pesto and cooking.', 'https://images.unsplash.com/photo-1610970884954-4d376ecba53f?q=80&w=1518&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 40, 199, 3, 'Vegetable', 'Herb'),
 
-('Clover Honey', 'Pure, raw clover honey.', 'https://images.unsplash.com/photo-1495298975657-492a1d068595?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 25, 799, 5, 'Miscellaneous', 'Honey'),
+('Clover Honey', 'Pure, raw clover honey.', 'https://images.unsplash.com/photo-1495298975657-492a1d068595?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 25, 799, 4, 'Miscellaneous', 'Honey'),
 
-('Wildflower Honey', 'Delicious wildflower honey with a rich flavor.', 'https://images.unsplash.com/photo-1717144698901-f41f06c7c6a2?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 20, 899, 5, 'Miscellaneous', 'Honey'),
+('Wildflower Honey', 'Delicious wildflower honey with a rich flavor.', 'https://images.unsplash.com/photo-1717144698901-f41f06c7c6a2?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 20, 899, 4, 'Miscellaneous', 'Honey'),
 
-('Cheddar Cheese', 'Sharp cheddar cheese, aged to perfection.', 'https://images.unsplash.com/photo-1618164436241-4473940d1f5c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 35, 699, 6, 'Miscellaneous', 'Cheese'),
+('Cheddar Cheese', 'Sharp cheddar cheese, aged to perfection.', 'https://images.unsplash.com/photo-1618164436241-4473940d1f5c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 35, 699, 5, 'Miscellaneous', 'Cheese'),
 
-('Goat Cheese', 'Creamy goat cheese, perfect for spreading.', 'https://images.unsplash.com/photo-1691472898958-7cff5cee41cb?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 30, 749, 6, 'Miscellaneous', 'Cheese'),
+('Goat Cheese', 'Creamy goat cheese, perfect for spreading.', 'https://images.unsplash.com/photo-1691472898958-7cff5cee41cb?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 30, 749, 5, 'Miscellaneous', 'Cheese'),
 
-('Strawberries', 'Sweet, juicy strawberries, great for desserts.', 'https://images.unsplash.com/photo-1543528176-61b239494933?q=80&w=1474&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 100, 399, 7, 'Fruit', 'Berry'),
+('Strawberries', 'Sweet, juicy strawberries, great for desserts.', 'https://images.unsplash.com/photo-1543528176-61b239494933?q=80&w=1474&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 100, 399, 6, 'Fruit', 'Berry'),
 
-('Blueberries', 'Plump blueberries, perfect for baking.', 'https://images.unsplash.com/photo-1498557850523-fd3d118b962e?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 80, 349, 7, 'Fruit', 'Berry'),
+('Blueberries', 'Plump blueberries, perfect for baking.', 'https://images.unsplash.com/photo-1498557850523-fd3d118b962e?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 80, 349, 6, 'Fruit', 'Berry'),
 
 ('Pickles', 'Assorted pickles, perfect for snacks.', 'https://images.unsplash.com/photo-1462536546956-beef6399d8cf?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 50, 399, 7, 'Miscellaneous', 'Pickles'),
 

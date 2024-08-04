@@ -4,11 +4,11 @@ import NavBar from '../NavBar';
 import { useParams } from 'react-router-dom';
 
 const VendorProfile = (props) => {
-  const { vendors, products, locations, categories, user, setUser } = props;
+  const { vendors, products, setProducts, allProducts, locations, categories, user, setUser } = props;
   const { vendorId } = useParams();
 
    // Loading check
-   if (!Array.isArray(vendors) || vendors.length === 0) {
+    if (!Array.isArray(vendors) || vendors.length === 0) {
     return <div>Loading vendor...</div>;
   }
 
@@ -20,7 +20,7 @@ const VendorProfile = (props) => {
 
   return (
     <div>
-      <NavBar products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser}/>
+      <NavBar products={products} setProducts={setProducts} allProducts={allProducts} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser}/>
       <div className="vendor-profile">
         <img src={vendor.vendor_logo_url} alt={vendor.name} />
         <h2>{vendor.name}</h2>
