@@ -39,7 +39,7 @@ const locationsRoute = require("./routes/locations");
 const categoriesRoute = require("./routes/categories");
 const loginRoute = require("./routes/login")
 const logoutRoute = require("./routes/logout")
-const inboxesRoute = require("./routes/inboxes")
+const chatsRoute = require("./routes/chats")
 
 // Mount all resource routes - the route paths will always start the path provided as the first argument below
 // Example:
@@ -51,7 +51,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use("/api/categories", categoriesRoute);
 app.use("/login", loginRoute);
 app.use("/logout", logoutRoute);
-app.use("/inboxes", inboxesRoute);
+app.use("/api/chats", chatsRoute);
 
 
 // temp route to set up server
