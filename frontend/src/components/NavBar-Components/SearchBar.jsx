@@ -13,7 +13,14 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 export default function SearchBar(props) {
-  const { products, setProducts, allProducts, vendors, locations, categories } = props;
+  const {
+    products,
+    setProducts,
+    allProducts,
+    vendors,
+    locations,
+    categories
+  } = props;
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState('');
   const [filteredOptions, setFilteredOptions] = useState([]);
