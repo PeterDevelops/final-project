@@ -4,7 +4,16 @@ import NavBar from '../NavBar';
 import { useNavigate } from 'react-router-dom'
 
 const Login = (props) => {
-  const { products, setProducts, allProducts, vendors, locations, categories, user, setUser } = props;
+  const {
+    products,
+    setProducts,
+    allProducts,
+    vendors,
+    locations,
+    categories,
+    user,
+    setUser
+  } = props;
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -12,14 +21,12 @@ const Login = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(email, password)
 
     //axios GET request to retrieve user data
     const response = await axios.post("/login", { email: email, password: password })
 
     //if there is a valid user in db set state and go to homepage
     if (response.data.length > 0) {
-      // console.log(response.data)
       setEmail(response.data.email);
       setPassword(response.data.hashed_password);
       setUser(response.data);
@@ -29,7 +36,16 @@ const Login = (props) => {
 
   return (
     <>
-        <NavBar products={products} setProducts={setProducts} allProducts={allProducts} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />
+        <NavBar
+          products={products}
+          setProducts={setProducts}
+          allProducts={allProducts}
+          vendors={vendors}
+          locations={locations}
+          categories={categories}
+          user={user}
+          setUser={setUser}
+        />
 
         <section className="m-3 p-3">
           <div className="w-full max-w-xs">
@@ -63,7 +79,8 @@ const Login = (props) => {
                   onChange={(e) => setPassword(e.target.value)}
                   value={password}
                   required
-                  placeholder="Enter password..." />
+                  placeholder="Enter password..."
+                />
               </div>
               <div className="flex items-center justify-between">
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" >
