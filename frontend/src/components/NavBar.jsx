@@ -12,7 +12,7 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 const NavBar = (props) => {
   const { products, vendors, locations, categories, user, setUser } = props;
   const location = useLocation();
-  const noSearchBar = ['/cart', '/checkout', '/inbox'];
+  const noSearchBar = ['/cart', '/checkout', '/inbox', '/chats'];
 
 
   return (
