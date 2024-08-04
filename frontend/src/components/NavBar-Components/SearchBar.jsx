@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,11 +12,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
-
 export default function SearchBar(props) {
   const { products, setProducts, allProducts, vendors, locations, categories } = props;
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState('');
+  const [filteredOptions, setFilteredOptions] = useState([]);
 
   const categorizeProducts = () => {
     if (Array.isArray(allProducts) && allProducts.length > 0) {
@@ -75,8 +75,6 @@ export default function SearchBar(props) {
     return allData.sort((a, b) => a.category.localeCompare(b.category));
   };
 
-
-
   function getIconForCategory(category) {
     switch (category) {
       case 'Vegetable':
@@ -117,14 +115,29 @@ export default function SearchBar(props) {
     if (matchedVendor) {
       const filteredByVendor = allProducts.filter(product => product.vendor_id === matchedVendor.id);
       setProducts(filteredByVendor);
+      setInputValue('');
+      setFilteredOptions([]);
       navigate('/products', { state: { allProducts } });
     } else if (matchedSubCategory) {
       const filteredBySubCategory = allProducts.filter(product => product.sub_category.toLowerCase() === inputValue.toLowerCase());
       setProducts(filteredBySubCategory);
+      setInputValue('');
+      setFilteredOptions([]);
       navigate('/products', { state: { allProducts } });
     }
   };
 
+  const handleInputChange = (event, newInputValue) => {
+    setInputValue(newInputValue);
+    const newFilteredOptions = combinedData().filter(option =>
+      option.name.toLowerCase().includes(newInputValue.toLowerCase())
+    );
+    setFilteredOptions(newFilteredOptions);
+
+    if (newFilteredOptions.length === 1) {
+      setInputValue(newFilteredOptions[0].name);
+    }
+  };
 
   return (
     <div className="p-4 max-w-md mx-auto">
@@ -135,7 +148,7 @@ export default function SearchBar(props) {
           groupBy={(option) => option.category}
           getOptionLabel={(option) => option.name}
           inputValue={inputValue}
-          onInputChange={(event, newInputValue) => setInputValue(newInputValue)}
+          onInputChange={handleInputChange}
           sx={{ width: '100%' }}
           renderOption={({ props }, option) => (
             <li
