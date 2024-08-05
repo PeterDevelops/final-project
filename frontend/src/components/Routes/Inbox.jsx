@@ -14,6 +14,8 @@ const Inbox = (props) => {
     setProducts,
     allProducts,
     vendors,
+    setVendors,
+    allVendors,
     locations,
     categories,
     user,
@@ -65,10 +67,12 @@ const Inbox = (props) => {
         setProducts={setProducts}
         allProducts={allProducts}
         vendors={vendors}
+        setVendors={setVendors}
+        allVendors={allVendors}
         locations={locations}
         categories={categories}
         user={user}
-        setUser={setUser} 
+        setUser={setUser}
       />
       <h1 className="text-xl font-semibold m-3 p-3">Inbox </h1>
 

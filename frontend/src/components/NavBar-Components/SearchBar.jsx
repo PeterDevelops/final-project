@@ -18,6 +18,8 @@ export default function SearchBar(props) {
     setProducts,
     allProducts,
     vendors,
+    setVendors,
+    allVendors,
     locations,
     categories
   } = props;
@@ -47,9 +49,10 @@ export default function SearchBar(props) {
     return [];
   };
 
+
   const categorizeVendors = () => {
-    if (Array.isArray(locations) && locations.length > 0) {
-      return vendors.map((vendor) => ({
+    if (Array.isArray(allVendors) && allVendors.length > 0) {
+      return allVendors.map((vendor) => ({
         ...vendor,
         key: vendor.id,
         category: 'Vendor',
@@ -104,27 +107,32 @@ export default function SearchBar(props) {
   const handleOptionClick = (option) => {
     if (option.vendor_logo_url) {
       const filteredByVendor = allProducts.filter(product => product.vendor_id === option.id);
+      const currentVendor = [option]
+      console.log('Current Vendor: ', currentVendor);
+
       setProducts(filteredByVendor);
-      navigate('/products', { state: { allProducts } });
+      setVendors(currentVendor)
+      navigate(`/vendors/:${currentVendor[0].id}`, { state: { allProducts, allVendors } });
     } else {
       const filteredBySubCategory = allProducts.filter(product => product.sub_category === option.name);
       setProducts(filteredBySubCategory);
-      navigate('/products', { state: { allProducts } });
+      navigate('/products', { state: { allProducts, allVendors } });
     }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const matchedVendor = vendors.find(vendor => vendor.name.toLowerCase() === inputValue.toLowerCase());
+    const matchedVendor = allVendors.find(vendor => vendor.name.toLowerCase() === inputValue.toLowerCase());
     const matchedSubCategory = allProducts.find(product => product.sub_category.toLowerCase() === inputValue.toLowerCase());
 
     if (matchedVendor) {
       const filteredByVendor = allProducts.filter(product => product.vendor_id === matchedVendor.id);
       setProducts(filteredByVendor);
+      setVendors(matchedVendor)
       setInputValue('');
       setFilteredOptions([]);
-      navigate('/products', { state: { allProducts } });
+      navigate(`/vendors/:${matchedVendor.id}`, { state: { allProducts, allVendors } });
     } else if (matchedSubCategory) {
       const filteredBySubCategory = allProducts.filter(product => product.sub_category.toLowerCase() === inputValue.toLowerCase());
       setProducts(filteredBySubCategory);

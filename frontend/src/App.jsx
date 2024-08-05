@@ -20,6 +20,7 @@ function App() {
   const [products, setProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
   const [vendors, setVendors] = useState([]);
+  const [allVendors, setAllVendors] = useState([]);
   const [locations, setLocations] = useState([]);
   const [categories, setCategories] = useState([]);
   const [cartItems, setCartItems] = useState([]);
@@ -45,6 +46,7 @@ function App() {
     axios.get('/api/vendors')
       .then(response => {
         setVendors(response.data);
+        setAllVendors(response.data);
       })
       .catch(error => {
         console.error('There was an error with vendor data!', error);
@@ -103,6 +105,8 @@ function App() {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
             locations={locations}
             user={user}
             setUser={setUser}
@@ -114,6 +118,8 @@ function App() {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
             locations={locations}
             user={user}
             setUser={setUser}
@@ -127,6 +133,8 @@ function App() {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
             locations={locations}
             user={user}
             setUser={setUser}
@@ -138,6 +146,8 @@ function App() {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
             locations={locations}
             user={user}
             setUser={setUser}
@@ -149,6 +159,8 @@ function App() {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
             locations={locations}
             user={user}
             setUser={setUser}
@@ -160,6 +172,8 @@ function App() {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
             locations={locations}
             categories={categories}
             user={user}
@@ -172,6 +186,8 @@ function App() {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
             locations={locations}
             user={user}
             setUser={setUser}
@@ -195,6 +211,8 @@ function App() {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
             locations={locations}
             categories={categories}
             user={user}
@@ -207,6 +225,8 @@ function App() {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
             locations={locations}
             categories={categories}
             user={user}
@@ -219,6 +239,8 @@ function App() {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
             locations={locations}
             categories={categories}
             user={user}
