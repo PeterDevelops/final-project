@@ -131,6 +131,8 @@ export default function SearchBar(props) {
       setInputValue('');
       setFilteredOptions([]);
       navigate('/products', { state: { allProducts } });
+    } else if (filteredOptions.length === 1) {
+      handleOptionClick(filteredOptions[0]);
     }
   };
 
@@ -140,10 +142,6 @@ export default function SearchBar(props) {
       option.name.toLowerCase().includes(newInputValue.toLowerCase())
     );
     setFilteredOptions(newFilteredOptions);
-
-    if (newFilteredOptions.length === 1) {
-      setInputValue(newFilteredOptions[0].name);
-    }
   };
 
   return (
