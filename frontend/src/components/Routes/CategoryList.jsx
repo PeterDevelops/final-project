@@ -1,5 +1,6 @@
 import React from 'react';
 import NavBar from '../NavBar';
+import { useNavigate } from 'react-router-dom';
 
 const CategoryList = (props) => {
   const {
@@ -15,11 +16,23 @@ const CategoryList = (props) => {
     setUser
   } = props;
 
+  const navigate = useNavigate();
+
+  const handleCategoryClick = (category) => {
+      const filteredByCategory = allProducts.filter(product => product.category === category);
+      setProducts(filteredByCategory);
+      navigate('/products', { state: { allProducts, allVendors } });
+  };
+
   const categoryListArr = () => {
     if (Array.isArray(categories) && categories.length > 0) {
       console.log("categories:", categories);
       return categories.map((category, index) => (
-        <div key={index} className="category-item">
+        <div
+          key={index}
+          className="category-item cursor-pointer"
+          onClick={() => handleCategoryClick(category.category)}
+        >
           {category.category}
         </div>
       ));
