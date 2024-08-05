@@ -28,6 +28,7 @@ const cartsRoute = require("./routes/carts");
 const ordersRoute = require("./routes/orders");
 const loginRoute = require("./routes/login")
 const logoutRoute = require("./routes/logout")
+const stripeRoute = require("./routes/stripe");
 
 // Mount all resource routes - the route paths will always start the path provided as the first argument below
 // Example:
@@ -41,6 +42,7 @@ app.use("/api/cart", cartsRoute);
 app.use("/api/orders", ordersRoute);
 app.use("/login", loginRoute);
 app.use("/logout", logoutRoute);
+app.use("/api/stripe", stripeRoute);
 
 
 // temp route to set up server

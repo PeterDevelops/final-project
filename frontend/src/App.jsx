@@ -75,7 +75,7 @@ function App() {
     axios.get(`/api/cart/${userId}`)
     .then(response => {
       setCartItems(response.data);
-      console.log("api/carts:",response.data)
+      // console.log("api/carts:",response.data)
       const totalCost = response.data.reduce((acc, item) => acc + item.price_cents * item.quantity, 0);
       setTotalCost(totalCost);
     })
@@ -101,7 +101,7 @@ function App() {
         <Route path="/vendors" element={<VendorList products={products} vendors={vendors} locations={locations} user={user} setUser={setUser} />} />
         <Route path="/products" element={<ProductList products={products} vendors={vendors} locations={locations} user={user} setUser={setUser}/>} />
         <Route path="/categories" element={<CategoryList products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />} />
-        <Route path="/checkout" element={<Checkout products={products} vendors={vendors} locations={locations} user={user} setUser={setUser} cartItems={cartItems} totalCost={totalCost} />} />
+        <Route path="/checkout" element={<Checkout products={products} vendors={vendors} locations={locations} user={user} setUser={setUser} cartItems={cartItems} totalCost={totalCost} setCartItems={setCartItems} />} />
         <Route path="/order-confirmation" element={<OrderConfirmation products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />} />
         <Route path="/login" element={<Login products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />} />
         <Route path="/locations" element={<LocationList products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />} />
