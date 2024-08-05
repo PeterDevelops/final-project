@@ -1,7 +1,8 @@
 const db = require("../connection");
 
-const getOrdersByUserId = (user_id) => {
-  const cartItemsQuery = `
+// get orders by user id
+const getCartByUserId = (user_id) => {
+  const queryString = `
   SELECT
   cart_items.id AS cart_item_id,
   products.id AS product_id,
@@ -22,13 +23,30 @@ const getOrdersByUserId = (user_id) => {
 
   const queryParam = [user_id];
 
-  return db.query(cartItemsQuery, queryParam)
+  return db.query(queryString, queryParam)
     .then(results => (results.rows))
     .catch((err) => {
       return err.message;
     });
 };
 
-module.exports = { getOrdersByUserId }
+// delete cart by user id
+const deleteCartByUserId = (user_id) => {
+  const queryString = `
+  DELETE FROM carts
+  WHERE user_id = $1;
+  `
 
-;;
+  const queryParam = [user_id];
+
+  return db.query(queryString, queryParam)
+  .then(() => {
+    return true;
+  })
+  .catch((err) =>
+    console.error('Error deleting cart', err)
+  )
+
+}
+
+module.exports = { getCartByUserId, deleteCartByUserId };

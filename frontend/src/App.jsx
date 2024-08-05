@@ -12,6 +12,7 @@ import CategoryList from './components/Routes/CategoryList';
 import Checkout from './components/Routes/Checkout';
 import Login from './components/Routes/Login';
 import LocationList from './components/Routes/LocationList';
+import OrderConfirmation from './components/Routes/OrderConfirmation';
 import ChatListItem from './components/Body/ChatListItem';
 import VendorProfile from './components/Routes/VendorProfile';
 
@@ -78,7 +79,7 @@ function App() {
     axios.get(`/api/cart/${userId}`)
     .then(response => {
       setCartItems(response.data);
-      console.log("api/carts:",response.data)
+      // console.log("api/carts:",response.data)
       const totalCost = response.data.reduce((acc, item) => acc + item.price_cents * item.quantity, 0);
       setTotalCost(totalCost);
     })
@@ -176,6 +177,7 @@ function App() {
             setUser={setUser}
             cartItems={cartItems}
             totalCost={totalCost}
+            setCartItems={setCartItems}
           />}
         />
         <Route path="/login" element={
@@ -215,9 +217,9 @@ function App() {
           />}
         />
         <Route path="/chats/:id" element={
-          <ChatListItem user={user} 
-            setUser={setUser} 
-          />} 
+          <ChatListItem user={user}
+            setUser={setUser}
+          />}
         />
       </Routes>
     </Router>

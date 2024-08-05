@@ -1,8 +1,6 @@
-// path = localhost:8080/api/orders
-
 const express = require('express');
 const { postOrders } = require('../db/queries/orders');
-const { postOrderItems } = require('../db/queries/orderItems');
+const { postOrderItems } = require('../db/queries/order_items');
 const router = express.Router();
 
 router.post("/", (req, res) => {

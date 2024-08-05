@@ -1,9 +1,10 @@
 const db = require("../connection");
 
+// insert order items
 const postOrderItems = (orderItems) => {
   const query = orderItems.map(item => {
     const { order_id, product_id, quantity } = item;
-    
+
     const queryParams = [order_id, product_id, quantity];
 
     const queryString = `

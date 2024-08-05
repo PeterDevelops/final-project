@@ -41,6 +41,7 @@ const cartsRoute = require("./routes/carts");
 const ordersRoute = require("./routes/orders");
 const loginRoute = require("./routes/login")
 const logoutRoute = require("./routes/logout")
+const stripeRoute = require("./routes/stripe");
 const chatsRoute = require("./routes/chats")
 const messagesRoute = require("./routes/messages")
 
@@ -56,6 +57,7 @@ app.use("/api/cart", cartsRoute);
 app.use("/api/orders", ordersRoute);
 app.use("/login", loginRoute);
 app.use("/logout", logoutRoute);
+app.use("/api/stripe", stripeRoute);
 app.use("/api/chats", chatsRoute);
 app.use("/api/messages", messagesRoute);
 
@@ -79,7 +81,7 @@ io.on("connection", (socket) => {
   socket.on("join_chat", (data) => {
     socket.join(data);
   })
-  
+
   //websocket server listening for a message
   socket.on("send_message", (data) => {
     socket.broadcast.emit("receive_message", data)
@@ -87,4 +89,4 @@ io.on("connection", (socket) => {
     // socket.to(data.chat).emit("receive_message", data)
   })
 
-}); 
+});
