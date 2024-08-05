@@ -1,19 +1,39 @@
-import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../NavBar';
 import '../../styles/Cart.scss';
 import { Link } from 'react-router-dom';
 import CartListItem from '../Body/CartListItem';
 
-const Cart = ({ products, vendors, locations, categories, user, setUser, cartItems, totalCost }) => {
+const Cart = (props) => {
+  const {
+    products,
+    setProducts,
+    allProducts,
+    vendors,
+    locations,
+    categories,
+    user,
+    setUser,
+    cartItems,
+    totalCost
+  } = props;
 
   const navigate = useNavigate();
-  // console.log('Cart items:', cartItems);
+
+  const userId = 1;
 
   return (
-
     <div>
-      <NavBar products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />
+      <NavBar
+        products={products}
+        setProducts={setProducts}
+        allProducts={allProducts}
+        vendors={vendors}
+        locations={locations}
+        categories={categories}
+        user={user}
+        setUser={setUser}
+      />
 
       {cartItems.length > 0 ? (
         <div className='cart-container'>

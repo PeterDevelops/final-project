@@ -1,23 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
 import NavBar from '../NavBar';
 import Map from '../Map'
-import Login from './Login'
-
+import LocationModal from '../LocationModal';
 
 const Homepage = (props) => {
-  const { products, vendors, locations, categories, user, setUser } = props;
+  const {
+    products,
+    setProducts,
+    allProducts,
+    vendors,
+    locations,
+    categories,
+    user,
+    setUser
+  } = props;
+
+  const [showModal, setShowModal] = useState(true);
+  const [allowUserLocation, setAllowUserLocation] = useState(false);
+
+  //if user accepts, use user's location coordinates
+  const handleAccept = () => {
+    setAllowUserLocation(true);
+    setShowModal(false);
+  };
+
+  // if user declines, use default coordinates
+  const handleDecline = () => {
+    setShowModal(false);
+  };
+
   return (
     <div>
-      <NavBar products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser}/>
+      {showModal && <LocationModal onAccept={handleAccept} onDecline={handleDecline} />}
+      <NavBar
+        products={products}
+        setProducts={setProducts}
+        allProducts={allProducts}
+        vendors={vendors}
+        locations={locations}
+        categories={categories}
+        user={user}
+        setUser={setUser}
+      />
       <Map
-        center={[49.2824, -122.8277]}
+        locations={locations}
         zoom={12}
-        className='h-50vh w-80vw mx-auto border-2 border-custom-gray shadow-md rounded-lg'
+        className='h-50vh w-80vw mx-auto border-2 border-custom-gray shadow-md rounded-lg mt-10'
+        allowUserLocation={allowUserLocation}
       />
     </div>
-
   );
-
 };
 
 export default Homepage;

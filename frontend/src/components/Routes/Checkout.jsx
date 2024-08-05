@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import NavBar from '../NavBar';
 import '../../styles/Cart.scss';
 import DeliveryToggle from '../Body/DeliveryToggle';
 import CartListItem from '../Body/CartListItem';
-import axios from 'axios';
 import PaymentForm from '../Body/PaymentForm';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
@@ -13,11 +12,23 @@ import { Elements } from '@stripe/react-stripe-js';
 // recreating the `Stripe` object on every render.
 const stripePromise = loadStripe('pk_test_51PYBRI2KSndZDZT0m4PGzx0F7CHHo0eusCyVIKccoRf8AgLH2tyXAZFN1flfXsq8D54meFVeqexQ5FZZeLwnrgKg00mRwQlpak');
 
-const Checkout = ({ products, vendors, locations, user, setUser, cartItems, totalCost, setCartItems }) => {
-  // change logic
-  const userId = 1;
+const Checkout = (props) => {
+  const {
+    products,
+    setProducts,
+    allProducts,
+    vendors,
+    locations,
+    user,
+    setUser,
+    cartItems,
+    totalCost,
+    setCartItems
+  } = props;
 
-  console.log('cartItems:', cartItems);
+  // console.log('cartItems:', cartItems);
+
+  const userId = 1;
 
   const navigate = useNavigate();
 
@@ -50,16 +61,26 @@ const Checkout = ({ products, vendors, locations, user, setUser, cartItems, tota
   }));
 
   return (
-
     <div>
-      <NavBar products={products} vendors={vendors} locations={locations} user={user} setUser={setUser} />
+      <NavBar
+        products={products}
+        setProducts={setProducts}
+        allProducts={allProducts}
+        vendors={vendors}
+        locations={locations}
+        user={user}
+        setUser={setUser}
+      />
 
       {cartItems.length > 0 ? (
 
         <div className='cart-container'>
 
           <div className='cart-center'>
-            <DeliveryToggle alignment={alignment} setAlignment={setAlignment} />
+            <DeliveryToggle
+              alignment={alignment}
+              setAlignment={setAlignment}
+            />
           </div>
 
           <div>
@@ -124,8 +145,14 @@ const Checkout = ({ products, vendors, locations, user, setUser, cartItems, tota
             </div>
 
           )}
+
           <Elements stripe={stripePromise}>
-            <PaymentForm userId={userId} totalCost={totalCost} orderData={orderData} orderItems={orderItems} setCartItems={setCartItems} />
+            <PaymentForm userId={userId}
+              totalCost={totalCost}
+              orderData={orderData}
+              orderItems={orderItems}
+              setCartItems={setCartItems}
+              />
           </Elements>
 
 
