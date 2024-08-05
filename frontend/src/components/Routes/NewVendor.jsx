@@ -108,7 +108,7 @@ const NewVendor = (props) => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">City</label>
+            <label className="block text-sm font-medium text-gray-700">City, Province</label>
             <input
               type="text"
               value={vendorCity}
