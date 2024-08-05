@@ -29,7 +29,7 @@ const NavBar = (props) => {
   return (
     <div>
       <nav className="flex items-center justify-between h-16 px-4 bg-[#F7F4F0]">
-        <HamburgerMenu setProducts={setProducts} allProducts={allProducts} setVendors={setVendors} allVendors={allVendors} />
+        <HamburgerMenu setProducts={setProducts} allProducts={allProducts} setVendors={setVendors} allVendors={allVendors} user={user} />
         {/* LOGO */}
         <Link to="/">
           <img
