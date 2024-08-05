@@ -22,7 +22,6 @@ const NewVendor = (props) => {
   const [vendorLongitude, setVendorLongitude] = useState('');
   const [vendorLatitude, setVendorLatitude] = useState('');
   const [vendorLogoUrl, setVendorLogoUrl] = useState('');
-  const [adminUser, setAdminUser] = useState('');
 
   const navigate = useNavigate();
 
@@ -113,16 +112,6 @@ const NewVendor = (props) => {
               type="text"
               value={vendorLogoUrl}
               onChange={(e) => setVendorLogoUrl(e.target.value)}
-              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Admin User ID</label>
-            <input
-              type="number"
-              value={adminUser}
-              onChange={(e) => setAdminUser(e.target.value)}
               className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
               required
             />
