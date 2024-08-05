@@ -43,6 +43,19 @@ const VendorProfile = (props) => {
           <p className="mt-2">{vendor.bio}</p>
         </div>
       </div>
+      <ProductList
+                products={products}
+                setProducts={setProducts}
+                allProducts={allProducts}
+                vendors={vendors}
+                setVendors={setVendors}
+                allVendors={allVendors}
+                locations={locations}
+                categories={categories}
+                user={user}
+                setUser={setUser}
+                showNavBar={false}
+      />
     </div>
   );
 };

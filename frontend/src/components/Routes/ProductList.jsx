@@ -13,7 +13,8 @@ const ProductList = (props) => {
     locations,
     categories,
     user,
-    setUser
+    setUser,
+    showNavBar = true,
   } = props;
 
   // if statement required to not throw TypeError: products.map is not a function
@@ -27,6 +28,7 @@ const ProductList = (props) => {
 
   return (
     <div>
+      {showNavBar && (
       <NavBar
         products={products}
         setProducts={setProducts}
@@ -39,6 +41,7 @@ const ProductList = (props) => {
         user={user}
         setUser={setUser}
       />
+      )}
       {productListArr()}
     </div>
   )
