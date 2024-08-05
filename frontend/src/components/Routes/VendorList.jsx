@@ -3,7 +3,16 @@ import VendorListItem from '../Body/VendorListItem';
 import NavBar from '../NavBar';
 
 const VendorList = (props) => {
-  const { vendors, products, locations, categories, user, setUser } = props;
+  const {
+    vendors,
+    products,
+    setProducts,
+    allProducts,
+    locations,
+    categories,
+    user,
+    setUser
+  } = props;
 
   // if statement required to not throw TypeError: products.map is not a function
   const vendorListArr = () => {
@@ -17,7 +26,16 @@ const VendorList = (props) => {
 
   return (
     <div>
-      <NavBar products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser} />
+      <NavBar
+        products={products}
+        setProducts={setProducts}
+        allProducts={allProducts}
+        vendors={vendors}
+        locations={locations}
+        categories={categories}
+        user={user}
+        setUser={setUser}
+      />
       {vendorListArr()}
     </div>
   );

@@ -6,11 +6,20 @@ import DeliveryToggle from '../Body/DeliveryToggle';
 import CartListItem from '../Body/CartListItem';
 import axios from 'axios';
 
-const Checkout = ({ products, vendors, locations, user, setUser, cartItems, totalCost }) => {
-  // change logic
-  const userId = 1;
+const Checkout = (props) => {
+  const {
+    products,
+    setProducts,
+    allProducts,
+    vendors,
+    locations,
+    user,
+    setUser,
+    cartItems,
+    totalCost
+  } = props;
 
-  console.log('cartItems:', cartItems);
+  const userId = 1;
 
   const navigate = useNavigate();
 
@@ -53,22 +62,24 @@ const Checkout = ({ products, vendors, locations, user, setUser, cartItems, tota
 
 
   return (
-
     <div>
-      <NavBar products={products} vendors={vendors} locations={locations} user={user} setUser={setUser} />
-
-    {cartItems.length > 0 ? (
-
+      <NavBar
+        products={products}
+        setProducts={setProducts}
+        allProducts={allProducts}
+        vendors={vendors}
+        locations={locations}
+        user={user}
+        setUser={setUser}
+      />
+      {cartItems.length > 0 ? (
       <div className='cart-container'>
-
         <div className='cart-center'>
           <DeliveryToggle alignment={alignment} setAlignment={setAlignment} />
         </div>
-
         <div>
           Order Summary
         </div>
-
         {cartItems.map(item => (
           <CartListItem
             key={item.order_item_id}
@@ -76,71 +87,22 @@ const Checkout = ({ products, vendors, locations, user, setUser, cartItems, tota
             product_name={item.product_name}
             quantity={item.quantity}
             price_cents={item.price_cents}
-          />
-        ))}
-
+        />
+         ))}
         <div className='total'>
           Total: ${totalCost / 100}
         </div>
 
-        {/* if pickup render vendor address and city */}
-        {alignment === 'pickup' && (
-          <div>
-            <h3>Pickup Address</h3>
-            {cartItems.length > 0 ? (
-              <p>{cartItems[0].vendor_address}, {cartItems[0].vendor_city}</p>
-            ) : (
-              <p>Address and city information not available.</p>
-            )}
-          </div>
-        )}
-
-        {/* if delivery render form */}
-        {alignment === 'delivery' && (
-          <div>
-
-            <h3>Delivery Details</h3>
-            <div>
-              <label>
-                Address:
-                <input
-                  type='text'
-                  name='address'
-                  value={deliveryDetails.address}
-                  onChange={handleInputChange}
-                />
-              </label>
-            </div>
-
-            <div>
-              <label>
-                City:
-                <input
-                  type='text'
-                  name='city'
-                  value={deliveryDetails.city}
-                  onChange={handleInputChange}
-                />
-              </label>
-            </div>
-
-          </div>
-
-        )}
-
         <div className='cart-center'>
           <button className='text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-300
         font-medium rounded-full text-sm px-5 py-2 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700
-        dark:focus:ring-green-800'
-            onClick={handlePayment}
-          >
+        dark:focus:ring-green-800'>
             Pay
           </button>
         </div>
         <div className='cart-center'>
           <button onClick={() => navigate('/')}>Continue Shopping</button>
         </div>
-
       </div>
      ) : (
         <div>Add redirect logic.</div>
