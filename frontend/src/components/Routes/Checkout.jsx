@@ -89,7 +89,7 @@ const Checkout = (props) => {
 
           {cartItems.map(item => (
             <CartListItem
-              key={item.order_item_id}
+              key={item.cart_item_id}
               product_photo_url={item.product_photo_url}
               product_name={item.product_name}
               quantity={item.quantity}

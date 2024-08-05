@@ -65,28 +65,28 @@ function App() {
   // a route to pull all category data from the db (backend)
   useEffect(() => {
     axios.get('/api/categories')
-    .then(response => {
-      // // console.log('fetched categories:', response.data)
-      setCategories(response.data);
-    })
-    .catch(error => {
-      console.error('There was an error with category data!', error);
-    });
-}, []);
+      .then(response => {
+        // // console.log('fetched categories:', response.data)
+        setCategories(response.data);
+      })
+      .catch(error => {
+        console.error('There was an error with category data!', error);
+      });
+  }, []);
 
   // a route to pull all orders data from the db (backend)
   useEffect(() => {
     axios.get(`/api/cart/${userId}`)
-    .then(response => {
-      setCartItems(response.data);
-      // console.log("api/carts:",response.data)
-      const totalCost = response.data.reduce((acc, item) => acc + item.price_cents * item.quantity, 0);
-      setTotalCost(totalCost);
-    })
-    .catch(error => {
-      console.error('There was an error with cart data!', error);
-    });
-}, []);
+      .then(response => {
+        setCartItems(response.data);
+        // console.log("api/carts:",response.data)
+        const totalCost = response.data.reduce((acc, item) => acc + item.price_cents * item.quantity, 0);
+        setTotalCost(totalCost);
+      })
+      .catch(error => {
+        console.error('There was an error with cart data!', error);
+      });
+  }, []);
 
   // console.log("Products Data---", products)
   // console.log("Vendors Data---", vendors)
@@ -178,6 +178,15 @@ function App() {
             cartItems={cartItems}
             totalCost={totalCost}
             setCartItems={setCartItems}
+          />}
+        />
+        <Route path="/order-confirmation" element={
+          <OrderConfirmation
+            products={products}
+            vendors={vendors}
+            locations={locations}
+            user={user}
+            setUser={setUser}
           />}
         />
         <Route path="/login" element={
