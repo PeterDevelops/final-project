@@ -22,8 +22,9 @@
 
 .bm-menu {
   background: rgba(0, 0, 0, 0.8);
-  padding: 2.5em 1.5em 0;
+  padding: 1.5em 1.5em 0;
   font-size: 1.15em;
+  border-radius: 10px;
 }
 
 .bm-item-list {
@@ -44,5 +45,8 @@
 }
 
 .bm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
   background: rgba(0, 0, 0, 0.3);
 }
