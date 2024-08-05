@@ -14,6 +14,8 @@ const NavBar = (props) => {
     setProducts,
     allProducts,
     vendors,
+    setVendors,
+    allVendors,
     locations,
     categories,
     user,
@@ -27,7 +29,7 @@ const NavBar = (props) => {
   return (
     <div>
       <nav className="flex items-center justify-between h-16 px-4 bg-[#F7F4F0]">
-        <HamburgerMenu setProducts={setProducts} allProducts={allProducts} />
+        <HamburgerMenu setProducts={setProducts} allProducts={allProducts} setVendors={setVendors} allVendors={allVendors} />
         {/* LOGO */}
         <Link to="/">
           <img
@@ -63,6 +65,8 @@ const NavBar = (props) => {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
             locations={locations}
             categories={categories}
           />

@@ -9,6 +9,8 @@ const Homepage = (props) => {
     setProducts,
     allProducts,
     vendors,
+    setVendors,
+    allVendors,
     locations,
     categories,
     user,
@@ -37,6 +39,8 @@ const Homepage = (props) => {
         setProducts={setProducts}
         allProducts={allProducts}
         vendors={vendors}
+        setVendors={setVendors}
+        allVendors={allVendors}
         locations={locations}
         categories={categories}
         user={user}

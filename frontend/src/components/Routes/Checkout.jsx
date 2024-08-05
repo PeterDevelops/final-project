@@ -11,6 +11,8 @@ const Checkout = (props) => {
     setProducts,
     allProducts,
     vendors,
+    setVendors,
+    allVendors,
     locations,
     user,
     setUser,
@@ -27,6 +29,8 @@ const Checkout = (props) => {
         setProducts={setProducts}
         allProducts={allProducts}
         vendors={vendors}
+        setVendors={setVendors}
+        allVendors={allVendors}
         locations={locations}
         user={user}
         setUser={setUser}

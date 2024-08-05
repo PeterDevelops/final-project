@@ -9,6 +9,8 @@ const Login = (props) => {
     setProducts,
     allProducts,
     vendors,
+    setVendors,
+    allVendors,
     locations,
     categories,
     user,
@@ -46,6 +48,8 @@ const Login = (props) => {
           setProducts={setProducts}
           allProducts={allProducts}
           vendors={vendors}
+          setVendors={setVendors}
+          allVendors={allVendors}
           locations={locations}
           categories={categories}
           user={user}

@@ -5,6 +5,8 @@ import NavBar from '../NavBar';
 const ProductList = (props) => {
   const {
     vendors,
+    setVendors,
+    allVendors,
     products,
     setProducts,
     allProducts,
@@ -30,6 +32,8 @@ const ProductList = (props) => {
         setProducts={setProducts}
         allProducts={allProducts}
         vendors={vendors}
+        setVendors={setVendors}
+        allVendors={allVendors}
         locations={locations}
         categories={categories}
         user={user}
