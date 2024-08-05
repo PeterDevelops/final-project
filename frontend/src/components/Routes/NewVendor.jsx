@@ -46,7 +46,18 @@ const NewVendor = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    //Logic to tie into backend goes here!!!
+    const newVendor = {
+        name: vendorName,
+        bio: vendorBio,
+        address: vendorAddress,
+        city: vendorCity,
+        longitude: vendorLongitude,
+        latitude: vendorLatitude,
+        vendor_logo_url: vendorLogoUrl,
+        admin_user: user.id,
+    }
+    console.log('New Vendor:', newVendor);
+
   };
 
   return (
