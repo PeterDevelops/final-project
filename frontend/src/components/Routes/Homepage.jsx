@@ -19,7 +19,6 @@ const Homepage = (props) => {
 
   const [showModal, setShowModal] = useState(true);
   const [allowUserLocation, setAllowUserLocation] = useState(false);
-
   //if user accepts, use user's location coordinates
   const handleAccept = () => {
     setAllowUserLocation(true);

@@ -15,6 +15,7 @@ import LocationList from './components/Routes/LocationList';
 import OrderConfirmation from './components/Routes/OrderConfirmation';
 import ChatListItem from './components/Body/ChatListItem';
 import VendorProfile from './components/Routes/VendorProfile';
+import NewVendor from './components/Routes/NewVendor';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -241,6 +242,21 @@ function App() {
             vendors={vendors}
             setVendors={setVendors}
             allVendors={allVendors}
+            locations={locations}
+            categories={categories}
+            user={user}
+            setUser={setUser}
+          />}
+        />
+        <Route path="/vendors/new" element={
+          <NewVendor
+            products={products}
+            setProducts={setProducts}
+            allProducts={allProducts}
+            vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
+            setAllVendors={setAllVendors}
             locations={locations}
             categories={categories}
             user={user}
