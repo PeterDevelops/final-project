@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../NavBar';
 
@@ -24,8 +24,36 @@ const NewProduct = (props) => {
   const [productPriceCents, setProductPriceCents] = useState('');
   const [productCategory, setProductCategory] = useState('');
   const [productSubCategory, setProductSubCategory] = useState('');
+  const [subCategories, setSubCategories] = useState([]);
+  const [newSubCategory, setNewSubCategory] = useState('');
+  const [isCreatingNewSubCategory, setIsCreatingNewSubCategory] = useState(false);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const uniqueSubCategories = Array.from(new Set(allProducts.map(product => product.sub_category)));
+    setSubCategories(uniqueSubCategories);
+  }, [allProducts]);
+
+  const handleSubCategoryChange = (e) => {
+    const value = e.target.value;
+    if (value === 'new') {
+      setIsCreatingNewSubCategory(true);
+      setProductSubCategory('');
+    } else {
+      setIsCreatingNewSubCategory(false);
+      setProductSubCategory(value);
+    }
+  };
+
+  const handleNewSubCategorySubmit = () => {
+    if (newSubCategory && !subCategories.includes(newSubCategory)) {
+      setSubCategories([...subCategories, newSubCategory]);
+      setProductSubCategory(newSubCategory);
+      setNewSubCategory('');
+      setIsCreatingNewSubCategory(false);
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -147,14 +175,39 @@ const NewProduct = (props) => {
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Price (in cents)</label>
-            <input
-              type="text"
-              value={productPriceCents}
-              onChange={(e) => setProductPriceCents(e.target.value)}
+            <label className="block text-sm font-medium text-gray-700">SubCategory</label>
+            <select
+              value={productSubCategory}
+              onChange={handleSubCategoryChange}
               className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
               required
-            />
+            >
+              <option value="" disabled>Select a SubCategory</option>
+              {subCategories.map((subCategory, index) => (
+                <option key={index} value={subCategory}>
+                  {subCategory}
+                </option>
+              ))}
+              <option value="new">Create new SubCategory</option>
+            </select>
+            {isCreatingNewSubCategory && (
+              <div className="mt-4">
+                <label className="block text-sm font-medium text-gray-700">New SubCategory</label>
+                <input
+                  type="text"
+                  value={newSubCategory}
+                  onChange={(e) => setNewSubCategory(e.target.value)}
+                  className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+                />
+                <button
+                  type="button"
+                  onClick={handleNewSubCategorySubmit}
+                  className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md shadow-sm hover:bg-blue-700"
+                >
+                  Add SubCategory
+                </button>
+              </div>
+            )}
           </div>
         </div>
         <div className="mt-6 flex justify-end">
