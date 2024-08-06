@@ -1,18 +1,25 @@
-// path = localhost:8080/api/orders
-
 const express = require('express');
-const { getOrdersByUserId } = require('../db/queries/orders');
+const { postOrders } = require('../db/queries/orders');
+const { postOrderItems } = require('../db/queries/order_items');
 const router = express.Router();
 
-router.get("/:userId", (req, res) => {
-  const { userId } = req.params;
+router.post("/", (req, res) => {
+  const { orderData, orderItems } = req.body;
 
-  getOrdersByUserId(userId)
-    .then(results => {
-      res.json(results);
+  postOrders(orderData)
+    .then(order => {
+      const orderId = order.id;
+      const itemsWithOrderId = orderItems.map(item => ({
+        ...item,
+        order_id: orderId
+      }));
+      return postOrderItems(itemsWithOrderId);
+    })
+    .then(orderItemsResult => {
+      res.status(201).json({ orderItems: orderItemsResult });
     })
     .catch((err) => {
-      console.log(err.message);
+      console.error('Error creating order:', err);
     });
 
 });

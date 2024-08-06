@@ -1,0 +1,17 @@
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-element-wrapper {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccd0d2;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.payment-button:disabled {
+  background-color: #9e9e9e;
+}

@@ -4,7 +4,7 @@ const ProductListItem = (props) => {
   const { productData } = props;
 
   return (
-    <article className="flex flex-col md:flex-row md:items-center border rounded-lg shadow-md m-5 overflow-hidden">
+    <article className="flex flex-col md:flex-row md:items-stretch border rounded-lg shadow-md m-5 overflow-hidden">
       <img
         src={productData.photo_url}
         alt={`${productData.name} image`}

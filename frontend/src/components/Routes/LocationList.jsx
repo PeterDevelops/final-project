@@ -6,6 +6,8 @@ import Map from '../Map';
 const LocationList = (props) => {
   const {
     vendors,
+    setVendors,
+    allVendors,
     products,
     allProducts,
     setProducts,
@@ -29,6 +31,8 @@ const LocationList = (props) => {
         setProducts={setProducts}
         allProducts={allProducts}
         vendors={vendors}
+        setVendors={setVendors}
+        allVendors={allVendors}
         locations={locations}
         categories={categories}
       />

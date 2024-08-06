@@ -11,6 +11,19 @@ const getAllVendors = () => {
     })
 }
 
+const createVendor = ({ name, bio, address, city, longitude, latitude, vendor_logo_url, admin_user }) => {
+  const query = `
+    INSERT INTO vendors (name, bio, address, city, longitude, latitude, vendor_logo_url, admin_user)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+    RETURNING *;
+  `;
+  const values = [name, bio, address, city, longitude, latitude, vendor_logo_url, admin_user];
+
+  return db.query(query, values)
+    .then(result => result.rows[0])
+    .catch(err => console.error(err.message));
+};
+
 // get all locations
 const getAllLocations = () => {
   const queryString =
@@ -37,6 +50,6 @@ const getAllLocations = () => {
 };
 
 
-module.exports = { getAllVendors, getAllLocations }
+module.exports = { getAllVendors, getAllLocations, createVendor }
 
 

@@ -5,13 +5,16 @@ import NavBar from '../NavBar';
 const ProductList = (props) => {
   const {
     vendors,
+    setVendors,
+    allVendors,
     products,
     setProducts,
     allProducts,
     locations,
     categories,
     user,
-    setUser
+    setUser,
+    showNavBar = true,
   } = props;
 
   // if statement required to not throw TypeError: products.map is not a function
@@ -25,16 +28,20 @@ const ProductList = (props) => {
 
   return (
     <div>
+      {showNavBar && (
       <NavBar
         products={products}
         setProducts={setProducts}
         allProducts={allProducts}
         vendors={vendors}
+        setVendors={setVendors}
+        allVendors={allVendors}
         locations={locations}
         categories={categories}
         user={user}
         setUser={setUser}
       />
+      )}
       {productListArr()}
     </div>
   )

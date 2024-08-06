@@ -1,34 +1,25 @@
 const db = require("../connection");
 
-//get all products
-const getOrdersByUserId = (user_id) => {
-  const cartItemsQuery = `
-  SELECT
-  order_items.id AS order_item_id,
-  products.id AS product_id,
-  products.name AS product_name,
-  products.photo_url AS product_photo_url,
-  order_items.quantity,
-  products.price_cents,
-  orders.total_cost,
-  vendors.name AS vendor_name,
-  vendors.vendor_logo_url
-  FROM order_items
-  JOIN products ON order_items.product_id = products.id
-  JOIN orders ON order_items.order_id = orders.id
-  JOIN vendors ON products.vendor_id = vendors.id
-  WHERE orders.user_id = $1;
-  `
+// insert orders
+const postOrders = (orderData) => {
 
-  const queryParam = [user_id];
+  const { user_id, total_cost, delivery_type, delivery_address, delivery_city } = orderData;
 
-  return db.query(cartItemsQuery, queryParam)
-    .then(results => (results.rows))
+  const queryParams = [user_id, total_cost, delivery_type, delivery_address, delivery_city];
+
+  const queryString = `
+  INSERT INTO orders (user_id, total_cost, delivery_type, delivery_address, delivery_city)
+  VALUES ($1, $2, $3, $4, $5)
+  RETURNING *
+  `;
+
+  return db.query(queryString, queryParams)
+    .then(result => (
+      result.rows[0]
+    ))
     .catch((err) => {
-      return err.message;
-    });
-};
+      console.error(err);
+});
+}
 
-module.exports = { getOrdersByUserId }
-
-;;
+module.exports = { postOrders }

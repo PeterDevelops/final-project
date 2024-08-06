@@ -12,13 +12,16 @@ import CategoryList from './components/Routes/CategoryList';
 import Checkout from './components/Routes/Checkout';
 import Login from './components/Routes/Login';
 import LocationList from './components/Routes/LocationList';
+import OrderConfirmation from './components/Routes/OrderConfirmation';
 import ChatListItem from './components/Body/ChatListItem';
 import VendorProfile from './components/Routes/VendorProfile';
+import NewVendor from './components/Routes/NewVendor';
 
 function App() {
   const [products, setProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
   const [vendors, setVendors] = useState([]);
+  const [allVendors, setAllVendors] = useState([]);
   const [locations, setLocations] = useState([]);
   const [categories, setCategories] = useState([]);
   const [cartItems, setCartItems] = useState([]);
@@ -44,6 +47,7 @@ function App() {
     axios.get('/api/vendors')
       .then(response => {
         setVendors(response.data);
+        setAllVendors(response.data);
       })
       .catch(error => {
         console.error('There was an error with vendor data!', error);
@@ -64,28 +68,28 @@ function App() {
   // a route to pull all category data from the db (backend)
   useEffect(() => {
     axios.get('/api/categories')
-    .then(response => {
-      // // console.log('fetched categories:', response.data)
-      setCategories(response.data);
-    })
-    .catch(error => {
-      console.error('There was an error with category data!', error);
-    });
-}, []);
+      .then(response => {
+        // // console.log('fetched categories:', response.data)
+        setCategories(response.data);
+      })
+      .catch(error => {
+        console.error('There was an error with category data!', error);
+      });
+  }, []);
 
   // a route to pull all orders data from the db (backend)
   useEffect(() => {
-    axios.get(`/api/orders/${userId}`)
-    .then(response => {
-      setCartItems(response.data);
-
-      const totalCost = response.data.reduce((acc, item) => acc + item.price_cents * item.quantity, 0);
-      setTotalCost(totalCost);
-    })
-    .catch(error => {
-      console.error('There was an error with order data!', error);
-    });
-}, []);
+    axios.get(`/api/cart/${userId}`)
+      .then(response => {
+        setCartItems(response.data);
+        // console.log("api/carts:",response.data)
+        const totalCost = response.data.reduce((acc, item) => acc + item.price_cents * item.quantity, 0);
+        setTotalCost(totalCost);
+      })
+      .catch(error => {
+        console.error('There was an error with cart data!', error);
+      });
+  }, []);
 
   // console.log("Products Data---", products)
   // console.log("Vendors Data---", vendors)
@@ -102,6 +106,8 @@ function App() {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
             locations={locations}
             user={user}
             setUser={setUser}
@@ -113,6 +119,8 @@ function App() {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
             locations={locations}
             user={user}
             setUser={setUser}
@@ -126,6 +134,8 @@ function App() {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
             locations={locations}
             user={user}
             setUser={setUser}
@@ -137,6 +147,8 @@ function App() {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
             locations={locations}
             user={user}
             setUser={setUser}
@@ -148,6 +160,8 @@ function App() {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
             locations={locations}
             user={user}
             setUser={setUser}
@@ -159,6 +173,8 @@ function App() {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
             locations={locations}
             categories={categories}
             user={user}
@@ -171,11 +187,23 @@ function App() {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
             locations={locations}
             user={user}
             setUser={setUser}
             cartItems={cartItems}
             totalCost={totalCost}
+            setCartItems={setCartItems}
+          />}
+        />
+        <Route path="/order-confirmation" element={
+          <OrderConfirmation
+            products={products}
+            vendors={vendors}
+            locations={locations}
+            user={user}
+            setUser={setUser}
           />}
         />
         <Route path="/login" element={
@@ -184,6 +212,8 @@ function App() {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
             locations={locations}
             categories={categories}
             user={user}
@@ -196,6 +226,8 @@ function App() {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
             locations={locations}
             categories={categories}
             user={user}
@@ -208,6 +240,23 @@ function App() {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
+            locations={locations}
+            categories={categories}
+            user={user}
+            setUser={setUser}
+          />}
+        />
+        <Route path="/vendors/new" element={
+          <NewVendor
+            products={products}
+            setProducts={setProducts}
+            allProducts={allProducts}
+            vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
+            setAllVendors={setAllVendors}
             locations={locations}
             categories={categories}
             user={user}
@@ -215,9 +264,9 @@ function App() {
           />}
         />
         <Route path="/chats/:id" element={
-          <ChatListItem user={user} 
-            setUser={setUser} 
-          />} 
+          <ChatListItem user={user}
+            setUser={setUser}
+          />}
         />
       </Routes>
     </Router>

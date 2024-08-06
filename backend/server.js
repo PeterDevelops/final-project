@@ -37,9 +37,11 @@ const productsRoute = require("./routes/products");
 const vendorsRoute = require("./routes/vendors");
 const locationsRoute = require("./routes/locations");
 const categoriesRoute = require("./routes/categories");
+const cartsRoute = require("./routes/carts");
 const ordersRoute = require("./routes/orders");
 const loginRoute = require("./routes/login")
 const logoutRoute = require("./routes/logout")
+const stripeRoute = require("./routes/stripe");
 const chatsRoute = require("./routes/chats")
 const messagesRoute = require("./routes/messages")
 
@@ -49,14 +51,14 @@ const messagesRoute = require("./routes/messages")
 app.use("/api/products", productsRoute);
 app.use("/api/vendors", vendorsRoute);
 app.use("/api/locations", locationsRoute);
-app.use(express.static(path.join(__dirname, '../public')));
 app.use("/api/categories", categoriesRoute);
+app.use("/api/cart", cartsRoute);
 app.use("/api/orders", ordersRoute);
 app.use("/login", loginRoute);
 app.use("/logout", logoutRoute);
+app.use("/api/stripe", stripeRoute);
 app.use("/api/chats", chatsRoute);
 app.use("/api/messages", messagesRoute);
-
 
 // temp route to set up server
 // Create the rest of the routes in routes folder
@@ -104,4 +106,4 @@ io.on("connection", (socket) => {
     socket.removeAllListeners();
   });
 
-}); 
+});

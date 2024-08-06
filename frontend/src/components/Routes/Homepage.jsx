@@ -9,6 +9,8 @@ const Homepage = (props) => {
     setProducts,
     allProducts,
     vendors,
+    setVendors,
+    allVendors,
     locations,
     categories,
     user,
@@ -17,7 +19,6 @@ const Homepage = (props) => {
 
   const [showModal, setShowModal] = useState(true);
   const [allowUserLocation, setAllowUserLocation] = useState(false);
-
   //if user accepts, use user's location coordinates
   const handleAccept = () => {
     setAllowUserLocation(true);
@@ -37,6 +38,8 @@ const Homepage = (props) => {
         setProducts={setProducts}
         allProducts={allProducts}
         vendors={vendors}
+        setVendors={setVendors}
+        allVendors={allVendors}
         locations={locations}
         categories={categories}
         user={user}

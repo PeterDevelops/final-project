@@ -1,11 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom'
 
 const VendorListItem = (props) => {
-  const { vendorData } = props;
+  const { vendorData, onClick } = props;
+  // const navigate = useNavigate();
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    onClick(vendorData);
+  };
 
   return (
-    <Link to={`/vendors/${vendorData.id}`}>
+    <Link to={`/vendors/${vendorData.id}`} onClick={handleClick} >
       <article className="flex flex-col md:flex-row md:items-center border rounded-lg shadow-md m-5 overflow-hidden">
         <img
           src={vendorData.vendor_logo_url}
