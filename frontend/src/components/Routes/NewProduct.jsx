@@ -54,12 +54,11 @@ const NewProduct = (props) => {
       setIsCreatingNewSubCategory(false);
     }
   };
-  const vendor = allVendors.find(vendor => vendor.admin_user === user.id);
-  console.log('Vendor: ', vendor);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    const vendor = allVendors.find(vendor => vendor.admin_user === user.id);
 
 
     if (!vendor) {
@@ -78,28 +77,26 @@ const NewProduct = (props) => {
       sub_category: productSubCategory
     };
 
-    console.log("New Products: ", newProduct)
+    try {
+      const response = await fetch('http://localhost:8080/api/products', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newProduct),
+      });
 
-    // try {
-    //   const response = await fetch('http://localhost:8080/api/products', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify(newProduct),
-    //   });
+      if (!response.ok) {
+        throw new Error('Failed to create product');
+      }
 
-    //   if (!response.ok) {
-    //     throw new Error('Failed to create product');
-    //   }
+      const data = await response.json();
+      setAllProducts([...allProducts, data]);
+      navigate(`/vendors`);
 
-    //   const data = await response.json();
-    //   setAllProducts([...allProducts, data]);
-    //   navigate(`/vendors`);
-
-    // } catch (error) {
-    //   console.error('Error:', error);
-    // }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (
