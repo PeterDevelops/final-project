@@ -117,8 +117,8 @@ const ChatListItem = (props) => {
 
   return (
     <>
-      <div className="flex flex-col h-screen">
-        <div className="bg-[#305D53] shadow-md rounded px-8 pt-6 pb-8 mb-4 flex-grow">
+      <div className="flex flex-col h-2/6">
+        <div className="bg-[#305D53] shadow-md px-8 pt-6 pb-8 mb-4 flex-grow">
           <div className="bg-[#F7F4F0] rounded p-2 relative">
             <FontAwesomeIcon icon={faCircleXmark} onClick={handleClick} className="absolute top-2 right-2 cursor-pointer" />
 
@@ -127,7 +127,7 @@ const ChatListItem = (props) => {
               <h1 className="font-bold text-lg px-2">{chat.contact_name}</h1>
             </div>
 
-            <div className="flex flex-col space-y-2 h-[calc(92vh-12rem)] overflow-auto">
+            <div className="flex flex-col space-y-2 h-[calc(96vh-12rem)] overflow-auto">
               <ul className="flex flex-col">
                 {messageList}
               </ul>
@@ -140,17 +140,17 @@ const ChatListItem = (props) => {
 
           </div>
 
-          <div className="bg-white flex flex-row items-center rounded border border-black p-1 mt-4">
-            <div className="bg-white flex-grow">
+          <div className="bg-[#305D53] flex flex-row items-center rounded p-1 mt-4">
+            <div className="bg-[#305D53] mt-1 flex-grow">
                 <textarea
-                  className="w-full h-16 border border-gray-300 rounded-lg p-2 resize-none"
+                  className="w-full h-12 border border-gray-300 rounded-lg p-2 resize-none overflow-auto"
                   onChange={(event) => setMessage(event.target.value)}
                   value={message}
                   placeholder="Message..." />
             </div>
             <div className="flex-shrink ml-2" >
               <button
-                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+                className="px-4 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
                 onClick={sendMessage}>
                 Send</button>
             </div>
