@@ -8,7 +8,6 @@ VALUES (2, 1, 'Hey! Ive been good. What about you?', '2024-08-18 12:29:32-07');
 INSERT INTO messages (sender_id, chat_id, message, created_at) 
 VALUES (1, 1, 'Im doing fantastically!', '2024-08-18 12:29:32-07');
 
-
 INSERT INTO messages (sender_id, chat_id, message, created_at) 
 VALUES (2, 1, 'Good for you.', '2024-08-18 12:29:45-07');
 

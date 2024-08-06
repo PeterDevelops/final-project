@@ -55,9 +55,15 @@ const ChatListItem = (props) => {
   const sendMessage = () => {
     if (message.trim() !== '') {
       const newMessage = { message: message, created_at: moment().toISOString(), sender_id: user.id, user: user, chatId: id }
+
       //emit an event by send message to server (listening) [add chat state to message object]
       socket.emit("send_message", newMessage);
-      setMessageHistory(prev => [...prev, newMessage])
+
+      //send the message to the db and add the saved message to the messageHistory
+      axios.post(`/api/messages/${id}`, { message: message, created_at: moment().toISOString(), sender_id: user.id, chatId: id })
+      .then(message => {
+        console.log("messageData", message.data)
+        setMessageHistory(prev => [...prev, message.data])})
       setMessage('');
     }
   }
