@@ -104,7 +104,7 @@ const NewVendor = (props) => {
               type="text"
               value={vendorName}
               onChange={(e) => setVendorName(e.target.value)}
-              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+              className="mt-1 block w-full bg-gray-100 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
               required
             />
           </div>
@@ -113,7 +113,7 @@ const NewVendor = (props) => {
             <textarea
               value={vendorBio}
               onChange={(e) => setVendorBio(e.target.value)}
-              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+              className="mt-1 block w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
               rows="4"
               required
             />
@@ -124,7 +124,7 @@ const NewVendor = (props) => {
               type="text"
               value={vendorAddress}
               onChange={handleAddressChange}
-              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+              className="mt-1 block w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
               required
             />
           </div>
@@ -134,7 +134,7 @@ const NewVendor = (props) => {
               type="text"
               value={vendorCity}
               onChange={(e) => setVendorCity(e.target.value)}
-              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+              className="mt-1 block w-full border-gray-500 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
               required
             />
           </div>
@@ -144,7 +144,7 @@ const NewVendor = (props) => {
               type="text"
               value={vendorLogoUrl}
               onChange={(e) => setVendorLogoUrl(e.target.value)}
-              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+              className="mt-1 block w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
               required
             />
           </div>
