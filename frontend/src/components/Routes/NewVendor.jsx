@@ -10,6 +10,7 @@ const NewVendor = (props) => {
     vendors,
     setVendors,
     allVendors,
+    setAllVendors,
     locations,
     categories,
     user,
@@ -44,20 +45,40 @@ const NewVendor = (props) => {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const newVendor = {
-        name: vendorName,
-        bio: vendorBio,
-        address: vendorAddress,
-        city: vendorCity,
-        longitude: vendorLongitude,
-        latitude: vendorLatitude,
-        vendor_logo_url: vendorLogoUrl,
-        admin_user: user.id,
-    }
-    console.log('New Vendor:', newVendor);
 
+    const newVendor = {
+      name: vendorName,
+      bio: vendorBio,
+      address: vendorAddress,
+      city: vendorCity,
+      longitude: vendorLongitude,
+      latitude: vendorLatitude,
+      vendor_logo_url: vendorLogoUrl,
+      admin_user: user.id
+    };
+
+    try {
+      const response = await fetch('http://localhost:8080/api/vendors', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newVendor),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to create vendor');
+      }
+
+      const data = await response.json();
+      setAllVendors([...vendors, data]);
+      navigate('/vendors');
+
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (

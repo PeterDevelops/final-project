@@ -256,6 +256,7 @@ function App() {
             vendors={vendors}
             setVendors={setVendors}
             allVendors={allVendors}
+            setAllVendors={setAllVendors}
             locations={locations}
             categories={categories}
             user={user}
