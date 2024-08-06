@@ -45,18 +45,11 @@ const ChatListItem = (props) => {
 
       axios.get(`/api/messages/${id}`)
         .then(response => {
-          console.log("messages data----", response.data)
+          // console.log("messages data----", response.data)
           setMessageHistory(response.data)
         })
         .catch((error) => { console.error("Issue gathering message data:", error) })
     }
-
-    // Cleanup on unmount
-    return () => {
-      console.log("Cleaning up useEffect for chat ID:", id);
-      socket.off('receive_message');
-    };
-
   }, []);
 
   const sendMessage = () => {
