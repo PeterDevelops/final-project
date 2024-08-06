@@ -1,13 +1,13 @@
 import React from 'react'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import NavBar from '../NavBar';
 //socket.io for the client side
 import io from 'socket.io-client'
-import NavBar from '../NavBar';
-import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 // connect to backend socket server
 const socket = io.connect("http://localhost:8080")
 
@@ -27,6 +27,7 @@ const ChatListItem = (props) => {
   const location = useLocation();
   const { chat } = location.state;
   const navigate = useNavigate();
+  const ref = useRef(null);
 
   // clients message
   const [message, setMessage] = useState("");
@@ -37,6 +38,15 @@ const ChatListItem = (props) => {
   useEffect(() => {
     socket.emit('join_chat', id)  
   }, [])
+
+  // scroll bar default is at the bottom
+  useEffect(() => {
+    ref.current?.scrollIntoView({
+      behaviour: "smooth",
+      block: "end",
+    })
+
+  }, [messageHistory.length])
 
   // load this chat's messages
   useEffect(() => {
@@ -107,7 +117,6 @@ const ChatListItem = (props) => {
 
   return (
     <>
-      {/* <NavBar products={products} vendors={vendors} locations={locations} categories={categories} user={user} setUser={setUser}/> */}
       <div className="flex flex-col h-screen">
         <div className="bg-[#305D53] shadow-md rounded px-8 pt-6 pb-8 mb-4 flex-grow">
           <div className="bg-[#F7F4F0] rounded p-2 relative">
@@ -122,17 +131,22 @@ const ChatListItem = (props) => {
               <ul className="flex flex-col">
                 {messageList}
               </ul>
+              {/* scroll bar to the bottom div */}
+              <div ref={ref}>
+
+              </div>
+              {/* end */}
             </div>
 
           </div>
 
           <div className="bg-white flex flex-row items-center rounded border border-black p-1 mt-4">
             <div className="bg-white flex-grow">
-              <textarea
-                className="w-full h-16 border border-gray-300 rounded-lg p-2 resize-none"
-                onChange={(event) => setMessage(event.target.value)}
-                value={message}
-                placeholder="Message..." />
+                <textarea
+                  className="w-full h-16 border border-gray-300 rounded-lg p-2 resize-none"
+                  onChange={(event) => setMessage(event.target.value)}
+                  value={message}
+                  placeholder="Message..." />
             </div>
             <div className="flex-shrink ml-2" >
               <button
