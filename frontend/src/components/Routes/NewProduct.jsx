@@ -54,41 +54,52 @@ const NewProduct = (props) => {
       setIsCreatingNewSubCategory(false);
     }
   };
+  const vendor = allVendors.find(vendor => vendor.admin_user === user.id);
+  console.log('Vendor: ', vendor);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+
+
+    if (!vendor) {
+      console.error('No vendor found for this user');
+      return;
+    }
 
     const newProduct = {
       name: productName,
       description: productDescription,
       photo_url: productPhotoUrl,
-      inventory: productInventory,
-      price_cents: productPriceCents,
-      vendor_id: vendors.id,
+      inventory: parseInt(productInventory, 10),
+      price_cents: parseInt(productPriceCents, 10),
+      vendor_id: vendor.id,
       category: productCategory,
       sub_category: productSubCategory
     };
 
-    try {
-      const response = await fetch('http://localhost:8080/api/products', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newProduct),
-      });
+    console.log("New Products: ", newProduct)
 
-      if (!response.ok) {
-        throw new Error('Failed to create product');
-      }
+    // try {
+    //   const response = await fetch('http://localhost:8080/api/products', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify(newProduct),
+    //   });
 
-      const data = await response.json();
-      setAllProducts([...allProducts, data]);
-      navigate(`/vendors`);
+    //   if (!response.ok) {
+    //     throw new Error('Failed to create product');
+    //   }
 
-    } catch (error) {
-      console.error('Error:', error);
-    }
+    //   const data = await response.json();
+    //   setAllProducts([...allProducts, data]);
+    //   navigate(`/vendors`);
+
+    // } catch (error) {
+    //   console.error('Error:', error);
+    // }
   };
 
   return (
@@ -133,7 +144,7 @@ const NewProduct = (props) => {
             <input
               type="text"
               value={productPhotoUrl}
-              onChange={setProductPhotoUrl}
+              onChange={(e) => setProductPhotoUrl(e.target.value)}
               className="mt-1 block w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
               required
             />
