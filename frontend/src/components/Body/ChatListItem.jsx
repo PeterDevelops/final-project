@@ -30,15 +30,24 @@ const ChatListItem = (props) => {
 
   // clients message
   const [message, setMessage] = useState("");
-  // contacts message
-  const [messageReceived, setMessageReceived] = useState("");
   // chat history stored in db
   const [messageHistory, setMessageHistory] = useState([]);
 
+  useEffect(() => {
+    socket.emit('join_chat', id)  
+
+  })
+
+
+
   // load this chat's messages
   useEffect(() => {
+    console.log("First useEffect run");
+    console.log("ID-----", id)
+
     if (id) {
-      console.log("chat id", id)
+      socket.emit('join_chat', id);
+
       axios.get(`/api/messages/${id}`)
         .then(response => {
           console.log("messages data----", response.data)
@@ -46,36 +55,62 @@ const ChatListItem = (props) => {
         })
         .catch((error) => { console.error("Issue gathering message data:", error) })
     }
-  }, [])
+
+    console.log("ID2-----", id)
+
+    // Cleanup on unmount
+    return () => {
+      console.log("Cleaning up useEffect for chat ID:", id);
+      socket.off('receive_message');
+    };
+
+  }, []);
+
+  console.log("message history1", messageHistory)
+
 
   const sendMessage = () => {
-    if (message !== '') {
+    if (message.trim() !== '') {
+      console.log("message", message)
+      console.log("message history2", messageHistory)
+
+      const newMessage = { message: message, created_at: moment().toISOString(), sender_id: user.id, user: user, chatId: id }
       //emit an event by send message to server (listening) [add chat state to message object]
-      socket.emit("send_message", { message });
+      socket.emit("send_message", newMessage);
+      setMessageHistory(prev => [...prev, newMessage])
       setMessage('');
+      console.log("is the sendMessage func")
+
     }
   }
 
   // runs everytime an event on the server is emitted
   useEffect(() => {
-    socket.on("receive_message", (data) => {
-      setMessageReceived(data);
-    })
-  }, [])
+    const handleReceiveMessage = (data) => {
+      setMessageHistory(prev => [...prev, data]);
+    };
+
+    socket.on("receive_message", handleReceiveMessage);
+
+    // Cleanup listener on component unmount
+    return () => {
+      socket.off("receive_message", handleReceiveMessage);
+    };
+  }, []);
 
   // console.log("message history------", messageHistory)
   // console.log("USER---", user)
 
   const messageList = messageHistory.map((message) => {
     return message.sender_id === user.id ? (
-      <li className="p-3 mb-2 rounded-lg shadow-md bg-[#EDB513] max-w-max self-end" id={message.id}>
+      <li className="p-3 mb-2 rounded-lg shadow-md bg-[#EDB513] max-w-max self-end" key={message.id}>
         {/* <p> {user.name}: </p> */}
         <p> {message.message}</p>
         <p className="text-xs text-right"> {moment(message.created_at).format('MMM D, YYYY h:mm A')}: </p>
       </li>
     ) :
       (
-        <li className="p-3 mb-2 rounded-lg shadow-md bg-[#654960] text-white relative max-w-max" id={message.id}>
+        <li className="p-3 mb-2 rounded-lg shadow-md bg-[#654960] text-white relative max-w-max" key={message.id}>
           <div>
             {/* <p> {chat.contact_name}: </p> */}
             <p> {message.message}</p>
@@ -86,6 +121,7 @@ const ChatListItem = (props) => {
   })
 
   const handleClick = () => {
+    socket.emit("leave_chat", id);
     navigate(`/inbox`)
   }
 
