@@ -27,6 +27,7 @@ const NewProduct = (props) => {
   const [subCategories, setSubCategories] = useState([]);
   const [newSubCategory, setNewSubCategory] = useState('');
   const [isCreatingNewSubCategory, setIsCreatingNewSubCategory] = useState(false);
+  const [vendorId, setVendorId] = useState('');
 
   const navigate = useNavigate();
 
@@ -34,6 +35,8 @@ const NewProduct = (props) => {
     const uniqueSubCategories = Array.from(new Set(allProducts.map(product => product.sub_category)));
     setSubCategories(uniqueSubCategories);
   }, [allProducts]);
+
+  const userVendors = allVendors.filter(vendor => vendor.admin_user === user.id);
 
   const handleSubCategoryChange = (e) => {
     const value = e.target.value;
@@ -58,21 +61,13 @@ const NewProduct = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const vendor = allVendors.find(vendor => vendor.admin_user === user.id);
-
-
-    if (!vendor) {
-      console.error('No vendor found for this user');
-      return;
-    }
-
     const newProduct = {
       name: productName,
       description: productDescription,
       photo_url: productPhotoUrl,
       inventory: parseInt(productInventory, 10),
       price_cents: parseInt(productPriceCents, 10),
-      vendor_id: vendor.id,
+      vendor_id: vendorId,
       category: productCategory,
       sub_category: productSubCategory
     };
@@ -165,6 +160,22 @@ const NewProduct = (props) => {
               className="mt-1 block w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
               required
             />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Vendor</label>
+            <select
+              value={vendorId}
+              onChange={(e) => setVendorId(e.target.value)}
+              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+              required
+            >
+              <option value="" disabled>Select a vendor</option>
+              {userVendors.map((vendor, index) => (
+                <option key={index} value={vendor.id}>
+                  {vendor.name}
+                </option>
+              ))}
+            </select>
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">Category</label>
