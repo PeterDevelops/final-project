@@ -11,7 +11,7 @@ import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 // connect to backend socket server
 const socket = io.connect("http://localhost:8080")
 
-// chatHistory = [...
+// chatHistory = [... {}, 
 //   {
 //     id: 12,
 //     message: 'Good for you.',
@@ -33,18 +33,13 @@ const ChatListItem = (props) => {
   // chat history stored in db
   const [messageHistory, setMessageHistory] = useState([]);
 
+  // join chat on load
   useEffect(() => {
     socket.emit('join_chat', id)  
-
-  })
-
-
+  }, [])
 
   // load this chat's messages
   useEffect(() => {
-    console.log("First useEffect run");
-    console.log("ID-----", id)
-
     if (id) {
       socket.emit('join_chat', id);
 
@@ -56,8 +51,6 @@ const ChatListItem = (props) => {
         .catch((error) => { console.error("Issue gathering message data:", error) })
     }
 
-    console.log("ID2-----", id)
-
     // Cleanup on unmount
     return () => {
       console.log("Cleaning up useEffect for chat ID:", id);
@@ -66,21 +59,13 @@ const ChatListItem = (props) => {
 
   }, []);
 
-  console.log("message history1", messageHistory)
-
-
   const sendMessage = () => {
     if (message.trim() !== '') {
-      console.log("message", message)
-      console.log("message history2", messageHistory)
-
       const newMessage = { message: message, created_at: moment().toISOString(), sender_id: user.id, user: user, chatId: id }
       //emit an event by send message to server (listening) [add chat state to message object]
       socket.emit("send_message", newMessage);
       setMessageHistory(prev => [...prev, newMessage])
       setMessage('');
-      console.log("is the sendMessage func")
-
     }
   }
 
@@ -96,15 +81,12 @@ const ChatListItem = (props) => {
     return () => {
       socket.off("receive_message", handleReceiveMessage);
     };
-  }, []);
+  }, [socket]);
 
-  // console.log("message history------", messageHistory)
-  // console.log("USER---", user)
 
   const messageList = messageHistory.map((message) => {
     return message.sender_id === user.id ? (
       <li className="p-3 mb-2 rounded-lg shadow-md bg-[#EDB513] max-w-max self-end" key={message.id}>
-        {/* <p> {user.name}: </p> */}
         <p> {message.message}</p>
         <p className="text-xs text-right"> {moment(message.created_at).format('MMM D, YYYY h:mm A')}: </p>
       </li>
@@ -112,7 +94,6 @@ const ChatListItem = (props) => {
       (
         <li className="p-3 mb-2 rounded-lg shadow-md bg-[#654960] text-white relative max-w-max" key={message.id}>
           <div>
-            {/* <p> {chat.contact_name}: </p> */}
             <p> {message.message}</p>
             <p className="text-xs text-right"> {moment(message.created_at).format('MMM D, YYYY h:mm A')}: </p>
           </div>
