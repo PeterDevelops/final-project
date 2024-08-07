@@ -99,9 +99,11 @@ const NewVendor = (props) => {
         <h1 className="text-2xl font-semibold mb-4">Add New Vendor</h1>
         <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
           <div>
-            <label className="block text-sm font-medium text-gray-700">Vendor Name</label>
+            <label htmlFor="vendorName" className="block text-sm font-medium text-gray-700">Vendor Name</label>
             <input
               type="text"
+              id="vendorName"
+              name="vendorName"
               value={vendorName}
               onChange={(e) => setVendorName(e.target.value)}
               className="mt-1 block w-full bg-gray-100 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
@@ -109,8 +111,10 @@ const NewVendor = (props) => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Vendor Bio</label>
+            <label htmlFor="vendorBio" className="block text-sm font-medium text-gray-700">Vendor Bio</label>
             <textarea
+              id="vendorBio"
+              name="vendorBio"
               value={vendorBio}
               onChange={(e) => setVendorBio(e.target.value)}
               className="mt-1 block w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
@@ -119,8 +123,10 @@ const NewVendor = (props) => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Address</label>
+            <label htmlFor="vendorAddress" className="block text-sm font-medium text-gray-700">Address</label>
             <input
+              id="vendorAddress"
+              name="vendorAddress"
               type="text"
               value={vendorAddress}
               onChange={handleAddressChange}
@@ -129,9 +135,11 @@ const NewVendor = (props) => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">City, Province</label>
+            <label htmlFor="vendorCity" className="block text-sm font-medium text-gray-700">City, Province</label>
             <input
               type="text"
+              id="vendorCity"
+              name="vendorCity"
               value={vendorCity}
               onChange={(e) => setVendorCity(e.target.value)}
               className="mt-1 block w-full border-gray-500 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
@@ -139,9 +147,11 @@ const NewVendor = (props) => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Vendor Logo URL</label>
+            <label htmlFor="vendorLogoUrl" className="block text-sm font-medium text-gray-700">Vendor Logo URL</label>
             <input
               type="text"
+              id="vendorLogoUrl"
+              name="vendorLogoUrl"
               value={vendorLogoUrl}
               onChange={(e) => setVendorLogoUrl(e.target.value)}
               className="mt-1 block w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
