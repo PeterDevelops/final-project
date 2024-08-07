@@ -131,9 +131,11 @@ const NewProduct = (props) => {
         <h1 className="text-2xl font-semibold mb-4">Add New Product</h1>
         <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
           <div>
-            <label className="block text-sm font-medium text-gray-700">Product Name</label>
+            <label htmlFor="productName" className="block text-sm font-medium text-gray-700">Product Name</label>
             <input
               type="text"
+              id="productName"
+              class="productName"
               value={productName}
               onChange={(e) => setProductName(e.target.value)}
               className="mt-1 block w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
@@ -141,8 +143,10 @@ const NewProduct = (props) => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Product Description</label>
+            <label htmlFor="productDescription" className="block text-sm font-medium text-gray-700">Product Description</label>
             <textarea
+              id="productDescription"
+              name="productDescription"
               value={productDescription}
               onChange={(e) => setProductDescription(e.target.value)}
               className="mt-1 block w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
@@ -151,9 +155,11 @@ const NewProduct = (props) => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Photo Url</label>
+            <label htmlFor="productPhotoUrl" className="block text-sm font-medium text-gray-700">Photo Url</label>
             <input
               type="text"
+              id="productPhotoUrl"
+              name="productPhotoUrl"
               value={productPhotoUrl}
               onChange={(e) => setProductPhotoUrl(e.target.value)}
               className="mt-1 block w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
@@ -161,9 +167,11 @@ const NewProduct = (props) => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Quantity</label>
+            <label htmlFor="productInventory" className="block text-sm font-medium text-gray-700">Quantity</label>
             <input
               type="text"
+              id="productInventory"
+              name="productInventory"
               value={productInventory}
               onChange={(e) => setProductInventory(e.target.value)}
               className="mt-1 block w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
@@ -171,9 +179,11 @@ const NewProduct = (props) => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Price (in cents)</label>
+            <label htmlFor="productPriceCents" className="block text-sm font-medium text-gray-700">Price (in cents)</label>
             <input
               type="text"
+              id="productPriceCents"
+              name="productPriceCents"
               value={productPriceCents}
               onChange={(e) => setProductPriceCents(e.target.value)}
               className="mt-1 block w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
@@ -181,8 +191,10 @@ const NewProduct = (props) => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Vendor</label>
+            <label htmlFor="vendorId" className="block text-sm font-medium text-gray-700">Vendor</label>
             <select
+              id="vendorId"
+              name="vendorId"
               value={vendorId}
               onChange={(e) => setVendorId(e.target.value)}
               className="mt-1 block w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
@@ -197,8 +209,10 @@ const NewProduct = (props) => {
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Category</label>
+            <label htmlFor="productCategory" className="block text-sm font-medium text-gray-700">Category</label>
             <select
+              id="productCategory"
+              name="productCategory"
               value={productCategory}
               onChange={(e) => setProductCategory(e.target.value)}
               className="mt-1 block w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
@@ -213,8 +227,10 @@ const NewProduct = (props) => {
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">SubCategory</label>
+            <label htmlFor="productSubCategory" className="block text-sm font-medium text-gray-700">SubCategory</label>
             <select
+              id="productSubCategory"
+              name="productSubCategory"
               value={productSubCategory}
               onChange={handleSubCategoryChange}
               className="mt-1 block w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
@@ -231,8 +247,10 @@ const NewProduct = (props) => {
             </select>
             {isCreatingNewSubCategory && (
               <div className="mt-4">
-                <label className="block text-sm font-medium text-gray-700">New SubCategory</label>
+                <label htmlFor="newSubCategory" className="block text-sm font-medium text-gray-700">New SubCategory</label>
                 <input
+                  id="newSubCategory"
+                  name="newSubCategory"
                   type="text"
                   value={newSubCategory}
                   onChange={(e) => setNewSubCategory(e.target.value)}
