@@ -45,6 +45,10 @@ const updateVendor = ({ id, name, bio, address, city, longitude, latitude, vendo
     .catch(err => console.error(err.message));
 };
 
+const deleteVendor = (id) => {
+  return db.query('DELETE FROM vendors WHERE id = $1', [id]);
+};
+
 // get all locations
 const getAllLocations = () => {
   const queryString =
@@ -72,6 +76,6 @@ const getAllLocations = () => {
 };
 
 
-module.exports = { getAllVendors, getAllLocations, createVendor, updateVendor }
+module.exports = { getAllVendors, getAllLocations, createVendor, updateVendor, deleteVendor }
 
 
