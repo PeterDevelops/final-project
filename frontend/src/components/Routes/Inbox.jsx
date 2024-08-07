@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom'
 import NavBar from '../NavBar';
 import ChatList from '../Body/ChatList'
 import io from 'socket.io-client'
@@ -21,9 +22,8 @@ const Inbox = (props) => {
     user,
     setUser
   } = props;
-  const [username, setUsername] = useState("");
   const [chatData, setChatData] = useState([]);
-  // const [chat, setChat] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
@@ -33,7 +33,6 @@ const Inbox = (props) => {
           // console.log("USER CHAT DATA------", userChatData)
           // console.log("USER CHAT DATA LENGTH------", userChatData.length)
           setChatData(userChatData);
-          setUsername(user.name);
         })
         .catch(error => {
           console.error('Error retrieving inbox data:', error);
@@ -41,15 +40,7 @@ const Inbox = (props) => {
     } else {
       console.log('Not logged in');
     }
-  }, [user]);
-
-
-  // const joinChat = (chatId) => {
-  // console.log("Chat clicked");
-  // if (username !== "" && chat !== "") {
-  //   socket.emit("join_chat", {chatId})
-  // }
-  // }
+  }, []);
 
   // console.log("CHAT DATA IN INBOX----", chatData)
 
@@ -77,9 +68,9 @@ const Inbox = (props) => {
       <h1 className="text-xl font-semibold m-3 p-3">Inbox </h1>
 
       <div className="flex flex-col justify-content">
-        <div className="bg-[#F7F4F0] shadow-md rounded px-8 pt-6 pb-8 mb-4">
-          <div className="bg-[#F7F4F0] rounded p-2">
-            {chatListArr()}
+        <div className="px-8 pt-6 pb-8 mb-4">
+          <div className="rounded p-2">
+            {user ? <div>{chatListArr()}</div> : <h1>Please <a onClick={() => navigate('/login')} className="cursor-pointer underline font-bold">login</a> to see your inbox.</h1>}
           </div>
         </div>
       </div>

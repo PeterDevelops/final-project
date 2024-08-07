@@ -1,10 +1,11 @@
 import React from 'react'
+import ChatList from './ChatList';
 import { useEffect, useState, useRef } from 'react'
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import moment from 'moment';
 import NavBar from '../NavBar';
 //socket.io for the client side
 import io from 'socket.io-client'
@@ -64,13 +65,13 @@ const ChatListItem = (props) => {
 
   const sendMessage = () => {
     if (message.trim() !== '') {
-      const newMessage = { message: message, created_at: moment().toISOString(), sender_id: user.id, user: user, chatId: id }
+      const newMessage = { message: message, created_at: new Date().toDateString(), sender_id: user.id, user: user, chatId: id }
 
       //emit an event by send message to server (listening) [add chat state to message object]
       socket.emit("send_message", newMessage);
 
       //send the message to the db and add the saved message to the messageHistory
-      axios.post(`/api/messages/${id}`, { message: message, created_at: moment().toISOString(), sender_id: user.id, chatId: id })
+      axios.post(`/api/messages/${id}`, { message: message, created_at: new Date().toDateString(), sender_id: user.id, chatId: id })
       .then(message => {
         console.log("messageData", message.data)
         setMessageHistory(prev => [...prev, message.data])})
@@ -97,14 +98,14 @@ const ChatListItem = (props) => {
     return message.sender_id === user.id ? (
       <li className="p-3 mb-2 rounded-lg shadow-md bg-[#EDB513] max-w-max self-end" key={message.id}>
         <p> {message.message}</p>
-        <p className="text-xs text-right"> {moment(message.created_at).format('MMM D, YYYY h:mm A')}: </p>
+        <p className="text-xs text-right"> {moment(message.created_at).format('LT')}</p>
       </li>
     ) :
       (
         <li className="p-3 mb-2 rounded-lg shadow-md bg-[#654960] text-white relative max-w-max" key={message.id}>
           <div>
             <p> {message.message}</p>
-            <p className="text-xs text-right"> {moment(message.created_at).format('MMM D, YYYY h:mm A')}: </p>
+            <p className="text-xs text-right">{moment(message.created_at).format('LT')}</p>
           </div>
         </li>
       )
