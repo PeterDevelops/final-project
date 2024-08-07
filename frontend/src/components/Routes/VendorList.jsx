@@ -28,30 +28,24 @@ const VendorList = (props) => {
     navigate(`/vendors/${currentVendor.id}`, { state: { allProducts, allVendors } });
   };
 
-  // if statement required to not throw TypeError: products.map is not a function
-  const vendorListArr = () => {
-    if (Array.isArray(allVendors) && vendors.length > 0) {
-      // Sort vendors to put those with vendor.admin_user equal to user.id first
-      if (user) {
-        const sortedVendors = allVendors.sort((a, b) => {
-          if (a.admin_user === user.id && b.admin_user !== user.id) {
-            return -1;
-          }
-          if (a.admin_user !== user.id && b.admin_user === user.id) {
-            return 1;
-          }
-          return 0;
-        });
-
-        return sortedVendors.map((vendor) => (
-          <VendorListItem key={vendor.id} vendorData={vendor} onClick={() => handleVendorClick(vendor)} />
-        ));
-      }
-      return allVendors.map((vendor) => (
-        <VendorListItem key={vendor.id} vendorData={vendor} onClick={() => handleVendorClick(vendor)} />
-      ));
-    }
+  const renderVendorList = (vendorsArray) => {
+    return vendorsArray.map((vendor) => (
+      <VendorListItem key={vendor.id} vendorData={vendor} onClick={() => handleVendorClick(vendor)} />
+    ));
   };
+
+  const userVendors = [];
+  const otherVendors = [];
+
+  if (Array.isArray(allVendors) && allVendors.length > 0) {
+    allVendors.forEach((vendor) => {
+      if (user && vendor.admin_user === user.id) {
+        userVendors.push(vendor);
+      } else {
+        otherVendors.push(vendor);
+      }
+    });
+  }
 
   return (
     <div>
@@ -67,7 +61,27 @@ const VendorList = (props) => {
         user={user}
         setUser={setUser}
       />
-      {vendorListArr()}
+      {user ? (
+        <>
+          {userVendors.length > 0 && (
+            <>
+              <h2 className="text-xl font-bold m-5" >Your Vendors</h2>
+              {renderVendorList(userVendors)}
+            </>
+          )}
+          {otherVendors.length > 0 && (
+            <>
+              <h2 className="text-xl font-bold m-5" >Other Vendors</h2>
+              {renderVendorList(otherVendors)}
+            </>
+          )}
+        </>
+      ) : (
+        <>
+          <h2 className="text-xl font-bold m-5" >All Vendors</h2>
+          {renderVendorList(allVendors)}
+        </>
+      )}
     </div>
   );
 };
