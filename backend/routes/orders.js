@@ -13,6 +13,7 @@ router.post("/", (req, res) => {
         ...item,
         order_id: orderId
       }));
+      console.log('itemsWithOrderId:', itemsWithOrderId)
       return postOrderItems(itemsWithOrderId);
     })
     .then(orderItemsResult => {

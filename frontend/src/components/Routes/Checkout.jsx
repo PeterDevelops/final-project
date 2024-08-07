@@ -23,12 +23,14 @@ const Checkout = (props) => {
     setUser,
     cartItems,
     totalCost,
-    setCartItems
+    setCartItems,
+    subtotal,
+    quantities
   } = props;
-
+  // console.log('totalCost:Checkout:', totalCost);
   // console.log('cartItems:', cartItems);
 
-  const userId = 1;
+  // const userId = 1;
 
   const navigate = useNavigate();
 
@@ -48,8 +50,8 @@ const Checkout = (props) => {
   };
 
   const orderData = {
-    user_id: userId,
-    total_cost: totalCost,
+    user_id: user.id,
+    total_cost: Math.round(subtotal * 100),
     delivery_type: alignment,
     delivery_address: alignment === 'delivery' ? deliveryDetails.address : '',
     delivery_city: alignment === 'delivery' ? deliveryDetails.city : ''
@@ -92,13 +94,13 @@ const Checkout = (props) => {
               key={item.cart_item_id}
               product_photo_url={item.product_photo_url}
               product_name={item.product_name}
-              quantity={item.quantity}
+              quantity={quantities[item.cart_item_id]}
               price_cents={item.price_cents}
             />
           ))}
 
           <div className='total'>
-            Total: ${totalCost / 100}
+            Total: ${subtotal.toFixed(2)}
           </div>
 
           {/* if pickup render vendor address and city */}
@@ -147,11 +149,13 @@ const Checkout = (props) => {
           )}
 
           <Elements stripe={stripePromise}>
-            <PaymentForm userId={userId}
+            <PaymentForm
+              userId={user.id}
               totalCost={totalCost}
               orderData={orderData}
               orderItems={orderItems}
               setCartItems={setCartItems}
+              subtotal={subtotal}
               />
           </Elements>
 

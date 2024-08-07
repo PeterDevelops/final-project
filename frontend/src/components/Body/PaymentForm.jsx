@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import '../../styles/PaymentForm.scss';
 import '../../styles/Cart.scss';
 
-const PaymentForm = ({ userId, totalCost, orderData, orderItems, setCartItems }) => {
+const PaymentForm = ({ userId, totalCost, orderData, orderItems, setCartItems, subtotal }) => {
 
   const stripe = useStripe();
   const elements = useElements();
@@ -52,7 +52,7 @@ const PaymentForm = ({ userId, totalCost, orderData, orderItems, setCartItems })
     try {
       // create a PaymentIntent on the server
       const response = await axios.post('api/stripe/create-payment-intent', {
-        amount: totalCost,
+        amount: Math.round(subtotal * 100),
         userId: userId
       });
 
