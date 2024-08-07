@@ -10,10 +10,15 @@ const ProductList = (props) => {
     products,
     setProducts,
     allProducts,
+    setAllProducts,
     locations,
     categories,
     user,
     setUser,
+    cartItems,
+    setCartItems,
+    quantities,
+    setQuantities,
     showNavBar = true,
   } = props;
 
@@ -21,7 +26,19 @@ const ProductList = (props) => {
   const productListArr = () => {
     if (Array.isArray(products) && products.length > 0) {
       return products.map((product) => (
-        <ProductListItem key={product.id} productData={product} />
+        <ProductListItem
+          key={product.id}
+          productData={product}
+          allProducts={allProducts}
+          setAllProducts={setAllProducts}
+          user={user}
+          allVendors={allVendors}
+          vendors={vendors}
+          cartItems={cartItems}
+          setCartItems={setCartItems}
+          setQuantities={setQuantities}
+          quantities={quantities}
+        />
       ));
     }
   };
@@ -40,6 +57,7 @@ const ProductList = (props) => {
         categories={categories}
         user={user}
         setUser={setUser}
+        cartItems={cartItems}
       />
       )}
       {productListArr()}

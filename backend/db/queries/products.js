@@ -24,6 +24,31 @@ const createProduct = ({ name, description, photo_url, inventory, price_cents, v
     .catch(err => console.error(err.message));
 };
 
+const updateProduct = ({ name, description, photo_url, inventory, price_cents, vendor_id, category, sub_category, id }) => {
+  const query = `
+    UPDATE products
+    SET name = $1,
+        description = $2,
+        photo_url = $3,
+        inventory = $4,
+        price_cents = $5,
+        vendor_id = $6,
+        category = $7,
+        sub_category = $8
+    WHERE id = $9
+    RETURNING *;
+  `;
+  const values = [name, description, photo_url, inventory, price_cents, vendor_id, category, sub_category, id];
+
+  return db.query(query, values)
+    .then(result => result.rows[0])
+    .catch(err => console.error(err.message));
+};
+
+const deleteProduct = (id) => {
+  return db.query('DELETE FROM products WHERE id = $1', [id]);
+};
+
 //get all DISTINCT categories
 const getAllCategories = () => {
   const queryString = `SELECT DISTINCT category FROM products;`;
@@ -35,6 +60,6 @@ const getAllCategories = () => {
     })
 }
 
-module.exports = { getAllProducts, getAllCategories, createProduct }
+module.exports = { getAllProducts, getAllCategories, createProduct, updateProduct, deleteProduct }
 
 

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 import NavBar from '../NavBar';
 
-const NewProduct = (props) => {
+const AddEditProduct = (props) => {
   const {
     products,
     setProducts,
@@ -15,8 +15,10 @@ const NewProduct = (props) => {
     locations,
     categories,
     user,
-    setUser
+    setUser,
+    cartItems,
   } = props;
+
   const [productName, setProductName] = useState('');
   const [productDescription, setProductDescription] = useState('');
   const [productPhotoUrl, setProductPhotoUrl] = useState('');
@@ -30,6 +32,8 @@ const NewProduct = (props) => {
   const [vendorId, setVendorId] = useState('');
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const editProduct = location.state?.product || null;
 
   useEffect(() => {
     if (productCategory) {
@@ -43,6 +47,19 @@ const NewProduct = (props) => {
       setSubCategories([]);
     }
   }, [productCategory, allProducts]);
+
+  useEffect(() => {
+    if (editProduct) {
+      setProductName(editProduct.name || '');
+      setProductDescription(editProduct.description || '');
+      setProductPhotoUrl(editProduct.photo_url || '');
+      setProductInventory(editProduct.inventory || '');
+      setProductPriceCents(editProduct.price_cents || '');
+      setProductCategory(editProduct.category || '');
+      setProductSubCategory(editProduct.sub_category || '');
+      setVendorId(editProduct.vendor_id || '');
+    }
+  }, [editProduct]);
 
   const handleSubCategoryChange = (e) => {
     const value = e.target.value;
@@ -69,7 +86,7 @@ const NewProduct = (props) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const newProduct = {
+    const productData = {
       name: productName,
       description: productDescription,
       photo_url: productPhotoUrl,
@@ -80,38 +97,52 @@ const NewProduct = (props) => {
       sub_category: productSubCategory
     };
 
+    if (editProduct) {
+      productData.id = editProduct.id;
+    }
+
     try {
-      const response = await fetch('http://localhost:8080/api/products', {
+      const response = editProduct ? await fetch('http://localhost:8080/api/products', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(productData),
+      })
+      : await fetch('http://localhost:8080/api/products', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(newProduct),
+        body: JSON.stringify(productData),
       });
 
       if (!response.ok) {
-        throw new Error('Failed to create product');
+        throw new Error('Failed to create or update product');
       }
 
       const data = await response.json();
-      setAllProducts([...allProducts, data]);
 
-      const currentVendor = allVendors.find(vendor => vendor.id.toString() === vendorId.toString());
+      setAllProducts(prevProducts => {
+        const updatedProducts = editProduct
+          ? prevProducts.map(p => p.id === data.id ? data : p)
+          : [...prevProducts, data];
 
-      if (!currentVendor) {
-        throw new Error('Current vendor not found');
-      }
+        const filteredByVendor = updatedProducts.filter(product => product.vendor_id.toString() === vendorId.toString());
 
-      const filteredByVendor = [...allProducts, data].filter(product => product.vendor_id.toString() === vendorId.toString());
+        setProducts(filteredByVendor);
+        setVendors([allVendors.find(vendor => vendor.id.toString() === vendorId.toString())]);
 
-      setProducts(filteredByVendor);
-      setVendors([currentVendor]);
+        return updatedProducts;
+      });
+
       navigate(`/vendors/${vendorId}`);
 
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error:', error.message);
     }
   };
+
 
   return (
     <div>
@@ -126,16 +157,17 @@ const NewProduct = (props) => {
         categories={categories}
         user={user}
         setUser={setUser}
+        cartItems={cartItems}
       />
       <form onSubmit={handleSubmit} className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg">
-        <h1 className="text-2xl font-semibold mb-4">Add New Product</h1>
+        <h1 className="text-2xl font-semibold mb-4">{editProduct ? 'Edit Product' : 'Add New Product'}</h1>
         <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
           <div>
             <label htmlFor="productName" className="block text-sm font-medium text-gray-700">Product Name</label>
             <input
               type="text"
               id="productName"
-              class="productName"
+              name="productName"
               value={productName}
               onChange={(e) => setProductName(e.target.value)}
               className="mt-1 block w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
@@ -272,7 +304,7 @@ const NewProduct = (props) => {
             type="submit"
             className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
           >
-            Add Product
+            {editProduct ? 'Update Product' : 'Add Product'}
           </button>
         </div>
       </form>
@@ -280,5 +312,5 @@ const NewProduct = (props) => {
   );
 };
 
-export default NewProduct;
+export default AddEditProduct;
 

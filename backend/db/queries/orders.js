@@ -22,4 +22,34 @@ const postOrders = (orderData) => {
 });
 }
 
-module.exports = { postOrders }
+// get orders by user id
+const getOrderByUserId = (user_id) => {
+  const queryString = `
+  SELECT
+  order_items.id AS order_item_id,
+  products.id AS product_id,
+  products.name AS product_name,
+  products.photo_url AS product_photo_url,
+  order_items.quantity,
+  products.price_cents,
+  vendors.name AS vendor_name,
+  vendors.address AS vendor_address,
+  vendors.city AS vendor_city,
+  vendors.vendor_logo_url
+  FROM order_items
+  JOIN products ON order_items.product_id = products.id
+  JOIN orders ON order_items.order_id = orders.id
+  JOIN vendors ON products.vendor_id = vendors.id
+  WHERE orders.user_id = $1;
+  `
+
+  const queryParam = [user_id];
+
+  return db.query(queryString, queryParam)
+    .then(results => (results.rows))
+    .catch((err) => {
+      return err.message;
+    });
+};
+
+module.exports = { postOrders, getOrderByUserId }
