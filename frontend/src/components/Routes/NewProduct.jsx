@@ -32,11 +32,17 @@ const NewProduct = (props) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const uniqueSubCategories = Array.from(new Set(allProducts.map(product => product.sub_category)));
-    setSubCategories(uniqueSubCategories);
-  }, [allProducts]);
-
-  const userVendors = allVendors.filter(vendor => vendor.admin_user === user.id);
+    if (productCategory) {
+      const uniqueSubCategories = [...new Set(
+        allProducts
+          .filter(product => product.category === productCategory)
+          .map(product => product.sub_category)
+      )];
+      setSubCategories(uniqueSubCategories);
+    } else {
+      setSubCategories([]);
+    }
+  }, [productCategory, allProducts]);
 
   const handleSubCategoryChange = (e) => {
     const value = e.target.value;
@@ -48,6 +54,8 @@ const NewProduct = (props) => {
       setProductSubCategory(value);
     }
   };
+
+  const userVendors = allVendors.filter(vendor => vendor.admin_user === user.id);
 
   const handleNewSubCategorySubmit = () => {
     if (newSubCategory && !subCategories.includes(newSubCategory)) {
@@ -87,7 +95,18 @@ const NewProduct = (props) => {
 
       const data = await response.json();
       setAllProducts([...allProducts, data]);
-      navigate(`/vendors`);
+
+      const currentVendor = allVendors.find(vendor => vendor.id.toString() === vendorId.toString());
+
+      if (!currentVendor) {
+        throw new Error('Current vendor not found');
+      }
+
+      const filteredByVendor = [...allProducts, data].filter(product => product.vendor_id.toString() === vendorId.toString());
+
+      setProducts(filteredByVendor);
+      setVendors([currentVendor]);
+      navigate(`/vendors/${vendorId}`);
 
     } catch (error) {
       console.error('Error:', error);
@@ -166,7 +185,7 @@ const NewProduct = (props) => {
             <select
               value={vendorId}
               onChange={(e) => setVendorId(e.target.value)}
-              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+              className="mt-1 block w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
               required
             >
               <option value="" disabled>Select a vendor</option>
@@ -200,6 +219,7 @@ const NewProduct = (props) => {
               onChange={handleSubCategoryChange}
               className="mt-1 block w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
               required
+              disabled={!productCategory}
             >
               <option value="" disabled>Select a SubCategory</option>
               {subCategories.map((subCategory, index) => (
@@ -221,7 +241,7 @@ const NewProduct = (props) => {
                 <button
                   type="button"
                   onClick={handleNewSubCategorySubmit}
-                  className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md shadow-sm hover:bg-blue-700"
+                  className="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 >
                   Add SubCategory
                 </button>
