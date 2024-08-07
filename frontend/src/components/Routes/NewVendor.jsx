@@ -58,6 +58,7 @@ const NewVendor = (props) => {
     }
   }, [editVendor]);
 
+
   const handleAddressChange = async (event) => {
     const address = event.target.value;
     setVendorAddress(address);
@@ -91,6 +92,10 @@ const NewVendor = (props) => {
       admin_user: user.id
     };
 
+    if (editVendor) {
+      vendorData.id = editVendor.id;
+    }
+    
     try {
       const response = editVendor ? await fetch('http://localhost:8080/api/vendors', {
         method: 'PUT',

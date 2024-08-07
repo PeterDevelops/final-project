@@ -1,7 +1,7 @@
 // path = localhost:8080/api/products
 
 const express = require('express');
-const { getAllVendors,createVendor } = require('../db/queries/vendors');
+const { getAllVendors, createVendor, updateVendor } = require('../db/queries/vendors');
 const router = express.Router();
 
 router.get("/", (req, res) => {
