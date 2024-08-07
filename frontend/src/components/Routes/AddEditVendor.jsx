@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate,useLocation } from 'react-router-dom';
 import NavBar from '../NavBar';
 
-const NewVendor = (props) => {
+const AddEditVendor = (props) => {
   const {
     products,
     setProducts,
@@ -95,7 +95,7 @@ const NewVendor = (props) => {
     if (editVendor) {
       vendorData.id = editVendor.id;
     }
-    
+
     try {
       const response = editVendor ? await fetch('http://localhost:8080/api/vendors', {
         method: 'PUT',
@@ -238,5 +238,5 @@ const NewVendor = (props) => {
   );
 };
 
-export default NewVendor;
+export default AddEditVendor;
 
