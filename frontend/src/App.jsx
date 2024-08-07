@@ -17,6 +17,7 @@ import ChatListItem from './components/Body/ChatListItem';
 import VendorProfile from './components/Routes/VendorProfile';
 import NewVendor from './components/Routes/NewVendor';
 import NewProduct from './components/Routes/NewProduct';
+import ScrollToTop from './ScrollToTop';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -99,6 +100,7 @@ function App() {
   return (
     // Router must be in the top level of the app
     <Router>
+      <ScrollToTop />
       <div className="Homepage"></div>
       <Routes>
         <Route path="/" element={
