@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import NavBar from '../NavBar';
 import ProductList from './ProductList';
 import { useNavigate } from 'react-router-dom';

@@ -48,21 +48,22 @@ const updateVendor = ({ id, name, bio, address, city, longitude, latitude, vendo
 // get all locations
 const getAllLocations = () => {
   const queryString =
-    `SELECT DISTINCT ON (city) city,
-    vendors.longitude,
-    vendors.latitude,
-    vendors.name,
-    vendors.address
-    FROM vendors;`;
+    `SELECT DISTINCT ON (city)
+      vendors.id AS vendor_id,
+      vendors.city,
+      vendors.longitude,
+      vendors.latitude,
+      vendors.name,
+      vendors.address
+    FROM vendors;
+  `;
 
   return db.query(queryString)
     .then(results => {
       return results.rows.map((row, index) => ({
         id: `${row.longitude},${row.latitude}`,
+        vendor_id: row.vendor_id,
         ...row,
-        name: row.name,
-        address: row.address,
-
       }));
     })
     .catch((err) => {
