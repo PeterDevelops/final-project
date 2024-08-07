@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate,useLocation } from 'react-router-dom';
 import NavBar from '../NavBar';
 
@@ -44,6 +44,19 @@ const NewVendor = (props) => {
     'SK', // Saskatchewan
     'YT'  // Yukon
   ];
+
+  useEffect(() => {
+    if (editVendor) {
+      setVendorName(editVendor.name || '');
+      setVendorBio(editVendor.bio || '');
+      setVendorAddress(editVendor.address || '');
+      setVendorCity(editVendor.city?.split(',')[0] || '');
+      setVendorProvince(editVendor.city?.split(',')[1] || '');
+      setVendorLongitude(editVendor.longitude || '');
+      setVendorLatitude(editVendor.latitude || '');
+      setVendorLogoUrl(editVendor.vendor_logo_url || '');
+    }
+  }, [editVendor]);
 
   const handleAddressChange = async (event) => {
     const address = event.target.value;
