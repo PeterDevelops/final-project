@@ -22,6 +22,7 @@ const HamburgerMenu = (props) => {
       {/* <a className="menu-item" href="#">Home</a> */}
       <Link to="/" className="menu-item">Home</Link>
       <Link to="/products" className="menu-item" onClick={handleProductsClick}>Products</Link>
+      {user && <Link to="/products/new" className="menu-item" >New Product</Link>}
       <Link to="/vendors" className="menu-item" onClick={handleVendorsClick}>Vendors</Link>
       {user && <Link to="/vendors/new" className="menu-item" >New Vendor</Link>}
       <Link to="/locations" className="menu-item">Locations</Link>

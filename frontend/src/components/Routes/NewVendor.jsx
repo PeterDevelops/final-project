@@ -20,11 +20,28 @@ const NewVendor = (props) => {
   const [vendorBio, setVendorBio] = useState('');
   const [vendorAddress, setVendorAddress] = useState('');
   const [vendorCity, setVendorCity] = useState('');
+  const [vendorProvince, setVendorProvince] = useState('');
   const [vendorLongitude, setVendorLongitude] = useState('');
   const [vendorLatitude, setVendorLatitude] = useState('');
   const [vendorLogoUrl, setVendorLogoUrl] = useState('');
 
   const navigate = useNavigate();
+
+  const provinces = [
+    'AB', // Alberta
+    'BC', // British Columbia
+    'MB', // Manitoba
+    'NB', // New Brunswick
+    'NL', // Newfoundland and Labrador
+    'NS', // Nova Scotia
+    'NT', // Northwest Territories
+    'NU', // Nunavut
+    'ON', // Ontario
+    'PE', // Prince Edward Island
+    'QC', // Quebec
+    'SK', // Saskatchewan
+    'YT'  // Yukon
+  ];
 
   const handleAddressChange = async (event) => {
     const address = event.target.value;
@@ -52,7 +69,7 @@ const NewVendor = (props) => {
       name: vendorName,
       bio: vendorBio,
       address: vendorAddress,
-      city: vendorCity,
+      city: `${vendorCity}, ${vendorProvince}`,
       longitude: vendorLongitude,
       latitude: vendorLatitude,
       vendor_logo_url: vendorLogoUrl,
@@ -99,52 +116,80 @@ const NewVendor = (props) => {
         <h1 className="text-2xl font-semibold mb-4">Add New Vendor</h1>
         <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
           <div>
-            <label className="block text-sm font-medium text-gray-700">Vendor Name</label>
+            <label htmlFor="vendorName" className="block text-sm font-medium text-gray-700">Vendor Name</label>
             <input
               type="text"
+              id="vendorName"
+              name="vendorName"
               value={vendorName}
               onChange={(e) => setVendorName(e.target.value)}
-              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+              className="mt-1 block w-full bg-gray-100 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
               required
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Vendor Bio</label>
+            <label htmlFor="vendorBio" className="block text-sm font-medium text-gray-700">Vendor Bio</label>
             <textarea
+              id="vendorBio"
+              name="vendorBio"
               value={vendorBio}
               onChange={(e) => setVendorBio(e.target.value)}
-              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+              className="mt-1 block w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
               rows="4"
               required
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Address</label>
+            <label htmlFor="vendorAddress" className="block text-sm font-medium text-gray-700">Address</label>
             <input
+              id="vendorAddress"
+              name="vendorAddress"
               type="text"
               value={vendorAddress}
               onChange={handleAddressChange}
-              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+              className="mt-1 block w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
               required
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">City, Province</label>
+            <label htmlFor="vendorCity" className="block text-sm font-medium text-gray-700">City</label>
             <input
               type="text"
+              id="vendorCity"
+              name="vendorCity"
               value={vendorCity}
               onChange={(e) => setVendorCity(e.target.value)}
-              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+              className="mt-1 block w-full border-gray-500 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
               required
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Vendor Logo URL</label>
+            <label htmlFor="vendorProvince" className="block text-sm font-medium text-gray-700">Province</label>
+            <select
+              id="vendorProvince"
+              name="vendorProvince"
+              value={vendorProvince}
+              onChange={(e) => setVendorProvince(e.target.value)}
+              className="mt-1 block w-full border-gray-500 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+              required
+            >
+              <option value="" disabled>Select a Province</option>
+              {provinces.map((province, index) => (
+                <option key={index} value={province}>
+                  {province}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>
+            <label htmlFor="vendorLogoUrl" className="block text-sm font-medium text-gray-700">Vendor Logo URL</label>
             <input
               type="text"
+              id="vendorLogoUrl"
+              name="vendorLogoUrl"
               value={vendorLogoUrl}
               onChange={(e) => setVendorLogoUrl(e.target.value)}
-              className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+              className="mt-1 block w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
               required
             />
           </div>
