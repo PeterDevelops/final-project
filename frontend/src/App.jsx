@@ -264,6 +264,21 @@ function App() {
             setUser={setUser}
           />}
         />
+        <Route path="/vendors/edit/:vendorId" element={
+          <NewVendor
+            products={products}
+            setProducts={setProducts}
+            allProducts={allProducts}
+            vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
+            setAllVendors={setAllVendors}
+            locations={locations}
+            categories={categories}
+            user={user}
+            setUser={setUser}
+          />}
+        />
         <Route path="/products/new" element={
           <NewProduct
             products={products}

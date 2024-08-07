@@ -1,8 +1,7 @@
 import React from 'react';
 import NavBar from '../NavBar';
-//useParams hook to include vendorId in URL
-import { useParams } from 'react-router-dom';
 import ProductList from './ProductList';
+import { useNavigate } from 'react-router-dom';
 
 const VendorProfile = (props) => {
   const {
@@ -17,20 +16,21 @@ const VendorProfile = (props) => {
     user,
     setUser
   } = props;
-  // const { vendorId } = useParams();
 
-  // //iterate over vendors array to check if vendor id matches vendorId integer
-  // const vendor = vendors.find(v => v.id === parseInt(vendorId));
-  const vendor = vendors[0];
+  const navigate = useNavigate();
+  const vendor = vendors.length > 0 ? vendors[0] : null;
 
   const handleEdit = () => {
-    // Logic for handling edit action
-    console.log('Edit vendor', vendor.id);
+    if (vendor) {
+      navigate(`/vendors/edit/${vendor.id}`, { state: { vendor } });
+    }
   };
 
   const handleDelete = () => {
+    if (vendor) {
     // Logic for handling delete action
     console.log('Delete vendor', vendor.id);
+    }
   };
 
   return (
