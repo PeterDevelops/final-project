@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import NavBar from '../NavBar';
-//useParams hook to include vendorId in URL
-import { useParams } from 'react-router-dom';
 import ProductList from './ProductList';
+import { useParams } from 'react-router-dom';
 
 const VendorProfile = (props) => {
   const {
@@ -17,11 +16,23 @@ const VendorProfile = (props) => {
     user,
     setUser
   } = props;
-  // const { vendorId } = useParams();
 
-  // //iterate over vendors array to check if vendor id matches vendorId integer
-  // const vendor = vendors.find(v => v.id === parseInt(vendorId));
+  const { vendorId } = useParams();
+
+  useEffect(() => {
+    if (vendorId && allVendors.length > 0) {
+      const currentVendor = allVendors.find(vendor => vendor.id === parseInt(vendorId));
+      const filteredProducts = allProducts.filter(product => product.vendor_id === parseInt(vendorId));
+
+      if (currentVendor) {
+        setVendors([currentVendor]);
+        setProducts(filteredProducts);
+      }
+    }
+  }, [vendorId, allVendors, allProducts, setVendors, setProducts]);
+
   const vendor = vendors[0];
+
   return (
     <div>
       <NavBar
