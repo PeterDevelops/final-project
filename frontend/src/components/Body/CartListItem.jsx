@@ -15,7 +15,8 @@ const CartListItem = (props) => {
     setQuantities,
     onChange
   } = props;
-  console.log('quantity:CartListItem:', quantity);
+  
+  // console.log('quantity:CartListItem:', quantity);
   // const subtotal = (price_cents * quantity / 100);
   const location = useLocation();
   const noQuantity = ['/cart'];

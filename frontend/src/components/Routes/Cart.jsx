@@ -32,7 +32,7 @@ const Cart = (props) => {
 
   // console.log('newSubtotal:', subtotal)
   // const subtotal = (price_cents * quantity / 100);
-  console.log('quantities:Cart:', quantities);
+  // console.log('quantities:Cart:', quantities);
 
   const handleQuantityChange = (itemId, newQuantity) => {
     setQuantities(prevQuantities => ({

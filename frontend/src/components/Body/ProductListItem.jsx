@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 const ProductListItem = (props) => {
-  const { productData, vendors, cartItems, setCartItems } = props;
+  const { productData, vendors, cartItems, setCartItems, quantities, setQuantities } = props;
   const [added, setAdded] = useState(false);
   // console.log('productData:ProductListItem', productData);
   // add item to cart function
@@ -9,10 +9,14 @@ const ProductListItem = (props) => {
     const vendor = vendors.find(vendor => vendor.id === product.vendor_id);
     const itemExist = cartItems.find(item => item.product_id === product.id);
     let updatedCartItems;
+    // console.log('Found vendor:', vendor);
+    // console.log('ProductData:', productData)
     if (itemExist) {
       updatedCartItems = cartItems.map(item =>
         item.product_id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+
       );
+
     } else {
       const newItem = {
         cart_item_id: cartItems.length + 1,
@@ -29,8 +33,18 @@ const ProductListItem = (props) => {
       updatedCartItems = [...cartItems, newItem];
     }
     setCartItems(updatedCartItems);
+
+    // update quantities state
+    const updatedQuantities = { ...quantities };
+    updatedCartItems.forEach(item => {
+      updatedQuantities[item.cart_item_id] = item.quantity;
+    });
+    setQuantities(updatedQuantities);
+
   };
   console.log('cartItems:ProductListItem:', cartItems);
+  // console.log('ProductListtem:addToCart:productData:', productData);
+
 
   const handleAddToCart = (product) => {
     addToCart(product);

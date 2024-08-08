@@ -150,6 +150,8 @@ function App() {
             setUser={setUser}
             cartItems={cartItems}
             setCartItems={setCartItems}
+            setQuantities={setQuantities}
+            quantities={quantities}
           />}
         />
         <Route path="/categories" element={

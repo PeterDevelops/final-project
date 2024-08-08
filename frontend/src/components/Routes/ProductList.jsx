@@ -13,14 +13,24 @@ const ProductList = (props) => {
     user,
     setUser,
     cartItems,
-    setCartItems
+    setCartItems,
+    quantities,
+    setQuantities
   } = props;
 
   // if statement required to not throw TypeError: products.map is not a function
   const productListArr = () => {
     if (Array.isArray(products) && products.length > 0) {
       return products.map((product) => (
-        <ProductListItem key={product.id} productData={product} vendors={vendors} cartItems={cartItems} setCartItems={setCartItems} />
+        <ProductListItem
+        key={product.id}
+        productData={product}
+        vendors={vendors}
+        cartItems={cartItems}
+        setCartItems={setCartItems}
+        setQuantities={setQuantities}
+        quantities={quantities}
+        />
       ));
     }
   };
