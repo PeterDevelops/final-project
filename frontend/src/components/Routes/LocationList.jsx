@@ -37,7 +37,7 @@ const LocationList = (props) => {
 
   return (
     <div >
-      <NavBar
+      {/* <NavBar
         products={products}
         setProducts={setProducts}
         allProducts={allProducts}
@@ -47,7 +47,7 @@ const LocationList = (props) => {
         locations={locations}
         categories={categories}
         cartItems={cartItems}
-      />
+      /> */}
       <div className="flex justify-center my-4">
         <Map
           locations={locations}
