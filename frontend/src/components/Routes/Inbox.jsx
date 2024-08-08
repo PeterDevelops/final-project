@@ -20,7 +20,8 @@ const Inbox = (props) => {
     locations,
     categories,
     user,
-    setUser
+    setUser,
+    cartItems,
   } = props;
   const [chatData, setChatData] = useState([]);
   const navigate = useNavigate();
@@ -64,6 +65,7 @@ const Inbox = (props) => {
         categories={categories}
         user={user}
         setUser={setUser}
+        cartItems={cartItems}
       />
       <h1 className="text-xl font-semibold m-3 p-3">Inbox </h1>
 

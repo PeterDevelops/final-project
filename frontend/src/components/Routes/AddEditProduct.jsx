@@ -15,7 +15,8 @@ const AddEditProduct = (props) => {
     locations,
     categories,
     user,
-    setUser
+    setUser,
+    cartItems,
   } = props;
 
   const [productName, setProductName] = useState('');
@@ -156,6 +157,7 @@ const AddEditProduct = (props) => {
         categories={categories}
         user={user}
         setUser={setUser}
+        cartItems={cartItems}
       />
       <form onSubmit={handleSubmit} className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg">
         <h1 className="text-2xl font-semibold mb-4">{editProduct ? 'Edit Product' : 'Add New Product'}</h1>

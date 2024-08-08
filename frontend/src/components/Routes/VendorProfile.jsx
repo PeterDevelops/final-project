@@ -16,7 +16,8 @@ const VendorProfile = (props) => {
     locations,
     categories,
     user,
-    setUser
+    setUser,
+    cartItems,
   } = props;
 
   const navigate = useNavigate();
@@ -67,6 +68,7 @@ const VendorProfile = (props) => {
         categories={categories}
         user={user}
         setUser={setUser}
+        cartItems={cartItems}
       />
       <div className="vendor-profile flex flex-col md:flex-row md:items-center border rounded-lg shadow-md m-5 overflow-hidden">
         <img src={vendor.vendor_logo_url} alt={vendor.name} className="w-full md:w-1/3 md:object-cover md:object-contain" />

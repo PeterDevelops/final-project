@@ -14,7 +14,8 @@ const VendorList = (props) => {
     locations,
     categories,
     user,
-    setUser
+    setUser,
+    cartItems,
   } = props;
 
   const navigate = useNavigate();
@@ -60,6 +61,7 @@ const VendorList = (props) => {
         categories={categories}
         user={user}
         setUser={setUser}
+        cartItems={cartItems}
       />
       {user ? (
         <>

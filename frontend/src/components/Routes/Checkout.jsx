@@ -76,6 +76,7 @@ const Checkout = (props) => {
         locations={locations}
         user={user}
         setUser={setUser}
+        cartItems={cartItems}
       />
 
       {cartItems.length > 0 ? (

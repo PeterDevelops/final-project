@@ -14,7 +14,8 @@ const Homepage = (props) => {
     locations,
     categories,
     user,
-    setUser
+    setUser,
+    cartItems
   } = props;
 
   const [showModal, setShowModal] = useState(true);
@@ -57,6 +58,7 @@ const Homepage = (props) => {
         categories={categories}
         user={user}
         setUser={setUser}
+        cartItems={cartItems}
       />
       <Map
         locations={locations}

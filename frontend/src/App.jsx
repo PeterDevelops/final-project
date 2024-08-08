@@ -103,6 +103,7 @@ function App() {
             locations={locations}
             user={user}
             setUser={setUser}
+            cartItems={cartItems}
           />}
         />
         <Route path="/cart" element={
@@ -136,6 +137,7 @@ function App() {
             locations={locations}
             user={user}
             setUser={setUser}
+            cartItems={cartItems}
           />}
         />
         <Route path="/vendors" element={
@@ -149,6 +151,7 @@ function App() {
             locations={locations}
             user={user}
             setUser={setUser}
+            cartItems={cartItems}
           />}
         />
         <Route path="/products" element={
@@ -181,6 +184,7 @@ function App() {
             categories={categories}
             user={user}
             setUser={setUser}
+            cartItems={cartItems}
           />}
         />
         <Route path="/checkout" element={
@@ -208,6 +212,7 @@ function App() {
             locations={locations}
             user={user}
             setUser={setUser}
+            cartItems={cartItems}
           />}
         />
         <Route path="/login" element={
@@ -222,6 +227,7 @@ function App() {
             categories={categories}
             user={user}
             setUser={setUser}
+            cartItems={cartItems}
           />}
         />
         <Route path="/locations" element={
@@ -236,6 +242,7 @@ function App() {
             categories={categories}
             user={user}
             setUser={setUser}
+            cartItems={cartItems}
           />}
         />
         <Route path="/vendors/:vendorId" element={
@@ -252,6 +259,7 @@ function App() {
             categories={categories}
             user={user}
             setUser={setUser}
+            cartItems={cartItems}
           />}
         />
         <Route path="/vendors/new" element={
@@ -267,6 +275,7 @@ function App() {
             categories={categories}
             user={user}
             setUser={setUser}
+            cartItems={cartItems}
           />}
         />
         <Route path="/vendors/edit/:vendorId" element={
@@ -282,6 +291,7 @@ function App() {
             categories={categories}
             user={user}
             setUser={setUser}
+            cartItems={cartItems}
           />}
         />
         <Route path="/products/new" element={
@@ -298,6 +308,7 @@ function App() {
             categories={categories}
             user={user}
             setUser={setUser}
+            cartItems={cartItems}
           />}
         />
         <Route path="/products/edit/:productId" element={
@@ -314,6 +325,7 @@ function App() {
             categories={categories}
             user={user}
             setUser={setUser}
+            cartItems={cartItems}
           />}
         />
         <Route path="/chats/:id" element={
