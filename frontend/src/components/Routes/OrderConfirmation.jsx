@@ -20,7 +20,7 @@ const OrderConfirmation = ( { products, vendors, locations, user, setUser, cartI
 
   return(
     <div>
-      <NavBar products={products} vendors={vendors} locations={locations} user={user} setUser={setUser} cartItems={cartItems} />
+      {/* <NavBar products={products} vendors={vendors} locations={locations} user={user} setUser={setUser} cartItems={cartItems} /> */}
       <div>Thank you for your order.</div>
 
       <div>

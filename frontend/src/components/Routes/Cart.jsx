@@ -49,7 +49,7 @@ const Cart = (props) => {
 
   return (
     <div>
-      <NavBar
+      {/* <NavBar
         products={products}
         setProducts={setProducts}
         allProducts={allProducts}
@@ -61,7 +61,7 @@ const Cart = (props) => {
         user={user}
         setUser={setUser}
         cartItems={cartItems}
-      />
+      /> */}
 
       {!user || !user.id ? (
         <div>

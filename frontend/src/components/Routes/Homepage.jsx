@@ -47,7 +47,7 @@ const Homepage = (props) => {
   return (
     <div>
       {showModal && <LocationModal onAccept={handleAccept} onDecline={handleDecline} />}
-      <NavBar
+      {/* <NavBar
         products={products}
         setProducts={setProducts}
         allProducts={allProducts}
@@ -59,7 +59,7 @@ const Homepage = (props) => {
         user={user}
         setUser={setUser}
         cartItems={cartItems}
-      />
+      /> */}
       <Map
         locations={locations}
         zoom={12}

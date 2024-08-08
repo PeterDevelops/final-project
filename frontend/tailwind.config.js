@@ -18,6 +18,9 @@ module.exports = {
       boxShadow: {
         'text-outline': '2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',
       },
+      spacing: {
+        'navbar': '194px',
+      },
     },
   },
   plugins: [

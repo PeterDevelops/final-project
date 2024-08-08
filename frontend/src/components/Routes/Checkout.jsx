@@ -66,18 +66,18 @@ const Checkout = (props) => {
 
   return (
     <div>
-      <NavBar
-        products={products}
-        setProducts={setProducts}
-        allProducts={allProducts}
-        vendors={vendors}
-        setVendors={setVendors}
-        allVendors={allVendors}
-        locations={locations}
-        user={user}
-        setUser={setUser}
-        cartItems={cartItems}
-      />
+    {/* //   <NavBar
+    //     products={products}
+    //     setProducts={setProducts}
+    //     allProducts={allProducts}
+    //     vendors={vendors}
+    //     setVendors={setVendors}
+    //     allVendors={allVendors}
+    //     locations={locations}
+    //     user={user}
+    //     setUser={setUser}
+    //     cartItems={cartItems}
+    //   /> */}
 
       {cartItems.length > 0 ? (
 
