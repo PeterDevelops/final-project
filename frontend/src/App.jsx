@@ -241,6 +241,7 @@ function App() {
             products={products}
             setProducts={setProducts}
             allProducts={allProducts}
+            setAllProducts={setAllProducts}
             vendors={vendors}
             setVendors={setVendors}
             allVendors={allVendors}

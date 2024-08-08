@@ -21,28 +21,29 @@ const ProductListItem = (props) => {
   };
 
   const handleDelete = () => {
-  //   if (productData && vendor) {
-  //     const confirmed = window.confirm('Are you sure you want to delete this product?');
-  //     if (confirmed) {
-  //       fetch(`/api/products`, {
-  //         method: 'DELETE',
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //         },
-  //         body: JSON.stringify({ id: productData.id }),
-  //       })
-  //       .then(response => {
-  //         if (response.ok) {
-  //           setAllProducts(products.filter(p => p.id !== productData.id));
-  //         } else {
-  //           console.error('Failed to delete product');
-  //         }
-  //       })
-  //       .catch(err => {
-  //         console.error('Error deleting product:', err.message);
-  //       });
-  //     }
-  //   }
+    if (productData && vendor) {
+      const confirmed = window.confirm('Are you sure you want to delete this product?');
+      if (confirmed) {
+        fetch(`/api/products`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ id: productData.id }),
+        })
+        .then(response => {
+          if (response.ok) {
+            setAllProducts(allProducts.filter(p => p.id !== productData.id));
+            navigate('/vendors', { state: { allProducts }});
+          } else {
+            console.error('Failed to delete product');
+          }
+        })
+        .catch(err => {
+          console.error('Error deleting product:', err.message);
+        });
+      }
+    }
   };
 
   const isProductOwnedByUser = user && vendor && user.id === vendor.admin_user;
