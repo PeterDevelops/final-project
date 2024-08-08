@@ -12,6 +12,7 @@ const VendorProfile = (props) => {
     products,
     setProducts,
     allProducts,
+    setAllProducts,
     locations,
     categories,
     user,
@@ -94,6 +95,7 @@ const VendorProfile = (props) => {
                 products={products}
                 setProducts={setProducts}
                 allProducts={allProducts}
+                setAllProducts={setAllProducts}
                 vendors={vendors}
                 setVendors={setVendors}
                 allVendors={allVendors}
