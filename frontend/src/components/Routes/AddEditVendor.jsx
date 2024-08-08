@@ -14,7 +14,8 @@ const AddEditVendor = (props) => {
     locations,
     categories,
     user,
-    setUser
+    setUser,
+    cartItems,
   } = props;
   const [vendorName, setVendorName] = useState('');
   const [vendorBio, setVendorBio] = useState('');
@@ -117,7 +118,7 @@ const AddEditVendor = (props) => {
       }
 
       const data = await response.json();
-      
+
       if (editVendor) {
         setAllVendors(allVendors.map(v => v.id === data.id ? data : v));
       } else {
@@ -143,6 +144,7 @@ const AddEditVendor = (props) => {
         categories={categories}
         user={user}
         setUser={setUser}
+        cartItems={cartItems}
       />
       <form onSubmit={handleSubmit} className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg">
         <h1 className="text-2xl font-semibold mb-4">{editVendor ? 'Edit Vendor' : 'Add New Vendor'}</h1>

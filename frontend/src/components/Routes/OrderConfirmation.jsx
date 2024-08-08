@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const OrderConfirmation = ( { products, vendors, locations, user, setUser } ) => {
+const OrderConfirmation = ( { products, vendors, locations, user, setUser, cartItems, } ) => {
   // const [orderDetails, setOrderDetails] = useState([]);
   const navigate = useNavigate();
   // const userId = user.id;
@@ -20,7 +20,7 @@ const OrderConfirmation = ( { products, vendors, locations, user, setUser } ) =>
 
   return(
     <div>
-      <NavBar products={products} vendors={vendors} locations={locations} user={user} setUser={setUser} />
+      <NavBar products={products} vendors={vendors} locations={locations} user={user} setUser={setUser} cartItems={cartItems} />
       <div>Thank you for your order.</div>
 
       <div>

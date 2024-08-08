@@ -60,6 +60,7 @@ const Cart = (props) => {
         categories={categories}
         user={user}
         setUser={setUser}
+        cartItems={cartItems}
       />
 
       {!user || !user.id ? (

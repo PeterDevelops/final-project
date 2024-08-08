@@ -19,7 +19,8 @@ const NavBar = (props) => {
     locations,
     categories,
     user,
-    setUser
+    setUser,
+    cartItems
   } = props;
 
   const location = useLocation();
@@ -48,8 +49,13 @@ const NavBar = (props) => {
             user={user}
             setUser={setUser}
           />
-          <Link to="/cart" className="text-gray-700 hover:text-gray-900 flex items-center">
+          <Link to="/cart" className="text-gray-700 hover:text-gray-900 flex items-center relative">
             <FontAwesomeIcon icon={faShoppingBasket} size="2x" />
+            {cartItems.length > 0 && (
+              <span className="absolute top-5 right-0 block w-5 h-5 text-center text-white text-sm bg-red-600 rounded-full">
+                {cartItems.length}
+              </span>
+            )}
           </Link>
           <Link to="/inbox" className="text-gray-700 hover:text-gray-900 flex items-center">
             <FontAwesomeIcon icon={faEnvelope} size="2x" />

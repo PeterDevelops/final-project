@@ -57,6 +57,7 @@ const ProductList = (props) => {
         categories={categories}
         user={user}
         setUser={setUser}
+        cartItems={cartItems}
       />
       )}
       {productListArr()}

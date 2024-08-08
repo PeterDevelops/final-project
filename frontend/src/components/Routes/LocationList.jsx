@@ -12,7 +12,8 @@ const LocationList = (props) => {
     allProducts,
     setProducts,
     locations,
-    categories
+    categories,
+    cartItems,
   } = props;
 
   const [selectedLocation, setSelectedLocation] = useState(null);
@@ -45,6 +46,7 @@ const LocationList = (props) => {
         allVendors={allVendors}
         locations={locations}
         categories={categories}
+        cartItems={cartItems}
       />
       <div className="flex justify-center my-4">
         <Map

@@ -58,8 +58,6 @@ const ProductListItem = (props) => {
     setQuantities(updatedQuantities);
 
   };
-  console.log('cartItems:ProductListItem:', cartItems);
-  // console.log('ProductListtem:addToCart:productData:', productData);
 
 
   const handleAddToCart = (product) => {
