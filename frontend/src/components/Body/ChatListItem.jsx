@@ -98,35 +98,53 @@ const ChatListItem = (props) => {
   const messageList = messageHistory.map((message, index) => {
     // console.log("MESSAGE----", message.message)
     // console.log("This messages index", index)
-    
+
     const messageDivider = () => {
       // Get the current message date
       const messageDate = moment(message.created_at).startOf('day');
-      
+
       // Get the previous message date if it exists
       const previousMessageDate = index > 0 ? moment(messageHistory[index - 1].created_at).startOf('day') : null;
-      
+
       // Get the current date, today, and the day before yesterday
       const today = moment().startOf('day');
       const yesterday = moment().subtract(1, 'days').startOf('day');
-      
+
       // Check if the previous message date is different from the current message date
       if (!previousMessageDate || !messageDate.isSame(previousMessageDate, 'day')) {
         if (messageDate.isSame(today, 'day')) {
-          return <h1>Today</h1>;
+          return (
+            <div className="relative inline-flex items-center justify-center w-full">
+              <hr className="w-64 h-0.5 my-8 border-0 rounded bg-[#DCCFBE]" />
+              <div className="absolute px-4 bg-[#F7F4F0] text-[#DCCFBE]">
+                <h1 className="text-xs font-bold">Today</h1>
+              </div>
+            </div>)
         } else if (messageDate.isSame(today.subtract(1, 'day'), 'day')) {
-          return <h1>Yesterday</h1>;
+          return (
+            <div className="relative inline-flex items-center justify-center w-full">
+              <hr className="w-64 h-0.5 my-8 border-0 rounded bg-[#DCCFBE]" />
+              <div className="absolute px-4 bg-[#F7F4F0] text-[#DCCFBE]">
+                <h1 className="text-xs font-bold">Yesterday</h1>
+              </div>
+            </div>)
         } else if (messageDate.isBefore(yesterday)) {
-          return <h1>{messageDate.format('MMM DD YYYY')}</h1>;
+          return (
+            <div className="relative inline-flex items-center justify-center w-full">
+              <hr className="w-64 h-0.5 my-8 border-0 rounded bg-[#DCCFBE]" />
+              <div className="absolute px-4 bg-[#F7F4F0] text-[#DCCFBE] transform -translate-y-1/4 top-1/2 left-5.5">
+                <h1 className="text-xs font-bold">{messageDate.format('MMM DD YYYY')}</h1>;
+              </div>
+            </div>)
         }
       }
-    
+
       return null; // Default case if no condition matches
     }
-    
+
     return message.sender_id === user.id ? (
       <>
-        {messageDivider()}     
+            {messageDivider()}
         <li className="p-3 mb-2 rounded-lg shadow-md bg-[#EDB513] max-w-max self-end" key={message.id}>
           <p> {message.message}</p>
           <p className="text-xs text-right"> {moment(message.created_at).format('LT')}</p>
@@ -135,7 +153,7 @@ const ChatListItem = (props) => {
     ) :
       (
         <>
-          {messageDivider()}
+              {messageDivider()}
           <li className="p-3 mb-2 rounded-lg shadow-md bg-[#654960] text-white relative max-w-max" key={message.id}>
             <div>
               <p> {message.message}</p>
