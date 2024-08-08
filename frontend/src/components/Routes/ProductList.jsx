@@ -15,6 +15,10 @@ const ProductList = (props) => {
     categories,
     user,
     setUser,
+    cartItems,
+    setCartItems,
+    quantities,
+    setQuantities,
     showNavBar = true,
   } = props;
 
@@ -29,6 +33,11 @@ const ProductList = (props) => {
           setAllProducts={setAllProducts}
           user={user}
           allVendors={allVendors}
+          vendors={vendors}
+          cartItems={cartItems}
+          setCartItems={setCartItems}
+          setQuantities={setQuantities}
+          quantities={quantities}
         />
       ));
     }

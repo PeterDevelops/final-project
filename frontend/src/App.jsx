@@ -28,8 +28,7 @@ function App() {
   const [cartItems, setCartItems] = useState([]);
   const [totalCost, setTotalCost] = useState(0);
   const [user, setUser] = useState(null);
-
-  const userId = 1;
+  const [quantities, setQuantities] = useState({});
 
   // a route to pull products data from the db (backend)
   useEffect(() => {
@@ -78,24 +77,16 @@ function App() {
       });
   }, []);
 
-  // a route to pull all orders data from the db (backend)
-  useEffect(() => {
-    axios.get(`/api/cart/${userId}`)
-      .then(response => {
-        setCartItems(response.data);
-        // console.log("api/carts:",response.data)
-        const totalCost = response.data.reduce((acc, item) => acc + item.price_cents * item.quantity, 0);
-        setTotalCost(totalCost);
-      })
-      .catch(error => {
-        console.error('There was an error with cart data!', error);
-      });
-  }, []);
+  // add cart item total
+  const subtotal = cartItems.reduce((acc, item) => {
+    const quantity = quantities[item.cart_item_id] || 1;
+    return acc + (item.price_cents * quantity / 100);
+  }, 0);
 
   // console.log("Products Data---", products)
   // console.log("Vendors Data---", vendors)
   // console.log("categories in the App component: ------- ", categories)
-
+  // console.log('cartItems:App', cartItems);
   return (
     // Router must be in the top level of the app
     <Router>
@@ -127,6 +118,11 @@ function App() {
             setUser={setUser}
             cartItems={cartItems}
             totalCost={totalCost}
+            setQuantities={setQuantities}
+            quantities={quantities}
+            setCartItems={setCartItems}
+            setTotalCost={setTotalCost}
+            subtotal={subtotal}
           />}
         />
         <Route path="/inbox" element={
@@ -167,6 +163,10 @@ function App() {
             locations={locations}
             user={user}
             setUser={setUser}
+            cartItems={cartItems}
+            setCartItems={setCartItems}
+            setQuantities={setQuantities}
+            quantities={quantities}
           />}
         />
         <Route path="/categories" element={
@@ -197,6 +197,8 @@ function App() {
             cartItems={cartItems}
             totalCost={totalCost}
             setCartItems={setCartItems}
+            subtotal={subtotal}
+            quantities={quantities}
           />}
         />
         <Route path="/order-confirmation" element={

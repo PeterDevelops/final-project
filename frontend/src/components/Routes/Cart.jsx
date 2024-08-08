@@ -17,12 +17,35 @@ const Cart = (props) => {
     user,
     setUser,
     cartItems,
-    totalCost
+    totalCost,
+    setQuantities,
+    quantities,
+    setCartItems,
+    setTotalCost,
+    subtotal
   } = props;
-
+  // console.log('Cart:user.id', user.id);
   const navigate = useNavigate();
 
-  const userId = 1;
+  const handleQuantityChange = (itemId, newQuantity) => {
+    setQuantities(prevQuantities => ({
+      ...prevQuantities,
+      [itemId]: newQuantity
+    }));
+
+    // update cart items and total cost
+    const updatedCartItems = cartItems.map(item =>
+      item.cart_item_id === itemId ? { ...item, newQuantity } : item
+    )
+    setCartItems(updatedCartItems);
+    const newTotalCost = updatedCartItems.reduce((acc, item) => acc + item.price_cents * item.quantity);
+    setTotalCost(newTotalCost);
+  };
+
+  const handleDelete = (productId) => {
+    const updatedCartItems = cartItems.filter(item => item.product_id !== productId);
+    setCartItems(updatedCartItems);
+  };
 
   return (
     <div>
@@ -39,7 +62,12 @@ const Cart = (props) => {
         setUser={setUser}
       />
 
-      {cartItems.length > 0 ? (
+      {!user || !user.id ? (
+        <div>
+          Please <Link to="/login">Login</Link> to view your cart.
+        </div>
+      ) : (
+      cartItems.length > 0 ? (
         <div className='cart-container'>
           <div className='cart-center'>
 
@@ -66,13 +94,15 @@ const Cart = (props) => {
               key={item.cart_item_id}
               product_photo_url={item.product_photo_url}
               product_name={item.product_name}
-              quantity={item.quantity}
+              quantity={quantities[item.cart_item_id]}
+              onChange={(newQuantity) => handleQuantityChange(item.cart_item_id, newQuantity)}
+              onDelete={() => handleDelete(item.product_id)}
               price_cents={item.price_cents}
             />
           ))}
 
           <div className='total'>
-            Total: ${totalCost / 100}
+            Total: ${subtotal.toFixed(2)}
           </div>
 
           <Link to='/checkout'>
@@ -95,6 +125,7 @@ const Cart = (props) => {
           <div>Your Cart Is Empty</div>
           <button onClick={() => navigate('/')}>Go back to home page</button>
         </div>
+      )
       )}
     </div>
   );

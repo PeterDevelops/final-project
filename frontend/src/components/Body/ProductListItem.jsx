@@ -7,12 +7,65 @@ const ProductListItem = (props) => {
     allProducts,
     setAllProducts,
     user,
+    vendors,
     allVendors,
+    cartItems,
+    setCartItems,
+    quantities,
+    setQuantities
   } = props;
+  
+  const [added, setAdded] = useState(false);
 
   const navigate = useNavigate();
   const vendor = allVendors.find(v => v.id === productData.vendor_id);
 
+    // add item to cart function
+  const addToCart = (product) => {
+    const vendor = vendors.find(vendor => vendor.id === product.vendor_id);
+    const itemExist = cartItems.find(item => item.product_id === product.id);
+    let updatedCartItems;
+    // console.log('Found vendor:', vendor);
+    // console.log('ProductData:', productData)
+    if (itemExist) {
+      updatedCartItems = cartItems.map(item =>
+        item.product_id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+
+      );
+
+    } else {
+      const newItem = {
+        cart_item_id: cartItems.length + 1,
+        price_cents: product.price_cents,
+        product_id: product.id,
+        product_name: product.name,
+        product_photo_url: product.photo_url,
+        quantity: 1,
+        vendor_address: vendor?.address,
+        vendor_city: vendor?.city,
+        vendor_logo_url: vendor?.vendor_logo_url,
+        vendor_name: vendor?.name
+      };
+      updatedCartItems = [...cartItems, newItem];
+    }
+    setCartItems(updatedCartItems);
+
+    // update quantities state
+    const updatedQuantities = { ...quantities };
+    updatedCartItems.forEach(item => {
+      updatedQuantities[item.cart_item_id] = item.quantity;
+    });
+    setQuantities(updatedQuantities);
+
+  };
+  console.log('cartItems:ProductListItem:', cartItems);
+  // console.log('ProductListtem:addToCart:productData:', productData);
+
+
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    setAdded(true);
+  }
 
   const handleEdit = () => {
     if (productData && vendor) {
@@ -75,9 +128,10 @@ const ProductListItem = (props) => {
             </button>
           </div>
         ) : (
-          <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-            Add To Cart
-          </button>
+        <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          onClick={() => handleAddToCart(productData)}>
+          {added ? 'Added' : 'Add To Cart'}
+        </button>
         )}
       </div>
     </article>

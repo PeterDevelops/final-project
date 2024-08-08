@@ -7,7 +7,8 @@ const getAllMessages = (chatId) => {
 
   return db.query(queryString, queryParams)
     .then(results => results.rows)
-    .catch((err) => { console.error(err);
+    .catch((err) => { 
+      console.error(err);
       throw new Error('Could not get all messages')})
 }
 
@@ -26,8 +27,19 @@ const addMessage = (message, created_at, senderId, chatId) => {
     console.error(err);
     throw new Error('Could not add message')
   });
-
-
 }
 
-module.exports = { getAllMessages, addMessage };
+const getLastMessage = (chatId) => {
+  const queryString = `
+    SELECT messages.*, users.name FROM messages JOIN users ON messages.sender_id = users.id WHERE chat_id = $1 ORDER BY messages.id DESC LIMIT 1;`
+  const queryParams = [chatId];
+
+  return db.query(queryString, queryParams)
+    .then(results => results.rows)
+    .catch((err) => { 
+      console.error(err);
+      throw new Error('Could not get all messages')})
+}
+
+module.exports = { getAllMessages, addMessage, getLastMessage };
+
