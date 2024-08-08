@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/PaymentForm.scss';

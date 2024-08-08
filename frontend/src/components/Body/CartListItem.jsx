@@ -13,15 +13,13 @@ const CartListItem = (props) => {
     quantity,
     price_cents,
     setQuantities,
-    onChange
+    onChange,
+    onDelete
   } = props;
-  
-  // console.log('quantity:CartListItem:', quantity);
-  // const subtotal = (price_cents * quantity / 100);
+
   const location = useLocation();
   const noQuantity = ['/cart'];
-  // console.log('subtotal:', subtotal);
-  // console.log('quantity:', quantity);
+  const noDelete = ['/checkout'];
 
   return (
     <div className='cart-center'>
@@ -41,12 +39,13 @@ const CartListItem = (props) => {
         <QuantityInput defaultQuantity={quantity} onChange={onChange}/>
       </div>
 
-
+      {!noDelete.includes(location.pathname) && (
       <div>
-        <IconButton aria-label="delete" size="large">
+        <IconButton aria-label="delete" size="large" onClick={onDelete}>
           <DeleteIcon />
         </IconButton>
       </div>
+      )}
 
 
 

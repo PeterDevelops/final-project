@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { PrimeReactProvider } from 'primereact/api';
 import { InputNumber } from 'primereact/inputnumber';
-import 'primereact/resources/themes/saga-blue/theme.css';
+// import 'primereact/resources/themes/saga-blue/theme.css';
+// import "primereact/resources/themes/lara-light-cyan/theme.css";
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import '../../styles/QuantityInput.scss';
@@ -25,7 +26,7 @@ const QuantityInput = ({ defaultQuantity, onChange }) => {
     <PrimeReactProvider>
       {!noNumberInput.includes(location.pathname) && (
         <InputNumber
-          value={quantity || 1}
+          value={quantity}
           onValueChange={handleValueChange}
           showButtons buttonLayout="vertical"
           style={{ width: '4rem' }}

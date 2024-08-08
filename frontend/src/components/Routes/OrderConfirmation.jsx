@@ -1,9 +1,22 @@
 import NavBar from '../NavBar';
 import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const OrderConfirmation = ( { products, vendors, locations, user, setUser } ) => {
-
+  // const [orderDetails, setOrderDetails] = useState([]);
   const navigate = useNavigate();
+  // const userId = user.id;
+  // useEffect(() => {
+  //   axios.get(`/api/orders/${userId}`)
+  //   .then(response => {
+  //     setOrderDetails(response.data);
+  //     console.log('OrderConfirmation:orderDetails:', orderDetails);
+  //   })
+  //   .catch(err => {
+  //     console.error('Error retrieving order details', err);
+  //   })
+  // }, []);
 
   return(
     <div>

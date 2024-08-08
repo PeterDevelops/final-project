@@ -25,15 +25,6 @@ const Cart = (props) => {
   // console.log('Cart:user.id', user.id);
   const navigate = useNavigate();
 
-  // console.log('cartItems:', cartItems);
-  // const subtotal = cartItems.reduce((acc, item) => {
-  //   return acc + (item.price_cents * item.newQuantity / 100);
-  // }, 0);
-
-  // console.log('newSubtotal:', subtotal)
-  // const subtotal = (price_cents * quantity / 100);
-  // console.log('quantities:Cart:', quantities);
-
   const handleQuantityChange = (itemId, newQuantity) => {
     setQuantities(prevQuantities => ({
       ...prevQuantities,
@@ -47,6 +38,11 @@ const Cart = (props) => {
     setCartItems(updatedCartItems);
     const newTotalCost = updatedCartItems.reduce((acc, item) => acc + item.price_cents * item.quantity);
     setTotalCost(newTotalCost);
+  };
+
+  const handleDelete = (productId) => {
+    const updatedCartItems = cartItems.filter(item => item.product_id !== productId);
+    setCartItems(updatedCartItems);
   };
 
   return (
@@ -96,6 +92,7 @@ const Cart = (props) => {
               product_name={item.product_name}
               quantity={quantities[item.cart_item_id]}
               onChange={(newQuantity) => handleQuantityChange(item.cart_item_id, newQuantity)}
+              onDelete={() => handleDelete(item.product_id)}
               price_cents={item.price_cents}
             />
           ))}
