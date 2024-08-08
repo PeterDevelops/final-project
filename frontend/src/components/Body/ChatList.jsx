@@ -19,7 +19,7 @@ import moment from 'moment'
   const formatDate = (messageDateStr) => {
     const messageDate = moment.utc(messageDateStr).local(); // Convert date to local time
     // console.log("message date after local", messageDate)
-    const now = moment(); // Current local time
+    const now = moment(); // Current local date
     const yesterday = moment().subtract(1, 'days'); // Calculate yesterday's date
 
     console.log("messageDate", messageDate)
