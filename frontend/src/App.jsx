@@ -15,11 +15,14 @@ import LocationList from './components/Routes/LocationList';
 import OrderConfirmation from './components/Routes/OrderConfirmation';
 import ChatListItem from './components/Body/ChatListItem';
 import VendorProfile from './components/Routes/VendorProfile';
+import AddEditVendor from './components/Routes/AddEditVendor';
+import NewProduct from './components/Routes/NewProduct';
 
 function App() {
   const [products, setProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
   const [vendors, setVendors] = useState([]);
+  const [allVendors, setAllVendors] = useState([]);
   const [locations, setLocations] = useState([]);
   const [categories, setCategories] = useState([]);
   const [cartItems, setCartItems] = useState([]);
@@ -44,6 +47,7 @@ function App() {
     axios.get('/api/vendors')
       .then(response => {
         setVendors(response.data);
+        setAllVendors(response.data);
       })
       .catch(error => {
         console.error('There was an error with vendor data!', error);
@@ -94,6 +98,8 @@ function App() {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
             locations={locations}
             user={user}
             setUser={setUser}
@@ -105,6 +111,8 @@ function App() {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
             locations={locations}
             user={user}
             setUser={setUser}
@@ -123,6 +131,8 @@ function App() {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
             locations={locations}
             user={user}
             setUser={setUser}
@@ -134,6 +144,8 @@ function App() {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
             locations={locations}
             user={user}
             setUser={setUser}
@@ -145,6 +157,8 @@ function App() {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
             locations={locations}
             user={user}
             setUser={setUser}
@@ -160,6 +174,8 @@ function App() {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
             locations={locations}
             categories={categories}
             user={user}
@@ -172,6 +188,8 @@ function App() {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
             locations={locations}
             user={user}
             setUser={setUser}
@@ -197,6 +215,8 @@ function App() {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
             locations={locations}
             categories={categories}
             user={user}
@@ -209,6 +229,8 @@ function App() {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
             locations={locations}
             categories={categories}
             user={user}
@@ -221,6 +243,55 @@ function App() {
             setProducts={setProducts}
             allProducts={allProducts}
             vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
+            setAllVendors={setAllVendors}
+            locations={locations}
+            categories={categories}
+            user={user}
+            setUser={setUser}
+          />}
+        />
+        <Route path="/vendors/new" element={
+          <AddEditVendor
+            products={products}
+            setProducts={setProducts}
+            allProducts={allProducts}
+            vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
+            setAllVendors={setAllVendors}
+            locations={locations}
+            categories={categories}
+            user={user}
+            setUser={setUser}
+          />}
+        />
+        <Route path="/vendors/edit/:vendorId" element={
+          <AddEditVendor
+            products={products}
+            setProducts={setProducts}
+            allProducts={allProducts}
+            vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
+            setAllVendors={setAllVendors}
+            locations={locations}
+            categories={categories}
+            user={user}
+            setUser={setUser}
+          />}
+        />
+        <Route path="/products/new" element={
+          <NewProduct
+            products={products}
+            setProducts={setProducts}
+            allProducts={allProducts}
+            setAllProducts={setAllProducts}
+            vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
+            setAllVendors={setAllVendors}
             locations={locations}
             categories={categories}
             user={user}

@@ -51,7 +51,6 @@ const messagesRoute = require("./routes/messages")
 app.use("/api/products", productsRoute);
 app.use("/api/vendors", vendorsRoute);
 app.use("/api/locations", locationsRoute);
-app.use(express.static(path.join(__dirname, '../public')));
 app.use("/api/categories", categoriesRoute);
 app.use("/api/cart", cartsRoute);
 app.use("/api/orders", ordersRoute);
@@ -60,7 +59,6 @@ app.use("/logout", logoutRoute);
 app.use("/api/stripe", stripeRoute);
 app.use("/api/chats", chatsRoute);
 app.use("/api/messages", messagesRoute);
-
 
 // temp route to set up server
 // Create the rest of the routes in routes folder
@@ -78,15 +76,34 @@ io.on("connection", (socket) => {
   console.log(`User connected to chat: ${socket.id}`);
 
   // listens for client joining a chat [should pull chat.id and load chat page with that data]
-  socket.on("join_chat", (data) => {
-    socket.join(data);
+  socket.on("join_chat", (chatId) => {
+    socket.join(chatId);
+    console.log(`User joined chat ${chatId}`)
   })
+
+  //leave chat
+  socket.on('leave_chat', (chatId) => {
+    socket.leave(chatId);
+    console.log(`User ${socket.id} left chat ${chatId}`);
+  });
+  
+// data = {
+//  message: message, 
+//  created_at: moment().toISOString(), 
+//  sender_id: user.id, 
+//  user: user
+//}
 
   //websocket server listening for a message
   socket.on("send_message", (data) => {
-    socket.broadcast.emit("receive_message", data)
-    //send to specific chat ('.to')
-    // socket.to(data.chat).emit("receive_message", data)
-  })
+    console.log(`Received message: ${JSON.stringify(data)}`);
+    socket.to(data.chatId).emit("receive_message", data);
+    console.log(`Message sent to ${data.chatId}: ${data.message}`);
+  });
+
+  socket.on("disconnect", () => {
+    // Remove event listeners on disconnect
+    socket.removeAllListeners();
+  });
 
 });
