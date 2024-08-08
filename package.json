@@ -1,0 +1,23 @@
+{
+  "name": "final",
+  "version": "1.0.0",
+  "description": "## Project Setup",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PeterDevelops/final-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PeterDevelops/final-project/issues"
+  },
+  "homepage": "https://github.com/PeterDevelops/final-project#readme",
+  "dependencies": {
+    "@ngrok/ngrok": "^1.4.0"
+  }
+}

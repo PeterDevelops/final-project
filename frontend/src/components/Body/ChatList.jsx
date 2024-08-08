@@ -22,9 +22,9 @@ import moment from 'moment'
     const now = moment(); // Current local date
     const yesterday = moment().subtract(1, 'days'); // Calculate yesterday's date
 
-    console.log("messageDate", messageDate)
-    console.log("now", now)
-    console.log("yesterday", yesterday)
+    // console.log("messageDate", messageDate)
+    // console.log("now", now)
+    // console.log("yesterday", yesterday)
 
     // ChatList Format the time according to the user's local time zone
     if (now.isSame(messageDate, 'day')) {
@@ -48,7 +48,7 @@ const ChatList = (props) => {
 
   useEffect(() => {
     // if(user) {
-      console.log("CHAT--------", chat.chat_id)
+      // console.log("CHAT--------", chat.chat_id)
       axios.get(`/api/messages/last/${chat.chat_id}`)
       .then((message) => {
         setMessageData(message.data[0])
