@@ -10,6 +10,7 @@ const ProductList = (props) => {
     products,
     setProducts,
     allProducts,
+    setAllProducts,
     locations,
     categories,
     user,
@@ -21,7 +22,14 @@ const ProductList = (props) => {
   const productListArr = () => {
     if (Array.isArray(products) && products.length > 0) {
       return products.map((product) => (
-        <ProductListItem key={product.id} productData={product} />
+        <ProductListItem
+          key={product.id}
+          productData={product}
+          allProducts={allProducts}
+          setAllProducts={setAllProducts}
+          user={user}
+          allVendors={allVendors}
+        />
       ));
     }
   };
