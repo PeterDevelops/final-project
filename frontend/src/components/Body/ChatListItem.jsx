@@ -123,7 +123,7 @@ const ChatListItem = (props) => {
         } else if (messageDate.isSame(today.subtract(1, 'day'), 'day')) {
           return (
             <div className="relative inline-flex items-center justify-center w-full">
-              <hr className="w-64 h-0.5 my-8 border-0 rounded bg-[#DCCFBE]" />
+              <hr className="w-full h-0.5 my-8 border-0 rounded bg-[#DCCFBE]" />
               <div className="absolute px-4 bg-[#F7F4F0] text-[#DCCFBE]">
                 <h1 className="text-xs font-bold">Yesterday</h1>
               </div>
@@ -195,7 +195,7 @@ const ChatListItem = (props) => {
           </div>
 
           <div className="bg-[#305D53] flex flex-row items-center rounded p-1 mt-4">
-            <div className="bg-[#305D53] mt-1 flex-grow">
+            <div className="bg-[#305D53] flex-grow">
               <textarea
                 className="w-full h-12 border border-gray-300 rounded-lg p-2 resize-none overflow-auto"
                 onChange={(event) => setMessage(event.target.value)}

@@ -18,6 +18,7 @@ import ChatListItem from './components/Body/ChatListItem';
 import VendorProfile from './components/Routes/VendorProfile';
 import AddEditVendor from './components/Routes/AddEditVendor';
 import AddEditProduct from './components/Routes/AddEditProduct';
+import ScrollToTop from './ScrollToTop';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -105,6 +106,7 @@ function App() {
         cartItems={cartItems}
       />
       <main className='pt-navbar'>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={
             <Homepage
