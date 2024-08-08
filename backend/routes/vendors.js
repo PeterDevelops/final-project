@@ -1,7 +1,7 @@
 // path = localhost:8080/api/products
 
 const express = require('express');
-const { getAllVendors,createVendor } = require('../db/queries/vendors');
+const { getAllVendors, createVendor, updateVendor, deleteVendor } = require('../db/queries/vendors');
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -25,6 +25,30 @@ router.post("/", (req, res) => {
       console.error(err.message);
       res.status(500).json({ error: "Failed to create vendor" });
     });
+});
+
+router.put("/", (req, res) => {
+  const { id, name, bio, address, city, longitude, latitude, vendor_logo_url, admin_user } = req.body;
+  updateVendor({ id, name, bio, address, city, longitude, latitude, vendor_logo_url, admin_user })
+    .then(updatedVendor => {
+      res.json(updatedVendor);
+    })
+    .catch(err => {
+      console.error(err.message);
+      res.status(500).json({ error: "Failed to update vendor" });
+    });
+});
+
+router.delete("/", (req, res) => {
+  const { id } = req.body;
+  deleteVendor(id)
+    .then(() => {
+      res.status(200).json({ message: "Vendor deleted successfully" });
+    })
+    .catch(err => {
+      console.error(err.message);
+      res.status(500).json({error: "Failed to delete vendor"});
+    })
 });
 
 module.exports = router;
