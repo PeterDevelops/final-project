@@ -32,7 +32,6 @@ const Cart = (props) => {
       ...prevQuantities,
       [itemId]: newQuantity
     }));
-
     // update cart items and total cost
     const updatedCartItems = cartItems.map(item =>
       item.cart_item_id === itemId ? { ...item, newQuantity } : item
