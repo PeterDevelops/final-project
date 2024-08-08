@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import NavBar from '../NavBar';
 import ProductList from './ProductList';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +8,7 @@ const VendorProfile = (props) => {
     vendors,
     setVendors,
     allVendors,
+    setAllVendors,
     products,
     setProducts,
     allProducts,
@@ -28,8 +29,27 @@ const VendorProfile = (props) => {
 
   const handleDelete = () => {
     if (vendor) {
-    // Logic for handling delete action
-    console.log('Delete vendor', vendor.id);
+      const confirmed = window.confirm('Are you sure you want to delete this vendor?');
+      if (confirmed) {
+        fetch(`/api/vendors`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ id: vendor.id }),
+        })
+        .then(response => {
+          if (response.ok) {
+            setAllVendors(allVendors.filter(v => v.id !== vendor.id));
+            navigate('/vendors', { state: { allVendors }});
+          } else {
+            console.error('Failed to delete vendor');
+          }
+        })
+        .catch(err => {
+          console.error('Error deleting vendor:', err.message);
+        });
+      }
     }
   };
 
