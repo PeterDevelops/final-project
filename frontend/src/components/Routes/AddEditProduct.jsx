@@ -101,8 +101,15 @@ const AddEditProduct = (props) => {
     }
 
     try {
-      const response = await fetch('http://localhost:8080/api/products', {
-        method: editProduct ? 'PUT' : 'POST',
+      const response = editProduct ? await fetch('http://localhost:8080/api/products', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(productData),
+      })
+      : await fetch('http://localhost:8080/api/products', {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -110,33 +117,31 @@ const AddEditProduct = (props) => {
       });
 
       if (!response.ok) {
-        throw new Error(`Failed to ${editProduct ? 'update' : 'create'} product`);
+        throw new Error('Failed to create or update product');
       }
 
       const data = await response.json();
 
-      if (editProduct) {
-        setAllProducts(allProducts.map(p => p.id === data.id ? data : p));
-      } else {
-        setAllProducts([...allProducts, data]);
-      }
+      setAllProducts(prevProducts => {
+        const updatedProducts = editProduct
+          ? prevProducts.map(p => p.id === data.id ? data : p)
+          : [...prevProducts, data];
 
-      const currentVendor = allVendors.find(vendor => vendor.id.toString() === vendorId.toString());
+        const filteredByVendor = updatedProducts.filter(product => product.vendor_id.toString() === vendorId.toString());
 
-      if (!currentVendor) {
-        throw new Error('Current vendor not found');
-      }
+        setProducts(filteredByVendor);
+        setVendors([allVendors.find(vendor => vendor.id.toString() === vendorId.toString())]);
 
-      const filteredByVendor = [...allProducts, data].filter(product => product.vendor_id.toString() === vendorId.toString());
+        return updatedProducts;
+      });
 
-      setProducts(filteredByVendor);
-      setVendors([currentVendor]);
       navigate(`/vendors/${vendorId}`);
 
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error:', error.message);
     }
   };
+
 
   return (
     <div>

@@ -117,6 +117,7 @@ const AddEditVendor = (props) => {
       }
 
       const data = await response.json();
+      
       if (editVendor) {
         setAllVendors(allVendors.map(v => v.id === data.id ? data : v));
       } else {
