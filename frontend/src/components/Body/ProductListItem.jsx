@@ -13,10 +13,11 @@ const ProductListItem = (props) => {
   const navigate = useNavigate();
   const vendor = allVendors.find(v => v.id === productData.vendor_id);
 
+
   const handleEdit = () => {
-  //   if (productData && vendor) {
-  //     navigate(`/products/edit/${productData.id}`, { state: { product: productData } });
-  //   }
+    if (productData && vendor) {
+      navigate(`/products/edit/${productData.id}`, { state: { product: productData } });
+    }
   };
 
   const handleDelete = () => {
