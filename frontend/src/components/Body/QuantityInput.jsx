@@ -29,11 +29,12 @@ const QuantityInput = ({ defaultQuantity, onChange }) => {
           value={quantity}
           onValueChange={handleValueChange}
           showButtons buttonLayout="vertical"
-          style={{ width: '4rem' }}
+          style={{ width: '2.6rem' }}
           decrementButtonClassName="p-button-secondary"
           incrementButtonClassName="p-button-secondary"
           incrementButtonIcon="pi pi-plus"
-          decrementButtonIcon="pi pi-minus" />
+          decrementButtonIcon="pi pi-minus"
+          />
         )}
       </PrimeReactProvider>
   );

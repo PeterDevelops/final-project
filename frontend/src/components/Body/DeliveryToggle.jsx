@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 
 export default function DeliveryToggle({ alignment, setAlignment }) {
   // const [alignment, setAlignment] = React.useState('web');
-  const [subType, setSubType] = useState("pickup");
+  // const [subType, setSubType] = useState("pickup");
   const handleChange = (event, newAlignment) => {
     if (newAlignment !== null) {
       setAlignment(newAlignment);

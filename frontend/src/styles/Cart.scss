@@ -7,12 +7,30 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+
 .span-tag {
   font-weight: bold;
   margin-right: 10px;
+  font-size: .8em;
 }
 
 .cart-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+
+.cart-item-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.quantity-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -54,18 +72,17 @@
 
 div .delete-button {
   background-color: rgb(218, 35, 56);
-  padding: 10px 20px;
-  margin-top: 20px;
+  padding: 8px 15px;
+  margin-left: 8px;
   color: #ffffff;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.cart-center button:hover {
-  background-color: #0056b3;
-}
+// .cart-center button:hover {
+//   background-color: #0056b3;
+// }
 
 .cart-empty {
   text-align: center;

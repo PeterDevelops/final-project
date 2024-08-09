@@ -22,40 +22,47 @@ const CartListItem = (props) => {
   const noDelete = ['/checkout'];
 
   return (
-    <div className='cart-center'>
-      <img
-        src={product_photo_url}
-        alt={product_name}
-        className='item-logo'
-      />
+    <div className='cart-container'>
+      <div className='cart-center'>
+        <div className='cart-item-container'>
 
-      <span className='span-tag'>{product_name}</span>
+          <img
+            src={product_photo_url}
+            alt={product_name}
+            className='item-logo'
+          />
 
-      {!noQuantity.includes(location.pathname) && (
-        <span className='span-tag'>Qty: {quantity}</span>
-      )}
+          <span className='span-tag'>{product_name}</span>
 
-      <div>
-        <QuantityInput defaultQuantity={quantity} onChange={onChange}/>
-      </div>
+        </div>
+        <div className='cart-center'>
+        {!noQuantity.includes(location.pathname) && (
+          <span className='span-tag'>Qty: {quantity}</span>
+        )}
+        </div>
 
-      {!noDelete.includes(location.pathname) && (
-      <div>
-        <IconButton className='delete-button' aria-label="delete" size="large" onClick={onDelete}>
-          <DeleteIcon />
-        </IconButton>
-      </div>
-      )}
+        <span>
+          <QuantityInput defaultQuantity={quantity} onChange={onChange} />
+        </span>
+
+        {!noDelete.includes(location.pathname) && (
+          <span>
+            <IconButton className='delete-button' aria-label="delete" size="large" onClick={onDelete}>
+              <DeleteIcon />
+            </IconButton>
+          </span>
+        )}
 
 
 
-      {/* {!noSubtotal.includes(location.pathname) && (
+
+        {/* {!noSubtotal.includes(location.pathname) && (
       <span className='span-tag'>Subtotal: ${subtotal}</span>
     )} */}
 
 
+      </div>
     </div>
-
   );
 
 };
