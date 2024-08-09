@@ -41,7 +41,7 @@ const CartListItem = (props) => {
 
       {!noDelete.includes(location.pathname) && (
       <div>
-        <IconButton aria-label="delete" size="large" onClick={onDelete}>
+        <IconButton className='delete-button' aria-label="delete" size="large" onClick={onDelete}>
           <DeleteIcon />
         </IconButton>
       </div>

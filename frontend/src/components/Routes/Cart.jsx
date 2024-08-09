@@ -100,10 +100,15 @@ const Cart = (props) => {
               price_cents={item.price_cents}
             />
           ))}
-        
+
           <div className='total'>
+            Total:
+            <span>
             ${subtotal.toFixed(2)}
+
+            </span>
           </div>
+
 
           <Link to='/checkout'>
             <div className='cart-center'>

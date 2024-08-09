@@ -11,6 +11,7 @@
   font-weight: bold;
   margin-right: 10px;
 }
+
 .cart-center {
   display: flex;
   align-items: center;
@@ -40,11 +41,22 @@
   margin-right: 10px;
 }
 
-.cart-center button {
+// .cart-center button {
+//   background-color: #007bff;
+//   padding: 10px 20px;
+//   margin-top: 20px;
+//   color: #ffffff;
+//   border: none;
+//   border-radius: 5px;
+//   cursor: pointer;
+//   transition: background-color 0.3s ease;
+// }
+
+div .delete-button {
+  background-color: rgb(218, 35, 56);
   padding: 10px 20px;
   margin-top: 20px;
-  background-color: #007bff;
-  color: #fff;
+  color: #ffffff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
