@@ -105,7 +105,7 @@ function App() {
         setUser={setUser}
         cartItems={cartItems}
       />
-      <main className='pt-navbar'>
+      <main className='pt-navbar bg-main'>
         <ScrollToTop />
         <Routes>
           <Route path="/" element={

@@ -5,7 +5,7 @@ const LocationListItem = (props) => {
 
   return (
     <article
-      className="flex flex-col md:flex-row md:items-center border rounded-lg shadow-md m-5 overflow-hidden cursor-pointer w-80vw"
+      className="flex flex-col md:flex-row md:items-center border rounded-lg shadow-md bg-[#F7F4F0] bg-opacity-50 m-5 overflow-hidden cursor-pointer w-80vw"
       onClick={() => onClick(locationData)}
     >
       <img src={locationData.vendor_logo_url} alt="Vendor Logo" className="w-full md:w-1/3 md:object-cover md:object-contain" />

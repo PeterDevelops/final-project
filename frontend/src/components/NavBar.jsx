@@ -29,7 +29,7 @@ const NavBar = (props) => {
 
   return (
     <div className='fixed top-0 left-0 right-0'>
-      <nav className="h-16 px-4 bg-[#F7F4F0]">
+      <nav className="h-16 px-4 bg-[#F7F4F0] bg-nav">
         <div className='flex items-center justify-between'>
           <HamburgerMenu setProducts={setProducts} allProducts={allProducts} setVendors={setVendors} allVendors={allVendors} user={user} />
           {/* LOGO */}
@@ -68,7 +68,7 @@ const NavBar = (props) => {
       <div>
         {/* exclude SearchBar from specified routes */}
         {!noSearchBar.includes(location.pathname) && (
-          <div className="bg-[#F7F4F0] pt-10">
+          <div className="bg-[#F7F4F0] bg-nav pt-10">
             <SearchBar
               products={products}
               setProducts={setProducts}
