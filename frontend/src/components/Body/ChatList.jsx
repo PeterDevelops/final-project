@@ -15,26 +15,26 @@ import moment from 'moment'
 //   },
 //   
 
-  //consider pulling this out into a helper file???
-  const formatDate = (messageDateStr) => {
-    const messageDate = moment.utc(messageDateStr).local(); // Convert date to local time
-    // console.log("message date after local", messageDate)
-    const now = moment(); // Current local date
-    const yesterday = moment().subtract(1, 'days'); // Calculate yesterday's date
+//consider pulling this out into a helper file???
+const formatDate = (messageDateStr) => {
+  const messageDate = moment.utc(messageDateStr).local(); // Convert date to local time
+  // console.log("message date after local", messageDate)
+  const now = moment(); // Current local date
+  const yesterday = moment().subtract(1, 'days'); // Calculate yesterday's date
 
-    // console.log("messageDate", messageDate)
-    // console.log("now", now)
-    // console.log("yesterday", yesterday)
+  console.log("messageDate", messageDate)
+  console.log("now", now)
+  console.log("yesterday", yesterday)
 
-    // ChatList Format the time according to the user's local time zone
-    if (now.isSame(messageDate, 'day')) {
-        return messageDate.format('LT'); // Format as local time
-    } else if (yesterday.isSame(messageDate, 'day')) {
-        return "Yesterday"; // Return "Yesterday" if the date is yesterday
-    } else {
-        return messageDate.format('MMM DD YYYY'); // Format as full date
-    }
-  
+  // ChatList Format the time according to the user's local time zone
+  if (now.isSame(messageDate, 'day')) {
+    return messageDate.format('LT'); // Format as local time
+  } else if (yesterday.isSame(messageDate, 'day')) {
+    return "Yesterday"; // Return "Yesterday" if the date is yesterday
+  } else {
+    return messageDate.format('MMM DD YYYY'); // Format as full date
+  }
+
 };
 
 const ChatList = (props) => {
@@ -48,31 +48,34 @@ const ChatList = (props) => {
 
   useEffect(() => {
     // if(user) {
-      // console.log("CHAT--------", chat.chat_id)
-      axios.get(`/api/messages/last/${chat.chat_id}`)
+    console.log("CHAT--------", chat.chat_id)
+    axios.get(`/api/messages/last/${chat.chat_id}`)
       .then((message) => {
         setMessageData(message.data[0])
       })
-      .catch((error) => {console.log("There was an issue retrieving the last message:", error)})
+      .catch((error) => { console.log("There was an issue retrieving the last message:", error) })
     // }
   }, [])
 
   const handleClick = (id) => {
     console.log("ChatList click event id", id)
-    navigate(`/chats/${id}`, {state: {chat: chat}})
+    navigate(`/chats/${id}`, { state: { chat: chat } })
   }
 
   return (
-      <article onClick={() => handleClick(chat.chat_id)} className="cursor-pointer flex flex-row items-center rounded my-3">
-        <img src={chat.contact_photo} className="rounded-full h-16 w-16 object-cover"/>
-        <div className="flex flex-col p-5 w-full">
-          <div className="flex flex-row justify-between">
-            <h1 className="font-bold text-lg">{chat.contact_name}</h1>
-            <p className="text-xs">{formatDate(messageData.created_at)}</p>
-          </div>
-          <p>{messageData.name}: {messageData.message}</p>
-        </div>
-      </article>
+    <article onClick={() => handleClick(chat.chat_id)} class="cursor-pointer flex items-center border rounded p-5 gap-4 my-5 hover:shadow-md">
+      <img src={chat.contact_photo} alt="avatar"
+        class="inline-block relative object-cover object-center !rounded-full w-20 h-20" />
+      <div className="flex flex-col justify-between">
+        <h6 class="block font-sans text-lg antialiased font-semibold leading-relaxed tracking-normal text-inherit">
+          {chat.contact_name}
+        </h6>
+        <p class="block font-sans text-m antialiased font-normal leading-normal text-gray-800">
+          {messageData.name}: {messageData.message}
+        </p>
+        <p className="text-xs text-gray-500">{formatDate(messageData.created_at)}</p>
+      </div>
+    </article>
 
   )
 };
