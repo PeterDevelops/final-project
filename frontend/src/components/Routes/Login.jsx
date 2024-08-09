@@ -14,7 +14,8 @@ const Login = (props) => {
     locations,
     categories,
     user,
-    setUser
+    setUser,
+    cartItems,
   } = props;
 
   const [email, setEmail] = useState('');
@@ -54,6 +55,7 @@ const Login = (props) => {
           categories={categories}
           user={user}
           setUser={setUser}
+          cartItems={cartItems}
         />
 
         <section className="m-3 p-3">

@@ -16,7 +16,7 @@ import OrderConfirmation from './components/Routes/OrderConfirmation';
 import ChatListItem from './components/Body/ChatListItem';
 import VendorProfile from './components/Routes/VendorProfile';
 import AddEditVendor from './components/Routes/AddEditVendor';
-import NewProduct from './components/Routes/NewProduct';
+import AddEditProduct from './components/Routes/AddEditProduct';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -103,6 +103,7 @@ function App() {
             locations={locations}
             user={user}
             setUser={setUser}
+            cartItems={cartItems}
           />}
         />
         <Route path="/cart" element={
@@ -136,6 +137,7 @@ function App() {
             locations={locations}
             user={user}
             setUser={setUser}
+            cartItems={cartItems}
           />}
         />
         <Route path="/vendors" element={
@@ -149,6 +151,7 @@ function App() {
             locations={locations}
             user={user}
             setUser={setUser}
+            cartItems={cartItems}
           />}
         />
         <Route path="/products" element={
@@ -156,6 +159,7 @@ function App() {
             products={products}
             setProducts={setProducts}
             allProducts={allProducts}
+            setAllProducts={setAllProducts}
             vendors={vendors}
             setVendors={setVendors}
             allVendors={allVendors}
@@ -180,6 +184,7 @@ function App() {
             categories={categories}
             user={user}
             setUser={setUser}
+            cartItems={cartItems}
           />}
         />
         <Route path="/checkout" element={
@@ -207,6 +212,7 @@ function App() {
             locations={locations}
             user={user}
             setUser={setUser}
+            cartItems={cartItems}
           />}
         />
         <Route path="/login" element={
@@ -221,6 +227,7 @@ function App() {
             categories={categories}
             user={user}
             setUser={setUser}
+            cartItems={cartItems}
           />}
         />
         <Route path="/locations" element={
@@ -235,6 +242,7 @@ function App() {
             categories={categories}
             user={user}
             setUser={setUser}
+            cartItems={cartItems}
           />}
         />
         <Route path="/vendors/:vendorId" element={
@@ -242,6 +250,7 @@ function App() {
             products={products}
             setProducts={setProducts}
             allProducts={allProducts}
+            setAllProducts={setAllProducts}
             vendors={vendors}
             setVendors={setVendors}
             allVendors={allVendors}
@@ -250,6 +259,7 @@ function App() {
             categories={categories}
             user={user}
             setUser={setUser}
+            cartItems={cartItems}
           />}
         />
         <Route path="/vendors/new" element={
@@ -265,6 +275,7 @@ function App() {
             categories={categories}
             user={user}
             setUser={setUser}
+            cartItems={cartItems}
           />}
         />
         <Route path="/vendors/edit/:vendorId" element={
@@ -280,10 +291,11 @@ function App() {
             categories={categories}
             user={user}
             setUser={setUser}
+            cartItems={cartItems}
           />}
         />
         <Route path="/products/new" element={
-          <NewProduct
+          <AddEditProduct
             products={products}
             setProducts={setProducts}
             allProducts={allProducts}
@@ -296,6 +308,24 @@ function App() {
             categories={categories}
             user={user}
             setUser={setUser}
+            cartItems={cartItems}
+          />}
+        />
+        <Route path="/products/edit/:productId" element={
+          <AddEditProduct
+            products={products}
+            setProducts={setProducts}
+            allProducts={allProducts}
+            setAllProducts={setAllProducts}
+            vendors={vendors}
+            setVendors={setVendors}
+            allVendors={allVendors}
+            setAllVendors={setAllVendors}
+            locations={locations}
+            categories={categories}
+            user={user}
+            setUser={setUser}
+            cartItems={cartItems}
           />}
         />
         <Route path="/chats/:id" element={

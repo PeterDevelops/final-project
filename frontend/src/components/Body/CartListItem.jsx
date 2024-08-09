@@ -26,7 +26,7 @@ const CartListItem = (props) => {
       <img
         src={product_photo_url}
         alt={product_name}
-        className='vendor-logo'
+        className='item-logo'
       />
 
       <span className='span-tag'>{product_name}</span>
