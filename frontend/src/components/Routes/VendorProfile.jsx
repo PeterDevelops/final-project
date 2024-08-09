@@ -55,6 +55,17 @@ const VendorProfile = (props) => {
     }
   };
 
+  // temporary navigation to hard-coded chat because I Give Up
+  const hardCodedChatId = 3;
+  const handleNavigateToChat = () => {
+    if (user) {
+      navigate(`/chats/${hardCodedChatId}`);
+    } else {
+      navigate('/login');
+    }
+  };
+
+
   return (
     <div>
       {/* <NavBar
@@ -91,6 +102,15 @@ const VendorProfile = (props) => {
               </button>
             </div>
           )}
+          {/* button to navigate to temporary fake chat */}
+          <div className="mt-4">
+            <button
+              onClick={handleNavigateToChat}
+              className="bg-green-500 text-white py-2 px-4 rounded"
+            >
+              Message Vendor
+            </button>
+          </div>
         </div>
       </div>
       <ProductList
