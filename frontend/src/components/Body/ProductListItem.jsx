@@ -59,7 +59,6 @@ const ProductListItem = (props) => {
 
   };
 
-
   const handleAddToCart = (product) => {
     addToCart(product);
     setAdded(true);

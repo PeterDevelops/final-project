@@ -276,6 +276,8 @@ function App() {
               user={user}
               setUser={setUser}
               cartItems={cartItems}
+              setCartItems={setCartItems}
+              setQuantities={setQuantities}
             />}
           />
           <Route path="/vendors/new" element={

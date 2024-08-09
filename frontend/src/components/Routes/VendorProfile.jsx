@@ -18,6 +18,8 @@ const VendorProfile = (props) => {
     user,
     setUser,
     cartItems,
+    setCartItems,
+    setQuantities
   } = props;
 
   const navigate = useNavigate();
@@ -106,6 +108,9 @@ const VendorProfile = (props) => {
                 user={user}
                 setUser={setUser}
                 showNavBar={false}
+                cartItems={cartItems}
+                setCartItems={setCartItems}
+                setQuantities={setQuantities}
       />
     </div>
   );
