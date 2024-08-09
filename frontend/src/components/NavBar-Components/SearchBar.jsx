@@ -137,7 +137,7 @@ export default function SearchBar(props) {
   };
 
   return (
-    <div className="p-4 max-w-md mx-auto">
+    <div className="p-4 max-w-xl mx-auto">
       <form onSubmit={handleSubmit}>
         <Autocomplete
           id="grouped-demo"
