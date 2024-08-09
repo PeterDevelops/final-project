@@ -67,6 +67,8 @@ const Homepage = (props) => {
         allowUserLocation={allowUserLocation}
         allProducts={allProducts}
         setProducts={setProducts}
+        vendors={vendors}
+        setVendors={setVendors}
         allVendors={allVendors}
       />
     </div>
