@@ -15,7 +15,6 @@ const customIcon = new Icon({
 const Map = (props) => {
   const {
     zoom,
-    className,
     allowUserLocation,
     selectedLocation,
     allProducts,
@@ -81,7 +80,7 @@ const Map = (props) => {
         center={center}
         zoom={zoom}
         scrollWheelZoom={true}
-        className={className}
+        className='h-50vh w-80vw mx-auto border-2 border-custom-gray shadow-md rounded-lg mt-10'
         key={`${center[0]}-${center[1]}`}
       >
         <TileLayer

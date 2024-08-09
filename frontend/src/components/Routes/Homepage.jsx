@@ -45,7 +45,7 @@ const Homepage = (props) => {
   };
 
   return (
-    <div>
+    <div className="relative h-screen">
       {showModal && <LocationModal onAccept={handleAccept} onDecline={handleDecline} />}
       {/* <NavBar
         products={products}
@@ -63,7 +63,6 @@ const Homepage = (props) => {
       <Map
         locations={locations}
         zoom={12}
-        className='h-50vh w-80vw mx-auto border-2 border-custom-gray shadow-md rounded-lg mt-10'
         allowUserLocation={allowUserLocation}
         allProducts={allProducts}
         setProducts={setProducts}
