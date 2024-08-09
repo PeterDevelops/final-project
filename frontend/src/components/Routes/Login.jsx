@@ -44,7 +44,7 @@ const Login = (props) => {
 
   return (
     <>
-        <NavBar
+        {/* <NavBar
           products={products}
           setProducts={setProducts}
           allProducts={allProducts}
@@ -56,7 +56,7 @@ const Login = (props) => {
           user={user}
           setUser={setUser}
           cartItems={cartItems}
-        />
+        /> */}
 
         <section className="m-3 p-3 flex flex-row justify-center">
           <div className="w-full max-w-xs ">

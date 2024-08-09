@@ -18,6 +18,8 @@ const VendorProfile = (props) => {
     user,
     setUser,
     cartItems,
+    setCartItems,
+    setQuantities
   } = props;
 
   const navigate = useNavigate();
@@ -55,9 +57,20 @@ const VendorProfile = (props) => {
     }
   };
 
+  // temporary navigation to hard-coded chat because I Give Up
+  const hardCodedChatId = 3;
+  const handleNavigateToChat = () => {
+    if (user) {
+      navigate(`/chats/${hardCodedChatId}`);
+    } else {
+      navigate('/login');
+    }
+  };
+
+
   return (
     <div>
-      <NavBar
+      {/* <NavBar
         products={products}
         setProducts={setProducts}
         allProducts={allProducts}
@@ -69,7 +82,7 @@ const VendorProfile = (props) => {
         user={user}
         setUser={setUser}
         cartItems={cartItems}
-      />
+      /> */}
       <div className="vendor-profile flex flex-col md:flex-row md:items-center border rounded-lg shadow-md m-5 overflow-hidden">
         <img src={vendor.vendor_logo_url} alt={vendor.name} className="w-full md:w-1/3 md:object-cover md:object-contain" />
         <div className="p-5 w-full md:w-2/3">
@@ -91,6 +104,15 @@ const VendorProfile = (props) => {
               </button>
             </div>
           )}
+          {/* button to navigate to temporary fake chat */}
+          <div className="mt-4">
+            <button
+              onClick={handleNavigateToChat}
+              className="bg-green-500 text-white py-2 px-4 rounded"
+            >
+              Message Vendor
+            </button>
+          </div>
         </div>
       </div>
       <ProductList
@@ -106,6 +128,9 @@ const VendorProfile = (props) => {
                 user={user}
                 setUser={setUser}
                 showNavBar={false}
+                cartItems={cartItems}
+                setCartItems={setCartItems}
+                setQuantities={setQuantities}
       />
     </div>
   );

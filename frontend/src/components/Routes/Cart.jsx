@@ -32,7 +32,6 @@ const Cart = (props) => {
       ...prevQuantities,
       [itemId]: newQuantity
     }));
-
     // update cart items and total cost
     const updatedCartItems = cartItems.map(item =>
       item.cart_item_id === itemId ? { ...item, newQuantity } : item
@@ -49,7 +48,7 @@ const Cart = (props) => {
 
   return (
     <div>
-      <NavBar
+      {/* <NavBar
         products={products}
         setProducts={setProducts}
         allProducts={allProducts}
@@ -62,7 +61,11 @@ const Cart = (props) => {
         setUser={setUser}
         cartItems={cartItems}
       />
+      /> */}
 
+      <div className='cart-center'>
+        My Cart
+      </div>
       {!user || !user.id ? (
         <div>
           Please <Link to="/login">Login</Link> to view your cart.
@@ -86,9 +89,6 @@ const Cart = (props) => {
             </span>
           </div>
 
-          <div className='cart-center'>
-            Your Cart
-          </div>
 
           {cartItems.map(item => (
             <CartListItem
@@ -103,15 +103,19 @@ const Cart = (props) => {
           ))}
 
           <div className='total'>
-            Total: ${subtotal.toFixed(2)}
+            Total:
+            <span className='m-2'>
+            ${subtotal.toFixed(2)}
+            </span>
           </div>
+
 
           <Link to='/checkout'>
             <div className='cart-center'>
               <button className='text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-300
         font-medium rounded-full text-sm px-5 py-2 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700
         dark:focus:ring-green-800'>
-                PROCEED TO CHECKOUT
+                Checkout
               </button>
             </div>
           </Link>

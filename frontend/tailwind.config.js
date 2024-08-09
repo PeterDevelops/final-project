@@ -18,6 +18,13 @@ module.exports = {
       boxShadow: {
         'text-outline': '2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',
       },
+      spacing: {
+        'navbar': '194px',
+      },
+      backgroundImage: {
+        // 'nav': "url('https://www.toptal.com/designers/subtlepatterns/uploads/bananas.png')",
+        'main': "url('https://www.toptal.com/designers/subtlepatterns/uploads/leaves-pattern.png')",
+      },
     },
   },
   plugins: [

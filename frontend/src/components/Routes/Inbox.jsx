@@ -54,7 +54,7 @@ const Inbox = (props) => {
 
   return (
     <div>
-      <NavBar
+      {/* <NavBar
         products={products}
         setProducts={setProducts}
         allProducts={allProducts}
@@ -66,7 +66,7 @@ const Inbox = (props) => {
         user={user}
         setUser={setUser}
         cartItems={cartItems}
-      />
+      /> */}
       <h1 className="text-xl font-semibold m-3 p-3">Inbox </h1>
 
       <div className="flex flex-col justify-content">

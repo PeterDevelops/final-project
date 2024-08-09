@@ -1,67 +1,96 @@
 import React, { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { useNavigate } from 'react-router-dom'
+import '../styles/Leaflet.css';
+import { useNavigate } from 'react-router-dom';
+import VendorListItem from './Body/VendorListItem';
+import VendorsInBoundsUpdater from './Body/VendorInBoundsUpdater';
 
-const customIcon = new Icon ({
+const customIcon = new Icon({
   iconUrl: require("../marker-icon.png"),
-  iconSize: [35, 35]
+  iconSize: [35, 35],
 });
 
 const Map = (props) => {
   const {
-    locations,
     zoom,
-    className,
     allowUserLocation,
-    selectedLocation
+    selectedLocation,
+    allProducts,
+    setProducts,
+    vendors,
+    setVendors,
+    allVendors,
   } = props;
 
   const navigate = useNavigate();
-  const [center, setCenter] = useState([49.2824, -122.8277]) // default center in port moody
+  const [center, setCenter] = useState([49.2824, -122.8277]); // default center in Port Moody
 
-  // allow geolocation based on users acceptance or denial
   useEffect(() => {
     if (allowUserLocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        setCenter([position.coords.latitude, position.coords.longitude]);
-      }, (error) => {
-        console.error("geolocation permission denied", error);
-      })
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setCenter([position.coords.latitude, position.coords.longitude]);
+        },
+        (error) => {
+          console.error("Geolocation permission denied", error);
+        }
+      );
     }
   }, [allowUserLocation]);
 
-  // center map based on users selected location
   useEffect(() => {
     if (selectedLocation && selectedLocation.latitude && selectedLocation.longitude) {
       setCenter([selectedLocation.latitude, selectedLocation.longitude]);
     }
   }, [selectedLocation]);
 
-  // function to navigate to vendor's profile page from marker popup
+  const handleVendorClick = (vendor) => {
+    const filteredByVendor = allProducts.filter(product => product.vendor_id === vendor.id);
+    const currentVendor = vendor;
+
+    setProducts(filteredByVendor);
+    setVendors([currentVendor]);
+    navigate(`/vendors/${currentVendor.id}`, { state: { allProducts, allVendors } });
+  };
+
+  const vendorsOnMapList = () => {
+    if (Array.isArray(vendors) && vendors.length > 0) {
+      return vendors.map((vendor) => (
+        <VendorListItem key={vendor.id} vendorData={vendor} onClick={() => handleVendorClick(vendor)} />
+      ));
+    }
+  };
+
   const handleNavigateToVendorProfile = (vendorId) => {
     if (vendorId) {
-      navigate(`/vendors/${vendorId}`);
+      console.log('Button clicked, vendorId:', vendorId);
+      const filteredByVendor = allProducts.filter(product => product.vendor_id === vendorId);
+      const currentVendor = allVendors.filter(vendor => vendor.id === vendorId);
+      setVendors(currentVendor);
+      setProducts(filteredByVendor);
+      navigate(`/vendors/${vendorId}`, { state: { allProducts } });
     }
   };
 
   return (
-    <MapContainer
-      center={center}
-      zoom={zoom}
-      scrollWheelZoom={true}
-      className={className}
-      // allowUserLocation={allowUserLocation} idk
-      key={`${center[0]}-${center[1]}`}
-    >
-      <TileLayer
-        attribution='&copy; <a href="https://www.thunderforest.com">Thunderforest</a>'
-        url={`https://{s}.tile.thunderforest.com/neighbourhood/{z}/{x}/{y}.png?apikey=${process.env.REACT_APP_THUNDERFOREST_API_KEY}`}
-      />
-      {locations.map((location) => {
-        // console.log("location data:", location);
-        return (
+    <>
+      <MapContainer
+        center={center}
+        zoom={zoom}
+        scrollWheelZoom={true}
+        className='h-50vh w-80vw mx-auto border-2 border-custom-gray shadow-md rounded-lg mt-10'
+        key={`${center[0]}-${center[1]}`}
+      >
+        <TileLayer
+          attribution='&copy; <a href="https://www.thunderforest.com">Thunderforest</a>'
+          url={`https://{s}.tile.thunderforest.com/neighbourhood/{z}/{x}/{y}.png?apikey=${process.env.REACT_APP_THUNDERFOREST_API_KEY}`}
+        />
+
+        <VendorsInBoundsUpdater allVendors={allVendors} setVendors={setVendors} />
+
+        {allVendors.map((location) => (
           <Marker
             key={location.id}
             position={[location.latitude, location.longitude]}
@@ -72,7 +101,7 @@ const Map = (props) => {
                 <h2>{location.name}</h2>
                 <p>{location.city}</p>
                 <button
-                  onClick={() => handleNavigateToVendorProfile(location.vendor_id)}
+                  onClick={() => handleNavigateToVendorProfile(location.id)}
                   className="mt-2 px-3 py-1 bg-blue-500 text-white rounded"
                 >
                   View Vendor Profile
@@ -80,9 +109,13 @@ const Map = (props) => {
               </div>
             </Popup>
           </Marker>
-        );
-      })}
-    </MapContainer>
+        ))}
+      </MapContainer>
+
+      <div className="flex flex-col items-center space-y-1 w-80vw mx-auto">
+        {vendorsOnMapList()}
+      </div>
+    </>
   );
 };
 
