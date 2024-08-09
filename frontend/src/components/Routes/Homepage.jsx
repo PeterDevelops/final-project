@@ -62,7 +62,6 @@ const Homepage = (props) => {
       /> */}
       <Map
         locations={locations}
-        zoom={12}
         allowUserLocation={allowUserLocation}
         allProducts={allProducts}
         setProducts={setProducts}

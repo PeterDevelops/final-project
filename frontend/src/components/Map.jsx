@@ -14,7 +14,6 @@ const customIcon = new Icon({
 
 const Map = (props) => {
   const {
-    zoom,
     allowUserLocation,
     selectedLocation,
     allProducts,
@@ -25,7 +24,7 @@ const Map = (props) => {
   } = props;
 
   const navigate = useNavigate();
-  const [center, setCenter] = useState([49.2824, -122.8277]); // default center in Port Moody
+  const [center, setCenter] = useState([49.277321, -122.888835]); // default center in Port Moody
 
   useEffect(() => {
     if (allowUserLocation) {
@@ -78,7 +77,7 @@ const Map = (props) => {
     <>
       <MapContainer
         center={center}
-        zoom={zoom}
+        zoom={15}
         scrollWheelZoom={true}
         className='h-50vh w-80vw mx-auto border-2 border-custom-gray shadow-md rounded-lg mt-10'
         key={`${center[0]}-${center[1]}`}
