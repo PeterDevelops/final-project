@@ -145,7 +145,7 @@ const AddEditProduct = (props) => {
 
 
   return (
-    <div>
+    <div className="relative h-screen">
       {/* <NavBar
         products={products}
         setProducts={setProducts}
@@ -159,7 +159,7 @@ const AddEditProduct = (props) => {
         setUser={setUser}
         cartItems={cartItems}
       /> */}
-      <form onSubmit={handleSubmit} className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg">
+      <form onSubmit={handleSubmit} className="max-w-4xl mx-auto p-6 bg-[#F7F4F0] bg-opacity-50 mt-10 shadow-md rounded-lg">
         <h1 className="text-2xl font-semibold mb-4">{editProduct ? 'Edit Product' : 'Add New Product'}</h1>
         <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
           <div>

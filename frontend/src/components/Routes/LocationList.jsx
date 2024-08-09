@@ -37,7 +37,7 @@ const LocationList = (props) => {
   };
 
   return (
-    <div >
+    <div>
       {/* <NavBar
         products={products}
         setProducts={setProducts}

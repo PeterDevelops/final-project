@@ -45,7 +45,7 @@ const Homepage = (props) => {
   };
 
   return (
-    <div className="relative h-screen">
+    <div className='min-h-screen'>
       {showModal && <LocationModal onAccept={handleAccept} onDecline={handleDecline} />}
       {/* <NavBar
         products={products}

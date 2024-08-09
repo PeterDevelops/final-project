@@ -43,7 +43,7 @@ const Login = (props) => {
   // })
 
   return (
-    <>
+    <div className="relative h-screen">
         {/* <NavBar
           products={products}
           setProducts={setProducts}
@@ -101,7 +101,7 @@ const Login = (props) => {
             </form>
           </div>
         </section>
-    </>
+    </div>
   )
 }
 

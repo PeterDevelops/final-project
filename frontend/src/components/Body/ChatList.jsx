@@ -13,7 +13,7 @@ import moment from 'moment'
 //     email: 'peter@peter.com',
 //     profile_photo_url: 'http://dummyimage.com/174x166.png/5fa2dd/ffffff'
 //   },
-//   
+//
 
 //consider pulling this out into a helper file???
 const formatDate = (messageDateStr) => {
@@ -63,7 +63,7 @@ const ChatList = (props) => {
   }
 
   return (
-    <article onClick={() => handleClick(chat.chat_id)} class="cursor-pointer flex items-center border rounded p-5 gap-4 my-5 hover:shadow-md">
+    <article onClick={() => handleClick(chat.chat_id)} className="cursor-pointer flex items-center border rounded p-5 gap-4 my-5 bg-[#F7F4F0] bg-opacity-50 hover:shadow-md">
       <img src={chat.contact_photo} alt="avatar"
         class="inline-block relative object-cover object-center !rounded-full w-20 h-20" />
       <div className="flex flex-col justify-between">
