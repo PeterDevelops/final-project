@@ -204,7 +204,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License. See [`LICENSE.txt`](https://github.com/PeterDevelops/final-project/blob/main/LICENSE.txt) for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -232,7 +232,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [issues-shield]: https://img.shields.io/github/issues/PeterDevelops/final-project.svg?style=for-the-badge
 [issues-url]: https://github.com/PeterDevelops/final-project/issues
 [license-shield]: https://img.shields.io/github/license/PeterDevelops/final-project.svg?style=for-the-badge
-[license-url]: https://github.com/PeterDevelops/final-project/LICENSE.txt
+[license-url]: https://github.com/PeterDevelops/final-project/blob/main/LICENSE.txt
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
 [Express.js]: https://img.shields.io/badge/Express.js-35495E?style=for-the-badge&logo=express&logoColor=4FC08D
