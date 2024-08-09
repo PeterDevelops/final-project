@@ -11,7 +11,7 @@ import io from 'socket.io-client'
 // connect to backend socket server
 const socket = io.connect("http://localhost:8080")
 
-// chatHistory = [... {}, 
+// chatHistory = [... {},
 //   {
 //     id: 12,
 //     message: 'Good for you.',
@@ -25,7 +25,10 @@ const ChatListItem = (props) => {
   const { user } = props;
   const { id } = useParams();
   const location = useLocation();
-  const { chat } = location.state;
+  // const { chat } = location.state;
+  // ^^^^^ temporarily commenting this out to avoid TypeError
+  // vvvvv handle case wehre location.state is null
+  const chat = location.state?.chat || {};
   const navigate = useNavigate();
   const ref = useRef(null);
 
