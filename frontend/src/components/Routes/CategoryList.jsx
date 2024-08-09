@@ -79,7 +79,7 @@ const CategoryList = (props) => {
   };
 
   return (
-    <div>
+    <div className="min-h-screen">
       {/* <NavBar
         products={products}
         setProducts={setProducts}

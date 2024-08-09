@@ -24,7 +24,7 @@ const NavBar = (props) => {
   } = props;
 
   const location = useLocation();
-  const noSearchBar = ['/cart', '/checkout', '/inbox', '/chats'];
+  const noSearchBar = ['/cart', '/checkout', '/inbox', '/chats', '/login'];
 
 
   return (
