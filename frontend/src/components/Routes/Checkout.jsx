@@ -90,7 +90,7 @@ const Checkout = (props) => {
             />
           </div>
 
-          <div>
+          <div className='font-bold text-xl'>
             Order Summary
           </div>
 
@@ -104,7 +104,7 @@ const Checkout = (props) => {
             />
           ))}
 
-          <div className='total'>
+          <div className='total m-2'>
             Total: ${subtotal.toFixed(2)}
           </div>
 
