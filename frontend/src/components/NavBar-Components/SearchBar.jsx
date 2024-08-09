@@ -62,25 +62,11 @@ export default function SearchBar(props) {
     return [];
   };
 
-  const categorizeLocations = () => {
-    if (locations.length > 0) {
-      return locations.map((location) => ({
-        ...location,
-        key: location.id,
-        name: location.city,
-        category: 'Location',
-        icon: getIconForCategory('Location'),
-      }));
-    }
-    return [];
-  };
-
   const combinedData = () => {
     const productData = categorizeProducts();
     const vendorData = categorizeVendors();
-    const locationData = categorizeLocations();
 
-    const allData = [...productData, ...vendorData, ...locationData];
+    const allData = [...productData, ...vendorData];
 
     return allData.sort((a, b) => a.category.localeCompare(b.category));
   };
@@ -97,8 +83,6 @@ export default function SearchBar(props) {
         return faBreadSlice;
       case 'Vendor':
         return faStore;
-      case 'Location':
-        return faMapMarkerAlt;
       default:
         return null;
     }
@@ -153,7 +137,7 @@ export default function SearchBar(props) {
   };
 
   return (
-    <div className="p-4 max-w-md mx-auto">
+    <div className="p-4 max-w-xl mx-auto">
       <form onSubmit={handleSubmit}>
         <Autocomplete
           id="grouped-demo"
@@ -177,7 +161,7 @@ export default function SearchBar(props) {
           renderInput={(params) => (
             <TextField
               {...params}
-              label="Search by Product, Vendor or Location"
+              label="Search by Product Type or Vendor"
               className="bg-gray-100 shadow-md"
               sx={{
                 borderRadius: '9999px',

@@ -33,7 +33,7 @@ const Login = (props) => {
       setEmail(response.data.email);
       setPassword(response.data.hashed_password);
       setUser(response.data[0]);
-      console.log("USER-----", response.data[0])
+      // console.log("USER-----", response.data[0])
       navigate('/');
     }
   }
@@ -43,7 +43,7 @@ const Login = (props) => {
   // })
 
   return (
-    <>
+    <div className="relative h-screen">
         {/* <NavBar
           products={products}
           setProducts={setProducts}
@@ -58,10 +58,10 @@ const Login = (props) => {
           cartItems={cartItems}
         /> */}
 
-        <section className="m-3 p-3">
-          <div className="w-full max-w-xs">
+        <section className="m-3 p-3 flex flex-row justify-center">
+          <div className="w-full max-w-xs ">
             <h1 className="text-xl font-semibold">Login</h1>
-            <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit} >
+            <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}  >
               <div className="mb-4">
                 <label
                   className="block text-gray-700 text-sm font-bold mb-2"
@@ -84,7 +84,7 @@ const Login = (props) => {
                   Password
                 </label>
                 <input
-                  className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   id="password"
                   type="password"
                   onChange={(e) => setPassword(e.target.value)}
@@ -101,7 +101,7 @@ const Login = (props) => {
             </form>
           </div>
         </section>
-    </>
+    </div>
   )
 }
 

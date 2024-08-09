@@ -53,7 +53,7 @@ const Inbox = (props) => {
   }
 
   return (
-    <div>
+    <div className="relative h-screen">
       {/* <NavBar
         products={products}
         setProducts={setProducts}

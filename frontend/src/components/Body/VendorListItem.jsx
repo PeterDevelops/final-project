@@ -13,7 +13,7 @@ const VendorListItem = (props) => {
 
   return (
     <Link to={`/vendors/${vendorData.id}`} onClick={handleClick} >
-      <article className="flex flex-col md:flex-row md:items-center border rounded-lg shadow-md m-5 overflow-hidden">
+      <article className="flex flex-col md:flex-row md:items-center border rounded-lg shadow-md bg-[#F7F4F0] bg-opacity-50 m-5 overflow-hidden">
         <img
           src={vendorData.vendor_logo_url}
           alt="vendor logo"

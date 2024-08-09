@@ -44,7 +44,7 @@ const ProductList = (props) => {
   };
 
   return (
-    <div>
+    <div className='min-h-screen'>
       {/* {showNavBar && (
       <NavBar
         products={products}

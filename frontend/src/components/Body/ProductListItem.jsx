@@ -99,7 +99,7 @@ const ProductListItem = (props) => {
   const isProductOwnedByUser = user && vendor && user.id === vendor.admin_user;
 
   return (
-    <article className="flex flex-col md:flex-row md:items-stretch border rounded-lg shadow-md m-5 overflow-hidden">
+    <article className="flex flex-col md:flex-row md:items-stretch border rounded-lg shadow-md bg-[#F7F4F0] bg-opacity-50 m-5 overflow-hidden ">
       <img
         src={productData.photo_url}
         alt={`${productData.name} image`}

@@ -21,6 +21,10 @@ module.exports = {
       spacing: {
         'navbar': '194px',
       },
+      backgroundImage: {
+        'nav': "url('https://www.toptal.com/designers/subtlepatterns/uploads/bananas.png')",
+        'main': "url('https://www.toptal.com/designers/subtlepatterns/uploads/leaves-pattern.png')",
+      },
     },
   },
   plugins: [

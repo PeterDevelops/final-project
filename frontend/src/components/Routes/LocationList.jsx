@@ -20,6 +20,7 @@ const LocationList = (props) => {
 
   // use state to determine clicked location
   const handleLocationClick = (location) => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     setSelectedLocation(location);
   };
 
@@ -36,7 +37,7 @@ const LocationList = (props) => {
   };
 
   return (
-    <div >
+    <div>
       {/* <NavBar
         products={products}
         setProducts={setProducts}
@@ -48,17 +49,16 @@ const LocationList = (props) => {
         categories={categories}
         cartItems={cartItems}
       /> */}
-      <div className="flex justify-center my-4">
         <Map
           locations={locations}
           zoom={12}
           selectedLocation={selectedLocation}
-          className='h-50vh w-80vw mx-auto border-2 border-custom-gray shadow-md rounded-lg'
+          className='h-50vh w-80vw mx-auto border-2 border-custom-gray shadow-md rounded-lg mt-10'
           allProducts={allProducts}
           setProducts={setProducts}
           allVendors={allVendors}
+          setVendors={setVendors}
         />
-      </div>
       <div className="flex flex-col items-center space-y-4">
         {locationListArr()}
       </div>

@@ -1,14 +1,14 @@
 INSERT INTO users (name, email, hashed_password, profile_photo_url, admin_status) 
-VALUES ('Peter', 'peter@peter.com', '1234', 'http://dummyimage.com/198x163.png/ffd200/ffffff', true);
+VALUES ('Peter', 'peter@peter.com', '1234', 'https://images.unsplash.com/photo-1627048044902-b7db9db56ef3?q=80&w=2570&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', true);
 
 INSERT INTO users (name, email, hashed_password, profile_photo_url, admin_status) 
-VALUES ('Lily', 'lily@lily.com', '1234', 'http://dummyimage.com/198x163.png/ffd200/ffffff', true);
+VALUES ('Lily', 'lily@lily.com', '1234', 'https://plus.unsplash.com/premium_photo-1663076311278-2bdbf09c4236?q=80&w=2672&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', true);
 
 INSERT INTO users (name, email, hashed_password, profile_photo_url, admin_status) 
-VALUES ('Jeff', 'jeff@jeff.com', '1234', 'http://dummyimage.com/198x163.png/ffd200/ffffff', true);
+VALUES ('Jeff', 'jeff@jeff.com', '1234', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', true);
 
 INSERT INTO users (name, email, hashed_password, profile_photo_url, admin_status) 
-VALUES ('Lisa', 'lisa@lisa.com', '1234', 'http://dummyimage.com/198x163.png/ffd200/ffffff', true);
+VALUES ('Lisa', 'lisa@lisa.com', '1234', 'https://plus.unsplash.com/premium_photo-1663054488179-bfe7b138720c?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', true);
 
 INSERT INTO users (name, email, hashed_password, profile_photo_url, admin_status) 
 VALUES ('Melisse', 'mgerrelt0@newyorker.com', '$2a$04$MlOtXAhYNHnP2x4USjTapOhOR95JscetzB9t55Cz9fWLzgl3UE20y', 'http://dummyimage.com/198x163.png/ffd200/ffffff', true);
@@ -29,4 +29,4 @@ INSERT INTO users (name, email, hashed_password, profile_photo_url, admin_status
 VALUES ('Bob', 'bob@bob.com', '$2a$04$rZy8/2ffyS1goMg8iMPv2uWkQpNGit11Qgl8p/D5Mf1rhEYZR.KGq', 'http://dummyimage.com/198x163.png/ffd200/ffffff', true);
 
 INSERT INTO users (name, email, hashed_password, profile_photo_url, admin_status) 
-VALUES ('Guest', 'guest@rguest.com', '1234', 'http://dummyimage.com/198x163.png/ffd200/ffffff', false);
+VALUES ('Guest', 'guest@rguest.com', '1234', 'https://plus.unsplash.com/premium_photo-1665413642334-3a30c7ac4df2?q=80&w=2565&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', false);
