@@ -62,6 +62,9 @@ const Cart = (props) => {
         setUser={setUser}
         cartItems={cartItems}
       />
+          <div className='cart-center'>
+            My Cart
+          </div>
 
       {!user || !user.id ? (
         <div>
@@ -86,9 +89,6 @@ const Cart = (props) => {
             </span>
           </div>
 
-          <div className='cart-center'>
-            Your Cart
-          </div>
 
           {cartItems.map(item => (
             <CartListItem
@@ -101,9 +101,9 @@ const Cart = (props) => {
               price_cents={item.price_cents}
             />
           ))}
-
+        
           <div className='total'>
-            Total: ${subtotal.toFixed(2)}
+            ${subtotal.toFixed(2)}
           </div>
 
           <Link to='/checkout'>
