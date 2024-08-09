@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import '../styles/Leaflet.css'
 import { useNavigate } from 'react-router-dom'
 
 const customIcon = new Icon ({
@@ -15,7 +16,10 @@ const Map = (props) => {
     zoom,
     className,
     allowUserLocation,
-    selectedLocation
+    selectedLocation,
+    allProducts,
+    setProducts,
+    allVendors,
   } = props;
 
   const navigate = useNavigate();
@@ -42,7 +46,10 @@ const Map = (props) => {
   // function to navigate to vendor's profile page from marker popup
   const handleNavigateToVendorProfile = (vendorId) => {
     if (vendorId) {
-      navigate(`/vendors/${vendorId}`);
+      console.log('Button clicked, vendorId:', vendorId);
+      const filteredByVendor = allProducts.filter(product => product.vendor_id === vendorId);
+      setProducts(filteredByVendor);
+      navigate(`/vendors/${vendorId}`, { state: { allProducts } });
     }
   };
 
@@ -59,7 +66,7 @@ const Map = (props) => {
         attribution='&copy; <a href="https://www.thunderforest.com">Thunderforest</a>'
         url={`https://{s}.tile.thunderforest.com/neighbourhood/{z}/{x}/{y}.png?apikey=${process.env.REACT_APP_THUNDERFOREST_API_KEY}`}
       />
-      {locations.map((location) => {
+      {allVendors.map((location) => {
         // console.log("location data:", location);
         return (
           <Marker
@@ -72,7 +79,7 @@ const Map = (props) => {
                 <h2>{location.name}</h2>
                 <p>{location.city}</p>
                 <button
-                  onClick={() => handleNavigateToVendorProfile(location.vendor_id)}
+                  onClick={() => handleNavigateToVendorProfile(location.id)}
                   className="mt-2 px-3 py-1 bg-blue-500 text-white rounded"
                 >
                   View Vendor Profile

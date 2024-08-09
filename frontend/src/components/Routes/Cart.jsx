@@ -48,7 +48,7 @@ const Cart = (props) => {
 
   return (
     <div>
-      <NavBar
+      {/* <NavBar
         products={products}
         setProducts={setProducts}
         allProducts={allProducts}
@@ -61,10 +61,11 @@ const Cart = (props) => {
         setUser={setUser}
         cartItems={cartItems}
       />
-          <div className='cart-center'>
-            My Cart
-          </div>
+      /> */}
 
+      <div className='cart-center'>
+        My Cart
+      </div>
       {!user || !user.id ? (
         <div>
           Please <Link to="/login">Login</Link> to view your cart.

@@ -45,7 +45,7 @@ const ProductList = (props) => {
 
   return (
     <div>
-      {showNavBar && (
+      {/* {showNavBar && (
       <NavBar
         products={products}
         setProducts={setProducts}
@@ -59,7 +59,7 @@ const ProductList = (props) => {
         setUser={setUser}
         cartItems={cartItems}
       />
-      )}
+      )} */}
       {productListArr()}
     </div>
   )

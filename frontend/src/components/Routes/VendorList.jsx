@@ -50,7 +50,7 @@ const VendorList = (props) => {
 
   return (
     <div>
-      <NavBar
+      {/* <NavBar
         products={products}
         setProducts={setProducts}
         allProducts={allProducts}
@@ -62,7 +62,7 @@ const VendorList = (props) => {
         user={user}
         setUser={setUser}
         cartItems={cartItems}
-      />
+      /> */}
       {user ? (
         <>
           {userVendors.length > 0 && (

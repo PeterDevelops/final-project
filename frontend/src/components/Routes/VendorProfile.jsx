@@ -57,7 +57,7 @@ const VendorProfile = (props) => {
 
   return (
     <div>
-      <NavBar
+      {/* <NavBar
         products={products}
         setProducts={setProducts}
         allProducts={allProducts}
@@ -69,7 +69,7 @@ const VendorProfile = (props) => {
         user={user}
         setUser={setUser}
         cartItems={cartItems}
-      />
+      /> */}
       <div className="vendor-profile flex flex-col md:flex-row md:items-center border rounded-lg shadow-md m-5 overflow-hidden">
         <img src={vendor.vendor_logo_url} alt={vendor.name} className="w-full md:w-1/3 md:object-cover md:object-contain" />
         <div className="p-5 w-full md:w-2/3">
