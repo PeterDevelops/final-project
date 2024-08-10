@@ -34,6 +34,7 @@ const QuantityInput = ({ defaultQuantity, onChange }) => {
           incrementButtonClassName="p-button-secondary"
           incrementButtonIcon="pi pi-plus"
           decrementButtonIcon="pi pi-minus"
+          min={1}
           />
         )}
       </PrimeReactProvider>

@@ -78,7 +78,6 @@ CREATE TABLE chats (
   id SERIAL PRIMARY KEY,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   contact_user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  last_message VARCHAR(1000),
   UNIQUE(user_id, contact_user_id)
 );
 

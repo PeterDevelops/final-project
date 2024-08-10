@@ -26,7 +26,6 @@ const NavBar = (props) => {
   const location = useLocation();
   const noSearchBar = ['/cart', '/checkout', '/inbox', '/chats', '/login'];
 
-
   return (
     <div className='fixed top-0 left-0 right-0'>
       <nav className="h-16 px-4 bg-[#F7F4F0] bg-nav">
@@ -52,9 +51,9 @@ const NavBar = (props) => {
             />
             <Link to="/cart" className="text-gray-700 hover:text-gray-900 flex items-center relative">
               <FontAwesomeIcon icon={faShoppingBasket} size="2x" />
-              {cartItems.length > 0 && (
+              {Array.isArray(cartItems) && cartItems.length > 0 && (
                 <span className="absolute top-5 right-0 block w-5 h-5 text-center text-white text-sm bg-red-600 rounded-full">
-                  {cartItems.length}
+                  {cartItems.reduce((total, item) => total + item.quantity, 0)}
                 </span>
               )}
             </Link>

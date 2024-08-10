@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 const VendorListItem = (props) => {
   const { vendorData, onClick } = props;
   // const navigate = useNavigate();
+  // console.log("VENDOR DATA-----", vendorData)
 
   const handleClick = (event) => {
     event.preventDefault();

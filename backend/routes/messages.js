@@ -31,14 +31,12 @@ router.post('/:id', (req, res) => {
 })
 
 router.get('/last/:id', (req, res) => {
-  // console.log("req.params", req.params)
   const chatId = req.params.id;
   // console.log("-----------REQ PARAMS------", req.params)
   getLastMessage(chatId)
   .then((messagesData) => res.json(messagesData))
   .catch((err) => {err.message})
 })
-
 
 module.exports = router;
 

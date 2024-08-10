@@ -4,16 +4,15 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import moment from 'moment'
 
-// chat =
-//   {
-//     chat_id: 3,
-//     last_message: '3',
-//     contact_user_id: 1,
-//     name: 'Peter',
-//     email: 'peter@peter.com',
-//     profile_photo_url: 'http://dummyimage.com/174x166.png/5fa2dd/ffffff'
-//   },
-//
+/**
+ * chat = {
+ *  chat_id: 8,
+ *  contact_name: "Green Leafy Greens",
+ *  contact_photo: "/images/vendor-logos/green-leafy-greens-high-resolution-logo.png",
+ *  contact_user_id: 3, 
+ *  vendor_id: #
+ * }
+ */
 
 //consider pulling this out into a helper file???
 const formatDate = (messageDateStr) => {
@@ -22,9 +21,9 @@ const formatDate = (messageDateStr) => {
   const now = moment(); // Current local date
   const yesterday = moment().subtract(1, 'days'); // Calculate yesterday's date
 
-  console.log("messageDate", messageDate)
-  console.log("now", now)
-  console.log("yesterday", yesterday)
+  // console.log("messageDate", messageDate)
+  // console.log("now", now)
+  // console.log("yesterday", yesterday)
 
   // ChatList Format the time according to the user's local time zone
   if (now.isSame(messageDate, 'day')) {
@@ -42,13 +41,12 @@ const ChatList = (props) => {
   const [messageData, setMessageData] = useState([]);
   const navigate = useNavigate();
 
-  // console.log("chat", chat)
   // console.log("chat ID", chat.id)
   // console.log("MessageData state---", messageData)
 
   useEffect(() => {
     // if(user) {
-    console.log("CHAT--------", chat.chat_id)
+    // console.log("CHAT--------", chat.chat_id)
     axios.get(`/api/messages/last/${chat.chat_id}`)
       .then((message) => {
         setMessageData(message.data[0])
@@ -56,11 +54,14 @@ const ChatList = (props) => {
       .catch((error) => { console.log("There was an issue retrieving the last message:", error) })
     // }
   }, [])
-
+  
   const handleClick = (id) => {
-    console.log("ChatList click event id", id)
+    // console.log("ChatList click event id", id)
+    // console.log("CHAT FROM CHATLIST-----", chat)
     navigate(`/chats/${id}`, { state: { chat: chat } })
   }
+  
+  console.log("THE CHAT DATA THAT MAY BE CAUSING ISSUES", chat.contact_name)
 
   return (
     <article onClick={() => handleClick(chat.chat_id)} className="cursor-pointer flex items-center border rounded p-5 gap-4 my-5 bg-[#F7F4F0] bg-opacity-50 hover:shadow-md">

@@ -25,9 +25,6 @@ const ChatListItem = (props) => {
   const { user } = props;
   const { id } = useParams();
   const location = useLocation();
-  // const { chat } = location.state;
-  // ^^^^^ temporarily commenting this out to avoid TypeError
-  // vvvvv handle case wehre location.state is null
   const chat = location.state?.chat || {};
   const navigate = useNavigate();
   const ref = useRef(null);
@@ -68,6 +65,7 @@ const ChatListItem = (props) => {
   const sendMessage = () => {
     const currentDate = moment().format('YYYY-MM-DD HH:mm:ssZZ'); //convert current local time to UTC format for db storage
     if (message.trim() !== '') {
+      // console.log("CHATID IN CHAT", id)
       const newMessage = { message: message, created_at: currentDate, sender_id: user.id, user: user, chatId: id }
 
       //emit an event by send message to server (listening)
@@ -96,7 +94,6 @@ const ChatListItem = (props) => {
       socket.off("receive_message", handleReceiveMessage);
     };
   }, [socket]);
-
 
   const messageList = messageHistory.map((message, index) => {
     // console.log("MESSAGE----", message.message)
@@ -172,6 +169,11 @@ const ChatListItem = (props) => {
     navigate(`/inbox`)
   }
 
+  const goToVendorPage = () => {
+    socket.emit("leave_chat", id);
+    navigate(`/vendors/${chat.contact_user_id}`)
+  }
+
   return (
     <>
       <div className="flex flex-col h-2/6">
@@ -179,7 +181,7 @@ const ChatListItem = (props) => {
           <div className="bg-[#F7F4F0] rounded p-2 relative">
             <FontAwesomeIcon icon={faCircleXmark} onClick={handleClick} className="absolute top-2 right-2 cursor-pointer" />
 
-            <div className="bg-[#F7F4F0] rounded p-2 mb-4 flex flex-row items-center">
+            <div className="bg-[#F7F4F0] rounded p-2 mb-4 flex flex-row items-center cursor-pointer" onClick={goToVendorPage}>
               <img className="rounded-full h-16 w-16 object-cover" src={chat.contact_photo} />
               <h1 className="font-bold text-lg px-2">{chat.contact_name}</h1>
             </div>

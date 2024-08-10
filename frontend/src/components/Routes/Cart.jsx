@@ -1,68 +1,101 @@
 import { useNavigate } from 'react-router-dom';
-import NavBar from '../NavBar';
 import '../../styles/Cart.scss';
 import { Link } from 'react-router-dom';
 import CartListItem from '../Body/CartListItem';
+import React, { useEffect, useMemo } from 'react';
+
+const groupByVendor = (items, products, vendors) => {
+  // Create a map of vendor id to vendor details
+  const vendorMap = vendors.reduce((map, vendor) => {
+    map[vendor.id] = vendor;
+    return map;
+  }, {});
+
+  return items.reduce((acc, item) => {
+    // Find the product corresponding to the item's product_id
+    const product = products.find(product => product.id === item.product_id);
+
+    if (!product) {
+      console.warn(`Product with id ${item.product_id} not found.`);
+      return acc;
+    }
+
+    const vendorId = product.vendor_id;
+    if (!vendorId) {
+      console.warn(`Product with id ${item.product_id} has no associated vendor_id.`);
+      return acc;
+    }
+
+    if (!acc[vendorId]) {
+      acc[vendorId] = {
+        vendor: vendorMap[vendorId],
+        items: []
+      };
+    }
+
+    acc[vendorId].items.push(item);
+    return acc;
+  }, {});
+};
 
 const Cart = (props) => {
   const {
-    products,
-    setProducts,
-    allProducts,
     vendors,
-    setVendors,
     allVendors,
-    locations,
-    categories,
     user,
-    setUser,
     cartItems,
-    totalCost,
+    setCartItems,
     setQuantities,
     quantities,
-    setCartItems,
     setTotalCost,
-    subtotal
+    subtotal,
+    allProducts // Add this prop
   } = props;
-  // console.log('Cart:user.id', user.id);
+
   const navigate = useNavigate();
+
+  // Group cart items by vendor
+  const groupedCartItems = useMemo(() => {
+    console.log('Cart Items:', cartItems);
+    console.log('All Vendors:', allVendors);
+    console.log('All Products:', allProducts);
+    return groupByVendor(cartItems, allProducts, allVendors);
+  }, [cartItems, allVendors, allProducts]);
+
+  useEffect(() => {
+    const newSubtotal = cartItems.reduce((acc, item) => {
+      const quantity = quantities[item.cart_item_id] || item.quantity;
+      return acc + item.price_cents * quantity;
+    }, 0);
+    setTotalCost(newSubtotal);
+  }, [cartItems, quantities, setTotalCost]);
 
   const handleQuantityChange = (itemId, newQuantity) => {
     setQuantities(prevQuantities => ({
       ...prevQuantities,
       [itemId]: newQuantity
     }));
-    // update cart items and total cost
     const updatedCartItems = cartItems.map(item =>
-      item.cart_item_id === itemId ? { ...item, newQuantity } : item
+      item.cart_item_id === itemId ? { ...item, quantity: newQuantity } : item
     );
     setCartItems(updatedCartItems);
-    const newTotalCost = updatedCartItems.reduce((acc, item) => acc + item.price_cents * item.quantity);
-    setTotalCost(newTotalCost);
   };
 
   const handleDelete = (productId) => {
     const updatedCartItems = cartItems.filter(item => item.product_id !== productId);
     setCartItems(updatedCartItems);
+
+    const updatedQuantities = { ...quantities };
+    Object.keys(updatedQuantities).forEach(key => {
+      if (!updatedCartItems.find(item => item.cart_item_id === parseInt(key))) {
+        delete updatedQuantities[key];
+      }
+    });
+    setQuantities(updatedQuantities);
   };
 
   return (
-    <div  className="relative h-screen">
-      {/* <NavBar
-        products={products}
-        setProducts={setProducts}
-        allProducts={allProducts}
-        vendors={vendors}
-        setVendors={setVendors}
-        allVendors={allVendors}
-        locations={locations}
-        categories={categories}
-        user={user}
-        setUser={setUser}
-        cartItems={cartItems}
-      />
-      /> */}
-
+    <div className="relative h-screen">
       {!user || !user.id ? (
         <div>
           Please <Link to="/login">Login</Link> to view your cart.
@@ -70,40 +103,48 @@ const Cart = (props) => {
       ) : (
         cartItems.length > 0 ? (
           <div>
-
             <div className='mx-10 text-xl font-bold'>
               My Cart
             </div>
-            
+
             <div className='cart-container'>
-              <div className='cart-center'>
+              {Object.keys(groupedCartItems).map(vendorId => {
+                const { vendor, items } = groupedCartItems[vendorId];
 
-                <span>
-                  <img
-                    className='vendor-logo'
-                    src={cartItems[0].vendor_logo_url}
-                    alt='vendor logo'
-                  />
-                </span>
+                if (!vendor) {
+                  console.warn(`Vendor with id ${vendorId} not found.`);
+                  return null;
+                }
 
+                return (
+                  <div key={vendorId} className='vendor-group'>
+                    <div className='cart-center'>
+                      <span>
+                        <img
+                          className='vendor-logo'
+                          src={vendor.vendor_logo_url}
+                          alt='vendor logo'
+                        />
+                      </span>
+                      <span className='span-tag'>
+                        {vendor.vendor_name}
+                      </span>
+                    </div>
 
-                <span className='span-tag'>
-                  {cartItems[0].vendor_name}
-                </span>
-              </div>
-
-
-              {cartItems.map(item => (
-                <CartListItem
-                  key={item.cart_item_id}
-                  product_photo_url={item.product_photo_url}
-                  product_name={item.product_name}
-                  quantity={quantities[item.cart_item_id]}
-                  onChange={(newQuantity) => handleQuantityChange(item.cart_item_id, newQuantity)}
-                  onDelete={() => handleDelete(item.product_id)}
-                  price_cents={item.price_cents}
-                />
-              ))}
+                    {items.map(item => (
+                      <CartListItem
+                        key={item.cart_item_id}
+                        product_photo_url={item.product_photo_url}
+                        product_name={item.product_name}
+                        quantity={quantities[item.cart_item_id] || item.quantity}
+                        onChange={(newQuantity) => handleQuantityChange(item.cart_item_id, newQuantity)}
+                        onDelete={() => handleDelete(item.product_id)}
+                        price_cents={item.price_cents}
+                      />
+                    ))}
+                  </div>
+                );
+              })}
 
               <div className='total m-2'>
                 Total:
@@ -111,7 +152,6 @@ const Cart = (props) => {
                   ${subtotal.toFixed(2)}
                 </span>
               </div>
-
 
               <Link to='/checkout'>
                 <div className='cart-center'>
@@ -126,7 +166,6 @@ const Cart = (props) => {
               <div className='cart-center'>
                 <button onClick={() => navigate('/')}>Continue Shopping</button>
               </div>
-
             </div>
           </div>
         ) : (
