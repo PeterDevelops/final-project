@@ -3,6 +3,7 @@ import NavBar from '../NavBar';
 import '../../styles/Cart.scss';
 import { Link } from 'react-router-dom';
 import CartListItem from '../Body/CartListItem';
+import React, { useEffect } from 'react';
 
 const Cart = (props) => {
   const {
@@ -17,37 +18,52 @@ const Cart = (props) => {
     user,
     setUser,
     cartItems,
-    totalCost,
+    setCartItems,
     setQuantities,
     quantities,
-    setCartItems,
     setTotalCost,
     subtotal
   } = props;
-  // console.log('Cart:user.id', user.id);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Calculate the subtotal when cartItems or quantities change
+    const newSubtotal = cartItems.reduce((acc, item) => {
+      const quantity = quantities[item.cart_item_id] || item.quantity;
+      return acc + item.price_cents * quantity;
+    }, 0);
+    setTotalCost(newSubtotal);
+  }, [cartItems, quantities, setTotalCost]);
 
   const handleQuantityChange = (itemId, newQuantity) => {
     setQuantities(prevQuantities => ({
       ...prevQuantities,
       [itemId]: newQuantity
     }));
-    // update cart items and total cost
+    // Update cart items
     const updatedCartItems = cartItems.map(item =>
-      item.cart_item_id === itemId ? { ...item, newQuantity } : item
+      item.cart_item_id === itemId ? { ...item, quantity: newQuantity } : item
     );
     setCartItems(updatedCartItems);
-    const newTotalCost = updatedCartItems.reduce((acc, item) => acc + item.price_cents * item.quantity);
-    setTotalCost(newTotalCost);
   };
 
   const handleDelete = (productId) => {
     const updatedCartItems = cartItems.filter(item => item.product_id !== productId);
     setCartItems(updatedCartItems);
+
+    // Update quantities state
+    const updatedQuantities = { ...quantities };
+    Object.keys(updatedQuantities).forEach(key => {
+      if (!updatedCartItems.find(item => item.cart_item_id === parseInt(key))) {
+        delete updatedQuantities[key];
+      }
+    });
+    setQuantities(updatedQuantities);
   };
 
   return (
-    <div  className="relative h-screen">
+    <div className="relative h-screen">
       {/* <NavBar
         products={products}
         setProducts={setProducts}
@@ -60,7 +76,6 @@ const Cart = (props) => {
         user={user}
         setUser={setUser}
         cartItems={cartItems}
-      />
       /> */}
 
       {!user || !user.id ? (
@@ -70,14 +85,12 @@ const Cart = (props) => {
       ) : (
         cartItems.length > 0 ? (
           <div>
-
             <div className='mx-10 text-xl font-bold'>
               My Cart
             </div>
-            
+
             <div className='cart-container'>
               <div className='cart-center'>
-
                 <span>
                   <img
                     className='vendor-logo'
@@ -85,20 +98,17 @@ const Cart = (props) => {
                     alt='vendor logo'
                   />
                 </span>
-
-
                 <span className='span-tag'>
                   {cartItems[0].vendor_name}
                 </span>
               </div>
-
 
               {cartItems.map(item => (
                 <CartListItem
                   key={item.cart_item_id}
                   product_photo_url={item.product_photo_url}
                   product_name={item.product_name}
-                  quantity={quantities[item.cart_item_id]}
+                  quantity={quantities[item.cart_item_id] || item.quantity}
                   onChange={(newQuantity) => handleQuantityChange(item.cart_item_id, newQuantity)}
                   onDelete={() => handleDelete(item.product_id)}
                   price_cents={item.price_cents}
@@ -111,7 +121,6 @@ const Cart = (props) => {
                   ${subtotal.toFixed(2)}
                 </span>
               </div>
-
 
               <Link to='/checkout'>
                 <div className='cart-center'>
@@ -126,7 +135,6 @@ const Cart = (props) => {
               <div className='cart-center'>
                 <button onClick={() => navigate('/')}>Continue Shopping</button>
               </div>
-
             </div>
           </div>
         ) : (

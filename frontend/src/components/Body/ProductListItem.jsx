@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import QuantityInput from './QuantityInput';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const ProductListItem = (props) => {
   const {
@@ -75,6 +77,24 @@ const ProductListItem = (props) => {
     updateCart(productData, newQuantity);
   };
 
+  const handleCartDelete = () => {
+    // Remove item from cart
+    const updatedCartItems = cartItems.filter(item => item.product_id !== productData.id);
+    setCartItems(updatedCartItems);
+
+    // Remove from quantities state
+    const updatedQuantities = { ...quantities };
+    Object.keys(updatedQuantities).forEach(key => {
+      if (cartItems.find(item => item.product_id === productData.id)) {
+        delete updatedQuantities[key];
+      }
+    });
+    setQuantities(updatedQuantities);
+
+    // Reset isAdded
+    setIsAdded(false);
+  };
+
   const handleEdit = () => {
     if (productData && vendor) {
       navigate(`/products/edit/${productData.id}`, { state: { product: productData } });
@@ -147,6 +167,9 @@ const ProductListItem = (props) => {
             ) : (
               <div className="flex items-center space-x-2">
                 <QuantityInput defaultQuantity={quantity} onChange={handleQuantityChange} />
+                <IconButton className='delete-button' aria-label="delete" size="large" onClick={handleCartDelete}>
+                  <DeleteIcon />
+                </IconButton>
               </div>
             )}
           </div>

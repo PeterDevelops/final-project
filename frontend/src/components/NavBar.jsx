@@ -25,9 +25,6 @@ const NavBar = (props) => {
 
   const location = useLocation();
   const noSearchBar = ['/cart', '/checkout', '/inbox', '/chats', '/login'];
-  console.log('cart Items: ', cartItems);
-
-
 
   return (
     <div className='fixed top-0 left-0 right-0'>
