@@ -108,12 +108,15 @@ const Checkout = (props) => {
             Total: ${subtotal.toFixed(2)}
           </div>
 
-          {/* if pickup render vendor address and city */}
+          {/* if pickup render vendor addresses and cities */}
           {alignment === 'pickup' && (
             <div>
-              <h3 className='text-sm font-bold'>Pickup Address</h3>
+              <h3 className='text-sm font-bold'>Pickup Addresses</h3>
               {cartItems.length > 0 ? (
-                <p className='text-sm'>{cartItems[0].vendor_address}, {cartItems[0].vendor_city}</p>
+                [...new Set(cartItems.map(item => `${item.vendor_name}: ${item.vendor_address}, ${item.vendor_city}`))]
+                  .map((address, index) => (
+                    <p key={index} className='text-sm'>{address}</p>
+                ))
               ) : (
                 <p>Address and city information not available.</p>
               )}
