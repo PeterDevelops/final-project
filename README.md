@@ -70,6 +70,7 @@ Mrkt is a Virtual Farmers Market allowing users to shop local vendors from the c
 * [![Express][Express.js]][Express-url]
 * [![Tailwind][Tailwindcss]][TailwindCSS-url]
 * [![Socket.io][Socket.io]][Socket.io-url]
+* [![PostgreSQL][PostgreSQL]][PostgreSQL-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -241,3 +242,5 @@ Distributed under the MIT License. See [`LICENSE.txt`](https://github.com/PeterD
 [TailwindCSS-url]: https://tailwindcss.com/
 [Socket.io]: https://img.shields.io/badge/socket.io-563D7C?style=for-the-badge&logo=socketdotio&logoColor=white
 [Socket.io-url]: https://socket.io/
+[PostgreSQL]: https://img.shields.io/badge/postgresql-23341a?style=for-the-badge&logo=postgresql&logoColor=blue
+[PostgreSQL-url]: https://www.postgresql.org//
