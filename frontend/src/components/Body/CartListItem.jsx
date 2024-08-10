@@ -20,27 +20,38 @@ const CartListItem = (props) => {
   const location = useLocation();
   const noQuantity = ['/cart'];
   const noDelete = ['/checkout'];
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  // margin-bottom: 20px;
+  // font-size: 1.2rem;
 
+  // .cart-container {
+  //   max-width: 800px;
+  //   margin: 20px auto;
+  //   padding: 20px;
+  //   background-color: #f9f9f9;
+  //   border-radius: 8px;
+  //   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  // }
   return (
-    <div className='cart-container'>
-      <div className='cart-center'>
-        <div className='cart-item-container'>
-
+    <div className='bg-gray-50 flex justify-between items-center p-4 mb-4 rounded-md shadow-md'>
+      {/* <div className='flex items-center text-lg'> */}
+      <div className='flex items-center'>
+        <div className='flex justify-center items-center'>
           <img
             src={product_photo_url}
             alt={product_name}
-            className='item-logo'
+            className='item-logo mr-4'
           />
-
           <span className='span-tag'>{product_name}</span>
-
         </div>
-        <div className='cart-center'>
+      </div>
+
+      <div className='flex items-center'>
         {!noQuantity.includes(location.pathname) && (
           <span className='span-tag'>Qty: {quantity}</span>
         )}
-        </div>
-
         <span>
           <QuantityInput defaultQuantity={quantity} onChange={onChange} />
         </span>
@@ -52,17 +63,9 @@ const CartListItem = (props) => {
             </IconButton>
           </span>
         )}
-
-
-
-
-        {/* {!noSubtotal.includes(location.pathname) && (
-      <span className='span-tag'>Subtotal: ${subtotal}</span>
-    )} */}
-
-
       </div>
     </div>
+
   );
 
 };

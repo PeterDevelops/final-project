@@ -126,7 +126,7 @@ const Checkout = (props) => {
 
               <h3 className='text-sm font-bold'>Delivery Details</h3>
 
-              <div>
+              <div className='text-sm '>
                 Address:
               </div>
 
@@ -139,7 +139,7 @@ const Checkout = (props) => {
                 />
               </div>
 
-              <div className='text-sm font-medium'>
+              <div className='text-sm'>
                 City:
               </div>
 
@@ -154,8 +154,8 @@ const Checkout = (props) => {
 
             </div>
           )}
-          <div className='text-sm font-bold'>
-            <div>Card Details</div>
+          <div className='text-sm font-bold mt-2'>
+            <div className='mb-1'>Card Details</div>
           <Elements stripe={stripePromise}>
             <PaymentForm
               userId={user.id}

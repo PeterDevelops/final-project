@@ -7,7 +7,6 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-
 .span-tag {
   font-weight: bold;
   margin-right: 10px;
@@ -24,10 +23,12 @@
 
 .cart-item-container {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin-bottom: 15px;
-  font-size: 1.2rem;
+  justify-content: space-between;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .quantity-container {
