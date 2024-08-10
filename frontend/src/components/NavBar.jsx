@@ -25,6 +25,8 @@ const NavBar = (props) => {
 
   const location = useLocation();
   const noSearchBar = ['/cart', '/checkout', '/inbox', '/chats', '/login'];
+  console.log('cart Items: ', cartItems);
+
 
 
   return (
@@ -54,7 +56,7 @@ const NavBar = (props) => {
               <FontAwesomeIcon icon={faShoppingBasket} size="2x" />
               {cartItems.length > 0 && (
                 <span className="absolute top-5 right-0 block w-5 h-5 text-center text-white text-sm bg-red-600 rounded-full">
-                  {cartItems.length}
+                  {cartItems.reduce((total, item) => total + item.quantity, 0)}
                 </span>
               )}
             </Link>

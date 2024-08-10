@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import QuantityInput from './QuantityInput';
 
 const ProductListItem = (props) => {
   const {
@@ -15,24 +16,28 @@ const ProductListItem = (props) => {
     setQuantities
   } = props;
 
-  const [added, setAdded] = useState(false);
+  const [quantity, setQuantity] = useState(() => {
+    const existingItem = cartItems.find(item => item.product_id === productData.id);
+    return existingItem ? existingItem.quantity : 1;
+  });
+
+  const [isAdded, setIsAdded] = useState(() => {
+    return cartItems.some(item => item.product_id === productData.id);
+  });
 
   const navigate = useNavigate();
   const vendor = allVendors.find(v => v.id === productData.vendor_id);
 
-    // add item to cart function
-  const addToCart = (product) => {
+  // Add or update item in cart
+  const updateCart = (product, qty) => {
     const vendor = vendors.find(vendor => vendor.id === product.vendor_id);
     const itemExist = cartItems.find(item => item.product_id === product.id);
     let updatedCartItems;
-    // console.log('Found vendor:', vendor);
-    // console.log('ProductData:', productData)
+
     if (itemExist) {
       updatedCartItems = cartItems.map(item =>
-        item.product_id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-
+        item.product_id === product.id ? { ...item, quantity: qty } : item
       );
-
     } else {
       const newItem = {
         cart_item_id: cartItems.length + 1,
@@ -40,7 +45,7 @@ const ProductListItem = (props) => {
         product_id: product.id,
         product_name: product.name,
         product_photo_url: product.photo_url,
-        quantity: 1,
+        quantity: qty,
         vendor_address: vendor?.address,
         vendor_city: vendor?.city,
         vendor_logo_url: vendor?.vendor_logo_url,
@@ -56,13 +61,19 @@ const ProductListItem = (props) => {
       updatedQuantities[item.cart_item_id] = item.quantity;
     });
     setQuantities(updatedQuantities);
-
   };
 
-  const handleAddToCart = (product) => {
-    addToCart(product);
-    setAdded(true);
-  }
+  const handleAddToCart = () => {
+    if (!isAdded) {
+      updateCart(productData, 1);
+      setIsAdded(true);
+    }
+  };
+
+  const handleQuantityChange = (newQuantity) => {
+    setQuantity(newQuantity);
+    updateCart(productData, newQuantity);
+  };
 
   const handleEdit = () => {
     if (productData && vendor) {
@@ -125,10 +136,20 @@ const ProductListItem = (props) => {
             </button>
           </div>
         ) : (
-        <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          onClick={() => handleAddToCart(productData)}>
-          {added ? 'Added' : 'Add To Cart'}
-        </button>
+          <div className="mt-4">
+            {!isAdded ? (
+              <button
+                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                onClick={handleAddToCart}
+              >
+                Add To Cart
+              </button>
+            ) : (
+              <div className="flex items-center space-x-2">
+                <QuantityInput defaultQuantity={quantity} onChange={handleQuantityChange} />
+              </div>
+            )}
+          </div>
         )}
       </div>
     </article>
