@@ -22,23 +22,7 @@ const getAllChats = (userId) => {
     .catch((err) => { console.log(err.message) })
 }
 
-
-// const findAChat = (userId, contactId) => {
-//   const queryString = `
-//     SELECT * FROM (
-//       SELECT * FROM chats WHERE user_id = $1 OR contact_user_id = $1) 
-//     AS relevant_chats WHERE user_id = $2 OR contact_user_id = $2; 
-//   `
-//   const queryParams = [userId, contactId]
-//   return db.query(queryString, queryParams)
-//     .then(results => results.rows)   
-//     .catch((err) => { console.log(err.message) })
-// }
-
 const findAChat = (userId, vendorId) => {
-  console.log("USERID----", userId)
-  console.log("VENDORID----", vendorId)
-
   const chatQueryString = `
   SELECT * FROM (
     SELECT * FROM chats WHERE user_id = $1 OR contact_user_id = $1) 
@@ -61,11 +45,8 @@ const findAChat = (userId, vendorId) => {
   return Promise.all(promiseArray)
     .then(results => {
       const chat = results[0].rows;
-      console.log("CHAT---", chat)
       const vendor = results[1].rows[0];
-      console.log("VENDOR---", vendor)
       const chatObj = { chat, vendor };
-      console.log("CHATOBJ----", chatObj)
       return chatObj;
     })
     .catch((err) => {
@@ -81,22 +62,12 @@ const addChat = (userId, vendorUserId) => {
 
   return db.query(queryString, queryParams)
     .then(result => {
-      console.log('Added Chat Result: ', result);
       return result.rows[0];
     })
     .catch(err => {
-      // console.error(err);
       throw new Error('Could not add chat')
     });
 }
 
 module.exports = { getAllChats, findAChat, addChat };
 
-//get all chats with contact_user's details
-//SELECT chat_id, contact_user_id, users.name, users.email, users.profile_photo_url FROM(SELECT chats.id AS chat_id, CASE WHEN chats.contact_user_id = 4 THEN chats.user_id WHEN chats.contact_user_id <> 4 THEN chats.contact_user_id END AS contact_user_id FROM chats WHERE chats.user_id = 4 OR chats.contact_user_id = 4) AS relevant_chats JOIN users ON users.id = contact_user_id;
-
-
-// SELECT * FROM (SELECT * FROM chats WHERE user_id = 4 OR contact_user_id = 4) AS relevant_chats WHERE user_id = 1 OR contact_user_id = 1; 
-
-
-// SELECT * FROM (SELECT * FROM chats WHERE user_id = 4 OR contact_user_id = 4) AS relevant_chats WHERE user_id = 1 OR contact_user_id = 1; 

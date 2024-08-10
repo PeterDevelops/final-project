@@ -75,53 +75,33 @@ const VendorProfile = (props) => {
 
   const handleNavigateToChat = () => {
     //check chats table for user.id && contact_user_id (vendor.id) & return CHAT IF EXISTS
-    console.log("user id", user.id)
-    console.log("vendor id", vendor.id)
+    // console.log("user id", user.id)
+    // console.log("vendor id", vendor.id)
 
     axios.get('/api/chats/', {params: {userId: user.id, vendorId: vendor.id}})
     .then(chatObj => { 
-      console.log("CHATOBJ---", chatObj.data[0].chat.length);
-        const chatResults = chatObj.data[0].chat[0];
-        console.log("CHAT RESULTS-----", chatResults)
+      // console.log("CHATOBJ---", chatObj);
+        const chatResults = chatObj.data[0].chat;
+        // console.log("CHAT RESULTS-----", chatResults)
         const vendorResults = chatObj.data[0].vendor;
-        console.log("VENDOR RESULTS-----", vendorResults)
-      if (chatResults.id) {
-        console.log("chat results aren't 0")
-        navigate(`/chats/${chatResults.id}`, { state: {chat: vendorResults}})
+        // console.log("VENDOR RESULTS-----", vendorResults)
+      if (chatResults.length > 0) {
+        // console.log("chat results aren't 0")
+        navigate(`/chats/${chatResults[0].id}`, { state: {chat: vendorResults}})
       } else {
+        // console.log("chat results are 0")
         axios.post('/api/chats/new', {userId: user.id, vendorUserId: vendorResults.vendor_user_id})
         .then((results) => { 
-          console.log("HOSHDFOISHDF", results)
-          navigate(`/chats/${vendorResults.id}`, { state: {chat: results.data}})}
+          // console.log("HOSHDFOISHDF", results)
+          // console.log("VENDOR FROM STATE", vendor)
+          navigate(`/chats/${results.data.id}`, { state: {chat: {contact_name: vendor.name, contact_photo: vendor.vendor_logo_url }}})}
         )
       }
   
     })
     .catch((err) => {console.log("Find a chat axios error:", err)})
-  
-    //if result.length = 1
-      //navigate to that chats/chats.id
-    //if result.length > 1 then
-      //axois? create a new chat and return it
-      //navigate to that chats/chat.id
+
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   return (
@@ -160,7 +140,6 @@ const VendorProfile = (props) => {
               </button>
             </div>
           )}
-          {/* button to navigate to temporary fake chat */}
           <div className="mt-4">
             <button
               onClick={handleNavigateToChat}

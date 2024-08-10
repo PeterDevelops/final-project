@@ -25,9 +25,6 @@ const ChatListItem = (props) => {
   const { user } = props;
   const { id } = useParams();
   const location = useLocation();
-  // const { chat } = location.state;
-  // ^^^^^ temporarily commenting this out to avoid TypeError
-  // vvvvv handle case wehre location.state is null
   const chat = location.state?.chat || {};
   const navigate = useNavigate();
   const ref = useRef(null);
@@ -68,6 +65,7 @@ const ChatListItem = (props) => {
   const sendMessage = () => {
     const currentDate = moment().format('YYYY-MM-DD HH:mm:ssZZ'); //convert current local time to UTC format for db storage
     if (message.trim() !== '') {
+      // console.log("CHATID IN CHAT", id)
       const newMessage = { message: message, created_at: currentDate, sender_id: user.id, user: user, chatId: id }
 
       //emit an event by send message to server (listening)
@@ -170,8 +168,6 @@ const ChatListItem = (props) => {
     socket.emit("leave_chat", id);
     navigate(`/inbox`)
   }
-
-  // console.log("DATA FOR PAGE", chat.contact_user_id)
 
   const goToVendorPage = () => {
     socket.emit("leave_chat", id);
