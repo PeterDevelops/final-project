@@ -19,6 +19,7 @@ import VendorProfile from './components/Routes/VendorProfile';
 import AddEditVendor from './components/Routes/AddEditVendor';
 import AddEditProduct from './components/Routes/AddEditProduct';
 import ScrollToTop from './ScrollToTop';
+import UseNavBar from './components/useNavBar';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -92,19 +93,8 @@ function App() {
   return (
     // Router must be in the top level of the app
     <Router>
-      <NavBar
-        products={products}
-        setProducts={setProducts}
-        allProducts={allProducts}
-        vendors={vendors}
-        setVendors={setVendors}
-        allVendors={allVendors}
-        locations={locations}
-        categories={categories}
-        user={user}
-        setUser={setUser}
-        cartItems={cartItems}
-      />
+      {/* route to conditionally render NavBar based on path because react got mad at me for using useNavigation here */}
+      <UseNavBar>
       <main className='pt-navbar bg-main'>
         <ScrollToTop />
         <Routes>
@@ -353,6 +343,7 @@ function App() {
           />
         </Routes>
       </main>
+      </UseNavBar>
     </Router>
   );
 };
