@@ -31,7 +31,7 @@ const VendorList = (props) => {
 
   const renderVendorList = (vendorsArray) => {
     return vendorsArray.map((vendor) => (
-      <VendorListItem key={vendor.id} vendorData={vendor} onClick={() => handleVendorClick(vendor)} />
+      <VendorListItem key={vendor.id} vendorData={vendor} onClick={() => handleVendorClick(vendor)} showBio={false}/>
     ));
   };
 
@@ -68,20 +68,26 @@ const VendorList = (props) => {
           {userVendors.length > 0 && (
             <>
               <h2 className="text-xl font-bold m-5" >Your Vendors</h2>
+              <div className="grid grid-cols-2 gap-4">
               {renderVendorList(userVendors)}
+              </div>
             </>
           )}
           {otherVendors.length > 0 && (
             <>
               <h2 className="text-xl font-bold m-5" >Other Vendors</h2>
+              <div className="grid grid-cols-2 gap-4">
               {renderVendorList(otherVendors)}
+              </div>
             </>
           )}
         </>
       ) : (
         <>
           <h2 className="text-xl font-bold m-5" >All Vendors</h2>
+          <div className="grid grid-cols-2 gap-4">
           {renderVendorList(allVendors)}
+          </div>
         </>
       )}
     </div>

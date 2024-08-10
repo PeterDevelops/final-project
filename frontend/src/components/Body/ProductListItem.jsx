@@ -134,10 +134,10 @@ const ProductListItem = (props) => {
       <img
         src={productData.photo_url}
         alt={`${productData.name} image`}
-        className="w-full md:w-1/3 md:object-cover md:object-contain"
+        className="w-full h-48 md:w-1/3 md:h-auto md:object-cover"
       />
-      <div className="p-5 w-full md:w-2/3">
-        <h1 className="text-xl font-semibold">{productData.name}</h1>
+      <div className="p-5 w-full md:w-2/3 flex flex-col justify-center">
+        <h1 className="text-xl font-semibold text-center">{productData.name}</h1>
         <p className="mt-2">Description: {productData.description}</p>
         <h3 className="mt-2 text-lg font-bold">${(productData.price_cents / 100.00).toFixed(2)}</h3>
         {isProductOwnedByUser ? (

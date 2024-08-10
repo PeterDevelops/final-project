@@ -60,7 +60,9 @@ const ProductList = (props) => {
         cartItems={cartItems}
       />
       )} */}
+      <div className="grid grid-cols-2 gap-4">
       {productListArr()}
+      </div>
     </div>
   )
 

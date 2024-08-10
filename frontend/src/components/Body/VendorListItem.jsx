@@ -1,11 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import { useNavigate } from 'react-router-dom'
 
 const VendorListItem = (props) => {
-  const { vendorData, onClick } = props;
-  // const navigate = useNavigate();
-  // console.log("VENDOR DATA-----", vendorData)
+  const { vendorData, onClick, showBio } = props;
 
   const handleClick = (event) => {
     event.preventDefault();
@@ -20,9 +17,9 @@ const VendorListItem = (props) => {
           alt="vendor logo"
           className="w-full md:w-1/3 md:object-cover md:object-contain"
         />
-        <div className="p-5 w-full md:w-2/3">
-          <h3 className="text-xl font-semibold">{vendorData.name}</h3>
-          <p className="mt-2">{vendorData.bio}</p>
+        <div className="p-5 w-full md:w-2/3 flex flex-col justify-center">
+          <h3 className="text-xl font-semibold text-center">{vendorData.name}</h3>
+          {showBio && <p className="mt-2">{vendorData.bio}</p>}
         </div>
       </article>
     </Link>
