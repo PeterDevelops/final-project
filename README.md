@@ -91,7 +91,7 @@ Ensure you have Node.js and npm installed on your machine.
 
 ### Installation
 
-1. Sign up for [Thunderforest](https://thunderforest.com) and get a free API Key
+1. Sign up for [Thunderforest](https://thunderforest.com) and [Stripe](https://stripe.com/) get both API keys (Both have a free level for testing purposes)
 
 2. Clone the repo
    ```sh
@@ -102,16 +102,33 @@ Ensure you have Node.js and npm installed on your machine.
     cd final-project/backend
     npm install
    ```
-4. Run the backend server
+4. Set up your .env file for the backend:
+    - Copy the .env.example file to create a new .env file
+      ```sh
+        cp .env.example .env
+        ```
+    - Open the .env file and add your Stripe API key and Database credentials:
+      ```js
+      # Database Configuration
+        DB_HOST=<your_database_host>
+        DB_USER=<your_database_user>
+        DB_PASS=<your_database_password>
+        DB_NAME=<your_database_name>
+        DB_PORT=<your_database_port>
+
+      # Stripe API Configuration
+        STRIPE_SECRET_KEY=<your_stripe_secret_key>
+        ```
+5. Run the backend server
    ```sh
     node server.js
    ```
-5. In a new terminal, navigate to the frontend directory and install dependencies
+6. In a new terminal, navigate to the frontend directory and install dependencies
    ```sh
     cd ../frontend
     npm install
    ```
-6. Set up your .env file for the frontend:
+7. Set up your .env file for the frontend:
     - Copy the .env.example file to create a new .env file
       ```sh
         cp .env.example .env
@@ -120,7 +137,7 @@ Ensure you have Node.js and npm installed on your machine.
       ```js
         REACT_APP_THUNDERFOREST_API_KEY=<your-thunderforest-api-key>
         ```
-7. Start the frontend development server
+8. Start the frontend development server
    ```sh
     npm start
    ```
