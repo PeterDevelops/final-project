@@ -1,7 +1,7 @@
 // path localhost:3000/api/chats
 
 const express = require('express');
-const { getAllChats } = require('../db/queries/chats');
+const { getAllChats, findAChat, addChat } = require('../db/queries/chats');
 const router = express.Router();
 
 router.get('/:id', (req, res) => {
@@ -12,6 +12,27 @@ router.get('/:id', (req, res) => {
   getAllChats(userId)
   .then((userChatData) => res.json(userChatData))
   .catch((err) => {err.message})
+})
+
+router.get('/', (req, res) => {
+  console.log("-----------REQ Query------", req.query)
+  const { userId, vendorId } = req.query;
+  Promise.all([findAChat(userId, vendorId)])
+  .then((results) => {
+    res.json(results)})
+  .catch((err) => console.log("Error finding a chat:", err))
+
+})
+
+router.post('/new', (req, res) => {
+  const userId = req.body.userId;
+  console.log('userId', userId)
+  const vendorUserId = req.body.vendorUserId;
+  console.log("vendorUserId", vendorUserId)
+
+  addChat(userId, vendorUserId)
+  .then((chatData => res.json(chatData)))
+  .catch((error) => console.error("Issue pulling message data:", error))
 })
 
 module.exports = router;

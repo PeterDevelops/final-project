@@ -97,7 +97,6 @@ const ChatListItem = (props) => {
     };
   }, [socket]);
 
-
   const messageList = messageHistory.map((message, index) => {
     // console.log("MESSAGE----", message.message)
     // console.log("This messages index", index)
@@ -172,6 +171,13 @@ const ChatListItem = (props) => {
     navigate(`/inbox`)
   }
 
+  // console.log("DATA FOR PAGE", chat.contact_user_id)
+
+  const goToVendorPage = () => {
+    socket.emit("leave_chat", id);
+    navigate(`/vendors/${chat.contact_user_id}`)
+  }
+
   return (
     <>
       <div className="flex flex-col h-2/6">
@@ -179,7 +185,7 @@ const ChatListItem = (props) => {
           <div className="bg-[#F7F4F0] rounded p-2 relative">
             <FontAwesomeIcon icon={faCircleXmark} onClick={handleClick} className="absolute top-2 right-2 cursor-pointer" />
 
-            <div className="bg-[#F7F4F0] rounded p-2 mb-4 flex flex-row items-center">
+            <div className="bg-[#F7F4F0] rounded p-2 mb-4 flex flex-row items-center cursor-pointer" onClick={goToVendorPage}>
               <img className="rounded-full h-16 w-16 object-cover" src={chat.contact_photo} />
               <h1 className="font-bold text-lg px-2">{chat.contact_name}</h1>
             </div>
