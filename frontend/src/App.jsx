@@ -78,8 +78,6 @@ function App({ location }) {
         console.error('There was an error with category data!', error);
       });
     }, []);
-  console.log('Categories: ', categories);
-
 
   // add cart item total
   const subtotal = cartItems.reduce((acc, item) => {
@@ -112,6 +110,7 @@ function App({ location }) {
           user={user}
           setUser={setUser}
           cartItems={cartItems}
+          categories={categories}
         />
       )}
         <main className={mainClass}>

@@ -165,6 +165,12 @@ const ChatListItem = (props) => {
     navigate(`/vendors/${chat.vendor_id}`, {state: {vendor: allVendors[chat.vendor_id - 1], allProducts: allProducts}})
   }
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      sendMessage();
+    }
+  };
 
   return (
     <>
@@ -197,7 +203,9 @@ const ChatListItem = (props) => {
                 className="w-full h-12 border border-gray-300 rounded-lg p-2 resize-none overflow-auto"
                 onChange={(event) => setMessage(event.target.value)}
                 value={message}
-                placeholder="Message..." />
+                placeholder="Message..."
+                onKeyDown={handleKeyDown}
+              />
             </div>
             <div className="flex-shrink ml-2" >
               <button
