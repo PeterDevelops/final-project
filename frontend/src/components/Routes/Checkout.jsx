@@ -66,7 +66,7 @@ const Checkout = (props) => {
 
   return (
     <div className="relative h-screen">
-    {/* //   <NavBar
+      {/* //   <NavBar
     //     products={products}
     //     setProducts={setProducts}
     //     allProducts={allProducts}
@@ -90,7 +90,7 @@ const Checkout = (props) => {
             />
           </div>
 
-          <div>
+          <div className='font-bold text-xl'>
             Order Summary
           </div>
 
@@ -104,16 +104,16 @@ const Checkout = (props) => {
             />
           ))}
 
-          <div className='total'>
+          <div className='total m-2'>
             Total: ${subtotal.toFixed(2)}
           </div>
 
           {/* if pickup render vendor address and city */}
           {alignment === 'pickup' && (
             <div>
-              <h3>Pickup Address</h3>
+              <h3 className='text-sm font-bold'>Pickup Address</h3>
               {cartItems.length > 0 ? (
-                <p>{cartItems[0].vendor_address}, {cartItems[0].vendor_city}</p>
+                <p className='text-sm'>{cartItems[0].vendor_address}, {cartItems[0].vendor_city}</p>
               ) : (
                 <p>Address and city information not available.</p>
               )}
@@ -124,35 +124,38 @@ const Checkout = (props) => {
           {alignment === 'delivery' && (
             <div>
 
-              <h3>Delivery Details</h3>
+              <h3 className='text-sm font-bold'>Delivery Details</h3>
+
               <div>
-                <label>
-                  Address:
-                  <input
-                    type='text'
-                    name='address'
-                    value={deliveryDetails.address}
-                    onChange={handleInputChange}
-                  />
-                </label>
+                Address:
               </div>
 
               <div>
-                <label>
-                  City:
-                  <input
-                    type='text'
-                    name='city'
-                    value={deliveryDetails.city}
-                    onChange={handleInputChange}
-                  />
-                </label>
+                <input
+                  type='text'
+                  name='address'
+                  value={deliveryDetails.address}
+                  onChange={handleInputChange}
+                />
+              </div>
+
+              <div className='text-sm font-medium'>
+                City:
+              </div>
+
+              <div>
+                <input
+                  type='text'
+                  name='city'
+                  value={deliveryDetails.city}
+                  onChange={handleInputChange}
+                />
               </div>
 
             </div>
-
           )}
-
+          <div className='text-sm font-bold'>
+            <div>Card Details</div>
           <Elements stripe={stripePromise}>
             <PaymentForm
               userId={user.id}
@@ -161,8 +164,9 @@ const Checkout = (props) => {
               orderItems={orderItems}
               setCartItems={setCartItems}
               subtotal={subtotal}
-              />
+            />
           </Elements>
+          </div>
 
 
           <div className='cart-center'>
