@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,6 +26,7 @@ export default function SearchBar(props) {
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState('');
   const [filteredOptions, setFilteredOptions] = useState([]);
+  const inputRef = useRef(null);
 
   const categorizeProducts = () => {
     if (Array.isArray(allProducts) && allProducts.length > 0) {
@@ -89,6 +90,10 @@ export default function SearchBar(props) {
   }
 
   const handleOptionClick = (option) => {
+    if (inputRef.current) {
+      inputRef.current.blur();
+    }
+
     if (option.vendor_logo_url) {
       const filteredByVendor = allProducts.filter(product => product.vendor_id === option.id);
       const currentVendor = [option]
@@ -109,6 +114,10 @@ export default function SearchBar(props) {
 
     const matchedVendor = allVendors.find(vendor => vendor.name.toLowerCase() === inputValue.toLowerCase());
     const matchedSubCategory = allProducts.find(product => product.sub_category.toLowerCase() === inputValue.toLowerCase());
+    
+    if (inputRef.current) {
+      inputRef.current.blur();
+    }
 
     if (matchedVendor) {
       const filteredByVendor = allProducts.filter(product => product.vendor_id === matchedVendor.id);
@@ -170,6 +179,7 @@ export default function SearchBar(props) {
                   border: '1px solid #d1d5db',
                 },
               }}
+              inputRef={inputRef}
             />
           )}
         />
