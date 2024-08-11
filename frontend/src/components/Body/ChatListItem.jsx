@@ -11,24 +11,10 @@ import io from 'socket.io-client'
 // connect to backend socket server
 const socket = io.connect("http://localhost:8080")
 
-// chatHistory = [... {},
-//   {
-//     id: 12,
-//     message: 'Good for you.',
-//     created_at: 2024-08-18T19:29:45.000Z,
-//     sender_id: 4,
-//     chat_id: 3
-//   }
-// ]
-
 const ChatListItem = (props) => {
   const { user } = props;
   const { id } = useParams();
   const location = useLocation();
-  // const chat = location.state?.chat || {};
-  // const vendor = location.state?.vendor || {};
-  // const allProducts = location.state?.allProducts || [];
-  // const allVendors = location.state?.allVendors || [];
   const { allProducts = [], chat = {}, vendor = {}, allVendors = [] } = location.state || {};
 
   const navigate = useNavigate();
@@ -38,8 +24,6 @@ const ChatListItem = (props) => {
   const [message, setMessage] = useState("");
   // chat history stored in db
   const [messageHistory, setMessageHistory] = useState([]);
-  //products to go to vendor page
-  const [products, setProducts] = useState([]);
 
   // join chat on load
   useEffect(() => {
@@ -175,18 +159,6 @@ const ChatListItem = (props) => {
     socket.emit("leave_chat", id);
     navigate(`/inbox`)
   }
-
-  console.log("products DATA-----+++++++++", allProducts)
-  console.log("chat DATA-----+++++++++", chat)
-  console.log("vendor DATA-----+++++++++", chat.vendor)
-  console.log("all vendors DATA-----+++++++++", allVendors)
-  console.log("specific vendors DATA-----+++++++++", allVendors[chat.vendor_id - 1])
-
-  // useEffect(() => {
-  //   const vendorsProducts = allProducts.filter((product) => {product.vendor_id === chat.vendor_id});
-  //   setProducts(vendorsProducts);
-  // }, [])
-
 
   const goToVendorPage = () => {
     socket.emit("leave_chat", id);

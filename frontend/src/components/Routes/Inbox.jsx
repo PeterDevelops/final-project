@@ -67,8 +67,6 @@ const Inbox = (props) => {
         setUser={setUser}
         cartItems={cartItems}
       /> */}
-      <h1 className="text-xl font-semibold m-3 p-3">Inbox </h1>
-
       <div className="flex flex-col justify-content">
         <div className="px-8 pt-6 pb-8 mb-4">
           <div className="rounded p-2">

@@ -29,39 +29,24 @@ const VendorProfile = (props) => {
 
   //from chat
   const location = useLocation();
-  // console.log("location is always true, even without assignment", location.state.vendor)
-  console.log("vendorData", vendors[0])
 
   useEffect(() => {
     if (location.state.vendor) {
-      // console.log("location is always true, even without assignment", location.state.vendor)
       setVendor(location.state.vendor)
     } else {
-      // const vendorData = vendors.length > 0 ? vendors[0] : null;
       const vendorData = vendors[0];
-      console.log("VENDOR DATA&&&&&&&", vendorData)
       setVendor(vendorData)
     }
   }, [location.state.vendor, vendors])
 
   useEffect(() => {
-    console.log("all products back in vendor profile", location.state.allProducts)
     if (location.state.allProducts && vendor) {
       const listOfProducts = location.state.allProducts
-      console.log("listOfProducts", listOfProducts)
-      console.log("vendor", vendor)
-      console.log("vendor ID", listOfProducts[0].vendor_id)
-      const vendorsProducts = listOfProducts.filter((product) => product.vendor_id === vendor.id )
-      console.log("Vendors products back on the vendors page", vendorsProducts)
+      const vendorsProducts = listOfProducts.filter((product) => product.vendor_id === vendor.id)
       setAllProducts(location.state.allProducts);
       setProducts(vendorsProducts)
     }
   }, [location.state.allProducts, vendor])
-
-  // const vendorFromChat = location.state?.vendor || {};
-
-
-  // const vendor = vendors.length > 0 ? vendors[0] : null;
 
   const handleEdit = () => {
     if (vendor) {
@@ -95,52 +80,23 @@ const VendorProfile = (props) => {
     }
   };
 
-  /**
-   * chatObj {
-    chat: [],
-    vendor: {
-      contact_name: 'Artisan Cheese Co.',
-      contact_photo: '/images/vendor-logos/artisan-cheese-co-high-resolution-logo.png',
-      vendor_id: 5,
-      vendor_user_id
-    }
-  }
-  [ '5' ]
-    * 
-   */
-
-  console.log("VENDOR FROM STATE", vendor)
-  console.log("ALL PRODUCTS", allProducts)
-
   const handleNavigateToChat = () => {
-    //check chats table for user.id && contact_user_id (vendor.id) & return CHAT IF EXISTS
-    // console.log("user id", user.id)
-    // console.log("vendor id", vendor.id)
     axios.get('/api/chats/', { params: { userId: user.id, vendorId: vendor.id } })
       .then(chatObj => {
-        // console.log("CHATOBJ---", chatObj);
         const chatResults = chatObj.data[0].chat;
-        // console.log("CHAT RESULTS-----", chatResults)
         const vendorResults = chatObj.data[0].vendor;
-        // console.log("VENDOR RESULTS-----", vendorResults)
         if (chatResults.length > 0) {
-          // console.log("chat results aren't 0")
           navigate(`/chats/${chatResults[0].id}`, { state: { chat: vendorResults, vendor: vendor, allProducts: allProducts } })
         } else {
-          // console.log("chat results are 0")
           axios.post('/api/chats/new', { userId: user.id, vendorUserId: vendorResults.vendor_user_id })
             .then((results) => {
-              // console.log("HOSHDFOISHDF", results)
-              navigate(`/chats/${results.data.id}`, { state: { chat: { contact_name: vendor.name, contact_photo: vendor.vendor_logo_url, vendor: vendor }, allProducts: allProducts }})
+              navigate(`/chats/${results.data.id}`, { state: { chat: { contact_name: vendor.name, contact_photo: vendor.vendor_logo_url, vendor: vendor }, allProducts: allProducts } })
             }
-            )
+          )
         }
-
       })
       .catch((err) => { console.log("Find a chat axios error:", err) })
-
   }
-
 
   return (
     <div>

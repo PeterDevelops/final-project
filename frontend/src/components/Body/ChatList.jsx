@@ -4,26 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import moment from 'moment'
 
-/**
- * chat = {
- *  chat_id: 8,
- *  contact_name: "Green Leafy Greens",
- *  contact_photo: "/images/vendor-logos/green-leafy-greens-high-resolution-logo.png",
- *  contact_user_id: 3, 
- *  vendor_id: #
- * }
- */
 
-//consider pulling this out into a helper file???
 const formatDate = (messageDateStr) => {
   const messageDate = moment.utc(messageDateStr).local(); // Convert date to local time
-  // console.log("message date after local", messageDate)
   const now = moment(); // Current local date
   const yesterday = moment().subtract(1, 'days'); // Calculate yesterday's date
-
-  // console.log("messageDate", messageDate)
-  // console.log("now", now)
-  // console.log("yesterday", yesterday)
 
   // ChatList Format the time according to the user's local time zone
   if (now.isSame(messageDate, 'day')) {
@@ -41,23 +26,15 @@ const ChatList = (props) => {
   const [messageData, setMessageData] = useState([]);
   const navigate = useNavigate();
 
-  // console.log("chat ID", chat)
-  // console.log("MessageData state---", messageData)
-
   useEffect(() => {
-    // if(user) {
-    // console.log("CHAT--------", chat.chat_id)
     axios.get(`/api/messages/last/${chat.chat_id}`)
       .then((message) => {
         setMessageData(message.data[0])
       })
       .catch((error) => { console.log("There was an issue retrieving the last message:", error) })
-    // }
   }, [])
   
   const handleClick = (id) => {
-    // console.log("ChatList click event id", id)
-    // console.log("CHAT FROM CHATLIST-----", chat)
     navigate(`/chats/${id}`, { state: { chat: chat, vendor: allVendors[chat.vendor_id - 1], allProducts: allProducts, allVendors: allVendors }})
   }
   
