@@ -47,7 +47,7 @@ const Inbox = (props) => {
 
   const chatListArr = () => {
     if (Array.isArray(chatData) && chatData.length > 0) {
-      const chatList = chatData.map((chat) => <ChatList key={chat.chat_id} chat={chat} user={user} allVendors={allVendors}/>)
+      const chatList = chatData.map((chat) => <ChatList key={chat.chat_id} chat={chat} user={user} allVendors={allVendors} allProducts={allProducts}/>)
       return chatList;
     }
   }

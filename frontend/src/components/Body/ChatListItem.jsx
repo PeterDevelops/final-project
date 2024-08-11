@@ -25,8 +25,12 @@ const ChatListItem = (props) => {
   const { user } = props;
   const { id } = useParams();
   const location = useLocation();
-  const chat = location.state?.chat || {};
-  const vendor = location.state?.vendor || {};
+  // const chat = location.state?.chat || {};
+  // const vendor = location.state?.vendor || {};
+  // const allProducts = location.state?.allProducts || [];
+  // const allVendors = location.state?.allVendors || [];
+  const { allProducts = [], chat = {}, vendor = {}, allVendors = [] } = location.state || {};
+
   const navigate = useNavigate();
   const ref = useRef(null);
 
@@ -34,6 +38,8 @@ const ChatListItem = (props) => {
   const [message, setMessage] = useState("");
   // chat history stored in db
   const [messageHistory, setMessageHistory] = useState([]);
+  //products to go to vendor page
+  const [products, setProducts] = useState([]);
 
   // join chat on load
   useEffect(() => {
@@ -170,12 +176,21 @@ const ChatListItem = (props) => {
     navigate(`/inbox`)
   }
 
-  console.log("VENDOR DATA-----+++++++++", vendor)
+  console.log("products DATA-----+++++++++", allProducts)
+  console.log("chat DATA-----+++++++++", chat)
+  console.log("vendor DATA-----+++++++++", chat.vendor)
+  console.log("all vendors DATA-----+++++++++", allVendors)
+  console.log("specific vendors DATA-----+++++++++", allVendors[chat.vendor_id - 1])
+
+  // useEffect(() => {
+  //   const vendorsProducts = allProducts.filter((product) => {product.vendor_id === chat.vendor_id});
+  //   setProducts(vendorsProducts);
+  // }, [])
 
 
   const goToVendorPage = () => {
     socket.emit("leave_chat", id);
-    navigate(`/vendors/${chat.vendor_id}`, {state: {vendor: chat.vendor}})
+    navigate(`/vendors/${chat.vendor_id}`, {state: {vendor: allVendors[chat.vendor_id - 1], allProducts: allProducts}})
   }
 
 
