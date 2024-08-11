@@ -20,10 +20,11 @@ const NavBar = (props) => {
     categories,
     user,
     setUser,
-    cartItems
+    cartItems,
   } = props;
 
   const location = useLocation();
+
   const noSearchBar = ['/cart', '/checkout', '/inbox', '/chats', '/login'];
 
   return (
