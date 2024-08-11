@@ -31,6 +31,7 @@ const PaymentForm = ({ userId, totalCost, orderData, orderItems, setCartItems, s
         iconColor: '#fa755a',
       },
     },
+    hidePostalCode: true,
   };
 
 

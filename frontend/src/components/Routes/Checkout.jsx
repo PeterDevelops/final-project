@@ -113,9 +113,15 @@ const Checkout = (props) => {
             <div>
               <h3 className='text-sm font-bold'>Pickup Addresses</h3>
               {cartItems.length > 0 ? (
-                [...new Set(cartItems.map(item => `${item.vendor_name}: ${item.vendor_address}, ${item.vendor_city}`))]
-                  .map((address, index) => (
-                    <p key={index} className='text-sm'>{address}</p>
+                [...new Set(
+                  cartItems.map(item => {
+                    const vendor = allVendors.find(vendor =>
+                      vendor.id === allProducts.find(product => product.id === item.product_id)?.vendor_id
+                    );
+                    return vendor ? `${vendor.name}: ${vendor.address}, ${vendor.city}` : null;
+                  }).filter(Boolean)
+                )].map((address, index) => (
+                  <p key={index} className='text-sm'>{address}</p>
                 ))
               ) : (
                 <p>Address and city information not available.</p>
