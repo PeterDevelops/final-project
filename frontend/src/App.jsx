@@ -21,7 +21,7 @@ import AddEditProduct from './components/Routes/AddEditProduct';
 import ScrollToTop from './ScrollToTop';
 import UseNavBar from './components/useNavBar';
 
-function App() {
+function App({ location }) {
   const [products, setProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
   const [vendors, setVendors] = useState([]);
@@ -79,6 +79,8 @@ function App() {
         console.error('There was an error with category data!', error);
       });
   }, []);
+  console.log('Categories: ', categories);
+
 
   // add cart item total
   const subtotal = cartItems.reduce((acc, item) => {
@@ -86,16 +88,30 @@ function App() {
     return acc + (item.price_cents * quantity / 100);
   }, 0);
 
+  const hiddenNavBarRoutes = ['/chats'];
+
+  const shouldShowNavBar = !hiddenNavBarRoutes.some(route => location.pathname.startsWith(route));
   // console.log("Products Data---", products)
   // console.log("Vendors Data---", vendors)
   // console.log("categories in the App component: ------- ", categories)
   // console.log('cartItems:App', cartItems);
   return (
-    // Router must be in the top level of the app
-    <Router>
-      {/* route to conditionally render NavBar based on path because react got mad at me for using useNavigation here */}
-      <UseNavBar>
-      <main className='pt-navbar bg-main'>
+    <>
+      {shouldShowNavBar && (
+        <NavBar
+          products={products}
+          setProducts={setProducts}
+          allProducts={allProducts}
+          vendors={vendors}
+          setVendors={setVendors}
+          allVendors={allVendors}
+          locations={locations}
+          user={user}
+          setUser={setUser}
+          cartItems={cartItems}
+        />
+      )}
+      <main className={shouldShowNavBar && 'pt-navbar bg-main'}>
         <ScrollToTop />
         <Routes>
           <Route path="/" element={
@@ -343,8 +359,7 @@ function App() {
           />
         </Routes>
       </main>
-      </UseNavBar>
-    </Router>
+    </>
   );
 };
 
