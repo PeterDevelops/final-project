@@ -20,6 +20,7 @@ module.exports = {
       },
       spacing: {
         'navbar': '194px',
+        'navbar-no-search': '140px',
       },
       backgroundImage: {
         // 'nav': "url('https://www.toptal.com/designers/subtlepatterns/uploads/bananas.png')",

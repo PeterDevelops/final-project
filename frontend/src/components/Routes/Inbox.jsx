@@ -1,10 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom'
-import NavBar from '../NavBar';
 import ChatList from '../Body/ChatList'
 import io from 'socket.io-client'
 const socket = io.connect("http://localhost:8080")
@@ -53,25 +50,14 @@ const Inbox = (props) => {
   }
 
   return (
-    <div className="relative h-screen">
-      {/* <NavBar
-        products={products}
-        setProducts={setProducts}
-        allProducts={allProducts}
-        vendors={vendors}
-        setVendors={setVendors}
-        allVendors={allVendors}
-        locations={locations}
-        categories={categories}
-        user={user}
-        setUser={setUser}
-        cartItems={cartItems}
-      /> */}
-      <div className="flex flex-col justify-content">
-        <div className="px-8 pt-6 pb-8 mb-4">
-          <div className="rounded p-2">
-            {user ? <div>{chatListArr()}</div> : <h1>Please <a onClick={() => navigate('/login')} className="cursor-pointer underline font-bold">login</a> to see your inbox.</h1>}
-          </div>
+    <div className="min-h-screen flex flex-col">
+      <div className="flex flex-col flex-grow justify-content px-8 pt-6 pb-8 mb-4">
+        <div className="rounded p-2">
+          {user ? (
+            <div>{chatListArr()}</div>
+          ) : (
+            <h1>Please <span onClick={() => navigate('/login')} className="cursor-pointer underline font-bold">login</span> to see your inbox.</h1>
+          )}
         </div>
       </div>
     </div>

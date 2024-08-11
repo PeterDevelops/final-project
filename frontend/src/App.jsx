@@ -19,7 +19,6 @@ import VendorProfile from './components/Routes/VendorProfile';
 import AddEditVendor from './components/Routes/AddEditVendor';
 import AddEditProduct from './components/Routes/AddEditProduct';
 import ScrollToTop from './ScrollToTop';
-import UseNavBar from './components/useNavBar';
 
 function App({ location }) {
   const [products, setProducts] = useState([]);
@@ -36,18 +35,18 @@ function App({ location }) {
   // a route to pull products data from the db (backend)
   useEffect(() => {
     axios.get('/api/products')
-      .then(response => {
-        setProducts(response.data);
+    .then(response => {
+      setProducts(response.data);
         setAllProducts(response.data);
       })
       .catch(error => {
         console.error('There was an error with products data!', error);
       });
-  }, []);
+    }, []);
 
-  // a route to pull vendors data from the db (backend)
-  useEffect(() => {
-    axios.get('/api/vendors')
+    // a route to pull vendors data from the db (backend)
+    useEffect(() => {
+      axios.get('/api/vendors')
       .then(response => {
         setVendors(response.data);
         setAllVendors(response.data);
@@ -55,22 +54,22 @@ function App({ location }) {
       .catch(error => {
         console.error('There was an error with vendor data!', error);
       });
-  }, []);
+    }, []);
 
-  // a route to pull location data from the db (backend)
-  useEffect(() => {
-    axios.get('/api/locations')
+    // a route to pull location data from the db (backend)
+    useEffect(() => {
+      axios.get('/api/locations')
       .then(response => {
         setLocations(response.data);
       })
       .catch(error => {
         console.error('There was an error with locations data!', error);
       });
-  }, []);
+    }, []);
 
-  // a route to pull all category data from the db (backend)
-  useEffect(() => {
-    axios.get('/api/categories')
+    // a route to pull all category data from the db (backend)
+    useEffect(() => {
+      axios.get('/api/categories')
       .then(response => {
         // // console.log('fetched categories:', response.data)
         setCategories(response.data);
@@ -78,7 +77,7 @@ function App({ location }) {
       .catch(error => {
         console.error('There was an error with category data!', error);
       });
-  }, []);
+    }, []);
   console.log('Categories: ', categories);
 
 
@@ -88,9 +87,13 @@ function App({ location }) {
     return acc + (item.price_cents * quantity / 100);
   }, 0);
 
-  const hiddenNavBarRoutes = ['/chats'];
+  const noSearchBar = ['/cart', '/checkout', '/inbox', '/chats', '/login'];
+  const shouldShowSearchBar = !noSearchBar.includes(location.pathname);
 
+  const hiddenNavBarRoutes = ['/chats'];
   const shouldShowNavBar = !hiddenNavBarRoutes.some(route => location.pathname.startsWith(route));
+
+  const mainClass = `bg-main ${shouldShowNavBar ? (shouldShowSearchBar ? 'pt-navbar' : 'pt-navbar-no-search') : ''}`;
   // console.log("Products Data---", products)
   // console.log("Vendors Data---", vendors)
   // console.log("categories in the App component: ------- ", categories)
@@ -111,7 +114,7 @@ function App({ location }) {
           cartItems={cartItems}
         />
       )}
-      <main className={shouldShowNavBar && 'pt-navbar bg-main'}>
+        <main className={mainClass}>
         <ScrollToTop />
         <Routes>
           <Route path="/" element={
