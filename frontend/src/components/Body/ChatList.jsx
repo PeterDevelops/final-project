@@ -37,12 +37,12 @@ const formatDate = (messageDateStr) => {
 };
 
 const ChatList = (props) => {
-  const { chat, user } = props;
+  const { chat, user, allVendors } = props;
   const [messageData, setMessageData] = useState([]);
   const navigate = useNavigate();
 
-  // console.log("chat ID", chat.id)
-  // console.log("MessageData state---", messageData)
+  console.log("chat ID", chat)
+  console.log("MessageData state---", messageData)
 
   useEffect(() => {
     // if(user) {
@@ -55,13 +55,14 @@ const ChatList = (props) => {
     // }
   }, [])
   
+  /// need to add vendor data to this and pass it through!!!!!!!!!!!!!!!!!!!
   const handleClick = (id) => {
     // console.log("ChatList click event id", id)
     // console.log("CHAT FROM CHATLIST-----", chat)
-    navigate(`/chats/${id}`, { state: { chat: chat } })
+    navigate(`/chats/${id}`, { state: { chat: chat, vendor: allVendors[chat.vendor_id - 1]} })
   }
   
-  console.log("THE CHAT DATA THAT MAY BE CAUSING ISSUES", chat.contact_name)
+  console.log("THE CHATDATA IN CHATLIST", chat)
 
   return (
     <article onClick={() => handleClick(chat.chat_id)} className="cursor-pointer flex items-center border rounded p-5 gap-4 my-5 bg-[#F7F4F0] bg-opacity-50 hover:shadow-md">

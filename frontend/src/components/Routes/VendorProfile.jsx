@@ -1,8 +1,9 @@
 import React from 'react';
+import { useEffect, useState } from 'react'
 import NavBar from '../NavBar';
 import axios from 'axios'
 import ProductList from './ProductList';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const VendorProfile = (props) => {
   const {
@@ -24,7 +25,29 @@ const VendorProfile = (props) => {
   } = props;
 
   const navigate = useNavigate();
-  const vendor = vendors.length > 0 ? vendors[0] : null;
+  const [vendor, setVendor] = useState({});
+
+  //from chat
+  const location = useLocation();
+  // console.log("location is always true, even without assignment", location.state.vendor)
+  console.log("vendorData", vendors[0])
+
+  useEffect(() => {
+    if (location.state.vendor) {
+      // console.log("location is always true, even without assignment", location.state.vendor)
+      setVendor(location.state.vendor)
+    } else {
+      // const vendorData = vendors.length > 0 ? vendors[0] : null;
+      const vendorData = vendors[0];
+      console.log("VENDOR DATA&&&&&&&", vendorData)
+      setVendor(vendorData)
+    }
+  }, [location.state.vendor, vendors])
+
+  // const vendorFromChat = location.state?.vendor || {};
+
+
+  // const vendor = vendors.length > 0 ? vendors[0] : null;
 
   const handleEdit = () => {
     if (vendor) {
@@ -72,6 +95,7 @@ const VendorProfile = (props) => {
   * 
  */
 
+console.log("VENDOR FROM STATE", vendor)
 
   const handleNavigateToChat = () => {
     //check chats table for user.id && contact_user_id (vendor.id) & return CHAT IF EXISTS
@@ -87,14 +111,13 @@ const VendorProfile = (props) => {
         // console.log("VENDOR RESULTS-----", vendorResults)
       if (chatResults.length > 0) {
         // console.log("chat results aren't 0")
-        navigate(`/chats/${chatResults[0].id}`, { state: {chat: vendorResults}})
+        navigate(`/chats/${chatResults[0].id}`, { state: {chat: vendorResults, vendor: vendor}})
       } else {
         // console.log("chat results are 0")
         axios.post('/api/chats/new', {userId: user.id, vendorUserId: vendorResults.vendor_user_id})
         .then((results) => { 
           // console.log("HOSHDFOISHDF", results)
-          // console.log("VENDOR FROM STATE", vendor)
-          navigate(`/chats/${results.data.id}`, { state: {chat: {contact_name: vendor.name, contact_photo: vendor.vendor_logo_url }}})}
+          navigate(`/chats/${results.data.id}`, { state: {chat: {contact_name: vendor.name, contact_photo: vendor.vendor_logo_url, vendor: vendor }}})}
         )
       }
   
@@ -119,6 +142,8 @@ const VendorProfile = (props) => {
         setUser={setUser}
         cartItems={cartItems}
       /> */}
+      {vendor && 
+      <>
       <div className="vendor-profile flex flex-col md:flex-row md:items-center border rounded-lg shadow-md m-5 overflow-hidden">
         <img src={vendor.vendor_logo_url} alt={vendor.name} className="w-full md:w-1/3 md:object-cover md:object-contain" />
         <div className="p-5 w-full md:w-2/3">
@@ -167,7 +192,10 @@ const VendorProfile = (props) => {
                 setCartItems={setCartItems}
                 setQuantities={setQuantities}
       />
-    </div>
+      
+      </>
+      }
+      </div>
   );
 };
 

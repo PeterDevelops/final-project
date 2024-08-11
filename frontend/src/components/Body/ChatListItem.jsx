@@ -26,6 +26,7 @@ const ChatListItem = (props) => {
   const { id } = useParams();
   const location = useLocation();
   const chat = location.state?.chat || {};
+  const vendor = location.state?.vendor || {};
   const navigate = useNavigate();
   const ref = useRef(null);
 
@@ -169,10 +170,14 @@ const ChatListItem = (props) => {
     navigate(`/inbox`)
   }
 
+  console.log("VENDOR DATA-----+++++++++", vendor)
+
+
   const goToVendorPage = () => {
     socket.emit("leave_chat", id);
-    navigate(`/vendors/${chat.contact_user_id}`)
+    navigate(`/vendors/${chat.vendor_id}`, {state: {vendor: vendor}})
   }
+
 
   return (
     <>

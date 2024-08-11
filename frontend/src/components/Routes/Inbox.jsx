@@ -43,11 +43,11 @@ const Inbox = (props) => {
     }
   }, []);
 
-  // console.log("CHAT DATA IN INBOX----", chatData)
+  console.log("All vendors----", allVendors)
 
   const chatListArr = () => {
     if (Array.isArray(chatData) && chatData.length > 0) {
-      const chatList = chatData.map((chat) => <ChatList key={chat.chat_id} chat={chat} user={user} />)
+      const chatList = chatData.map((chat) => <ChatList key={chat.chat_id} chat={chat} user={user} allVendors={allVendors}/>)
       return chatList;
     }
   }

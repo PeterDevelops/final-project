@@ -1,4 +1,4 @@
-// path = localhost:8080/api/products
+// path = localhost:8080/api/vendors
 
 const express = require('express');
 const { getAllVendors, createVendor, updateVendor, deleteVendor } = require('../db/queries/vendors');
