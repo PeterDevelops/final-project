@@ -108,12 +108,21 @@ const Checkout = (props) => {
             Total: ${subtotal.toFixed(2)}
           </div>
 
-          {/* if pickup render vendor address and city */}
+          {/* if pickup render vendor addresses and cities */}
           {alignment === 'pickup' && (
             <div>
-              <h3 className='text-sm font-bold'>Pickup Address</h3>
+              <h3 className='text-sm font-bold'>Pickup Addresses</h3>
               {cartItems.length > 0 ? (
-                <p className='text-sm'>{cartItems[0].vendor_address}, {cartItems[0].vendor_city}</p>
+                [...new Set(
+                  cartItems.map(item => {
+                    const vendor = allVendors.find(vendor =>
+                      vendor.id === allProducts.find(product => product.id === item.product_id)?.vendor_id
+                    );
+                    return vendor ? `${vendor.name}: ${vendor.address}, ${vendor.city}` : null;
+                  }).filter(Boolean)
+                )].map((address, index) => (
+                  <p key={index} className='text-sm'>{address}</p>
+                ))
               ) : (
                 <p>Address and city information not available.</p>
               )}
@@ -126,7 +135,7 @@ const Checkout = (props) => {
 
               <h3 className='text-sm font-bold'>Delivery Details</h3>
 
-              <div>
+              <div className='text-sm '>
                 Address:
               </div>
 
@@ -139,7 +148,7 @@ const Checkout = (props) => {
                 />
               </div>
 
-              <div className='text-sm font-medium'>
+              <div className='text-sm'>
                 City:
               </div>
 
@@ -154,8 +163,8 @@ const Checkout = (props) => {
 
             </div>
           )}
-          <div className='text-sm font-bold'>
-            <div>Card Details</div>
+          <div className='text-sm font-bold mt-2'>
+            <div className='mb-1'>Card Details</div>
           <Elements stripe={stripePromise}>
             <PaymentForm
               userId={user.id}

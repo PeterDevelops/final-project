@@ -29,7 +29,7 @@ const QuantityInput = ({ defaultQuantity, onChange }) => {
           value={quantity}
           onValueChange={handleValueChange}
           showButtons buttonLayout="vertical"
-          style={{ width: '2.6rem' }}
+          style={{ width: '2.2rem' }}
           decrementButtonClassName="p-button-secondary"
           incrementButtonClassName="p-button-secondary"
           incrementButtonIcon="pi pi-plus"
