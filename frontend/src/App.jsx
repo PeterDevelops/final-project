@@ -112,6 +112,7 @@ function App({ location }) {
           user={user}
           setUser={setUser}
           cartItems={cartItems}
+          categories={categories}
         />
       )}
         <main className={mainClass}>
