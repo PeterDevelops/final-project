@@ -103,7 +103,7 @@ const Cart = (props) => {
       ) : (
         cartItems.length > 0 ? (
           <div>
-            <div className='mx-10 mt-6 text-xl font-bold'>
+            <div className='mx-10 -mb-3 mt-5 text-xl font-bold'>
               My Cart
             </div>
 
