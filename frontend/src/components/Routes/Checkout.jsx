@@ -118,10 +118,14 @@ const Checkout = (props) => {
                     const vendor = allVendors.find(vendor =>
                       vendor.id === allProducts.find(product => product.id === item.product_id)?.vendor_id
                     );
-                    return vendor ? `${vendor.name}: ${vendor.address}, ${vendor.city}` : null;
+                    return vendor ?
+                      <div>
+                        <span className='font-medium'>{vendor.name}:</span> {vendor.address}, {vendor.city}
+                      </div>
+                      : null;
                   }).filter(Boolean)
                 )].map((address, index) => (
-                  <p key={index} className='text-sm'>{address}</p>
+                  <p key={index} className='text-sm mb-1'>{address}</p>
                 ))
               ) : (
                 <p>Address and city information not available.</p>
@@ -165,20 +169,22 @@ const Checkout = (props) => {
           )}
           <div className='text-sm font-bold mt-2'>
             <div className='mb-1'>Card Details</div>
-          <Elements stripe={stripePromise}>
-            <PaymentForm
-              userId={user.id}
-              totalCost={totalCost}
-              orderData={orderData}
-              orderItems={orderItems}
-              setCartItems={setCartItems}
-              subtotal={subtotal}
-            />
-          </Elements>
+            <Elements stripe={stripePromise}>
+              <PaymentForm
+                userId={user.id}
+                totalCost={totalCost}
+                orderData={orderData}
+                orderItems={orderItems}
+                setCartItems={setCartItems}
+                subtotal={subtotal}
+              />
+            </Elements>
           </div>
 
 
-          <div className='cart-center'>
+          <div className='flex justify-center text-white bg-blue-700 hover:bg-blue-800
+          focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-large px-5 py-2.5
+          me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'>
             <button onClick={() => navigate('/')}>Continue Shopping</button>
           </div>
 
