@@ -72,10 +72,12 @@ const ChatList = (props) => {
         <h6 class="block font-sans text-lg antialiased font-semibold leading-relaxed tracking-normal text-inherit">
           {chat.contact_name}
         </h6>
-        <p class="block font-sans text-m antialiased font-normal leading-normal text-gray-800">
-          {messageData.name}: {messageData.message}
-        </p>
-        <p className="text-xs text-gray-500">{formatDate(messageData.created_at)}</p>
+       { messageData && <> 
+          <p class="block font-sans text-m antialiased font-normal leading-normal text-gray-800">
+              {messageData.name}: {messageData.message}
+            </p>
+            <p className="text-xs text-gray-500">{formatDate(messageData.created_at)}</p>
+       </>} 
       </div>
     </article>
 

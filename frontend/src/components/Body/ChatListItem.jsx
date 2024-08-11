@@ -175,7 +175,7 @@ const ChatListItem = (props) => {
 
   const goToVendorPage = () => {
     socket.emit("leave_chat", id);
-    navigate(`/vendors/${chat.vendor_id}`, {state: {vendor: vendor}})
+    navigate(`/vendors/${chat.vendor_id}`, {state: {vendor: chat.vendor}})
   }
 
 
