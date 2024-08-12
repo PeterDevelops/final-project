@@ -48,8 +48,9 @@ function App({ location }) {
     useEffect(() => {
       axios.get('/api/vendors')
       .then(response => {
-        setVendors(response.data);
-        setAllVendors(response.data);
+        const sortedVendors = [...response.data].sort((a, b) => a.name.localeCompare(b.name));
+        setVendors(sortedVendors);
+        setAllVendors(sortedVendors);
       })
       .catch(error => {
         console.error('There was an error with vendor data!', error);
@@ -91,7 +92,7 @@ function App({ location }) {
   const hiddenNavBarRoutes = ['/chats'];
   const shouldShowNavBar = !hiddenNavBarRoutes.some(route => location.pathname.startsWith(route));
 
-  const mainClass = `bg-main font-body ${shouldShowNavBar ? (shouldShowSearchBar ? 'pt-navbar' : 'pt-navbar-no-search') : ''}`;
+  const mainClass = `bg-main border-4 border-border font-body ${shouldShowNavBar ? (shouldShowSearchBar ? 'pt-navbar' : 'pt-navbar-no-search') : ''}`;
   // console.log("Products Data---", products)
   // console.log("Vendors Data---", vendors)
   // console.log("categories in the App component: ------- ", categories)
