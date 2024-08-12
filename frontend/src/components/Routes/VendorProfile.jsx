@@ -81,21 +81,25 @@ const VendorProfile = (props) => {
   };
 
   const handleNavigateToChat = () => {
-    axios.get('/api/chats/', { params: { userId: user.id, vendorId: vendor.id } })
-      .then(chatObj => {
-        const chatResults = chatObj.data[0].chat;
-        const vendorResults = chatObj.data[0].vendor;
-        if (chatResults.length > 0) {
-          navigate(`/chats/${chatResults[0].id}`, { state: { chat: vendorResults, vendor: vendor, allProducts: allProducts } })
-        } else {
-          axios.post('/api/chats/new', { userId: user.id, vendorUserId: vendorResults.vendor_user_id })
-            .then((results) => {
-              navigate(`/chats/${results.data.id}`, { state: { chat: { contact_name: vendor.name, contact_photo: vendor.vendor_logo_url, vendor: vendor }, allProducts: allProducts } })
-            }
-          )
-        }
-      })
-      .catch((err) => { console.log("Find a chat axios error:", err) })
+    if (user) {
+      axios.get('/api/chats/', { params: { userId: user.id, vendorId: vendor.id } })
+        .then(chatObj => {
+          const chatResults = chatObj.data[0].chat;
+          const vendorResults = chatObj.data[0].vendor;
+          if (chatResults.length > 0) {
+            navigate(`/chats/${chatResults[0].id}`, { state: { chat: vendorResults, vendor: vendor, allProducts: allProducts } })
+          } else {
+            axios.post('/api/chats/new', { userId: user.id, vendorUserId: vendorResults.vendor_user_id })
+              .then((results) => {
+                navigate(`/chats/${results.data.id}`, { state: { chat: { contact_name: vendor.name, contact_photo: vendor.vendor_logo_url, vendor: vendor }, allProducts: allProducts } })
+              }
+            )
+          }
+        })
+        .catch((err) => { console.log("Find a chat axios error:", err) })
+    } else {
+      navigate('/inbox')
+    }
   }
 
   return (
