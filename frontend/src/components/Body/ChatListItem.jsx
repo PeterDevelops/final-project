@@ -124,7 +124,7 @@ const ChatListItem = (props) => {
             <div className="relative inline-flex items-center justify-center w-full">
               <hr className="w-64 h-0.5 my-8 border-0 rounded bg-[#DCCFBE]" />
               <div className="absolute px-4 bg-[#F7F4F0] text-[#DCCFBE] transform -translate-y-1/4 top-1/2 left-5.5">
-                <h1 className="text-xs font-bold">{messageDate.format('MMM DD YYYY')}</h1>;
+                <h1 className="text-xs font-bold">{messageDate.format('MMM DD, YYYY')}</h1>;
               </div>
             </div>)
         }
@@ -174,7 +174,7 @@ const ChatListItem = (props) => {
 
   return (
     <>
-      <div className="flex flex-col h-2/6">
+      <div className="flex flex-col h-2/6 font-body">
         <div className="bg-[#305D53] shadow-md px-8 pt-6 pb-8 mb-4 flex-grow">
           <div className="bg-[#F7F4F0] rounded p-2 relative">
             <FontAwesomeIcon icon={faCircleXmark} onClick={handleClick} className="absolute top-2 right-2 cursor-pointer" />

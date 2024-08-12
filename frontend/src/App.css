@@ -1,3 +1,57 @@
 .fixed {
   z-index: 1000;
 }
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
+}
+
+/* code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+} */
+
+@font-face {
+  font-family: "RufReg";
+  src: local("Rufina-Regular"),
+    url("./fonts/Rufina-Regular.ttf") format("truetype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "RufBold";
+  src: local("Rufina-Bold"),
+    url("./fonts/Rufina-Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "OxyBold";
+  src: local("Oxygen-Bold"),
+    url("./fonts/Oxygen-Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+@font-face {
+  font-family: "OxyLight";
+  src: local("Oxygen-Light"),
+    url("./fonts/Oxygen-Light.ttf") format("truetype");
+  font-weight: light;
+}
+@font-face {
+  font-family: "OxyReg";
+  src: local("Oxygen-Regular"),
+    url("./fonts/Oxygen-Regular.ttf") format("truetype");
+  font-weight: normal;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

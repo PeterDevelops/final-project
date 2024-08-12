@@ -50,13 +50,13 @@ const Inbox = (props) => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <div className="flex flex-col flex-grow justify-content px-8 pt-6 pb-8 mb-4">
-        <div className="rounded p-2">
+    <div className="min-h-screen flex flex-col font-body">
+      <div className="flex flex-col flex-grow justify-content px-5 pt-2 pb-8 mb-4">
+        <div className="rounded">
           {user ? (
             <div>{chatListArr()}</div>
           ) : (
-            <h1>Please <span onClick={() => navigate('/login')} className="cursor-pointer underline font-bold">login</span> to see your inbox.</h1>
+            <h1>Please <span onClick={() => navigate('/login')} className="cursor-pointer underline font-body">login</span> to see your inbox.</h1>
           )}
         </div>
       </div>
