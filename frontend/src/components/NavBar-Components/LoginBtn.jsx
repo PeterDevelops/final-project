@@ -18,8 +18,8 @@ const LoginBtn = (props) => {
 
   return (
     <div>
-      {user && <FontAwesomeIcon className="text-gray-600 hover:text-gray-600 flex items-center" onClick={handleClick} icon={faDoorOpen} size="2x" />}
-      {!user && <Link to="/login"><FontAwesomeIcon className="text-gray-600 hover:text-gray-600 flex items-center" icon={faDoorClosed} size="2x" /></Link>}
+      {user && <FontAwesomeIcon className="text-icon hover:text-gray-900 flex items-center" onClick={handleClick} icon={faDoorOpen} size="2x" />}
+      {!user && <Link to="/login"><FontAwesomeIcon className="text-icon hover:text-gray-900 flex items-center" icon={faDoorClosed} size="2x" /></Link>}
     </div>
   )
 };

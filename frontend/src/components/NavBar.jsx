@@ -29,7 +29,7 @@ const NavBar = (props) => {
 
   return (
     <div className='fixed top-0 left-0 right-0 font-body'>
-      <nav className="h-16 px-4 bg-[#7e9767] bg-nav">
+      <nav className="h-16 px-4 bg-navbar bg-nav border-t-4 border-t-border border-l-4 border-l-border border-r-4 border-r-border">
         <div className='flex items-center justify-between'>
           <HamburgerMenu setProducts={setProducts} allProducts={allProducts} setVendors={setVendors} allVendors={allVendors} user={user} categories={categories} />
           {/* LOGO */}
@@ -50,7 +50,7 @@ const NavBar = (props) => {
               user={user}
               setUser={setUser}
             />
-            <Link to="/cart" className="text-gray-600 hover:text-gray-600 flex items-center relative">
+            <Link to="/cart" className="text-icon hover:text-gray-900 flex items-center relative">
               <FontAwesomeIcon icon={faShoppingBasket} size="2x" />
               {Array.isArray(cartItems) && cartItems.length > 0 && (
                 <span className="absolute top-5 right-0 block w-5 h-5 text-center text-white text-sm bg-red-600 rounded-full">
@@ -58,7 +58,7 @@ const NavBar = (props) => {
                 </span>
               )}
             </Link>
-            <Link to="/inbox" className="text-gray-600 hover:text-gray-900 flex items-center">
+            <Link to="/inbox" className="text-icon hover:text-gray-900 flex items-center">
               <FontAwesomeIcon icon={faEnvelope} size="2x" />
             </Link>
           </div>
@@ -68,7 +68,7 @@ const NavBar = (props) => {
       <div>
         {/* exclude SearchBar from specified routes */}
         {!noSearchBar.includes(location.pathname) && (
-          <div className="bg-[#7e9767] bg-nav pt-10">
+          <div className="bg-navbar bg-nav pt-10 border-b-4 border-b-border border-l-4 border-l-border border-r-4 border-r-border">
             <SearchBar
               products={products}
               setProducts={setProducts}
@@ -83,7 +83,7 @@ const NavBar = (props) => {
         )}
         {/* Add spacer where search bar would be */}
         {noSearchBar.includes(location.pathname) && (
-          <div className='bg-[#7e9767] p-8'></div>
+          <div className='bg-navbar p-8'></div>
         )}
       </div>
     </div>
