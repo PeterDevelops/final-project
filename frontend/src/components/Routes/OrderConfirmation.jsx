@@ -1,17 +1,19 @@
 import NavBar from '../NavBar';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const OrderConfirmation = ({ products, vendors, locations, user, setUser, cartItems, }) => {
   const [orderDetails, setOrderDetails] = useState(null);
   const navigate = useNavigate();
+  const location = useLocation();
   const userId = user?.id;
+  const orderId = location.state?.orderId;
   // console.log('OrderConfirmation:user:', user);
 
   useEffect(() => {
-    if (userId) {
-      axios.get(`/api/orders/${userId}`)
+    if (orderId) {
+      axios.get(`/api/orders/order/${orderId}`)
         .then(response => {
           setOrderDetails(response.data);
           console.log('OrderConfirmation:response.data:', response.data);
@@ -20,9 +22,23 @@ const OrderConfirmation = ({ products, vendors, locations, user, setUser, cartIt
           console.error('Error retrieving order details', err);
         });
     }
-  }, [userId]);
+  }, [orderId]);
 
-  if (!orderDetails) {
+
+  // useEffect(() => {
+  //   if (userId) {
+  //     axios.get(`/api/orders/${userId}`)
+  //       .then(response => {
+  //         setOrderDetails(response.data);
+  //         console.log('OrderConfirmation:response.data:', response.data);
+  //       })
+  //       .catch(err => {
+  //         console.error('Error retrieving order details', err);
+  //       });
+  //   }
+  // }, [userId]);
+
+  if (!Array.isArray(orderDetails)) {
     return <div>Loading order details...</div>;
   }
 
