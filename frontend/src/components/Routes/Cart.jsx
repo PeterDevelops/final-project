@@ -97,8 +97,8 @@ const Cart = (props) => {
   return (
     <div className="relative h-screen">
       {!user || !user.id ? (
-        <div>
-          Please <Link to="/login">Login</Link> to view your cart.
+        <div className='flex justify-center mt-5'>
+          Please <button className='mx-1 font-bold'><Link to="/login">Login</Link></button> to view your cart.
         </div>
       ) : (
         cartItems.length > 0 ? (
