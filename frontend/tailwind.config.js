@@ -21,6 +21,7 @@ module.exports = {
         'icon': '#4b5a3d',
         'border': '#564225',
         'navbar': '#71875c',
+        'listitem': '#EEECE9',
       },
       boxShadow: {
         'text-outline': '2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',

@@ -115,15 +115,11 @@ const Checkout = (props) => {
               {cartItems.length > 0 ? (
                 [...new Set(
                   cartItems.map(item => {
-                    const vendor = allVendors.find(vendor =>
-                      vendor.id === allProducts.find(product => product.id === item.product_id)?.vendor_id
-                    );
-                    return vendor ?
-                      <div>
-                        <span className='font-medium'>{vendor.name}:</span> {vendor.address}, {vendor.city}
-                      </div>
-                      : null;
-                  }).filter(Boolean)
+                    const product = allProducts.find(product => product.id === item.product_id);
+                    if (!product) return null;
+                    const vendor = allVendors.find(vendor => vendor.id === product.vendor_id);
+                    return vendor ? `${vendor.name}: ${vendor.address}, ${vendor.city}` : null;
+                  }).filter(Boolean) // Filter out null values
                 )].map((address, index) => (
                   <p key={index} className='text-sm mb-1'>{address}</p>
                 ))
