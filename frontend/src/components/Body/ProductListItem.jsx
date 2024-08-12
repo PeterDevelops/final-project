@@ -132,7 +132,7 @@ const ProductListItem = (props) => {
   const isProductOwnedByUser = user && vendor && user.id === vendor.admin_user;
 
   return (
-    <article className="flex flex-col md:flex-row md:items-stretch border rounded-lg shadow-md bg-[#F7F4F0] bg-opacity-50 mx-2 overflow-hidden ">
+    <article className="flex flex-col md:flex-row md:items-stretch border rounded-lg shadow-md bg-[#EEECE9] mx-2 overflow-hidden ">
 
       {/* Image Section */}
       <div className="w-full md:w-1/3 h-36 md:h-auto">
@@ -171,7 +171,7 @@ const ProductListItem = (props) => {
               <div className="flex items-center space-x-2 mt-2">
                 {!isAdded ? (
                   <button
-                    className="text-xs px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                    className="text-xs px-3 py-2 bg-yellow-500 text-black rounded hover:bg-yellow-600"
                     onClick={handleAddToCart}
                   >
                     Add To Cart
@@ -179,9 +179,12 @@ const ProductListItem = (props) => {
                 ) : (
                   <div className="flex items-center space-x-2">
                     <QuantityInput defaultQuantity={quantity} onChange={handleQuantityChange} />
-                    <IconButton className='delete-button' aria-label="delete" size="large" onClick={handleCartDelete}>
-                      <DeleteIcon />
-                    </IconButton>
+                    <button
+                  onClick={handleCartDelete}
+                  className="text-xs bg-red-500 text-white py-2 px-4 rounded"
+                >
+                  <FontAwesomeIcon icon={faTrashCan} />                
+                  </button>
                   </div>
                 )}
               </div>

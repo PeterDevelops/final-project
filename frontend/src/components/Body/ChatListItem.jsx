@@ -106,24 +106,24 @@ const ChatListItem = (props) => {
         if (messageDate.isSame(today, 'day')) {
           return (
             <div className="relative inline-flex items-center justify-center w-full">
-              <hr className="w-64 h-0.5 my-8 border-0 rounded bg-[#DCCFBE]" />
-              <div className="absolute px-4 bg-[#F7F4F0] text-[#DCCFBE]">
+              <hr className="w-64 h-0.5 my-8 border-0 rounded bg-[#C6BAAB]" />
+              <div className="absolute px-4 bg-[#EEECE9] text-[#C6BAAB]">
                 <h1 className="text-xs font-bold">Today</h1>
               </div>
             </div>)
         } else if (messageDate.isSame(today.subtract(1, 'day'), 'day')) {
           return (
             <div className="relative inline-flex items-center justify-center w-full">
-              <hr className="w-full h-0.5 my-8 border-0 rounded bg-[#DCCFBE]" />
-              <div className="absolute px-4 bg-[#F7F4F0] text-[#DCCFBE]">
+              <hr className="w-full h-0.5 my-8 border-0 rounded bg-[#C6BAAB]" />
+              <div className="absolute px-4 bg-[#EEECE9] text-[#C6BAAB]">
                 <h1 className="text-xs font-bold">Yesterday</h1>
               </div>
             </div>)
         } else if (messageDate.isBefore(yesterday)) {
           return (
             <div className="relative inline-flex items-center justify-center w-full">
-              <hr className="w-64 h-0.5 my-8 border-0 rounded bg-[#DCCFBE]" />
-              <div className="absolute px-4 bg-[#F7F4F0] text-[#DCCFBE] transform -translate-y-1/4 top-1/2 left-5.5">
+              <hr className="w-64 h-0.5 my-8 border-0 rounded bg-[#C6BAAB]" />
+              <div className="absolute px-4 bg-[#EEECE9] text-[#C6BAAB] transform -translate-y-1/4 top-1/2 left-5.5">
                 <h1 className="text-xs font-bold">{messageDate.format('MMM DD, YYYY')}</h1>;
               </div>
             </div>)
@@ -176,10 +176,10 @@ const ChatListItem = (props) => {
     <>
       <div className="flex flex-col h-2/6 font-body">
         <div className="bg-[#305D53] shadow-md px-8 pt-6 pb-8 mb-4 flex-grow">
-          <div className="bg-[#F7F4F0] rounded p-2 relative">
+          <div className="bg-[#EEECE9] rounded p-2 relative">
             <FontAwesomeIcon icon={faCircleXmark} onClick={handleClick} className="absolute top-2 right-2 cursor-pointer" />
 
-            <div className="bg-[#F7F4F0] rounded p-2 mb-4 flex flex-row items-center cursor-pointer" onClick={goToVendorPage}>
+            <div className="bg-[#EEECE9] rounded p-2 mb-4 flex flex-row items-center cursor-pointer" onClick={goToVendorPage}>
               <img className="rounded-full h-16 w-16 object-cover" src={chat.contact_photo} />
               <h1 className="font-bold text-lg px-2">{chat.contact_name}</h1>
             </div>

@@ -39,7 +39,7 @@ const ChatList = (props) => {
   }
   
   return (
-    <article onClick={() => handleClick(chat.chat_id)} className="cursor-pointer flex items-center border rounded p-3 gap-4 my-4 bg-[#F7F4F0] bg-opacity-50 hover:shadow-md font-body">
+    <article onClick={() => handleClick(chat.chat_id)} className="cursor-pointer flex items-center border border-[#C6BAAB] rounded p-3 gap-4 my-4 bg-[#EEECE9] bg-opacity-50 hover:shadow-md font-body">
       <div className="relative w-20 h-20">
       <img 
         src={chat.contact_photo} 
