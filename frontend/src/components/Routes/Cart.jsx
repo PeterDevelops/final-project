@@ -127,7 +127,7 @@ const Cart = (props) => {
                         />
                       </span>
                       <span className='span-tag'>
-                        {vendor.vendor_name}
+                        {vendor.name}
                       </span>
                     </div>
 
