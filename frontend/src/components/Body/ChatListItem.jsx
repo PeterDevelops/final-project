@@ -87,9 +87,6 @@ const ChatListItem = (props) => {
   }, [socket]);
 
   const messageList = messageHistory.map((message, index) => {
-    // console.log("MESSAGE----", message.message)
-    // console.log("This messages index", index)
-
     const messageDivider = () => {
       // Get the current message date
       const messageDate = moment(message.created_at).startOf('day');
@@ -105,55 +102,57 @@ const ChatListItem = (props) => {
       if (!previousMessageDate || !messageDate.isSame(previousMessageDate, 'day')) {
         if (messageDate.isSame(today, 'day')) {
           return (
-            <div className="relative inline-flex items-center justify-center w-full">
+            <div className="relative inline-flex items-center justify-center w-full" key={`divider-today-${message.id}`}>
               <hr className="w-64 h-0.5 my-8 border-0 rounded bg-[#C6BAAB]" />
               <div className="absolute px-4 bg-[#EEECE9] text-[#C6BAAB]">
                 <h1 className="text-xs font-bold">Today</h1>
               </div>
-            </div>)
+            </div>
+          );
         } else if (messageDate.isSame(today.subtract(1, 'day'), 'day')) {
           return (
-            <div className="relative inline-flex items-center justify-center w-full">
+            <div className="relative inline-flex items-center justify-center w-full" key={`divider-yesterday-${message.id}`}>
               <hr className="w-full h-0.5 my-8 border-0 rounded bg-[#C6BAAB]" />
               <div className="absolute px-4 bg-[#EEECE9] text-[#C6BAAB]">
                 <h1 className="text-xs font-bold">Yesterday</h1>
               </div>
-            </div>)
+            </div>
+          );
         } else if (messageDate.isBefore(yesterday)) {
           return (
-            <div className="relative inline-flex items-center justify-center w-full">
+            <div className="relative inline-flex items-center justify-center w-full" key={`divider-date-${message.id}`}>
               <hr className="w-64 h-0.5 my-8 border-0 rounded bg-[#C6BAAB]" />
               <div className="absolute px-4 bg-[#EEECE9] text-[#C6BAAB] transform -translate-y-1/4 top-1/2 left-5.5">
-                <h1 className="text-xs font-bold">{messageDate.format('MMM DD, YYYY')}</h1>;
+                <h1 className="text-xs font-bold">{messageDate.format('MMM DD, YYYY')}</h1>
               </div>
-            </div>)
+            </div>
+          );
         }
       }
 
       return null; // Default case if no condition matches
-    }
+    };
 
-    return message.sender_id === user.id ? (
-      <>
-            {messageDivider()}
-        <li className="p-3 mb-2 rounded-lg shadow-md bg-[#EDB513] max-w-max self-end" key={message.id}>
-          <p> {message.message}</p>
-          <p className="text-xs text-right"> {moment(message.created_at).format('LT')}</p>
-        </li>
-      </>
-    ) :
-      (
-        <>
-              {messageDivider()}
-          <li className="p-3 mb-2 rounded-lg shadow-md bg-[#654960] text-white relative max-w-max" key={message.id}>
+    return (
+      <React.Fragment key={message.id}>
+        {messageDivider()}
+        {message.sender_id === user.id ? (
+          <li className="p-3 mb-2 rounded-lg shadow-md bg-[#EDB513] max-w-max self-end">
+            <p>{message.message}</p>
+            <p className="text-xs text-right">{moment(message.created_at).format('LT')}</p>
+          </li>
+        ) : (
+          <li className="p-3 mb-2 rounded-lg shadow-md bg-[#654960] text-white relative max-w-max">
             <div>
-              <p> {message.message}</p>
+              <p>{message.message}</p>
               <p className="text-xs text-right">{moment(message.created_at).format('LT')}</p>
             </div>
           </li>
-        </>
-      )
-  })
+        )}
+      </React.Fragment>
+    );
+  });
+
 
   const handleClick = () => {
     socket.emit("leave_chat", id);
