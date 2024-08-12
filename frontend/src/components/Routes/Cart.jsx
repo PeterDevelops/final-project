@@ -146,7 +146,7 @@ const Cart = (props) => {
                 );
               })}
 
-              <div className='total m-2'>
+              <div className='text-right text-lg font-bold m-2'>
                 Total:
                 <span className='mx-1'>
                   ${subtotal.toFixed(2)}
@@ -163,17 +163,18 @@ const Cart = (props) => {
                 </div>
               </Link>
 
-              <div className='flex justify-center text-white bg-blue-700 hover:bg-blue-800
-          focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-large px-5 py-2.5
-          me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'>
+              <div className='flex justify-center text-white bg-blue-700 font-medium rounded-lg text-large
+              px-5 py-2.5 me-2 mb-2 dark:bg-blue-600'>
                 <button onClick={() => navigate('/')}>Continue Shopping</button>
               </div>
             </div>
           </div>
         ) : (
           <div>
-            <div>Your Cart Is Empty</div>
-            <button onClick={() => navigate('/')}>Go back to home page</button>
+            <div className='flex justify-center mt-6 font-bold mb-4'>Your cart is empty.</div>
+            <div className='flex justify-center'>
+              <button className='px-6 py-2 bg-blue-600 text-white rounded-md shadow' onClick={() => navigate('/')}>Go back to home page</button>
+            </div>
           </div>
         )
       )}

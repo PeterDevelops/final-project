@@ -104,7 +104,7 @@ const Checkout = (props) => {
             />
           ))}
 
-          <div className='total m-2'>
+          <div className='font-bold text-lg text-right m-2 mr-4'>
             Total: ${subtotal.toFixed(2)}
           </div>
 
@@ -182,9 +182,8 @@ const Checkout = (props) => {
           </div>
 
 
-          <div className='flex justify-center text-white bg-blue-700 hover:bg-blue-800
-          focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-large px-5 py-2.5
-          me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800'>
+          <div className='flex justify-center text-white bg-blue-700 font-medium rounded-lg text-large px-5 py-2.5
+          me-2 mb-2 dark:bg-blue-600'>
             <button onClick={() => navigate('/')}>Continue Shopping</button>
           </div>
 

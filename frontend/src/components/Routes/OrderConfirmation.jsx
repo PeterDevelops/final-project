@@ -70,7 +70,7 @@ const OrderConfirmation = ({ products, vendors, locations, user, setUser, cartIt
         <div className='flex items-center justify-end border-b pb-4 mt-2'>
           <span>Name</span>
           <span className='mx-8'>Quantity</span>
-          <span className='mr-2'>Price</span>
+          <span className='mr-1'>Price</span>
         </div>
         <ul className='mt-4 space-y-4'>
           {orderDetails.map(item => (
