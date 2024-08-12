@@ -114,7 +114,7 @@ export default function SearchBar(props) {
 
     const matchedVendor = allVendors.find(vendor => vendor.name.toLowerCase() === inputValue.toLowerCase());
     const matchedSubCategory = allProducts.find(product => product.sub_category.toLowerCase() === inputValue.toLowerCase());
-    
+
     if (inputRef.current) {
       inputRef.current.blur();
     }
@@ -160,7 +160,7 @@ export default function SearchBar(props) {
             <li
               {...props}
               key={option.id}
-              className="flex items-center p-2 border border-gray-300 rounded-md cursor-pointer font-body"
+              className="flex items-center p-2 rounded-md cursor-pointer font-body"
               onClick={() => handleOptionClick(option)}
             >
               <FontAwesomeIcon icon={option.icon} className="mr-2" />
@@ -171,12 +171,12 @@ export default function SearchBar(props) {
             <TextField
               {...params}
               label="Search by Product Type or Vendor"
-              className="bg-gray-100 shadow-md font-body"
+              className="bg-gray-100 border-4 border-border shadow-md font-body border-4 border-border"
               sx={{
                 borderRadius: '9999px',
                 '& .MuiOutlinedInput-root': {
                   borderRadius: '9999px',
-                  border: '1px solid #d1d5db',
+                  border: '2px solid #564225',
                 },
               }}
               inputRef={inputRef}
