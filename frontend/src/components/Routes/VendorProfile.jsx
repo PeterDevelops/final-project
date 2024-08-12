@@ -115,11 +115,14 @@ const VendorProfile = (props) => {
       /> */}
       {vendor &&
         <>
-          <div className="vendor-profile flex flex-col md:flex-row md:items-center border rounded-lg shadow-md m-5 overflow-hidden">
-            <img src={vendor.vendor_logo_url} alt={vendor.name} className="w-full md:w-1/3 md:object-cover md:object-contain" />
+
+          <div className="vendor-profile flex flex-col items-center rounded-lg m-5 overflow-hidden">
+            <div className="relative w-80 h-80">
+            <img src={vendor.vendor_logo_url} alt={vendor.name} className="object-cover object-center border shadow rounded-full w-full h-full" />
+            </div>
             <div className="p-5 w-full md:w-2/3">
-              <h3 className="text-xl font-semibold">{vendor.name}</h3>
-              <p className="mt-2">{vendor.bio}</p>
+              <h3 className="text-xl font-semibold text-center">{vendor.name}</h3>
+              <p className="mt-2 text-center">{vendor.bio}</p>
               {user && user.id === vendor.admin_user && (
                 <div className="mt-4">
                   <button
@@ -136,12 +139,12 @@ const VendorProfile = (props) => {
                   </button>
                 </div>
               )}
-              <div className="mt-4">
+              <div className="flex mt-4 justify-center">
                 <button
                   onClick={handleNavigateToChat}
-                  className="bg-green-500 text-white py-2 px-4 rounded"
+                  className="bg-green-500 text-white py-2 px-4 rounded text-sm"
                 >
-                  Message Vendor
+                  Contact Vendor
                 </button>
               </div>
             </div>
