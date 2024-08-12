@@ -83,7 +83,7 @@ const NavBar = (props) => {
         )}
         {/* Add spacer where search bar would be */}
         {noSearchBar.includes(location.pathname) && (
-          <div className='bg-navbar p-8'></div>
+          <div className='bg-navbar p-8 border-b-4 border-b-border border-l-4 border-l-border border-r-4 border-r-border'></div>
         )}
       </div>
     </div>
