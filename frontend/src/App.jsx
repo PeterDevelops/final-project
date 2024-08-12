@@ -91,7 +91,7 @@ function App({ location }) {
   const hiddenNavBarRoutes = ['/chats'];
   const shouldShowNavBar = !hiddenNavBarRoutes.some(route => location.pathname.startsWith(route));
 
-  const mainClass = `bg-main ${shouldShowNavBar ? (shouldShowSearchBar ? 'pt-navbar' : 'pt-navbar-no-search') : ''}`;
+  const mainClass = `bg-main font-body ${shouldShowNavBar ? (shouldShowSearchBar ? 'pt-navbar' : 'pt-navbar-no-search') : ''}`;
   // console.log("Products Data---", products)
   // console.log("Vendors Data---", vendors)
   // console.log("categories in the App component: ------- ", categories)

@@ -6,6 +6,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        body: ['OxyReg', 'OxyLight', 'OxyBold'],
+        heading: ['RufReg', 'RufBold']
+      },
       height: {
         '50vh': '50vh',
       },

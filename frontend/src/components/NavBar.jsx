@@ -28,7 +28,7 @@ const NavBar = (props) => {
   const noSearchBar = ['/cart', '/checkout', '/inbox', '/chats', '/login'];
 
   return (
-    <div className='fixed top-0 left-0 right-0'>
+    <div className='fixed top-0 left-0 right-0 font-body'>
       <nav className="h-16 px-4 bg-[#F7F4F0] bg-nav">
         <div className='flex items-center justify-between'>
           <HamburgerMenu setProducts={setProducts} allProducts={allProducts} setVendors={setVendors} allVendors={allVendors} user={user} categories={categories} />
