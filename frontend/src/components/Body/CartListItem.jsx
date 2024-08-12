@@ -41,7 +41,7 @@ const CartListItem = (props) => {
   //   font-size: .8em;
   // }
   return (
-    <div className='bg-gray-50 flex justify-between items-center p-4 mb-4 rounded-md shadow-md'>
+    <div className='bg-white flex justify-between items-center p-4 mb-4 rounded-md shadow-md'>
       {/* <div className='flex items-center text-lg'> */}
       <div className='flex items-center'>
         <div className='flex justify-center items-center'>
