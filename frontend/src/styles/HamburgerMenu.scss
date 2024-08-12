@@ -22,9 +22,11 @@
 
 .bm-menu {
   background: rgba(0, 0, 0, 0.8);
-  padding: 1.5em 1.5em 0;
+  padding: 1.5em 2em;
   font-size: 1.15em;
   border-radius: 10px;
+  max-height: 85vh;
+  overflow-y: scroll;
 }
 
 .bm-item-list {
