@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import QuantityInput from './QuantityInput';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashCan, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -112,17 +114,17 @@ const ProductListItem = (props) => {
           },
           body: JSON.stringify({ id: productData.id }),
         })
-        .then(response => {
-          if (response.ok) {
-            setAllProducts(allProducts.filter(p => p.id !== productData.id));
-            navigate('/vendors', { state: { allProducts }});
-          } else {
-            console.error('Failed to delete product');
-          }
-        })
-        .catch(err => {
-          console.error('Error deleting product:', err.message);
-        });
+          .then(response => {
+            if (response.ok) {
+              setAllProducts(allProducts.filter(p => p.id !== productData.id));
+              navigate('/vendors', { state: { allProducts } });
+            } else {
+              console.error('Failed to delete product');
+            }
+          })
+          .catch(err => {
+            console.error('Error deleting product:', err.message);
+          });
       }
     }
   };
@@ -130,50 +132,62 @@ const ProductListItem = (props) => {
   const isProductOwnedByUser = user && vendor && user.id === vendor.admin_user;
 
   return (
-    <article className="flex flex-col md:flex-row md:items-stretch border rounded-lg shadow-md bg-[#F7F4F0] bg-opacity-50 m-5 overflow-hidden ">
-      <img
-        src={productData.photo_url}
-        alt={`${productData.name} image`}
-        className="w-full h-48 md:w-1/3 md:h-auto md:object-cover"
-      />
-      <div className="p-5 w-full md:w-2/3 flex flex-col justify-center">
-        <h1 className="text-xl font-bold text-center">{productData.name}</h1>
-        <p className="mt-2">Description: {productData.description}</p>
-        <h3 className="mt-2 text-lg font-bold">${(productData.price_cents / 100.00).toFixed(2)}</h3>
-        {isProductOwnedByUser ? (
-          <div className="mt-4">
-            <button
-              onClick={handleEdit}
-              className="bg-blue-500 text-white py-2 px-4 rounded mr-2"
-            >
-              Edit
-            </button>
-            <button
-              onClick={handleDelete}
-              className="bg-red-500 text-white py-2 px-4 rounded"
-            >
-              Delete
-            </button>
-          </div>
-        ) : (
-          <div className="mt-4">
-            {!isAdded ? (
-              <button
-                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                onClick={handleAddToCart}
-              >
-                Add To Cart
-              </button>
+    <article className="flex flex-col md:flex-row md:items-stretch border rounded-lg shadow-md bg-[#F7F4F0] bg-opacity-50 mx-2 overflow-hidden ">
+
+      {/* Image Section */}
+      <div className="w-full md:w-1/3 h-36 md:h-auto">
+        <img
+          src={productData.photo_url}
+          alt={`${productData.name} image`}
+          className="w-full h-full object-cover"
+        />
+      </div>
+
+      {/* Content Section  */}
+      <div className="p-3 w-full md:w-2/3 flex flex-col flex-grow">
+        <div className="flex flex-col flex-grow">
+          <h1 className="font-bold text-base text-left truncate ... text-ellipsis">{productData.name}</h1>
+          <p className="mt-2 text-xs">{productData.description}</p>
+          <div className="flex flex-row justify-between items-end mt-auto">
+            <h3 className="my-2 text-sm font-bold">${(productData.price_cents / 100.00).toFixed(2)}</h3>
+            {/* Button Section  */}
+            {isProductOwnedByUser ? (
+              <div className="flex space-x-2 mt-2">
+                <button
+                  onClick={handleEdit}
+                  className="text-xs bg-green-500 text-white py-2 px-4 rounded"
+                >
+                  <FontAwesomeIcon icon={faPenToSquare} />
+                </button>
+                <button
+                  onClick={handleDelete}
+                  className="text-xs bg-red-500 text-white py-2 px-4 rounded"
+                >
+                  <FontAwesomeIcon icon={faTrashCan} />                
+                  </button>
+
+              </div>
             ) : (
               <div className="flex items-center space-x-2">
-                <QuantityInput defaultQuantity={quantity} onChange={handleQuantityChange} />
-                <IconButton className='delete-button' aria-label="delete" size="large" onClick={handleCartDelete}>
-                  <DeleteIcon />
-                </IconButton>
+                {!isAdded ? (
+                  <button
+                    className="text-xs px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                    onClick={handleAddToCart}
+                  >
+                    Add To Cart
+                  </button>
+                ) : (
+                  <div className="flex items-center space-x-2">
+                    <QuantityInput defaultQuantity={quantity} onChange={handleQuantityChange} />
+                    <IconButton className='delete-button' aria-label="delete" size="large" onClick={handleCartDelete}>
+                      <DeleteIcon />
+                    </IconButton>
+                  </div>
+                )}
               </div>
             )}
           </div>
-        )}
+        </div>
       </div>
     </article>
   );

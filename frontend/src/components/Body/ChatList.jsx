@@ -39,15 +39,20 @@ const ChatList = (props) => {
   }
   
   return (
-    <article onClick={() => handleClick(chat.chat_id)} className="cursor-pointer flex items-center border rounded p-5 gap-4 my-5 bg-[#F7F4F0] bg-opacity-50 hover:shadow-md font-body">
-      <img src={chat.contact_photo} alt="avatar"
-        class="inline-block relative object-cover object-center !rounded-full w-20 h-20" />
+    <article onClick={() => handleClick(chat.chat_id)} className="cursor-pointer flex items-center border rounded p-3 gap-4 my-4 bg-[#F7F4F0] bg-opacity-50 hover:shadow-md font-body">
+      <div className="relative w-20 h-20">
+      <img 
+        src={chat.contact_photo} 
+        alt="avatar"
+        className="object-cover object-center rounded-full w-full h-full"
+        style={{imageRendering: 'auto'}} />
+        </div>
       <div className="flex flex-col justify-between">
-        <h6 class="block font-sans text-lg antialiased font-semibold leading-relaxed tracking-normal text-inherit">
+        <h6 class="block font-body text-sm antialiased font-bold leading-relaxed tracking-normal text-inherit">
           {chat.contact_name}
         </h6>
        { messageData && <> 
-          <p class="block font-sans text-m antialiased font-normal leading-normal text-gray-800">
+          <p class="block font-sans text-sm antialiased font-normal leading-normal text-gray-800">
               {messageData.name}: {messageData.message}
             </p>
             <p className="text-xs text-gray-500">{formatDate(messageData.created_at)}</p>

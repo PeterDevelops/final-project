@@ -29,19 +29,21 @@ const NavBar = (props) => {
 
   return (
     <div className='fixed top-0 left-0 right-0 font-body'>
-      <nav className="h-16 px-4 bg-[#F7F4F0] bg-nav">
-        <div className='flex items-center justify-between'>
+      <nav className="h-16 px-4 bg-[#F7F4F0] bg-nav flex items-center justify-between">
+        <div className="flex items-center space-x-4">
           <HamburgerMenu setProducts={setProducts} allProducts={allProducts} setVendors={setVendors} allVendors={allVendors} user={user} categories={categories} />
           {/* LOGO */}
-          <Link to="/">
+          <div className="mt-10">
+          <Link to="/" className="flex-shrink-0 flex items-center">
             <img
               src="/Logo.png"
               alt="Mrkt Logo"
-              className="w-20 h-20 mt-6"
+              className="w-16 h-16"
             />
           </Link>
+          </div>
 
-          <div className="flex items-center gap-4 mt-6">
+          <div className="flex items-center space-x-4 mt-7">
             <LoginBtn
               products={products}
               vendors={vendors}
@@ -51,24 +53,24 @@ const NavBar = (props) => {
               setUser={setUser}
             />
             <Link to="/cart" className="text-gray-700 hover:text-gray-900 flex items-center relative">
-              <FontAwesomeIcon icon={faShoppingBasket} size="2x" />
+              <FontAwesomeIcon icon={faShoppingBasket} size="lg" />
               {Array.isArray(cartItems) && cartItems.length > 0 && (
-                <span className="absolute top-5 right-0 block w-5 h-5 text-center text-white text-sm bg-red-600 rounded-full">
+                <span className="absolute top-0 right-0 block w-5 h-5 text-center text-white text-sm bg-red-600 rounded-full">
                   {cartItems.reduce((total, item) => total + item.quantity, 0)}
                 </span>
               )}
             </Link>
             <Link to="/inbox" className="text-gray-700 hover:text-gray-900 flex items-center">
-              <FontAwesomeIcon icon={faEnvelope} size="2x" />
+              <FontAwesomeIcon icon={faEnvelope} size="lg" />
             </Link>
           </div>
-        </div>
+          </div>
       </nav>
 
       <div>
         {/* exclude SearchBar from specified routes */}
         {!noSearchBar.includes(location.pathname) && (
-          <div className="bg-[#F7F4F0] bg-nav pt-10">
+          <div className="bg-[#F7F4F0] bg-nav pt-7">
             <SearchBar
               products={products}
               setProducts={setProducts}

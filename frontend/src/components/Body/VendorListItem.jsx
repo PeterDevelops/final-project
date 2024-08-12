@@ -11,15 +11,17 @@ const VendorListItem = (props) => {
 
   return (
     <Link to={`/vendors/${vendorData.id}`} onClick={handleClick} >
-      <article className="flex flex-col md:flex-row md:items-center border rounded-lg shadow-md bg-[#F7F4F0] bg-opacity-50 m-5 overflow-hidden">
+      <article className="flex flex-col md:flex-row md:items-center border rounded-lg shadow-md bg-[#F7F4F0] bg-opacity-50 m-5 overflow-hidden h-48">
+        <div className="w-full md:w-3/4 h-full flex">
         <img
           src={vendorData.vendor_logo_url}
           alt="vendor logo"
-          className="w-full md:w-1/3 md:object-cover md:object-contain"
+          className="w-full h-full object-cover"
         />
-        <div className="p-5 w-full md:w-2/3 flex flex-col justify-center">
-          <h3 className="text-xl font-semibold text-center">{vendorData.name}</h3>
-          {showBio && <p className="mt-2">{vendorData.bio}</p>}
+        </div>
+        <div className="p-2 w-full md:w-1/4 flex flex-col justify-center h-full bg-white">
+          <h3 className="text-base text-center font-semibold">{vendorData.name}</h3>
+          {showBio && <p className="mt-2 text-center">{vendorData.bio}</p>}
         </div>
       </article>
     </Link>
