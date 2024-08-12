@@ -48,9 +48,8 @@ function App({ location }) {
     useEffect(() => {
       axios.get('/api/vendors')
       .then(response => {
-        const sortedVendors = [...response.data].sort((a, b) => a.name.localeCompare(b.name));
-        setVendors(sortedVendors);
-        setAllVendors(sortedVendors);
+        setVendors(response.data);
+        setAllVendors(response.data);
       })
       .catch(error => {
         console.error('There was an error with vendor data!', error);
