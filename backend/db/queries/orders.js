@@ -26,7 +26,7 @@ const postOrders = (orderData) => {
 const getOrderByUserId = (user_id) => {
   const queryString = `
   SELECT
-  order_items.id AS order_item_id,
+  order_items.order_id AS order_id,
   products.id AS product_id,
   products.name AS product_name,
   products.photo_url AS product_photo_url,
