@@ -88,8 +88,8 @@ const OrderConfirmation = ({ products, vendors, locations, user, setUser, cartIt
             </li>
           ))}
         </ul>
-        <div className='text-right mt-2'>
-          <h3 className='text-lg font-semibold text-gray-700'>Total Amount: ${(totalAmount).toFixed(2)}</h3>
+        <div className='text-right mt-3'>
+          <h3 className='font-semibold text-gray-700'>Total Amount: ${(totalAmount).toFixed(2)}</h3>
         </div>
       </div>
       <div className='mt-4 text-center'>

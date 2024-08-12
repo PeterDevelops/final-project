@@ -146,7 +146,7 @@ const Cart = (props) => {
                 );
               })}
 
-              <div className='text-right text-lg font-bold m-2'>
+              <div className='text-right font-bold m-2'>
                 Total:
                 <span className='mx-1'>
                   ${subtotal.toFixed(2)}
