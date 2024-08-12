@@ -25,7 +25,7 @@ const NavBar = (props) => {
 
   const location = useLocation();
 
-  const noSearchBar = ['/cart', '/checkout', '/inbox', '/chats', '/login'];
+  const noSearchBar = ['/cart', '/checkout', '/inbox', '/chats', '/login', '/order-confirmation'];
 
   return (
     <div className='fixed top-0 left-0 right-0 font-body'>
