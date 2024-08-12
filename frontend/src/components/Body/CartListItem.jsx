@@ -34,6 +34,12 @@ const CartListItem = (props) => {
   //   border-radius: 8px;
   //   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   // }
+
+  // .span-tag {
+  //   font-weight: bold;
+  //   margin-right: 10px;
+  //   font-size: .8em;
+  // }
   return (
     <div className='bg-gray-50 flex justify-between items-center p-4 mb-4 rounded-md shadow-md'>
       {/* <div className='flex items-center text-lg'> */}
@@ -44,7 +50,7 @@ const CartListItem = (props) => {
             alt={product_name}
             className='item-logo mr-4'
           />
-          <span className='span-tag'>{product_name}</span>
+          <span className='font-bold text-sm'>{product_name}</span>
         </div>
       </div>
 

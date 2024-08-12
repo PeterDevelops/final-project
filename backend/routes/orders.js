@@ -1,5 +1,5 @@
 const express = require('express');
-const { postOrders, getOrderByUserId } = require('../db/queries/orders');
+const { postOrders, getOrderByUserId, getOrderByOrderId } = require('../db/queries/orders');
 const { postOrderItems } = require('../db/queries/order_items');
 const router = express.Router();
 
@@ -13,19 +13,21 @@ router.post("/", (req, res) => {
         ...item,
         order_id: orderId
       }));
-      console.log('itemsWithOrderId:', itemsWithOrderId)
-      return postOrderItems(itemsWithOrderId);
+      // console.log('itemsWithOrderId:', itemsWithOrderId)
+      return postOrderItems(itemsWithOrderId).then(orderItemsResult => {
+        res.status(201).json({ orderId: orderId, orderItems: orderItemsResult })
+      });
     })
-    .then(orderItemsResult => {
-      res.status(201).json({ orderItems: orderItemsResult });
-    })
+    // .then(orderItemsResult => {
+    //   res.status(201).json({ orderId: orderId, orderItems: orderItemsResult });
+    // })
     .catch((err) => {
       console.error('Error creating order:', err);
     });
 });
 
 // get orders by user id
-router.get("/:userId", (req, res) => {
+router.get("/user/:userId", (req, res) => {
   const { userId } = req.params;
 
   getOrderByUserId(userId)
@@ -37,5 +39,16 @@ router.get("/:userId", (req, res) => {
     });
 });
 
+// get orders by order id
+router.get("/order/:orderId", (req, res) => {
+  const { orderId } = req.params;
 
+  getOrderByOrderId(orderId)
+  .then(result => {
+    res.json(result);
+  })
+  .catch(err => {
+    console.error(err.message)
+  })
+})
 module.exports = router;

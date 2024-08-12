@@ -73,16 +73,16 @@ const PaymentForm = ({ userId, totalCost, orderData, orderItems, setCartItems, s
       }
 
       // payment successful, create the order
-      await axios.post('api/orders', { orderData, orderItems });
+      const orderResponse = await axios.post('api/orders', { orderData, orderItems });
 
       // delete the cart and cart items
-      await axios.delete(`/api/cart/${userId}`);
-
+      // await axios.delete(`/api/cart/${userId}`);
+      const { orderId: newOrderId } = orderResponse.data;
       // clear cartItems state
       setCartItems([]);
 
       // redirect to order confirmation page
-      navigate('/order-confirmation');
+      navigate('/order-confirmation', { state: { orderId: newOrderId } });
     }
     catch (error) {
       setError('Payment failed');
