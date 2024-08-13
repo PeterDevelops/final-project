@@ -1,6 +1,5 @@
 import React from 'react'
 import ProductListItem from '../Body/ProductListItem'
-import NavBar from '../NavBar';
 
 const ProductList = (props) => {
   const {
@@ -45,22 +44,7 @@ const ProductList = (props) => {
 
   return (
     <div className='min-h-screen'>
-      {/* {showNavBar && (
-      <NavBar
-        products={products}
-        setProducts={setProducts}
-        allProducts={allProducts}
-        vendors={vendors}
-        setVendors={setVendors}
-        allVendors={allVendors}
-        locations={locations}
-        categories={categories}
-        user={user}
-        setUser={setUser}
-        cartItems={cartItems}
-      />
-      )} */}
-      <div className="grid grid-cols-2 gap-4 pt-3">
+      <div className="grid grid-cols-2 gap-1 mt-3">
       {productListArr()}
       </div>
     </div>
