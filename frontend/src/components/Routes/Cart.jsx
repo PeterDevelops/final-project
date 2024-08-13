@@ -150,7 +150,7 @@ return (
               <div className='flex justify-center mb-4'>
                 <button
                   className='text-gray rounded-lg text-sm underline px-5 py-2.5'
-                  onClick={() => navigate('/')}
+                  onClick={() => navigate('/products')}
                 >
                   Continue Shopping
                 </button>

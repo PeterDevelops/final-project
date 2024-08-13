@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const PaymentForm = ({ userId, totalCost, orderData, orderItems, setCartItems, subtotal, pickupAddresses }) => {
 
@@ -96,44 +96,29 @@ const PaymentForm = ({ userId, totalCost, orderData, orderItems, setCartItems, s
         <CardElement options={cardStyle} className="p-2 border border-gray-300 rounded-md" />
       </div>
 
-      {/* <div className="flex justify-center">
-        <button
-          className="bg-green-700 text-white font-medium rounded-full px-5 py-2 text-sm hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-300 disabled:opacity-50"
-          type="submit"
-          disabled={!stripe}
-        >
-          Pay
-        </button>
-      </div> */}
       <div className="flex flex-row justify-between">
-              <div className='flex justify-center mb-4'>
-                <button
-                  className='text-sm font-light underline py-2.5'
-                  onClick={() => navigate('/')}
-                >
-                  Continue Shopping
-                </button>
-                </div>
-
-              
-              <Link to='/checkout'>
-                <div className='flex justify-center mb-4'>
-                  <button 
-                    className="text-sm px-4 py-2 bg-green-600 text-black rounded hover:bg-green-600"
-                      type="submit"
-                      disabled={!stripe}
-                      >
-                    Pay
-                  </button>
-                </div>
-              </Link>
-
-              </div>
+        <div className='flex justify-center mb-4'>
+          <button
+            className='text-sm font-light underline py-2.5'
+            onClick={() => navigate('/products')}
+          >
+            Continue Shopping
+          </button>
+        </div>
 
 
+        <div className='flex justify-center mb-4'>
+          <button
+            className="text-sm px-4 py-2 bg-green-600 text-black rounded hover:bg-green-600"
+            type="submit"
+            disabled={!stripe}
+          >
+            Pay
+          </button>
+        </div>
 
+      </div>
 
-      
       {error && <div className="text-red-500 text-center">{error}</div>}
     </form>
   );

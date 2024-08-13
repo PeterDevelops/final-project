@@ -130,7 +130,7 @@ const Checkout = (props) => {
           )}
 
           <div className="text-sm font-bold mt-4 mb-4">
-            <div className="mb-2">Card Details</div>
+            <div className="mb-2 mt-10">Card Details</div>
             <Elements stripe={stripePromise}>
               <PaymentForm
                 userId={user.id}
@@ -143,16 +143,6 @@ const Checkout = (props) => {
               />
             </Elements>
           </div>
-
-          {/* <div className="flex flex-row">
-            <button
-              className='text-gray rounded-lg text-sm underline px-5 py-2.5'
-              onClick={() => navigate('/')}
-            >
-              Continue Shopping
-            </button>
-
-          </div> */}
 
         </div>
       ) : (

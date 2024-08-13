@@ -35,7 +35,7 @@ const QuantityInput = ({ defaultQuantity, onChange }) => {
             onValueChange={handleValueChange}
             showButtons
             buttonLayout="vertical"
-            style={{ width: '1rem' }}
+            style={{ width: '1.75rem' }}
             incrementButtonClassName="hidden"
             decrementButtonClassName="hidden"
           />

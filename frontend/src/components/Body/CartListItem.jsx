@@ -19,7 +19,7 @@ const CartListItem = (props) => {
 
   return (
     <div className='bg-white flex justify-between items-center p-4 mb-4 rounded-md shadow-md w-full max-w-4xl mx-auto'>
-      <div className='flex items-center w-full'>
+      <div className='flex items-center w-10/12'>
         <div className='w-16 h-16 overflow-hidden rounded-md'>
         <img 
           src={product_photo_url}

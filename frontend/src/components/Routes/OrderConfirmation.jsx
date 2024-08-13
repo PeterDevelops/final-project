@@ -45,7 +45,7 @@ const OrderConfirmation = ({ products, vendors, locations, user, setUser, cartIt
         </div>
 
         <div className="mb-2">
-          <h2 className="text-xl font-semibold text-gray-700">Order Details</h2>
+          <h2 className="text-lg font-semibold text-gray-700 mt-6">ORDER DETAILS</h2>
           <div>
             <p className="text-gray-600 mt-1">
               Order Confirmation #: <span className="font-semibold text-gray-800">{orderDetails[0].order_id}</span>
@@ -54,7 +54,7 @@ const OrderConfirmation = ({ products, vendors, locations, user, setUser, cartIt
         </div>
 
         <div className="mb-2">
-          <h3 className="text-lg font-semibold text-gray-700">Items Purchased</h3>
+          <h3 className="text- font-semibold text-gray-700">Items Purchased:</h3>
           <div className="flex items-center justify-between border-b border-gray-400 pb-4 mt-2">
             <span className="flex-1 text-left ml-4">Product</span>
             <span className="flex-1 text-center ml-8">Quantity</span>
@@ -64,6 +64,8 @@ const OrderConfirmation = ({ products, vendors, locations, user, setUser, cartIt
           <ul className="mt-4 space-y-4">
             {orderDetails.map((item) => (
               <li key={item.product_id} className="flex items-center justify-between border-b border-gray-400 pb-4">
+                           
+                
                 <div className="flex items-center w-24">
                   <img
                     src={item.product_photo_url}
@@ -87,7 +89,7 @@ const OrderConfirmation = ({ products, vendors, locations, user, setUser, cartIt
 
         {pickupAddresses.length > 0 && (
           <div className="mb-4">
-            <h3 className="text-lg font-semibold text-gray-700">Pickup Addresses</h3>
+            <h3 className="text-lg font-semibold text-gray-700 mt-6">Pickup Addresses:</h3>
             <ul className="mt-2">
               {pickupAddresses.map((address, index) => (
                 <li key={index} className="text-gray-600 mt-1"><FontAwesomeIcon icon={faStore} className="mr-2" />{address}</li>
@@ -98,7 +100,7 @@ const OrderConfirmation = ({ products, vendors, locations, user, setUser, cartIt
 
         <div className="mt-4 text-center">
           <button
-            className="px-6 py-2 bg-blue-600 text-white rounded-md shadow"
+            className="px-6 py-2 bg-yellow-500 text-black rounded-md shadow"
             onClick={() => navigate('/')}
           >
             Back to home page
