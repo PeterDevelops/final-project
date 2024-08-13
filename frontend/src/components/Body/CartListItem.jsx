@@ -39,7 +39,7 @@ const CartListItem = (props) => {
         {!noDelete.includes(location.pathname) && (
         <button
         onClick={onDelete}
-        className="text-xs bg-red-500 text-white py-1 px-2 rounded"
+        className='text-xs bg-red-500 text-white py-1 px-2 rounded'
       >
         <FontAwesomeIcon icon={faTrashCan} />
         </button>

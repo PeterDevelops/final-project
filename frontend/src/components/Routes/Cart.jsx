@@ -93,10 +93,10 @@ const Cart = (props) => {
   };
 
 return (
-    <div className="min-h-screen bg-main py-5">
+    <div className='min-h-screen bg-main py-5'>
       {!user || !user.id ? (
          <div className='flex justify-center mt-5'>
-         Please <button className='mx-1 font-bold text-blue-700'><Link to="/login">login</Link></button> to view your cart.
+         Please <button className='mx-1 font-bold text-blue-700'><Link to='/login'>login</Link></button> to view your cart.
        </div>
       ) : (
         cartItems.length > 0 ? (

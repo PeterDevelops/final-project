@@ -68,14 +68,14 @@ const Checkout = (props) => {
   )];
 
   return (
-    <div className="min-h-screen bg-main p-6">
+    <div className='min-h-screen bg-main p-6'>
       {cartItems.length > 0 ? (
-        <div className="max-w-4xl mx-auto bg-listitem bg-opacity-60 p-6 rounded-lg shadow-lg">
-          <div className="flex justify-center mb-4">
+        <div className='max-w-4xl mx-auto bg-listitem bg-opacity-60 p-6 rounded-lg shadow-lg'>
+          <div className='flex justify-center mb-4'>
             <DeliveryToggle alignment={alignment} setAlignment={setAlignment} />
           </div>
 
-          <div className="font-bold text-xl mb-4">Order Summary</div>
+          <div className='font-bold text-xl mb-4'>Order Summary</div>
 
           {cartItems.map((item) => (
             <CartListItem
@@ -87,50 +87,50 @@ const Checkout = (props) => {
             />
           ))}
 
-          <div className="font-bold text-right mt-4 mb-2">
+          <div className='font-bold text-right mt-4 mb-2'>
             Total: ${subtotal.toFixed(2)}
           </div>
 
           {alignment === 'pickup' && (
-            <div className="mb-4">
-              <h3 className="text-sm font-bold mb-2">Pickup Addresses</h3>
+            <div className='mb-4'>
+              <h3 className='text-sm font-bold mb-2'>Pickup Addresses</h3>
               {pickupAddresses.length > 0 ? (
                 pickupAddresses.map((address, index) => (
-                  <p key={index} className="text-sm mb-1">
-                    <FontAwesomeIcon icon={faStore} className="mr-2" />
+                  <p key={index} className='text-sm mb-1'>
+                    <FontAwesomeIcon icon={faStore} className='mr-2' />
                     {address}
                   </p>
                 ))
               ) : (
-                <p className="text-sm">Address and city information not available.</p>
+                <p className='text-sm'>Address and city information not available.</p>
               )}
             </div>
           )}
 
           {alignment === 'delivery' && (
-            <div className="mb-4">
-              <h3 className="text-sm font-bold mb-2">Delivery Details</h3>
-              <div className="text-sm mb-2">Address:</div>
+            <div className='mb-4'>
+              <h3 className='text-sm font-bold mb-2'>Delivery Details</h3>
+              <div className='text-sm mb-2'>Address:</div>
               <input
-                type="text"
-                name="address"
+                type='text'
+                name='address'
                 value={deliveryDetails.address}
                 onChange={handleInputChange}
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className='w-full p-2 border border-gray-300 rounded-md'
               />
-              <div className="text-sm mt-2 mb-2">City:</div>
+              <div className='text-sm mt-2 mb-2'>City:</div>
               <input
-                type="text"
-                name="city"
+                type='text'
+                name='city'
                 value={deliveryDetails.city}
                 onChange={handleInputChange}
-                className="w-full p-2 border border-gray-300 rounded-md"
+                className='w-full p-2 border border-gray-300 rounded-md'
               />
             </div>
           )}
 
-          <div className="text-sm font-bold mt-4 mb-4">
-            <div className="mb-2 mt-10">Card Details</div>
+          <div className='text-sm font-bold mt-4 mb-4'>
+            <div className='mb-2 mt-10'>Card Details</div>
             <Elements stripe={stripePromise}>
               <PaymentForm
                 userId={user.id}
@@ -146,7 +146,7 @@ const Checkout = (props) => {
 
         </div>
       ) : (
-        <div className="text-center mt-6">Add redirect logic.</div>
+        <div className='text-center mt-6'>Add redirect logic.</div>
       )}
     </div>
   );

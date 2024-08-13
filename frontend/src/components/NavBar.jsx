@@ -27,7 +27,7 @@ const NavBar = (props) => {
 
   return (
     <nav className='bg-navbar border-b-4 border-border min-w-screen fixed top-0 left-0 right-0 font-body'>
-      <div className="h-16 pt-6 px-4 flex items-center justify-between">
+      <div className='h-16 pt-6 px-4 flex items-center justify-between'>
         <HamburgerMenu
           setProducts={setProducts}
           allProducts={allProducts}
@@ -37,14 +37,14 @@ const NavBar = (props) => {
           categories={categories}
         />
         {/* LOGO */}
-        <Link to="/">
+        <Link to='/'>
           <img
-            src="/Logo.png"
-            alt="Mrkt Logo"
-            className="w-20 h-20 mt-6"
+            src='/Logo.png'
+            alt='Mrkt Logo'
+            className='w-20 h-20 mt-6'
           />
         </Link>
-        <div className="flex items-center gap-2 mt-6">
+        <div className='flex items-center gap-2 mt-6'>
           <LoginBtn
             products={products}
             vendors={vendors}
@@ -53,16 +53,16 @@ const NavBar = (props) => {
             user={user}
             setUser={setUser}
           />
-          <Link to="/cart" className="text-icon hover:text-gray-900 flex items-center relative">
-            <FontAwesomeIcon icon={faShoppingBasket} size="2x" />
+          <Link to='/cart' className='text-icon hover:text-gray-900 flex items-center relative'>
+            <FontAwesomeIcon icon={faShoppingBasket} size='2x' />
             {Array.isArray(cartItems) && cartItems.length > 0 && (
-              <span className="absolute top-5 right-0 block w-5 h-5 text-center text-white text-sm bg-red-600 rounded-full">
+              <span className='absolute top-5 right-0 block w-5 h-5 text-center text-white text-sm bg-red-600 rounded-full'>
                 {cartItems.reduce((total, item) => total + item.quantity, 0)}
               </span>
             )}
           </Link>
-          <Link to="/inbox" className="text-icon hover:text-gray-900 flex items-center">
-            <FontAwesomeIcon icon={faEnvelope} size="2x" />
+          <Link to='/inbox' className='text-icon hover:text-gray-900 flex items-center'>
+            <FontAwesomeIcon icon={faEnvelope} size='2x' />
           </Link>
         </div>
       </div>

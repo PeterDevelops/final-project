@@ -63,14 +63,14 @@ const Inbox = (props) => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col font-body">
-      <div className="flex flex-col flex-grow justify-content px-5 pt-2 pb-8 mb-4">
-        <div className="rounded">
+    <div className='min-h-screen flex flex-col font-body'>
+      <div className='flex flex-col flex-grow justify-content px-5 pt-2 pb-8 mb-4'>
+        <div className='rounded'>
           {user ? (
             <div>{chatListArr()}</div>
           ) : (
             <div className='flex justify-center mt-8'>
-            Please <button className='mx-1 font-bold text-blue-700'><Link to="/login">login</Link></button> to view your inbox.
+            Please <button className='mx-1 font-bold text-blue-700'><Link to='/login'>login</Link></button> to view your inbox.
           </div>
           )}
         </div>

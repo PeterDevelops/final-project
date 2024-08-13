@@ -44,7 +44,7 @@ const ProductList = (props) => {
 
   return (
     <div className='min-h-screen'>
-      <div className="grid grid-cols-2 gap-1 mt-3">
+      <div className='grid grid-cols-2 gap-1 mt-3'>
       {productListArr()}
       </div>
     </div>

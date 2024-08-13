@@ -8,7 +8,7 @@ import VendorListItem from './Body/VendorListItem';
 import VendorsInBoundsUpdater from './Body/VendorInBoundsUpdater';
 
 const customIcon = new Icon({
-  iconUrl: require("../marker-icon.png"),
+  iconUrl: require('../marker-icon.png'),
   iconSize: [35, 35],
 });
 
@@ -33,7 +33,7 @@ const Map = (props) => {
           setCenter([position.coords.latitude, position.coords.longitude]);
         },
         (error) => {
-          console.error("Geolocation permission denied", error);
+          console.error('Geolocation permission denied', error);
         }
       );
     }
@@ -101,7 +101,7 @@ const Map = (props) => {
                 <p>{location.city}</p>
                 <button
                   onClick={() => handleNavigateToVendorProfile(location.id)}
-                  className="mt-2 px-3 py-1 bg-blue-500 text-white rounded"
+                  className='mt-2 px-3 py-1 bg-blue-500 text-white rounded'
                 >
                   View Vendor Profile
                 </button>
@@ -111,7 +111,7 @@ const Map = (props) => {
         ))}
       </MapContainer>
 
-      <div className="grid grid-cols-2 gap-1 mt-3 w-80vw mx-auto">
+      <div className='grid grid-cols-2 gap-1 mt-3 w-80vw mx-auto'>
         {vendorsOnMapList()}
       </div>
     </>

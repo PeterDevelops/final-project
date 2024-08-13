@@ -91,12 +91,12 @@ const PaymentForm = ({ userId, totalCost, orderData, orderItems, setCartItems, s
 
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="bg-white p-4 rounded-md shadow-md">
-        <CardElement options={cardStyle} className="p-2 border border-gray-300 rounded-md" />
+    <form onSubmit={handleSubmit} className='space-y-4'>
+      <div className='bg-white p-4 rounded-md shadow-md'>
+        <CardElement options={cardStyle} className='p-2 border border-gray-300 rounded-md' />
       </div>
 
-      <div className="flex flex-row justify-between">
+      <div className='flex flex-row justify-between'>
         <div className='flex justify-center mb-4'>
           <button
             className='text-sm font-light underline py-2.5'
@@ -109,8 +109,8 @@ const PaymentForm = ({ userId, totalCost, orderData, orderItems, setCartItems, s
 
         <div className='flex justify-center mb-4'>
           <button
-            className="text-sm px-4 py-2 bg-green-600 text-black rounded hover:bg-green-600"
-            type="submit"
+            className='text-sm px-4 py-2 bg-green-600 text-black rounded hover:bg-green-600'
+            type='submit'
             disabled={!stripe}
           >
             Pay
@@ -119,7 +119,7 @@ const PaymentForm = ({ userId, totalCost, orderData, orderItems, setCartItems, s
 
       </div>
 
-      {error && <div className="text-red-500 text-center">{error}</div>}
+      {error && <div className='text-red-500 text-center'>{error}</div>}
     </form>
   );
 };

@@ -146,10 +146,10 @@ export default function SearchBar(props) {
   };
 
   return (
-    <div className="p-4 max-w-xl mx-auto font-body">
-      <form onSubmit={handleSubmit} className="font-body">
+    <div className='p-4 max-w-xl mx-auto font-body'>
+      <form onSubmit={handleSubmit} className='font-body'>
         <Autocomplete
-          id="grouped-demo"
+          id='grouped-demo'
           options={combinedData()}
           groupBy={(option) => option.category}
           getOptionLabel={(option) => option.name}
@@ -160,18 +160,18 @@ export default function SearchBar(props) {
             <li
               {...props}
               key={option.id}
-              className="flex items-center p-2 rounded-md cursor-pointer font-body"
+              className='flex items-center p-2 rounded-md cursor-pointer font-body'
               onClick={() => handleOptionClick(option)}
             >
-              <FontAwesomeIcon icon={option.icon} className="mr-2" />
+              <FontAwesomeIcon icon={option.icon} className='mr-2' />
               <span>{option.name}</span>
             </li>
           )}
           renderInput={(params) => (
             <TextField
               {...params}
-              label="Search by Product Type or Vendor"
-              className="bg-gray-100 border-4 border-border shadow-md font-body border-4 border-border"
+              label='Search by Product Type or Vendor'
+              className='bg-gray-100 border-4 border-border shadow-md font-body border-4 border-border'
               sx={{
                 borderRadius: '9999px',
                 '& .MuiOutlinedInput-root': {
