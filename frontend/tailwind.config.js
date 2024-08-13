@@ -23,6 +23,8 @@ module.exports = {
         'border': '#564225',
         'navbar': '#71875c',
         'listitem': '#EEECE9',
+        // 'main': '#d6d4d1',
+        'main': '#f6f5f4',
       },
       boxShadow: {
         'text-outline': '2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',
@@ -32,7 +34,7 @@ module.exports = {
         'navbar-no-search': '140px',
       },
       backgroundImage: {
-        // 'nav': "url('https://www.toptal.com/designers/subtlepatterns/uploads/bananas.png')",
+        'nav': "url('https://www.toptal.com/designers/subtlepatterns/uploads/bananas.png')",
         // 'main': "url('https://www.toptal.com/designers/subtlepatterns/uploads/leaves-pattern.png')",
       },
     },

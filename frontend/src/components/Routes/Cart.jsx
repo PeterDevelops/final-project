@@ -105,7 +105,7 @@ return (
               My Cart
             </div>
 
-            <div className='max-w-4xl mx-4 bg-listitem p-6 rounded-lg shadow-md'>
+            <div className='max-w-4xl mx-4 bg-listitem bg-opacity-60 p-6 rounded-lg shadow-md'>
               {Object.keys(groupedCartItems).map(vendorId => {
                 const { vendor, items } = groupedCartItems[vendorId];
 

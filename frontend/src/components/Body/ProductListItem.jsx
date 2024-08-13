@@ -130,7 +130,7 @@ const ProductListItem = (props) => {
   const isProductOwnedByUser = user && vendor && user.id === vendor.admin_user;
 
   return (
-    <article className="flex flex-col md:flex-row md:items-stretch border rounded-lg shadow-md bg-[#EEECE9] m-2 overflow-hidden ">
+    <article className="flex flex-col md:flex-row md:items-stretch border rounded-lg shadow-md bg-listitem bg-opacity-60 m-2 overflow-hidden ">
 
       {/* Image Section */}
       <div className="w-full md:w-1/3 h-36 md:h-auto">

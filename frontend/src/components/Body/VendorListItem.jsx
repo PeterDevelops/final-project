@@ -19,7 +19,7 @@ const VendorListItem = (props) => {
           className="w-full h-full object-cover"
         />
         </div>
-        <div className="p-2 w-full md:w-1/4 flex flex-col justify-center h-full bg-listitem">
+        <div className="p-2 w-full md:w-1/4 flex flex-col justify-center h-full bg-listitem bg-opacity-60">
           <h3 className="text-base text-center font-semibold">{vendorData.name}</h3>
           {showBio && <p className="mt-2 text-center">{vendorData.bio}</p>}
         </div>

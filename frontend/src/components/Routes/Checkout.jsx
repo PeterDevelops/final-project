@@ -70,7 +70,7 @@ const Checkout = (props) => {
   return (
     <div className="min-h-screen bg-main p-6">
       {cartItems.length > 0 ? (
-        <div className="max-w-4xl mx-auto bg-listitem p-6 rounded-lg shadow-lg">
+        <div className="max-w-4xl mx-auto bg-listitem bg-opacity-60 p-6 rounded-lg shadow-lg">
           <div className="flex justify-center mb-4">
             <DeliveryToggle alignment={alignment} setAlignment={setAlignment} />
           </div>
