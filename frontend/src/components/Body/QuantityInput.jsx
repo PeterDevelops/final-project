@@ -22,29 +22,30 @@ const QuantityInput = ({ defaultQuantity, onChange }) => {
   return (
     <PrimeReactProvider>
       {!noNumberInput.includes(location.pathname) && (
-        <div className="flex items-center">
+        <div className='flex items-center'>
           <button
-            className="text-black mx-2 w-2 h-2 rounded-sm flex items-center justify-center"
+            className='text-black mx-2 w-2 h-2 rounded-sm flex items-center justify-center'
             onClick={() => handleValueChange({ value: quantity - 1 })}
-            aria-label="Decrease quantity"
+            aria-label='Decrease quantity'
           >
-            <i className="pi pi-minus text-xl"></i>
+            <i className='pi pi-minus text-xl'></i>
           </button>
           <InputNumber
             value={quantity}
             onValueChange={handleValueChange}
             showButtons
-            buttonLayout="vertical"
+            buttonLayout='vertical'
             style={{ width: '2rem' }}
-            incrementButtonClassName="hidden"
-            decrementButtonClassName="hidden"
+            incrementButtonClassName='hidden'
+            decrementButtonClassName='hidden'
+            min={1}
           />
           <button
-            className="text-black mx-2 w-2 h-2 rounded-sm flex items-center justify-center"
+            className='text-black mx-2 w-2 h-2 rounded-sm flex items-center justify-center'
             onClick={() => handleValueChange({ value: quantity + 1 })}
-            aria-label="Increase quantity"
+            aria-label='Increase quantity'
           >
-            <i className="pi pi-plus text-xl"></i>
+            <i className='pi pi-plus text-xl'></i>
           </button>
         </div>
       )}

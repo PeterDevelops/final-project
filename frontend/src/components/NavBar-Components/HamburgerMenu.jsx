@@ -59,57 +59,57 @@ const HamburgerMenu = (props) => {
       isOpen={isOpen}
       onStateChange={handleMenuStateChange}
     >
-      <Link to="/" className="menu-item" onClick={closeMenu}>Home</Link>
+      <Link to='/' className='menu-item' onClick={closeMenu}>Home</Link>
 
-      <div className="menu-item">
-        <div className="flex items-center justify-between">
-          <Link to="/products" onClick={handleProductsClick}>Products</Link>
-          <button onClick={() => setIsProductsDropdownOpen(!isProductsDropdownOpen)} className="ml-2 focus:outline-none">
+      <div className='menu-item'>
+        <div className='flex items-center justify-between'>
+          <Link to='/products' onClick={handleProductsClick}>Products</Link>
+          <button onClick={() => setIsProductsDropdownOpen(!isProductsDropdownOpen)} className='ml-2 focus:outline-none'>
             ▼
           </button>
         </div>
         {isProductsDropdownOpen && (
-          <div className="flex flex-col pl-6 mt-2">
+          <div className='flex flex-col pl-6 mt-2'>
             {categories.map((category, index) => (
               <Link
                 key={index}
-                to="/products"
-                className="py-1 hover:underline"
+                to='/products'
+                className='py-1 hover:underline'
                 onClick={() => handleCategoryClick(category.category)}
               >
                 {category.category}
               </Link>
             ))}
-            {user && <Link to="/products/new" className="menu-item" onClick={closeMenu}>New Product</Link>}
+            {user && <Link to='/products/new' className='menu-item' onClick={closeMenu}>New Product</Link>}
           </div>
         )}
       </div>
 
-      <div className="menu-item">
-        <div className="flex items-center justify-between">
-          <Link to="/vendors" onClick={handleVendorsClick}>Vendors</Link>
-          <button onClick={() => setIsVendorsDropdownOpen(!isVendorsDropdownOpen)} className="ml-2 focus:outline-none">
+      <div className='menu-item'>
+        <div className='flex items-center justify-between'>
+          <Link to='/vendors' onClick={handleVendorsClick}>Vendors</Link>
+          <button onClick={() => setIsVendorsDropdownOpen(!isVendorsDropdownOpen)} className='ml-2 focus:outline-none'>
             ▼
           </button>
         </div>
         {isVendorsDropdownOpen && (
-          <div className="flex flex-col pl-6 mt-2">
+          <div className='flex flex-col pl-6 mt-2'>
             {allVendors.map((vendor, index) => (
               <span
                 key={index}
-                className="py-1 hover:underline text-left cursor-pointer"
+                className='py-1 hover:underline text-left cursor-pointer'
                 onClick={() => handleVendorClick(vendor)}
               >
                 {vendor.name}
               </span>
             ))}
-            <Link to="/locations" className="menu-item" onClick={closeMenu}>Location Map</Link>
-            {user && <Link to="/vendors/new" className="py-1 hover:underline text-left" onClick={closeMenu}>New Vendor</Link>}
+            <Link to='/locations' className='menu-item' onClick={closeMenu}>Location Map</Link>
+            {user && <Link to='/vendors/new' className='py-1 hover:underline text-left' onClick={closeMenu}>New Vendor</Link>}
           </div>
         )}
       </div>
 
-      <Link to="/inbox" className="menu-item" onClick={closeMenu}>Inbox</Link>
+      <Link to='/inbox' className='menu-item' onClick={closeMenu}>Inbox</Link>
     </Menu>
   );
 };

@@ -91,20 +91,20 @@ const PaymentForm = ({ userId, totalCost, orderData, orderItems, setCartItems, s
 
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="bg-white p-4 rounded-md shadow-md">
-        <CardElement options={cardStyle} className="p-2 border border-gray-300 rounded-md" />
+    <form onSubmit={handleSubmit} className='space-y-4'>
+      <div className='bg-white p-4 rounded-md shadow-md'>
+        <CardElement options={cardStyle} className='p-2 border border-gray-300 rounded-md' />
       </div>
-      <div className="flex justify-center">
+      <div className='flex justify-center'>
         <button
-          className="bg-green-700 text-white font-medium rounded-full px-5 py-2 text-sm hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-300 disabled:opacity-50"
-          type="submit"
+          className='bg-green-700 text-white font-medium rounded-full px-5 py-2 text-sm hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-300 disabled:opacity-50'
+          type='submit'
           disabled={!stripe}
         >
           Pay
         </button>
       </div>
-      {error && <div className="text-red-500 text-center">{error}</div>}
+      {error && <div className='text-red-500 text-center'>{error}</div>}
     </form>
   );
 };

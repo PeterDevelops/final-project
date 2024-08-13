@@ -1,3 +1,5 @@
+//Removed as categories are now accessible through HamburgerMenu
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -60,15 +62,15 @@ const CategoryList = (props) => {
       return sortedCategories.map((category, index) => (
         <div
           key={index}
-          className="relative flex items-center justify-center cursor-pointer border rounded-lg shadow-md p-20 m-4 md:m-6 lg:m-8 hover:bg-gray-100 hover:scale-105 transition-transform duration-300"
+          className='relative flex items-center justify-center cursor-pointer border rounded-lg shadow-md p-20 m-4 md:m-6 lg:m-8 hover:bg-gray-100 hover:scale-105 transition-transform duration-300'
           onClick={() => handleCategoryClick(category.category)}
         >
           <FontAwesomeIcon
             icon={getIconForCategory(category.category)}
-            className="text-9xl text-gray-500"
+            className='text-9xl text-gray-500'
           />
           <span
-            className="absolute text-white text-xl font-bold z-10 text-shadow-outline"
+            className='absolute text-white text-xl font-bold z-10 text-shadow-outline'
           >
             {category.category}
           </span>
@@ -78,8 +80,8 @@ const CategoryList = (props) => {
   };
 
   return (
-    <div className="min-h-screen">
-      <div className="grid gap-4 md:gap-6 lg:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+    <div className='min-h-screen'>
+      <div className='grid gap-4 md:gap-6 lg:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
         {categoryListArr()}
       </div>
     </div>

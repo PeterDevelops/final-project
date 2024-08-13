@@ -135,7 +135,7 @@ const AddEditProduct = (props) => {
         return updatedProducts;
       });
 
-      navigate(`/vendors/${vendorId}`);
+      navigate(`/vendors/${vendorId}`, {state: {vendors}});
 
     } catch (error) {
       console.error('Error:', error.message);
@@ -144,81 +144,81 @@ const AddEditProduct = (props) => {
 
 
   return (
-    <div className="relative h-screen">
-      <form onSubmit={handleSubmit} className="max-w-4xl mx-auto p-6 bg-[#F7F4F0] bg-opacity-50 mt-10 shadow-md rounded-lg">
-        <h1 className="text-2xl font-semibold mb-4">{editProduct ? 'Edit Product' : 'Add New Product'}</h1>
-        <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
+    <div className='relative h-screen'>
+      <form onSubmit={handleSubmit} className='max-w-4xl mx-6 p-6 bg-[#F7F4F0] bg-opacity-50 mt-10 shadow-md rounded-lg'>
+        <h1 className='text-2xl font-semibold mb-4'>{editProduct ? 'Edit Product' : 'Add New Product'}</h1>
+        <div className='grid gap-4 grid-cols-1 md:grid-cols-2'>
           <div>
-            <label htmlFor="productName" className="block text-sm font-medium text-gray-700">Product Name</label>
+            <label htmlFor='productName' className='block text-sm font-medium text-gray-700'>Product Name</label>
             <input
-              type="text"
-              id="productName"
-              name="productName"
+              type='text'
+              id='productName'
+              name='productName'
               value={productName}
               onChange={(e) => setProductName(e.target.value)}
-              className="mt-1 block w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+              className='mt-1 block w-full border-gray-300 bg-white rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50'
               required
             />
           </div>
           <div>
-            <label htmlFor="productDescription" className="block text-sm font-medium text-gray-700">Product Description</label>
+            <label htmlFor='productDescription' className='block text-sm font-medium text-gray-700'>Product Description</label>
             <textarea
-              id="productDescription"
-              name="productDescription"
+              id='productDescription'
+              name='productDescription'
               value={productDescription}
               onChange={(e) => setProductDescription(e.target.value)}
-              className="mt-1 block w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
-              rows="4"
+              className='mt-1 block w-full border-gray-300 bg-white rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50'
+              rows='4'
               required
             />
           </div>
           <div>
-            <label htmlFor="productPhotoUrl" className="block text-sm font-medium text-gray-700">Photo Url</label>
+            <label htmlFor='productPhotoUrl' className='block text-sm font-medium text-gray-700'>Photo Url</label>
             <input
-              type="text"
-              id="productPhotoUrl"
-              name="productPhotoUrl"
+              type='text'
+              id='productPhotoUrl'
+              name='productPhotoUrl'
               value={productPhotoUrl}
               onChange={(e) => setProductPhotoUrl(e.target.value)}
-              className="mt-1 block w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+              className='mt-1 block w-full border-gray-300 bg-white rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50'
               required
             />
           </div>
           <div>
-            <label htmlFor="productInventory" className="block text-sm font-medium text-gray-700">Quantity</label>
+            <label htmlFor='productInventory' className='block text-sm font-medium text-gray-700'>Quantity</label>
             <input
-              type="text"
-              id="productInventory"
-              name="productInventory"
+              type='text'
+              id='productInventory'
+              name='productInventory'
               value={productInventory}
               onChange={(e) => setProductInventory(e.target.value)}
-              className="mt-1 block w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+              className='mt-1 block w-full border-gray-300 bg-white rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50'
               required
             />
           </div>
           <div>
-            <label htmlFor="productPriceCents" className="block text-sm font-medium text-gray-700">Price (in cents)</label>
+            <label htmlFor='productPriceCents' className='block text-sm font-medium text-gray-700'>Price (in cents)</label>
             <input
-              type="text"
-              id="productPriceCents"
-              name="productPriceCents"
+              type='text'
+              id='productPriceCents'
+              name='productPriceCents'
               value={productPriceCents}
               onChange={(e) => setProductPriceCents(e.target.value)}
-              className="mt-1 block w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+              className='mt-1 block w-full border-gray-300 bg-white rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50'
               required
             />
           </div>
           <div>
-            <label htmlFor="vendorId" className="block text-sm font-medium text-gray-700">Vendor</label>
+            <label htmlFor='vendorId' className='block text-sm font-medium text-gray-700'>Vendor</label>
             <select
-              id="vendorId"
-              name="vendorId"
+              id='vendorId'
+              name='vendorId'
               value={vendorId}
               onChange={(e) => setVendorId(e.target.value)}
-              className="mt-1 block w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+              className='mt-1 block w-full border-gray-300 bg-white rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50'
               required
             >
-              <option value="" disabled>Select a vendor</option>
+              <option value='' disabled>Select a vendor</option>
               {userVendors.map((vendor, index) => (
                 <option key={index} value={vendor.id}>
                   {vendor.name}
@@ -227,16 +227,16 @@ const AddEditProduct = (props) => {
             </select>
           </div>
           <div>
-            <label htmlFor="productCategory" className="block text-sm font-medium text-gray-700">Category</label>
+            <label htmlFor='productCategory' className='block text-sm font-medium text-gray-700'>Category</label>
             <select
-              id="productCategory"
-              name="productCategory"
+              id='productCategory'
+              name='productCategory'
               value={productCategory}
               onChange={(e) => setProductCategory(e.target.value)}
-              className="mt-1 block w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+              className='mt-1 block w-full border-gray-300 bg-white rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50'
               required
             >
-              <option value="" disabled>Select a category</option>
+              <option value='' disabled>Select a category</option>
               {categories.map((categories, index) => (
                 <option key={index} value={categories.category}>
                   {categories.category}
@@ -245,39 +245,39 @@ const AddEditProduct = (props) => {
             </select>
           </div>
           <div>
-            <label htmlFor="productSubCategory" className="block text-sm font-medium text-gray-700">SubCategory</label>
+            <label htmlFor='productSubCategory' className='block text-sm font-medium text-gray-700'>SubCategory</label>
             <select
-              id="productSubCategory"
-              name="productSubCategory"
+              id='productSubCategory'
+              name='productSubCategory'
               value={productSubCategory}
               onChange={handleSubCategoryChange}
-              className="mt-1 block w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+              className='mt-1 block w-full border-gray-300 bg-white rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50'
               required
               disabled={!productCategory}
             >
-              <option value="" disabled>Select a SubCategory</option>
+              <option value='' disabled>Select a SubCategory</option>
               {subCategories.map((subCategory, index) => (
                 <option key={index} value={subCategory}>
                   {subCategory}
                 </option>
               ))}
-              <option value="new">Create new SubCategory</option>
+              <option value='new'>Create new SubCategory</option>
             </select>
             {isCreatingNewSubCategory && (
-              <div className="mt-4">
-                <label htmlFor="newSubCategory" className="block text-sm font-medium text-gray-700">New SubCategory</label>
+              <div className='mt-4'>
+                <label htmlFor='newSubCategory' className='block text-sm font-medium text-gray-700'>New SubCategory</label>
                 <input
-                  id="newSubCategory"
-                  name="newSubCategory"
-                  type="text"
+                  id='newSubCategory'
+                  name='newSubCategory'
+                  type='text'
                   value={newSubCategory}
                   onChange={(e) => setNewSubCategory(e.target.value)}
-                  className="mt-1 block w-full border-gray-300 bg-gray-100 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+                  className='mt-1 block w-full border-gray-300 bg-white rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50'
                 />
                 <button
-                  type="button"
+                  type='button'
                   onClick={handleNewSubCategorySubmit}
-                  className="mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                  className='mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
                 >
                   Add SubCategory
                 </button>
@@ -285,10 +285,10 @@ const AddEditProduct = (props) => {
             )}
           </div>
         </div>
-        <div className="mt-6 flex justify-end">
+        <div className='mt-6 flex justify-end'>
           <button
-            type="submit"
-            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+            type='submit'
+            className='px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50'
           >
             {editProduct ? 'Update Product' : 'Add Product'}
           </button>

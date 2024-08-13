@@ -11,15 +11,15 @@ const LoginBtn = (props) => {
 
   const handleClick = async () => {
     //await the GET /logout request and send the cookie info along with the request (withCredentials)
-    await axios.get("/logout", {withCredentials: true})
+    await axios.get('/logout', {withCredentials: true})
     setUser(null);
     navigate('/')
   }
 
   return (
     <div>
-      {user && <FontAwesomeIcon className="text-icon hover:text-gray-900 flex items-center" onClick={handleClick} icon={faDoorOpen} size="2x" />}
-      {!user && <Link to="/login"><FontAwesomeIcon className="text-icon hover:text-gray-900 flex items-center" icon={faDoorClosed} size="2x" /></Link>}
+      {user && <FontAwesomeIcon className='text-icon hover:text-gray-900 flex items-center' onClick={handleClick} icon={faDoorOpen} size='2x' />}
+      {!user && <Link to='/login'><FontAwesomeIcon className='text-icon hover:text-gray-900 flex items-center' icon={faDoorClosed} size='2x' /></Link>}
     </div>
   )
 };
