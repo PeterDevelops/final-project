@@ -41,7 +41,7 @@ const LocationList = (props) => {
           locations={locations}
           zoom={12}
           selectedLocation={selectedLocation}
-          className='h-50vh w-80vw mx-auto border-2 border-custom-gray shadow-md rounded-lg mt-10'
+          className='h-35vh w-80vw mx-auto border-2 border-custom-gray shadow-md rounded-lg mt-10'
           allProducts={allProducts}
           setProducts={setProducts}
           allVendors={allVendors}

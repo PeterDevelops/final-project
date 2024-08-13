@@ -11,7 +11,7 @@ module.exports = {
         heading: ['RufReg', 'RufBold']
       },
       height: {
-        '50vh': '50vh',
+        '35vh': '35vh',
       },
       width: {
         '80vw': '80vw',

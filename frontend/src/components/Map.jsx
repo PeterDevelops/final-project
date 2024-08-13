@@ -79,7 +79,7 @@ const Map = (props) => {
         center={center}
         zoom={15}
         scrollWheelZoom={true}
-        className='h-50vh w-80vw mx-auto border-2 border-custom-gray shadow-md rounded-lg mt-10'
+        className='h-35vh w-80vw mx-auto mb-6 border-2 border-custom-gray shadow-md rounded-lg mt-10'
         key={`${center[0]}-${center[1]}`}
       >
         <TileLayer
@@ -111,7 +111,7 @@ const Map = (props) => {
         ))}
       </MapContainer>
 
-      <div className="flex flex-col items-center space-y-1 w-80vw mx-auto">
+      <div className="grid grid-cols-2 gap-1 mt-3 w-80vw mx-auto">
         {vendorsOnMapList()}
       </div>
     </>
