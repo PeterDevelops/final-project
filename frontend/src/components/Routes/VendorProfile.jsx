@@ -1,6 +1,5 @@
 import React from 'react';
 import { useEffect, useState } from 'react'
-import NavBar from '../NavBar';
 import axios from 'axios'
 import ProductList from './ProductList';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -104,19 +103,6 @@ const VendorProfile = (props) => {
 
   return (
     <div>
-      {/* <NavBar
-        products={products}
-        setProducts={setProducts}
-        allProducts={allProducts}
-        vendors={vendors}
-        setVendors={setVendors}
-        allVendors={allVendors}
-        locations={locations}
-        categories={categories}
-        user={user}
-        setUser={setUser}
-        cartItems={cartItems}
-      /> */}
       {vendor &&
         <>
 

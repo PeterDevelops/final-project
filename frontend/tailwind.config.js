@@ -11,7 +11,8 @@ module.exports = {
         heading: ['RufReg', 'RufBold']
       },
       height: {
-        '50vh': '50vh',
+        '35vh': '35vh',
+        '75vh': '75vh',
       },
       width: {
         '80vw': '80vw',
@@ -21,6 +22,7 @@ module.exports = {
         'icon': '#4b5a3d',
         'border': '#564225',
         'navbar': '#71875c',
+        'listitem': '#EEECE9',
       },
       boxShadow: {
         'text-outline': '2px 2px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',
@@ -31,7 +33,7 @@ module.exports = {
       },
       backgroundImage: {
         // 'nav': "url('https://www.toptal.com/designers/subtlepatterns/uploads/bananas.png')",
-        'main': "url('https://www.toptal.com/designers/subtlepatterns/uploads/leaves-pattern.png')",
+        // 'main': "url('https://www.toptal.com/designers/subtlepatterns/uploads/leaves-pattern.png')",
       },
     },
   },

@@ -1,10 +1,7 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'
-import ChatList from '../Body/ChatList'
-import io from 'socket.io-client'
-const socket = io.connect("http://localhost:8080")
+import { Link, useNavigate } from 'react-router-dom';
+import ChatList from '../Body/ChatList';
 
 const Inbox = (props) => {
   const {
@@ -28,9 +25,26 @@ const Inbox = (props) => {
       axios.get(`/api/chats/${user.id}`)
         .then(response => {
           const userChatData = response.data;
-          // console.log("USER CHAT DATA------", userChatData)
-          // console.log("USER CHAT DATA LENGTH------", userChatData.length)
-          setChatData(userChatData);
+
+          const chatPromises = userChatData.map(chat =>
+            axios.get(`/api/messages/last/${chat.chat_id}`).then(res => ({
+              ...chat,
+              last_message_date: res.data[0]?.created_at || null
+            }))
+          );
+
+          Promise.all(chatPromises)
+            .then(chatsWithMessages => {
+              const sortedChatData = chatsWithMessages.sort((a, b) => {
+                const dateA = new Date(a.last_message_date);
+                const dateB = new Date(b.last_message_date);
+                return dateB - dateA;
+              });
+              setChatData(sortedChatData);
+            })
+            .catch(error => {
+              console.error('Error retrieving last message data:', error);
+            });
         })
         .catch(error => {
           console.error('Error retrieving inbox data:', error);
@@ -38,14 +52,13 @@ const Inbox = (props) => {
     } else {
       console.log('Not logged in');
     }
-  }, []);
-
-  console.log("All vendors----", allVendors)
+  }, [user]);
 
   const chatListArr = () => {
     if (Array.isArray(chatData) && chatData.length > 0) {
-      const chatList = chatData.map((chat) => <ChatList key={chat.chat_id} chat={chat} user={user} allVendors={allVendors} allProducts={allProducts}/>)
-      return chatList;
+      return chatData.map((chat) => (
+        <ChatList key={chat.chat_id} chat={chat} user={user} allVendors={allVendors} allProducts={allProducts} />
+      ));
     }
   }
 
@@ -56,7 +69,9 @@ const Inbox = (props) => {
           {user ? (
             <div>{chatListArr()}</div>
           ) : (
-            <h1>Please <span onClick={() => navigate('/login')} className="cursor-pointer underline font-body">login</span> to see your inbox.</h1>
+            <div className='flex justify-center mt-5'>
+            Please <button className='mx-1 font-bold'><Link to="/login">Login</Link></button> to view your inbox.
+          </div>
           )}
         </div>
       </div>
@@ -65,3 +80,4 @@ const Inbox = (props) => {
 };
 
 export default Inbox;
+

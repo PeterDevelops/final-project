@@ -1,6 +1,5 @@
 import React from 'react'
 import VendorListItem from '../Body/VendorListItem';
-import NavBar from '../NavBar';
 import { useNavigate } from 'react-router-dom'
 
 const VendorList = (props) => {
@@ -50,19 +49,6 @@ const VendorList = (props) => {
 
   return (
     <div>
-      {/* <NavBar
-        products={products}
-        setProducts={setProducts}
-        allProducts={allProducts}
-        vendors={vendors}
-        setVendors={setVendors}
-        allVendors={allVendors}
-        locations={locations}
-        categories={categories}
-        user={user}
-        setUser={setUser}
-        cartItems={cartItems}
-      /> */}
       {user ? (
         <>
           {userVendors.length > 0 && (

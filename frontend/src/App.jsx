@@ -85,13 +85,13 @@ function App({ location }) {
     return acc + (item.price_cents * quantity / 100);
   }, 0);
 
-  const noSearchBar = ['/cart', '/checkout', '/inbox', '/chats', '/login'];
+  const noSearchBar = ['/cart', '/checkout', '/inbox', '/chats', '/login', '/order-confirmation'];
   const shouldShowSearchBar = !noSearchBar.includes(location.pathname);
 
   const hiddenNavBarRoutes = ['/chats'];
   const shouldShowNavBar = !hiddenNavBarRoutes.some(route => location.pathname.startsWith(route));
 
-  const mainClass = `bg-main border-4 border-border font-body ${shouldShowNavBar ? (shouldShowSearchBar ? 'pt-navbar' : 'pt-navbar-no-search') : ''}`;
+  const mainClass = `bg-main font-body ${shouldShowNavBar ? (shouldShowSearchBar ? 'pt-navbar' : 'pt-navbar-no-search') : ''}`;
   // console.log("Products Data---", products)
   // console.log("Vendors Data---", vendors)
   // console.log("categories in the App component: ------- ", categories)

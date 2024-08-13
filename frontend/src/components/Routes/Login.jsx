@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios';
-import NavBar from '../NavBar';
 import { useNavigate } from 'react-router-dom'
 
 const Login = (props) => {
@@ -44,20 +43,6 @@ const Login = (props) => {
 
   return (
     <div className="relative h-screen">
-        {/* <NavBar
-          products={products}
-          setProducts={setProducts}
-          allProducts={allProducts}
-          vendors={vendors}
-          setVendors={setVendors}
-          allVendors={allVendors}
-          locations={locations}
-          categories={categories}
-          user={user}
-          setUser={setUser}
-          cartItems={cartItems}
-        /> */}
-
         <section className="m-3 p-3 flex flex-row justify-center">
           <div className="w-full max-w-xs ">
             <h1 className="text-xl font-semibold">Login</h1>

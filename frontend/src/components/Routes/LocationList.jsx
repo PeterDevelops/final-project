@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import LocationListItem from '../Body/LocationListItem';
-import NavBar from '../NavBar';
 import Map from '../Map';
 
 const LocationList = (props) => {
@@ -38,22 +37,11 @@ const LocationList = (props) => {
 
   return (
     <div>
-      {/* <NavBar
-        products={products}
-        setProducts={setProducts}
-        allProducts={allProducts}
-        vendors={vendors}
-        setVendors={setVendors}
-        allVendors={allVendors}
-        locations={locations}
-        categories={categories}
-        cartItems={cartItems}
-      /> */}
         <Map
           locations={locations}
           zoom={12}
           selectedLocation={selectedLocation}
-          className='h-50vh w-80vw mx-auto border-2 border-custom-gray shadow-md rounded-lg mt-10'
+          className='h-35vh w-80vw mx-auto border-2 border-custom-gray shadow-md rounded-lg mt-10'
           allProducts={allProducts}
           setProducts={setProducts}
           allVendors={allVendors}

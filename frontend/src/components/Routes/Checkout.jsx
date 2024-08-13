@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import NavBar from '../NavBar';
-import '../../styles/Cart.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStore } from '@fortawesome/free-solid-svg-icons';
 import DeliveryToggle from '../Body/DeliveryToggle';
 import CartListItem from '../Body/CartListItem';
 import PaymentForm from '../Body/PaymentForm';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 
-// Make sure to call `loadStripe` outside of a component’s render to avoid
-// recreating the `Stripe` object on every render.
 const stripePromise = loadStripe('pk_test_51PYBRI2KSndZDZT0m4PGzx0F7CHHo0eusCyVIKccoRf8AgLH2tyXAZFN1flfXsq8D54meFVeqexQ5FZZeLwnrgKg00mRwQlpak');
 
 const Checkout = (props) => {
@@ -27,27 +25,22 @@ const Checkout = (props) => {
     totalCost,
     setCartItems,
     subtotal,
-    quantities
+    quantities,
   } = props;
-  // console.log('totalCost:Checkout:', totalCost);
-  // console.log('cartItems:', cartItems);
-
-  // const userId = 1;
 
   const navigate = useNavigate();
-
   const [alignment, setAlignment] = useState('pickup');
 
   const [deliveryDetails, setDeliveryDetails] = useState({
     address: '',
-    city: ''
+    city: '',
   });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setDeliveryDetails((prevDetails) => ({
       ...prevDetails,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -56,45 +49,35 @@ const Checkout = (props) => {
     total_cost: Math.round(subtotal * 100),
     delivery_type: alignment,
     delivery_address: alignment === 'delivery' ? deliveryDetails.address : '',
-    delivery_city: alignment === 'delivery' ? deliveryDetails.city : ''
+    delivery_city: alignment === 'delivery' ? deliveryDetails.city : '',
   };
 
-  const orderItems = cartItems.map(item => ({
+  const orderItems = cartItems.map((item) => ({
     product_id: item.product_id,
-    quantity: item.quantity
+    quantity: item.quantity,
   }));
 
+  // Get unique vendor pickup addresses
+  const pickupAddresses = [...new Set(
+    cartItems.map(item => {
+      const product = allProducts.find(product => product.id === item.product_id);
+      if (!product) return null;
+      const vendor = allVendors.find(vendor => vendor.id === product.vendor_id);
+      return vendor ? `${vendor.name}: ${vendor.address}, ${vendor.city}` : null;
+    }).filter(Boolean)
+  )];
+
   return (
-    <div className="relative h-screen">
-      {/* //   <NavBar
-    //     products={products}
-    //     setProducts={setProducts}
-    //     allProducts={allProducts}
-    //     vendors={vendors}
-    //     setVendors={setVendors}
-    //     allVendors={allVendors}
-    //     locations={locations}
-    //     user={user}
-    //     setUser={setUser}
-    //     cartItems={cartItems}
-    //   /> */}
-
+    <div className="min-h-screen bg-main p-6">
       {cartItems.length > 0 ? (
-
-        <div className='cart-container'>
-
-          <div className='cart-center'>
-            <DeliveryToggle
-              alignment={alignment}
-              setAlignment={setAlignment}
-            />
+        <div className="max-w-4xl mx-auto bg-listitem p-6 rounded-lg shadow-lg">
+          <div className="flex justify-center mb-4">
+            <DeliveryToggle alignment={alignment} setAlignment={setAlignment} />
           </div>
 
-          <div className='font-bold text-xl'>
-            Order Summary
-          </div>
+          <div className="font-bold text-xl mb-4">Order Summary</div>
 
-          {cartItems.map(item => (
+          {cartItems.map((item) => (
             <CartListItem
               key={item.cart_item_id}
               product_photo_url={item.product_photo_url}
@@ -104,71 +87,50 @@ const Checkout = (props) => {
             />
           ))}
 
-          <div className='font-bold text-right m-2 mr-4'>
+          <div className="font-bold text-right mt-4 mb-2">
             Total: ${subtotal.toFixed(2)}
           </div>
 
-          {/* if pickup render vendor addresses and cities */}
           {alignment === 'pickup' && (
-            <div>
-              <h3 className='text-sm font-bold'>Pickup Addresses</h3>
-              {cartItems.length > 0 ? (
-                [...new Set(
-                  cartItems.map(item => {
-                    const vendor = allVendors.find(vendor =>
-                      vendor.id === allProducts.find(product => product.id === item.product_id)?.vendor_id
-                    );
-                    return vendor ?
-                      <div>
-                        <span className='font-medium'>{vendor.name}:</span> {vendor.address}, {vendor.city}
-                      </div>
-                      : null;
-                  }).filter(Boolean)
-                )].map((address, index) => (
-                  <p key={index} className='text-sm mb-1'>{address}</p>
+            <div className="mb-4">
+              <h3 className="text-sm font-bold mb-2">Pickup Addresses</h3>
+              {pickupAddresses.length > 0 ? (
+                pickupAddresses.map((address, index) => (
+                  <p key={index} className="text-sm mb-1">
+                    <FontAwesomeIcon icon={faStore} className="mr-2" />
+                    {address}
+                  </p>
                 ))
               ) : (
-                <p>Address and city information not available.</p>
+                <p className="text-sm">Address and city information not available.</p>
               )}
             </div>
           )}
 
-          {/* if delivery render form */}
           {alignment === 'delivery' && (
-            <div>
-
-              <h3 className='text-sm font-bold'>Delivery Details</h3>
-
-              <div className='text-sm '>
-                Address:
-              </div>
-
-              <div>
-                <input
-                  type='text'
-                  name='address'
-                  value={deliveryDetails.address}
-                  onChange={handleInputChange}
-                />
-              </div>
-
-              <div className='text-sm'>
-                City:
-              </div>
-
-              <div>
-                <input
-                  type='text'
-                  name='city'
-                  value={deliveryDetails.city}
-                  onChange={handleInputChange}
-                />
-              </div>
-
+            <div className="mb-4">
+              <h3 className="text-sm font-bold mb-2">Delivery Details</h3>
+              <div className="text-sm mb-2">Address:</div>
+              <input
+                type="text"
+                name="address"
+                value={deliveryDetails.address}
+                onChange={handleInputChange}
+                className="w-full p-2 border border-gray-300 rounded-md"
+              />
+              <div className="text-sm mt-2 mb-2">City:</div>
+              <input
+                type="text"
+                name="city"
+                value={deliveryDetails.city}
+                onChange={handleInputChange}
+                className="w-full p-2 border border-gray-300 rounded-md"
+              />
             </div>
           )}
-          <div className='text-sm font-bold mt-2'>
-            <div className='mb-1'>Card Details</div>
+
+          <div className="text-sm font-bold mt-4 mb-4">
+            <div className="mb-2">Card Details</div>
             <Elements stripe={stripePromise}>
               <PaymentForm
                 userId={user.id}
@@ -177,19 +139,23 @@ const Checkout = (props) => {
                 orderItems={orderItems}
                 setCartItems={setCartItems}
                 subtotal={subtotal}
+                pickupAddresses={pickupAddresses}
               />
             </Elements>
           </div>
 
-
-          <div className='flex justify-center text-white bg-blue-700 font-medium rounded-lg text-large px-5 py-2.5
-          me-2 mb-2 dark:bg-blue-600'>
-            <button onClick={() => navigate('/')}>Continue Shopping</button>
+          <div className="flex justify-center mb-4">
+            <button
+              onClick={() => navigate('/')}
+              className="bg-blue-700 text-white font-medium rounded-lg px-5 py-2.5 text-lg hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Continue Shopping
+            </button>
           </div>
 
         </div>
       ) : (
-        <div>Add redirect logic.</div>
+        <div className="text-center mt-6">Add redirect logic.</div>
       )}
     </div>
   );

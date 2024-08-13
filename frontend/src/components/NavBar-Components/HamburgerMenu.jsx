@@ -109,7 +109,7 @@ const HamburgerMenu = (props) => {
         )}
       </div>
 
-      <Link to="/Inbox" className="menu-item" onClick={closeMenu}>Inbox</Link>
+      <Link to="/inbox" className="menu-item" onClick={closeMenu}>Inbox</Link>
     </Menu>
   );
 };
