@@ -69,8 +69,8 @@ const Inbox = (props) => {
           {user ? (
             <div>{chatListArr()}</div>
           ) : (
-            <div className='flex justify-center mt-5'>
-            Please <button className='mx-1 font-bold'><Link to="/login">Login</Link></button> to view your inbox.
+            <div className='flex justify-center mt-8'>
+            Please <button className='mx-1 font-bold text-blue-700'><Link to="/login">login</Link></button> to view your inbox.
           </div>
           )}
         </div>

@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons';
 
 const Login = (props) => {
   const {
@@ -45,7 +47,7 @@ const Login = (props) => {
     <div className="relative h-screen">
         <section className="m-3 p-3 flex flex-row justify-center">
           <div className="w-full max-w-xs ">
-            <h1 className="text-xl font-semibold">Login</h1>
+            <h1 className="text-xl font-semibold pb-8">Login</h1>
             <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}  >
               <div className="mb-4">
                 <label
@@ -79,8 +81,8 @@ const Login = (props) => {
                 />
               </div>
               <div className="flex items-center justify-between">
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" >
-                  Login
+                <button className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" >
+                <FontAwesomeIcon icon={faArrowRightToBracket} color="black"/>
                 </button>
               </div>
             </form>
