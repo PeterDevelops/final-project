@@ -118,7 +118,7 @@ return (
                   <div key={vendorId} className='mb-6'>
                     <div className='flex items-center justify-center mb-4'>
                       <img
-                        className='w-16 h-16 rounded-full mr-4'
+                        className='w-16 h-16 rounded-full'
                         src={vendor.vendor_logo_url}
                         alt='vendor logo'
                       />

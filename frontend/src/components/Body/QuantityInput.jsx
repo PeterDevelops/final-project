@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { PrimeReactProvider } from 'primereact/api';
 import { InputNumber } from 'primereact/inputnumber';
-// import 'primereact/resources/themes/saga-blue/theme.css';
-// import "primereact/resources/themes/lara-light-cyan/theme.css";
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
-import '../../styles/QuantityInput.scss';
 import { useLocation } from 'react-router-dom';
 
 const QuantityInput = ({ defaultQuantity, onChange }) => {
@@ -25,17 +22,33 @@ const QuantityInput = ({ defaultQuantity, onChange }) => {
   return (
     <PrimeReactProvider>
       {!noNumberInput.includes(location.pathname) && (
-        <InputNumber
-          value={quantity}
-          onValueChange={handleValueChange}
-          showButtons buttonLayout="vertical"
-          style={{ width: '2.2rem' }}
-          decrementButtonClassName="p-button-secondary"
-          incrementButtonClassName="p-button-secondary"
-          incrementButtonIcon="pi pi-plus"
-          decrementButtonIcon="pi pi-minus" />
-        )}
-      </PrimeReactProvider>
+        <div className="flex items-center">
+          <button
+            className="text-black mx-2 w-2 h-2 rounded-sm flex items-center justify-center"
+            onClick={() => handleValueChange({ value: quantity - 1 })}
+            aria-label="Decrease quantity"
+          >
+            <i className="pi pi-minus text-xl"></i>
+          </button>
+          <InputNumber
+            value={quantity}
+            onValueChange={handleValueChange}
+            showButtons
+            buttonLayout="vertical"
+            style={{ width: '2rem' }}
+            incrementButtonClassName="hidden"
+            decrementButtonClassName="hidden"
+          />
+          <button
+            className="text-black mx-2 w-2 h-2 rounded-sm flex items-center justify-center"
+            onClick={() => handleValueChange({ value: quantity + 1 })}
+            aria-label="Increase quantity"
+          >
+            <i className="pi pi-plus text-xl"></i>
+          </button>
+        </div>
+      )}
+    </PrimeReactProvider>
   );
 };
 
