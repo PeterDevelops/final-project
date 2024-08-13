@@ -178,8 +178,14 @@ export default function SearchBar(props) {
                   borderRadius: '9999px',
                   border: '2px solid #564225',
                 },
-              }}
-              inputRef={inputRef}
+                '& .MuiInputLabel-root.Mui-focused': {
+                  color: '#564225',
+                  transform: 'translate(16px, -20px) scale(0.75)',
+                },
+                '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                  borderColor: '#4b5a3d',
+                },
+              }}ef={inputRef}
             />
           )}
         />
