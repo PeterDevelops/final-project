@@ -144,14 +144,15 @@ const Checkout = (props) => {
             </Elements>
           </div>
 
-          <div className="flex justify-center mb-4">
+          {/* <div className="flex flex-row">
             <button
+              className='text-gray rounded-lg text-sm underline px-5 py-2.5'
               onClick={() => navigate('/')}
-              className="bg-blue-700 text-white font-medium rounded-lg px-5 py-2.5 text-lg hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Continue Shopping
             </button>
-          </div>
+
+          </div> */}
 
         </div>
       ) : (
