@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import NavBar from '../NavBar';
 import Map from '../Map'
 import LocationModal from '../LocationModal';
 
@@ -47,19 +46,6 @@ const Homepage = (props) => {
   return (
     <div className='min-h-screen'>
       {showModal && <LocationModal onAccept={handleAccept} onDecline={handleDecline} />}
-      {/* <NavBar
-        products={products}
-        setProducts={setProducts}
-        allProducts={allProducts}
-        vendors={vendors}
-        setVendors={setVendors}
-        allVendors={allVendors}
-        locations={locations}
-        categories={categories}
-        user={user}
-        setUser={setUser}
-        cartItems={cartItems}
-      /> */}
       <Map
         locations={locations}
         allowUserLocation={allowUserLocation}

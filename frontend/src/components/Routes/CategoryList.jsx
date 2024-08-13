@@ -1,5 +1,4 @@
 import React from 'react';
-import NavBar from '../NavBar';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -80,19 +79,6 @@ const CategoryList = (props) => {
 
   return (
     <div className="min-h-screen">
-      {/* <NavBar
-        products={products}
-        setProducts={setProducts}
-        allProducts={allProducts}
-        vendors={vendors}
-        setVendors={setVendors}
-        allVendors={allVendors}
-        locations={locations}
-        categories={categories}
-        user={user}
-        setUser={setUser}
-        cartItems={cartItems}
-      /> */}
       <div className="grid gap-4 md:gap-6 lg:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         {categoryListArr()}
       </div>
