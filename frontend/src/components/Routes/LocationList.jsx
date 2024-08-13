@@ -47,7 +47,7 @@ const LocationList = (props) => {
           allVendors={allVendors}
           setVendors={setVendors}
         />
-      <div className="flex flex-col items-center space-y-4">
+      <div className='flex flex-col items-center space-y-4'>
         {locationListArr()}
       </div>
     </div>

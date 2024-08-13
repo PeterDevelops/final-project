@@ -95,7 +95,7 @@ const VendorProfile = (props) => {
             )
           }
         })
-        .catch((err) => { console.log("Find a chat axios error:", err) })
+        .catch((err) => { console.log('Find a chat axios error:', err) })
     } else {
       navigate('/inbox')
     }
@@ -106,38 +106,40 @@ const VendorProfile = (props) => {
       {vendor &&
         <>
 
-          <div className="vendor-profile flex flex-col items-center rounded-lg m-5 overflow-hidden">
-            <div className="relative w-80 h-80">
-            <img src={vendor.vendor_logo_url} alt={vendor.name} className="object-cover object-center border shadow rounded-full w-full h-full" />
+          <div className='vendor-profile flex flex-col items-center rounded-lg m-5 overflow-hidden'>
+            <div className='relative w-80 h-80'>
+            <img src={vendor.vendor_logo_url} alt={vendor.name} className='object-cover object-center border shadow rounded-full w-full h-full' />
             </div>
-            <div className="p-5 w-full md:w-2/3">
-              <h3 className="text-xl font-semibold text-center">{vendor.name}</h3>
-              <p className="mt-2 text-center">{vendor.bio}</p>
-              {user && user.id === vendor.admin_user && (
-                <div className="mt-4">
+            <div className='p-5 w-full md:w-2/3 mx-auto'>
+              <h3 className='text-xl font-semibold text-center'>{vendor.name}</h3>
+              <p className='mt-2 text-center'>{vendor.bio}</p>
+              {user && user.id === vendor.admin_user ? (
+                <div className='mt-4 flex justify-center'>
                   <button
                     onClick={handleEdit}
-                    className="bg-blue-500 text-white py-2 px-4 rounded mr-2"
+                    className='bg-blue-500 text-white py-2 px-4 rounded mr-2'
                   >
                     Edit
                   </button>
                   <button
                     onClick={handleDelete}
-                    className="bg-red-500 text-white py-2 px-4 rounded"
+                    className='bg-red-500 text-white py-2 px-4 rounded'
                   >
                     Delete
                   </button>
                 </div>
+              ) : (
+                <div className='mt-4 flex justify-center'>
+                  <button
+                    onClick={handleNavigateToChat}
+                    className='bg-green-500 text-white py-2 px-4 rounded text-sm'
+                  >
+                    Contact Vendor
+                  </button>
+                </div>
               )}
-              <div className="flex mt-4 justify-center">
-                <button
-                  onClick={handleNavigateToChat}
-                  className="bg-green-500 text-white py-2 px-4 rounded text-sm"
-                >
-                  Contact Vendor
-                </button>
-              </div>
-            </div>
+          </div>
+
           </div>
           <ProductList
             products={products}

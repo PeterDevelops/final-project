@@ -92,9 +92,9 @@ function App({ location }) {
   const shouldShowNavBar = !hiddenNavBarRoutes.some(route => location.pathname.startsWith(route));
 
   const mainClass = `bg-main font-body ${shouldShowNavBar ? (shouldShowSearchBar ? 'pt-navbar' : 'pt-navbar-no-search') : ''}`;
-  // console.log("Products Data---", products)
-  // console.log("Vendors Data---", vendors)
-  // console.log("categories in the App component: ------- ", categories)
+  // console.log('Products Data---', products)
+  // console.log('Vendors Data---', vendors)
+  // console.log('categories in the App component: ------- ', categories)
   // console.log('cartItems:App', cartItems);
   return (
     <>
@@ -116,7 +116,7 @@ function App({ location }) {
         <main className={mainClass}>
         <ScrollToTop />
         <Routes>
-          <Route path="/" element={
+          <Route path='/' element={
             <Homepage
               products={products}
               setProducts={setProducts}
@@ -130,7 +130,7 @@ function App({ location }) {
               cartItems={cartItems}
             />}
           />
-          <Route path="/cart" element={
+          <Route path='/cart' element={
             <Cart
               products={products}
               setProducts={setProducts}
@@ -150,7 +150,7 @@ function App({ location }) {
               subtotal={subtotal}
             />}
           />
-          <Route path="/inbox" element={
+          <Route path='/inbox' element={
             <Inbox
               products={products}
               setProducts={setProducts}
@@ -164,7 +164,7 @@ function App({ location }) {
               cartItems={cartItems}
             />}
           />
-          <Route path="/vendors" element={
+          <Route path='/vendors' element={
             <VendorList
               products={products}
               setProducts={setProducts}
@@ -178,7 +178,7 @@ function App({ location }) {
               cartItems={cartItems}
             />}
           />
-          <Route path="/products" element={
+          <Route path='/products' element={
             <ProductList
               products={products}
               setProducts={setProducts}
@@ -196,7 +196,7 @@ function App({ location }) {
               quantities={quantities}
             />}
           />
-          <Route path="/categories" element={
+          <Route path='/categories' element={
             <CategoryList
               products={products}
               setProducts={setProducts}
@@ -211,7 +211,7 @@ function App({ location }) {
               cartItems={cartItems}
             />}
           />
-          <Route path="/checkout" element={
+          <Route path='/checkout' element={
             <Checkout
               products={products}
               setProducts={setProducts}
@@ -229,7 +229,7 @@ function App({ location }) {
               quantities={quantities}
             />}
           />
-          <Route path="/order-confirmation" element={
+          <Route path='/order-confirmation' element={
             <OrderConfirmation
               products={products}
               vendors={vendors}
@@ -239,7 +239,7 @@ function App({ location }) {
               cartItems={cartItems}
             />}
           />
-          <Route path="/login" element={
+          <Route path='/login' element={
             <Login
               products={products}
               setProducts={setProducts}
@@ -254,7 +254,7 @@ function App({ location }) {
               cartItems={cartItems}
             />}
           />
-          <Route path="/locations" element={
+          <Route path='/locations' element={
             <LocationList
               products={products}
               setProducts={setProducts}
@@ -269,7 +269,7 @@ function App({ location }) {
               cartItems={cartItems}
             />}
           />
-          <Route path="/vendors/:vendorId" element={
+          <Route path='/vendors/:vendorId' element={
             <VendorProfile
               products={products}
               setProducts={setProducts}
@@ -288,7 +288,7 @@ function App({ location }) {
               setQuantities={setQuantities}
             />}
           />
-          <Route path="/vendors/new" element={
+          <Route path='/vendors/new' element={
             <AddEditVendor
               products={products}
               setProducts={setProducts}
@@ -304,7 +304,7 @@ function App({ location }) {
               cartItems={cartItems}
             />}
           />
-          <Route path="/vendors/edit/:vendorId" element={
+          <Route path='/vendors/edit/:vendorId' element={
             <AddEditVendor
               products={products}
               setProducts={setProducts}
@@ -320,7 +320,7 @@ function App({ location }) {
               cartItems={cartItems}
             />}
           />
-          <Route path="/products/new" element={
+          <Route path='/products/new' element={
             <AddEditProduct
               products={products}
               setProducts={setProducts}
@@ -337,7 +337,7 @@ function App({ location }) {
               cartItems={cartItems}
             />}
           />
-          <Route path="/products/edit/:productId" element={
+          <Route path='/products/edit/:productId' element={
             <AddEditProduct
               products={products}
               setProducts={setProducts}
@@ -354,7 +354,7 @@ function App({ location }) {
               cartItems={cartItems}
             />}
           />
-          <Route path="/chats/:id" element={
+          <Route path='/chats/:id' element={
             <ChatListItem user={user}
               setUser={setUser}
             />}
