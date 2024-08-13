@@ -33,30 +33,30 @@ const ChatList = (props) => {
       })
       .catch((error) => { console.log("There was an issue retrieving the last message:", error) })
   }, [])
-  
+
   const handleClick = (id) => {
     navigate(`/chats/${id}`, { state: { chat: chat, vendor: allVendors[chat.vendor_id - 1], allProducts: allProducts, allVendors: allVendors }})
   }
-  
+
   return (
-    <article onClick={() => handleClick(chat.chat_id)} className="cursor-pointer flex items-center border border-[#C6BAAB] rounded p-3 gap-4 my-4 bg-[#EEECE9] bg-opacity-50 hover:shadow-md font-body">
+    <article onClick={() => handleClick(chat.chat_id)} className="cursor-pointer flex items-center border border-[#C6BAAB] rounded p-3 gap-4 my-4 bg-[#EEECE9] bg-opacity-70 hover:shadow-md font-body">
       <div className="relative w-20 h-20">
-      <img 
-        src={chat.contact_photo} 
+      <img
+        src={chat.contact_photo}
         alt="avatar"
         className="object-cover object-center rounded-full w-full h-full"
         style={{imageRendering: 'auto'}} />
         </div>
       <div className="flex flex-col justify-between">
-        <h6 class="block font-body text-sm antialiased font-bold leading-relaxed tracking-normal text-inherit">
+        <h6 className="block font-body text-sm antialiased font-bold leading-relaxed tracking-normal text-inherit">
           {chat.contact_name}
         </h6>
-       { messageData && <> 
-          <p class="block font-sans text-sm antialiased font-normal leading-normal text-gray-800">
+        { messageData && <>
+          <p className="block font-sans text-sm antialiased font-normal leading-normal text-gray-800">
               {messageData.name}: {messageData.message}
             </p>
             <p className="text-xs text-gray-500">{formatDate(messageData.created_at)}</p>
-       </>} 
+        </>}
       </div>
     </article>
 

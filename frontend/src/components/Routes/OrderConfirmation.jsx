@@ -1,6 +1,8 @@
 import NavBar from '../NavBar';
 import { useNavigate, useLocation } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStore } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
 const OrderConfirmation = ({ products, vendors, locations, user, setUser, cartItems, }) => {
@@ -9,7 +11,7 @@ const OrderConfirmation = ({ products, vendors, locations, user, setUser, cartIt
   const location = useLocation();
   const userId = user?.id;
   const orderId = location.state?.orderId;
-  // console.log('OrderConfirmation:user:', user);
+  const pickupAddresses = location.state?.pickupAddresses || [];
 
   useEffect(() => {
     if (orderId) {
@@ -24,32 +26,17 @@ const OrderConfirmation = ({ products, vendors, locations, user, setUser, cartIt
     }
   }, [orderId]);
 
-
-  // useEffect(() => {
-  //   if (userId) {
-  //     axios.get(`/api/orders/${userId}`)
-  //       .then(response => {
-  //         setOrderDetails(response.data);
-  //         console.log('OrderConfirmation:response.data:', response.data);
-  //       })
-  //       .catch(err => {
-  //         console.error('Error retrieving order details', err);
-  //       });
-  //   }
-  // }, [userId]);
-
   if (!Array.isArray(orderDetails)) {
     return <div>Loading order details...</div>;
   }
 
   const totalAmount = orderDetails.reduce(
     (sum, item) => sum + item.quantity * item.price_cents / 100,
-    0);
-  // console.log('OrderConfirmation:totalAmount:', totalAmount);
-  // console.log('OrderConfirmation:order_id:', orderDetails[0].order_id)
+    0
+  );
 
   return (
-    <div className='min-h-screen'>
+    <div className="min-h-screen">
       <div className="max-w-4xl mx-auto p-6 bg-listitem shadow-md rounded-md mt-10">
         <div className="mb-2">
           <div className="text-xl font-semibold text-gray-800">
@@ -98,6 +85,17 @@ const OrderConfirmation = ({ products, vendors, locations, user, setUser, cartIt
             </h3>
           </div>
         </div>
+
+        {pickupAddresses.length > 0 && (
+          <div className="mb-4">
+            <h3 className="text-lg font-semibold text-gray-700">Pickup Addresses</h3>
+            <ul className="mt-2">
+              {pickupAddresses.map((address, index) => (
+                <li key={index} className="text-gray-600 mt-1"><FontAwesomeIcon icon={faStore} className="mr-2" />{address}</li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         <div className="mt-4 text-center">
           <button

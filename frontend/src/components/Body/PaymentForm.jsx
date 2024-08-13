@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import '../../styles/PaymentForm.scss';
 import '../../styles/Cart.scss';
 
-const PaymentForm = ({ userId, totalCost, orderData, orderItems, setCartItems, subtotal }) => {
+const PaymentForm = ({ userId, totalCost, orderData, orderItems, setCartItems, subtotal, pickupAddresses }) => {
 
   const stripe = useStripe();
   const elements = useElements();
@@ -82,7 +82,7 @@ const PaymentForm = ({ userId, totalCost, orderData, orderItems, setCartItems, s
       setCartItems([]);
 
       // redirect to order confirmation page
-      navigate('/order-confirmation', { state: { orderId: newOrderId } });
+      navigate('/order-confirmation', { state: { orderId: newOrderId, pickupAddresses } });
     }
     catch (error) {
       setError('Payment failed');
