@@ -149,7 +149,7 @@ const ProductListItem = (props) => {
           <h1 className="font-bold text-base text-left truncate ... text-ellipsis">{productData.name}</h1>
           <p className="mt-2 text-xs">{productData.description}</p>
           <div className="flex flex-row justify-between items-end mt-auto">
-            <h3 className="my-2 text-sm font-bold">${(productData.price_cents / 100.00).toFixed(2)}</h3>
+            <h3 className="text-md font-bold">${(productData.price_cents / 100.00).toFixed(2)}</h3>
             {/* Button Section  */}
             {isProductOwnedByUser ? (
               <div className="flex space-x-2 mt-2">
@@ -163,7 +163,7 @@ const ProductListItem = (props) => {
                   onClick={handleDelete}
                   className="text-xs bg-red-500 text-white py-2 px-4 rounded"
                 >
-                  <FontAwesomeIcon icon={faTrashCan} />                
+                  <FontAwesomeIcon icon={faTrashCan} />
                   </button>
 
               </div>
@@ -171,19 +171,19 @@ const ProductListItem = (props) => {
               <div className="flex items-center space-x-2 mt-2">
                 {!isAdded ? (
                   <button
-                    className="text-xs px-3 py-2 bg-yellow-500 text-black rounded hover:bg-yellow-600"
+                    className="text-xs px-3 py-1 bg-yellow-500 text-black rounded hover:bg-yellow-600"
                     onClick={handleAddToCart}
                   >
                     Add To Cart
                   </button>
                 ) : (
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-1">
                     <QuantityInput defaultQuantity={quantity} onChange={handleQuantityChange} />
                     <button
                   onClick={handleCartDelete}
-                  className="text-xs bg-red-500 text-white py-2 px-4 rounded"
+                  className="text-xs bg-red-500 text-white py-1 px-2 rounded"
                 >
-                  <FontAwesomeIcon icon={faTrashCan} />                
+                  <FontAwesomeIcon icon={faTrashCan} />
                   </button>
                   </div>
                 )}

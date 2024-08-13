@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../../styles/PaymentForm.scss';
-import '../../styles/Cart.scss';
 
 const PaymentForm = ({ userId, totalCost, orderData, orderItems, setCartItems, subtotal, pickupAddresses }) => {
 
@@ -92,21 +90,24 @@ const PaymentForm = ({ userId, totalCost, orderData, orderItems, setCartItems, s
   }
 
 
-  return(
-    <form onSubmit={handleSubmit}>
-    <div className='card-element-wrapper'>
-    <CardElement options={cardStyle} />
-    </div>
-    <div className='flex justify-center mb-4'>
-    <button className='text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-300
-        font-medium rounded-full text-sm px-5 py-2 text-center me-2 mt-2 dark:bg-green-600 dark:hover:bg-green-700
-        dark:focus:ring-green-800' type='submit' disabled={!stripe}>
-      Pay
-    </button>
-    </div>
-    {error && <div>{error}</div>}
-  </form>
-  )
+  return (
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="bg-white p-4 rounded-md shadow-md">
+        <CardElement options={cardStyle} className="p-2 border border-gray-300 rounded-md" />
+      </div>
+      <div className="flex justify-center">
+        <button
+          className="bg-green-700 text-white font-medium rounded-full px-5 py-2 text-sm hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-300 disabled:opacity-50"
+          type="submit"
+          disabled={!stripe}
+        >
+          Pay
+        </button>
+      </div>
+      {error && <div className="text-red-500 text-center">{error}</div>}
+    </form>
+  );
 };
+
 
 export default PaymentForm;
