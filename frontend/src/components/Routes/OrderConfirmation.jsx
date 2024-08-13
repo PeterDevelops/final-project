@@ -36,7 +36,7 @@ const OrderConfirmation = ({ products, vendors, locations, user, setUser, cartIt
 
   return (
     <div className="min-h-screen">
-      <div className="max-w-4xl mx-auto p-6 bg-listitem shadow-md rounded-md mt-10">
+      <div className="max-w-4xl mx-4 mb-12 p-6 bg-listitem shadow-md rounded-md mt-10">
         <div className="mb-2">
           <div className="text-xl font-semibold text-gray-800">
             Thank you for your order, {user.name}!

@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import '../../styles/Cart.scss';
 import { Link } from 'react-router-dom';
 import CartListItem from '../Body/CartListItem';
 import React, { useEffect, useMemo } from 'react';
@@ -49,12 +48,11 @@ const Cart = (props) => {
     quantities,
     setTotalCost,
     subtotal,
-    allProducts // Add this prop
+    allProducts
   } = props;
 
   const navigate = useNavigate();
 
-  // Group cart items by vendor
   const groupedCartItems = useMemo(() => {
     console.log('Cart Items:', cartItems);
     console.log('All Vendors:', allVendors);
@@ -94,20 +92,20 @@ const Cart = (props) => {
     setQuantities(updatedQuantities);
   };
 
-  return (
-    <div className="relative h-screen">
+return (
+    <div className="min-h-screen bg-main py-5">
       {!user || !user.id ? (
         <div className='flex justify-center mt-5'>
-          Please <button className='mx-1 font-bold'><Link to="/login">Login</Link></button> to view your cart.
+          Please <button className='mx-1 font-bold text-blue-600 hover:underline'><Link to="/login">Login</Link></button> to view your cart.
         </div>
       ) : (
         cartItems.length > 0 ? (
           <div>
-            <div className='mx-10 -mb-3 mt-5 text-xl font-bold'>
+            <div className='mx-10 mb-3 mt-5 text-xl font-bold'>
               My Cart
             </div>
 
-            <div className='cart-container'>
+            <div className='max-w-4xl mx-4 bg-listitem p-6 rounded-lg shadow-md'>
               {Object.keys(groupedCartItems).map(vendorId => {
                 const { vendor, items } = groupedCartItems[vendorId];
 
@@ -117,16 +115,14 @@ const Cart = (props) => {
                 }
 
                 return (
-                  <div key={vendorId} className='vendor-group'>
-                    <div className='cart-center'>
-                      <span>
-                        <img
-                          className='vendor-logo'
-                          src={vendor.vendor_logo_url}
-                          alt='vendor logo'
-                        />
-                      </span>
-                      <span className='span-tag'>
+                  <div key={vendorId} className='mb-6'>
+                    <div className='flex items-center justify-center mb-4'>
+                      <img
+                        className='w-16 h-16 rounded-full mr-4'
+                        src={vendor.vendor_logo_url}
+                        alt='vendor logo'
+                      />
+                      <span className='text-lg font-semibold'>
                         {vendor.vendor_name}
                       </span>
                     </div>
@@ -146,35 +142,37 @@ const Cart = (props) => {
                 );
               })}
 
-              <div className='text-right font-bold m-2'>
-                Total:
-                <span className='mx-1'>
-                  ${subtotal.toFixed(2)}
-                </span>
+              <div className='text-right font-bold mb-4'>
+                Total: <span className='ml-1 text-xl'>${subtotal.toFixed(2)}</span>
               </div>
 
               <Link to='/checkout'>
-                <div className='flex justify-center mb-2'>
-                  <button className='text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-300
-        font-medium rounded-full text-sm px-5 py-2 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700
-        dark:focus:ring-green-800'>
+                <div className='flex justify-center mb-4'>
+                  <button className='text-white bg-green-700 hover:bg-green-800 font-medium rounded-full text-sm px-5 py-2'>
                     Checkout
                   </button>
                 </div>
               </Link>
 
-              <div className='flex justify-center text-white bg-blue-700 font-medium rounded-lg text-large
-              px-5 py-2.5 me-2 mb-2 dark:bg-blue-600'>
-                <button onClick={() => navigate('/')}>Continue Shopping</button>
+              <div className='flex justify-center mb-4'>
+                <button
+                  className='text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-lg px-5 py-2.5'
+                  onClick={() => navigate('/')}
+                >
+                  Continue Shopping
+                </button>
               </div>
             </div>
           </div>
         ) : (
-          <div>
-            <div className='flex justify-center mt-6 font-bold mb-4'>Your cart is empty.</div>
-            <div className='flex justify-center'>
-              <button className='px-6 py-2 bg-blue-600 text-white rounded-md shadow' onClick={() => navigate('/')}>Go back to home page</button>
-            </div>
+          <div className='flex flex-col items-center mt-6'>
+            <div className='font-bold mb-4'>Your cart is empty.</div>
+            <button
+              className='px-6 py-2 bg-blue-600 text-white rounded-md shadow'
+              onClick={() => navigate('/')}
+            >
+              Go back to home page
+            </button>
           </div>
         )
       )}

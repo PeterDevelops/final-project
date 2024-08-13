@@ -85,7 +85,7 @@ function App({ location }) {
     return acc + (item.price_cents * quantity / 100);
   }, 0);
 
-  const noSearchBar = ['/cart', '/checkout', '/inbox', '/chats', '/login'];
+  const noSearchBar = ['/cart', '/checkout', '/inbox', '/chats', '/login', '/order-confirmation'];
   const shouldShowSearchBar = !noSearchBar.includes(location.pathname);
 
   const hiddenNavBarRoutes = ['/chats'];
