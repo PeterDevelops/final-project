@@ -185,7 +185,8 @@ export default function SearchBar(props) {
                 '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
                   borderColor: '#4b5a3d',
                 },
-              }}ef={inputRef}
+              }}
+              inputRef={inputRef}
             />
           )}
         />
