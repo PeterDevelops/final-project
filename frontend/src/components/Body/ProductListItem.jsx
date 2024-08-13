@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import QuantityInput from './QuantityInput';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
 
 const ProductListItem = (props) => {
   const {
@@ -132,7 +130,7 @@ const ProductListItem = (props) => {
   const isProductOwnedByUser = user && vendor && user.id === vendor.admin_user;
 
   return (
-    <article className="flex flex-col md:flex-row md:items-stretch border rounded-lg shadow-md bg-[#EEECE9] mx-2 overflow-hidden ">
+    <article className="flex flex-col md:flex-row md:items-stretch border rounded-lg shadow-md bg-[#EEECE9] m-2 overflow-hidden ">
 
       {/* Image Section */}
       <div className="w-full md:w-1/3 h-36 md:h-auto">
@@ -155,13 +153,13 @@ const ProductListItem = (props) => {
               <div className="flex space-x-2 mt-2">
                 <button
                   onClick={handleEdit}
-                  className="text-xs bg-green-500 text-white py-2 px-4 rounded"
+                  className="text-xs bg-green-500 text-white py-1 px-2 rounded"
                 >
                   <FontAwesomeIcon icon={faPenToSquare} />
                 </button>
                 <button
                   onClick={handleDelete}
-                  className="text-xs bg-red-500 text-white py-2 px-4 rounded"
+                  className="text-xs bg-red-500 text-white py-1 px-2 rounded"
                 >
                   <FontAwesomeIcon icon={faTrashCan} />
                   </button>
