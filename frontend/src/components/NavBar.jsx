@@ -67,7 +67,7 @@ const NavBar = (props) => {
         </div>
       </div>
       {!noSearchBar.includes(location.pathname) && (
-        <div className='pt-10 bg-navbar'>
+        <div className='pt-10'>
           <SearchBar
             products={products}
             setProducts={setProducts}
@@ -81,7 +81,7 @@ const NavBar = (props) => {
         </div>
       )}
       {noSearchBar.includes(location.pathname) && (
-        <div className='p-8 bg-navbar'></div>
+        <div className='p-8'></div>
       )}
     </nav>
   );

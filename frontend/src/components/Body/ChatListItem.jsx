@@ -137,12 +137,12 @@ const ChatListItem = (props) => {
       <React.Fragment key={message.id}>
         {messageDivider()}
         {message.sender_id === user.id ? (
-          <li className="p-3 mb-2 rounded-lg shadow-md bg-[#EDB513] max-w-max self-end">
+          <li className="p-3 mb-2 rounded-lg shadow-md bg-yellow-500 max-w-max self-end">
             <p>{message.message}</p>
             <p className="text-xs text-right">{moment(message.created_at).format('LT')}</p>
           </li>
         ) : (
-          <li className="p-3 mb-2 rounded-lg shadow-md bg-[#654960] text-white relative max-w-max">
+          <li className="p-3 mb-2 rounded-lg shadow-md bg-border text-white relative max-w-max">
             <div>
               <p>{message.message}</p>
               <p className="text-xs text-right">{moment(message.created_at).format('LT')}</p>
@@ -172,51 +172,48 @@ const ChatListItem = (props) => {
   };
 
   return (
-    <>
-      <div className="flex flex-col h-2/6 font-body">
-        <div className="bg-[#305D53] shadow-md px-8 pt-6 pb-8 mb-4 flex-grow">
-          <div className="bg-[#EEECE9] rounded p-2 relative">
-            <FontAwesomeIcon icon={faCircleXmark} onClick={handleClick} className="absolute top-2 right-2 cursor-pointer" />
+    <div className="flex flex-col min-h-screen font-body">
+      <div className="bg-navbar shadow-md px-8 pt-8 pb-4 flex flex-col flex-grow">
+        <div className="chatbox bg-[#EEECE9] flex flex-col h-75vh rounded-lg p-2">
+          <FontAwesomeIcon icon={faCircleXmark} onClick={handleClick} className="absolute top-2 right-2 cursor-pointer" />
 
-            <div className="bg-[#EEECE9] rounded p-2 mb-4 flex flex-row items-center cursor-pointer" onClick={goToVendorPage}>
-              <img className="rounded-full h-16 w-16 object-cover" src={chat.contact_photo} />
-              <h1 className="font-bold text-lg px-2">{chat.contact_name}</h1>
-            </div>
-
-            <div className="flex flex-col space-y-2 h-[calc(96vh-12rem)] overflow-auto">
-              <ul className="flex flex-col">
-                {messageList}
-              </ul>
-              {/* scroll bar to the bottom div */}
-              <div ref={ref}>
-
-              </div>
-              {/* end */}
-            </div>
-
+          <div className="bg-[#EEECE9] rounded p-2 mb-4 flex flex-row items-center cursor-pointer" onClick={goToVendorPage}>
+            <img className="rounded-full h-16 w-16 object-cover" src={chat.contact_photo} alt="Contact" />
+            <h1 className="font-bold text-lg px-2">{chat.contact_name}</h1>
           </div>
 
-          <div className="bg-[#305D53] flex flex-row items-center rounded p-1 mt-4">
-            <div className="bg-[#305D53] flex-grow">
-              <textarea
-                className="w-full h-12 border border-gray-300 rounded-lg p-2 resize-none overflow-auto"
-                onChange={(event) => setMessage(event.target.value)}
-                value={message}
-                placeholder="Message..."
-                onKeyDown={handleKeyDown}
-              />
-            </div>
-            <div className="flex-shrink ml-2" >
-              <button
-                className="px-4 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-                onClick={sendMessage}>
-                Send</button>
-            </div>
+        <div className="border-b-4 border-[#C6BAAB] w-auto"></div>
+
+          <div className="flex flex-col flex-1 overflow-y-auto">
+            <ul className="flex flex-col">
+              {messageList}
+            </ul>
+            <div ref={ref} /> {/* Scroll to the bottom div */}
+          </div>
+        </div>
+
+        <div className="bg-navbar flex flex-row items-center justify-between rounded py-2 mt-4">
+          <div className="bg-navbar flex-grow">
+            <textarea
+              className="w-full h-28 border border-gray-300 rounded-lg mt-4 p-2 resize-none overflow-auto"
+              onChange={(event) => setMessage(event.target.value)}
+              value={message}
+              placeholder="Message..."
+              onKeyDown={handleKeyDown}
+            />
+          </div>
+          <div className="flex-shrink ml-2">
+            <button
+              className="border-2 border-green-900 font-bold rounded-lg text-md px-5 py-2.5 text-center dark:border-green-900 dark:text-green-900 dark:hover:text-white dark:hover:bg-green-700"
+              onClick={sendMessage}
+            >
+              Send
+            </button>
           </div>
         </div>
       </div>
-    </>
-  )
-}
+    </div>
+  );
+};
 
 export default ChatListItem;
