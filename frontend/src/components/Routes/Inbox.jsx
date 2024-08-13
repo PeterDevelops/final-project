@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ChatList from '../Body/ChatList';
 
 const Inbox = (props) => {
@@ -69,7 +69,9 @@ const Inbox = (props) => {
           {user ? (
             <div>{chatListArr()}</div>
           ) : (
-            <h1>Please <span onClick={() => navigate('/login')} className="cursor-pointer underline font-body">login</span> to see your inbox.</h1>
+            <div className='flex justify-center mt-5'>
+            Please <button className='mx-1 font-bold'><Link to="/login">Login</Link></button> to view your inbox.
+          </div>
           )}
         </div>
       </div>
