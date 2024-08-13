@@ -24,27 +24,27 @@ const QuantityInput = ({ defaultQuantity, onChange }) => {
       {!noNumberInput.includes(location.pathname) && (
         <div className="flex items-center">
           <button
-            className="text-black mx-2 w-2 h-2 rounded-sm flex items-center justify-center"
+            className="text-black mx-2 w-0 h-2 rounded-sm flex items-center justify-center"
             onClick={() => handleValueChange({ value: quantity - 1 })}
             aria-label="Decrease quantity"
           >
-            <i className="pi pi-minus text-xl"></i>
+            <i className="pi pi-minus text-xs"></i>
           </button>
           <InputNumber
             value={quantity}
             onValueChange={handleValueChange}
             showButtons
             buttonLayout="vertical"
-            style={{ width: '2rem' }}
+            style={{ width: '1rem' }}
             incrementButtonClassName="hidden"
             decrementButtonClassName="hidden"
           />
           <button
-            className="text-black mx-2 w-2 h-2 rounded-sm flex items-center justify-center"
+            className="text-black mx-2 w-0 h-2 rounded-sm flex items-center justify-center"
             onClick={() => handleValueChange({ value: quantity + 1 })}
             aria-label="Increase quantity"
           >
-            <i className="pi pi-plus text-xl"></i>
+            <i className="pi pi-plus text-xs"></i>
           </button>
         </div>
       )}

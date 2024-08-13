@@ -95,17 +95,17 @@ const Cart = (props) => {
 return (
     <div className="min-h-screen bg-main py-5">
       {!user || !user.id ? (
-        <div className='flex justify-center mt-5'>
-          Please <button className='mx-1 font-bold text-blue-600 hover:underline'><Link to="/login">Login</Link></button> to view your cart.
-        </div>
+         <div className='flex justify-center mt-5'>
+         Please <button className='mx-1 font-bold text-blue-700'><Link to="/login">login</Link></button> to view your cart.
+       </div>
       ) : (
         cartItems.length > 0 ? (
           <div>
-            <div className='mx-10 mb-3 mt-5 text-xl font-bold'>
+            <div className='mx-5 mb-3 mt-5 text-xl font-bold'>
               My Cart
             </div>
 
-            <div className='max-w-4xl mx-4 bg-listitem bg-opacity-60 p-6 rounded-lg shadow-md'>
+            <div className='max-w-4xl mx-2 bg-listitem p-2 rounded-lg shadow-md'>
               {Object.keys(groupedCartItems).map(vendorId => {
                 const { vendor, items } = groupedCartItems[vendorId];
 
@@ -116,13 +116,13 @@ return (
 
                 return (
                   <div key={vendorId} className='mb-6'>
-                    <div className='flex items-center justify-center mb-4'>
+                    <div className='flex items-center justify-center mb-1'>
                       <img
-                        className='w-16 h-16 rounded-full mr-3'
+                        className='w-8 h-8 rounded-full mr-3'
                         src={vendor.vendor_logo_url}
                         alt='vendor logo'
                       />
-                      <span className='text-lg font-semibold'>
+                      <span className='text-base font-semibold'>
                         {vendor.name}
                       </span>
                     </div>
@@ -146,21 +146,25 @@ return (
                 Total: <span className='ml-1 text-xl'>${subtotal.toFixed(2)}</span>
               </div>
 
+              <div className="flex flex-row justify-between">
+              <div className='flex justify-center mb-4'>
+                <button
+                  className='text-gray rounded-lg text-sm underline px-5 py-2.5'
+                  onClick={() => navigate('/')}
+                >
+                  Continue Shopping
+                </button>
+                </div>
+
+              
               <Link to='/checkout'>
                 <div className='flex justify-center mb-4'>
-                  <button className='text-white bg-green-700 hover:bg-green-800 font-medium rounded-full text-sm px-5 py-2'>
+                  <button className="text-sm px-4 py-2 bg-yellow-500 text-black rounded hover:bg-yellow-600">
                     Checkout
                   </button>
                 </div>
               </Link>
 
-              <div className='flex justify-center mb-4'>
-                <button
-                  className='text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-lg px-5 py-2.5'
-                  onClick={() => navigate('/')}
-                >
-                  Continue Shopping
-                </button>
               </div>
             </div>
           </div>
