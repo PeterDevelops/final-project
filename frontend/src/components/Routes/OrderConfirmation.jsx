@@ -4,13 +4,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStore } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
-const OrderConfirmation = ({ products, vendors, locations, user, setUser, cartItems, }) => {
+const OrderConfirmation = ({ products, vendors, locations, user, setUser, cartItems }) => {
   const [orderDetails, setOrderDetails] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
   const userId = user?.id;
   const orderId = location.state?.orderId;
   const pickupAddresses = location.state?.pickupAddresses || [];
+  const alignment = location.state?.alignment || [];
+  const deliveryDetails = location.state?.deliveryDetails || [];
+
+  console.log('deliveryType ', alignment);
+
 
   useEffect(() => {
     if (orderId) {
@@ -85,16 +90,32 @@ const OrderConfirmation = ({ products, vendors, locations, user, setUser, cartIt
           </div>
         </div>
 
-        {pickupAddresses.length > 0 && (
+        {alignment === 'pickup' && pickupAddresses.length > 0 && (
           <div className='mb-4'>
             <h3 className='text-lg font-semibold text-gray-700'>Pickup Addresses</h3>
             <ul className='mt-2'>
               {pickupAddresses.map((address, index) => (
-                <li key={index} className='text-gray-600 mt-1'><FontAwesomeIcon icon={faStore} className='mr-2' />{address}</li>
+                <li key={index} className='text-gray-600 mt-1'>
+                  <FontAwesomeIcon icon={faStore} className='mr-2' />
+                  {address}
+                </li>
               ))}
             </ul>
           </div>
         )}
+
+        {alignment === 'delivery' && (
+          <div className='mb-4'>
+            <h3 className='text-lg font-semibold text-gray-700'>Delivery Details</h3>
+            <p className='text-gray-600 mt-1'>
+              These items will be delivered to:
+            </p>
+            <p className='text-gray-600 mt-1'>
+              {deliveryDetails.address}, {deliveryDetails.city}
+            </p>
+          </div>
+        )}
+
 
         <div className='mt-4 text-center'>
           <button

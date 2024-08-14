@@ -3,7 +3,10 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const PaymentForm = ({ userId, totalCost, orderData, orderItems, setCartItems, subtotal, pickupAddresses }) => {
+const PaymentForm = ({ userId, totalCost, orderData, orderItems, setCartItems, subtotal, pickupAddresses, alignment, deliveryDetails }) => {
+
+  console.log('aligntment OC: ', alignment);
+
 
   const stripe = useStripe();
   const elements = useElements();
@@ -80,7 +83,14 @@ const PaymentForm = ({ userId, totalCost, orderData, orderItems, setCartItems, s
       setCartItems([]);
 
       // redirect to order confirmation page
-      navigate('/order-confirmation', { state: { orderId: newOrderId, pickupAddresses } });
+      navigate('/order-confirmation', {
+        state: {
+          orderId: newOrderId,
+          pickupAddresses,
+          alignment,
+          deliveryDetails,
+        }
+      });
     }
     catch (error) {
       setError('Payment failed');
