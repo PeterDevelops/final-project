@@ -8,8 +8,9 @@ import moment from 'moment';
 import NavBar from '../NavBar';
 //socket.io for the client side
 import io from 'socket.io-client'
-// connect to backend socket server
-const socket = io.connect('http://localhost:8080')
+
+// connect to backend socket server without designating the url which will allow an ngrok connection
+const socket = io();
 
 const ChatListItem = (props) => {
   const { user } = props;
