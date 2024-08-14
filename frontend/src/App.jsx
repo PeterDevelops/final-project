@@ -127,20 +127,13 @@ function App({ location }) {
           />
           <Route path='/cart' element={
             <Cart
-              products={products}
-              setProducts={setProducts}
               allProducts={allProducts}
-              vendors={vendors}
-              setVendors={setVendors}
               allVendors={allVendors}
-              locations={locations}
               user={user}
-              setUser={setUser}
               cartItems={cartItems}
-              totalCost={totalCost}
-              setQuantities={setQuantities}
-              quantities={quantities}
               setCartItems={setCartItems}
+              quantities={quantities}
+              setQuantities={setQuantities}
               setTotalCost={setTotalCost}
               subtotal={subtotal}
             />}

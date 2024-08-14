@@ -39,16 +39,15 @@ const groupByVendor = (items, products, vendors) => {
 
 const Cart = (props) => {
   const {
-    // vendors,
+    allProducts,
     allVendors,
     user,
     cartItems,
     setCartItems,
-    setQuantities,
     quantities,
+    setQuantities,
     setTotalCost,
     subtotal,
-    allProducts
   } = props;
 
   const navigate = useNavigate();
