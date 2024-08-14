@@ -21,6 +21,7 @@ const Map = (props) => {
     vendors,
     setVendors,
     allVendors,
+    onVendorClick,
   } = props;
 
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ const Map = (props) => {
           setCenter([position.coords.latitude, position.coords.longitude]);
         },
         (error) => {
-          console.error('Geolocation permission denied', error);
+          console.error('geolocation permission denied', error);
         }
       );
     }
@@ -45,13 +46,19 @@ const Map = (props) => {
     }
   }, [selectedLocation]);
 
+  // handle vendor click to center map on location instead of navigate to vendor profile
   const handleVendorClick = (vendor) => {
-    const filteredByVendor = allProducts.filter(product => product.vendor_id === vendor.id);
-    const currentVendor = vendor;
+    const vendorLocation = {
+      latitude: vendor.latitude,
+      longitude: vendor.longitude,
+    };
+    onVendorClick(vendorLocation);
+    // const filteredByVendor = allProducts.filter(product => product.vendor_id === vendor.id);
+    // const currentVendor = vendor;
 
-    setProducts(filteredByVendor);
-    setVendors([currentVendor]);
-    navigate(`/vendors/${currentVendor.id}`, { state: { allProducts, allVendors } });
+    // setProducts(filteredByVendor);
+    // setVendors([currentVendor]);
+    // navigate(`/vendors/${currentVendor.id}`, { state: { allProducts, allVendors } });
   };
 
   const vendorsOnMapList = () => {
@@ -64,7 +71,7 @@ const Map = (props) => {
 
   const handleNavigateToVendorProfile = (vendorId) => {
     if (vendorId) {
-      console.log('Button clicked, vendorId:', vendorId);
+      console.log('button clicked, vendorId:', vendorId);
       const filteredByVendor = allProducts.filter(product => product.vendor_id === vendorId);
       const currentVendor = allVendors.filter(vendor => vendor.id === vendorId);
       setVendors(currentVendor);
