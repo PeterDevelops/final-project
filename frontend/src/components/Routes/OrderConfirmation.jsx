@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStore } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
-const OrderConfirmation = ({ products, vendors, locations, user, setUser, cartItems }) => {
+const OrderConfirmation = (props) => {
+  const { user } = props;
   const [orderDetails, setOrderDetails] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();

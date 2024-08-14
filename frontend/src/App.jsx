@@ -181,12 +181,7 @@ function App({ location }) {
           />
           <Route path='/order-confirmation' element={
             <OrderConfirmation
-              products={products}
-              vendors={vendors}
-              locations={locations}
               user={user}
-              setUser={setUser}
-              cartItems={cartItems}
             />}
           />
           <Route path='/login' element={
