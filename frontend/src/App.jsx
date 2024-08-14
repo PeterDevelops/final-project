@@ -9,7 +9,6 @@ import Cart from './components/Routes/Cart';
 import Inbox from './components/Routes/Inbox';
 import VendorList from './components/Routes/VendorList';
 import ProductList from './components/Routes/ProductList';
-import CategoryList from './components/Routes/CategoryList';
 import Checkout from './components/Routes/Checkout';
 import Login from './components/Routes/Login';
 import LocationList from './components/Routes/LocationList';
@@ -166,21 +165,6 @@ function App({ location }) {
               setCartItems={setCartItems}
               quantities={quantities}
               setQuantities={setQuantities}
-            />}
-          />
-          <Route path='/categories' element={
-            <CategoryList
-              products={products}
-              setProducts={setProducts}
-              allProducts={allProducts}
-              vendors={vendors}
-              setVendors={setVendors}
-              allVendors={allVendors}
-              locations={locations}
-              categories={categories}
-              user={user}
-              setUser={setUser}
-              cartItems={cartItems}
             />}
           />
           <Route path='/checkout' element={
