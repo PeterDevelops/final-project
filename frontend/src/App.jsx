@@ -200,14 +200,14 @@ function App({ location }) {
           />
           <Route path='/vendors/:vendorId' element={
             <VendorProfile
-              products={products}
-              setProducts={setProducts}
-              allProducts={allProducts}
-              setAllProducts={setAllProducts}
               vendors={vendors}
               setVendors={setVendors}
               allVendors={allVendors}
               setAllVendors={setAllVendors}
+              products={products}
+              setProducts={setProducts}
+              allProducts={allProducts}
+              setAllProducts={setAllProducts}
               locations={locations}
               categories={categories}
               user={user}
