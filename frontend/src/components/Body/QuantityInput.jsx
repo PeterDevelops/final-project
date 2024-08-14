@@ -5,7 +5,11 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import { useLocation } from 'react-router-dom';
 
-const QuantityInput = ({ defaultQuantity, onChange }) => {
+const QuantityInput = (props) => {
+  const {
+    defaultQuantity,
+    onChange
+  } = props;
   const [quantity, setQuantity] = useState(defaultQuantity);
   const location = useLocation();
   const noNumberInput = ['/checkout'];
