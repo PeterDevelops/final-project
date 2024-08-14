@@ -94,7 +94,10 @@ const Map = (props) => {
           url={`https://{s}.tile.thunderforest.com/neighbourhood/{z}/{x}/{y}.png?apikey=${process.env.REACT_APP_THUNDERFOREST_API_KEY}`}
         />
 
-        <VendorsInBoundsUpdater allVendors={allVendors} setVendors={setVendors} />
+        <VendorsInBoundsUpdater
+          allVendors={allVendors}
+          setVendors={setVendors}
+        />
 
         {allVendors.map((location) => (
           <Marker

@@ -1,7 +1,11 @@
 import { useEffect } from 'react';
 import { useMap } from 'react-leaflet';
 
-const VendorsInBoundsUpdater = ({ allVendors, setVendors }) => {
+const VendorsInBoundsUpdater = (props) => {
+  const {
+    allVendors,
+    setVendors
+  } = props;
   const map = useMap();
 
   useEffect(() => {
