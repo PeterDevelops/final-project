@@ -26,7 +26,8 @@ const LocationList = (props) => {
         <LocationListItem
           key={location.id}
           locationData={location}
-          onClick={handleLocationClick} />
+          onClick={handleLocationClick}
+        />
       ));
     }
   };

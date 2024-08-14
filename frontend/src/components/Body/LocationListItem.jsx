@@ -1,7 +1,10 @@
 import React from 'react'
 
 const LocationListItem = (props) => {
-  const { locationData, onClick } = props;
+  const {
+    locationData,
+    onClick
+  } = props;
 
   return (
     <article
