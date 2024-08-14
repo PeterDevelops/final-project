@@ -10,18 +10,21 @@ const VendorListItem = (props) => {
   };
 
   return (
-    <Link to={`/vendors/${vendorData.id}`} onClick={handleClick} >
-      <article className='flex flex-col md:flex-row md:items-center border rounded-lg shadow-md m-2 overflow-hidden h-48'>
-        <div className='w-full md:w-3/4 h-full flex'>
-        <img
-          src={vendorData.vendor_logo_url}
-          alt='vendor logo'
-          className='w-full h-full object-cover'
-        />
+    <Link to={`/vendors/${vendorData.id}`} onClick={handleClick}>
+      <article className='flex flex-col md:flex-row border rounded-lg shadow-md m-1 overflow-hidden h-20 md:h-20'>
+        {/* Logo Section */}
+        <div className='w-full md:w-2/3 h-3/4 md:h-full'>
+          <img
+            src={vendorData.vendor_logo_url}
+            alt='vendor logo'
+            className='w-full h-full object-cover'
+          />
         </div>
-        <div className='p-2 w-full md:w-1/4 flex flex-col justify-center h-full bg-listitem bg-opacity-60'>
-          <h3 className='text-base text-center font-semibold'>{vendorData.name}</h3>
-          {showBio && <p className='mt-2 text-center'>{vendorData.bio}</p>}
+        
+        {/* Name Section */}
+        <div className='w-full md:w-1/3 h-1/3 md:h-full flex flex-col justify-center bg-listitem bg-opacity-60 p-1'>
+          <h3 className='text-xs text-center font-bold truncate'>{vendorData.name}</h3>
+          {showBio && <p className='mt-1 text-center text-xs truncate'>{vendorData.bio}</p>}
         </div>
       </article>
     </Link>
@@ -29,4 +32,3 @@ const VendorListItem = (props) => {
 };
 
 export default VendorListItem;
-
