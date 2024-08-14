@@ -14,12 +14,11 @@ const VendorsInBoundsUpdater = (props) => {
 
       const bounds = map.getBounds();
       if (!bounds || typeof bounds.contains !== 'function') {
-        console.log('Invalid bounds');
+        console.error('Invalid bounds');
         return;
       }
 
       const vendorsInBounds = allVendors.filter((vendor) => {
-        // Convert latitude and longitude to numbers
         const lat = parseFloat(vendor.latitude);
         const lng = parseFloat(vendor.longitude);
 
@@ -29,8 +28,7 @@ const VendorsInBoundsUpdater = (props) => {
         }
 
         try {
-          const inBounds = bounds.contains([lat, lng]);
-          return inBounds;
+          return bounds.contains([lat, lng]);
         } catch (error) {
           console.error('Error checking bounds for vendor:', vendor, error);
           return false;
@@ -40,9 +38,9 @@ const VendorsInBoundsUpdater = (props) => {
       setVendors(vendorsInBounds);
     };
 
-
     map.on('moveend', handleMoveEnd);
 
+    // Initial call to update vendors when component mounts
     handleMoveEnd();
 
     return () => {

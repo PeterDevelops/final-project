@@ -1,16 +1,13 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'
-import moment from 'moment'
-
+import axios from 'axios';
+import moment from 'moment';
 
 const formatDate = (messageDateStr) => {
   const messageDate = moment.utc(messageDateStr).local(); // Convert date to local time
   const now = moment(); // Current local date
   const yesterday = moment().subtract(1, 'days'); // Calculate yesterday's date
 
-  // ChatList Format the time according to the user's local time zone
   if (now.isSame(messageDate, 'day')) {
     return messageDate.format('LT'); // Format as local time
   } else if (yesterday.isSame(messageDate, 'day')) {
@@ -18,7 +15,6 @@ const formatDate = (messageDateStr) => {
   } else {
     return messageDate.format('MMM DD, YYYY'); // Format as full date
   }
-
 };
 
 const ChatList = (props) => {
@@ -27,44 +23,61 @@ const ChatList = (props) => {
     allVendors,
     allProducts
   } = props;
+
   const [messageData, setMessageData] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     axios.get(`/api/messages/last/${chat.chat_id}`)
-      .then((message) => {
-        setMessageData(message.data[0])
+      .then(response => {
+        setMessageData(response.data[0]);
       })
-      .catch((error) => { console.log('There was an issue retrieving the last message:', error) })
-  }, [])
+      .catch(error => {
+        console.error('There was an issue retrieving the last message:', error);
+      });
+  }, [chat.chat_id]);
 
   const handleClick = (id) => {
-    navigate(`/chats/${id}`, { state: { chat: chat, vendor: allVendors[chat.vendor_id - 1], allProducts: allProducts, allVendors: allVendors }})
-  }
+    navigate(`/chats/${id}`, {
+      state: {
+        chat: chat,
+        vendor: allVendors[chat.vendor_id - 1],
+        allProducts: allProducts,
+        allVendors: allVendors
+      }
+    });
+  };
 
   return (
-    <article onClick={() => handleClick(chat.chat_id)} className='cursor-pointer flex items-center border border-[#C6BAAB] rounded p-3 gap-4 my-4 bg-[#EEECE9] bg-opacity-70 hover:shadow-md font-body'>
+    <article
+      onClick={() => handleClick(chat.chat_id)}
+      className='cursor-pointer flex items-center border border-[#C6BAAB] rounded p-3 gap-4 my-4 bg-[#EEECE9] bg-opacity-70 hover:shadow-md font-body'
+    >
       <div className='relative w-20 h-20'>
-      <img
-        src={chat.contact_photo}
-        alt='avatar'
-        className='object-cover object-center rounded-full w-full h-full'
-        style={{imageRendering: 'auto'}} />
-        </div>
+        <img
+          src={chat.contact_photo}
+          alt='avatar'
+          className='object-cover object-center rounded-full w-full h-full'
+          style={{ imageRendering: 'auto' }}
+        />
+      </div>
       <div className='flex flex-col justify-between'>
         <h6 className='block font-body text-sm antialiased font-bold leading-relaxed tracking-normal text-inherit'>
           {chat.contact_name}
         </h6>
-        { messageData && <>
-          <p className='block font-sans text-sm antialiased font-normal leading-normal text-gray-800'>
+        {messageData && (
+          <>
+            <p className='block font-sans text-sm antialiased font-normal leading-normal text-gray-800'>
               {messageData.name}: {messageData.message}
             </p>
-            <p className='text-xs text-gray-500'>{formatDate(messageData.created_at)}</p>
-        </>}
+            <p className='text-xs text-gray-500'>
+              {formatDate(messageData.created_at)}
+            </p>
+          </>
+        )}
       </div>
     </article>
-
-  )
+  );
 };
 
 export default ChatList;

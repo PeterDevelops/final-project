@@ -1,15 +1,13 @@
-import React from 'react'
-import { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import moment from 'moment';
-import NavBar from '../NavBar';
-//socket.io for the client side
-import io from 'socket.io-client'
-// connect to backend socket server
-const socket = io.connect('http://localhost:8080')
+import io from 'socket.io-client';
+
+// Connect to backend socket server
+const socket = io.connect('http://localhost:8080');
 
 const ChatListItem = (props) => {
   const { user } = props;
@@ -20,59 +18,51 @@ const ChatListItem = (props) => {
   const navigate = useNavigate();
   const ref = useRef(null);
 
-  // clients message
+  // Clients message
   const [message, setMessage] = useState('');
-  // chat history stored in db
+  // Chat history stored in db
   const [messageHistory, setMessageHistory] = useState([]);
 
-  // join chat on load
+  // Join chat on load
   useEffect(() => {
-    socket.emit('join_chat', id)
-  }, [])
+    socket.emit('join_chat', id);
+  }, [id]);
 
-  // scroll bar default is at the bottom
+  // Scroll bar default is at the bottom
   useEffect(() => {
     ref.current?.scrollIntoView({
-      behaviour: 'smooth',
+      behavior: 'smooth',
       block: 'end',
-    })
+    });
+  }, [messageHistory.length]);
 
-  }, [messageHistory.length])
-
-  // load this chat's messages
+  // Load this chat's messages
   useEffect(() => {
     if (id) {
-      socket.emit('join_chat', id);
-
       axios.get(`/api/messages/${id}`)
-        .then(response => {
-          // console.log('messages data----', response.data)
-          setMessageHistory(response.data)
-        })
-        .catch((error) => { console.error('Issue gathering message data:', error) })
+        .then(response => setMessageHistory(response.data))
+        .catch(error => console.error('Issue gathering message data:', error));
     }
-  }, []);
+  }, [id]);
 
   const sendMessage = () => {
-    const currentDate = moment().format('YYYY-MM-DD HH:mm:ssZZ'); //convert current local time to UTC format for db storage
+    const currentDate = moment().format('YYYY-MM-DD HH:mm:ssZZ'); // Convert current local time to UTC format for db storage
     if (message.trim() !== '') {
-      // console.log('CHATID IN CHAT', id)
-      const newMessage = { message: message, created_at: currentDate, sender_id: user.id, user: user, chatId: id }
+      const newMessage = { message, created_at: currentDate, sender_id: user.id, user, chatId: id };
 
-      //emit an event by send message to server (listening)
+      // Emit an event to send message to server (listening)
       socket.emit('send_message', newMessage);
 
-      //send the message to the db and add the saved message to the messageHistory
-      axios.post(`/api/messages/${id}`, { message: message, created_at: currentDate, sender_id: user.id, chatId: id })
-        .then(message => {
-          // console.log('messageData', message.data)
-          setMessageHistory(prev => [...prev, message.data])
-        })
+      // Send the message to the db and add the saved message to the messageHistory
+      axios.post(`/api/messages/${id}`, newMessage)
+        .then(response => setMessageHistory(prev => [...prev, response.data]))
+        .catch(error => console.error('Issue sending message:', error));
+
       setMessage('');
     }
-  }
+  };
 
-  // runs everytime an event on the server is emitted
+  // Runs every time an event on the server is emitted
   useEffect(() => {
     const handleReceiveMessage = (data) => {
       setMessageHistory(prev => [...prev, data]);
@@ -87,18 +77,13 @@ const ChatListItem = (props) => {
   }, [socket]);
 
   const messageList = messageHistory.map((message, index) => {
+    const messageDate = moment(message.created_at).startOf('day');
+    const previousMessageDate = index > 0 ? moment(messageHistory[index - 1].created_at).startOf('day') : null;
+
+    const today = moment().startOf('day');
+    const yesterday = moment().subtract(1, 'days').startOf('day');
+
     const messageDivider = () => {
-      // Get the current message date
-      const messageDate = moment(message.created_at).startOf('day');
-
-      // Get the previous message date if it exists
-      const previousMessageDate = index > 0 ? moment(messageHistory[index - 1].created_at).startOf('day') : null;
-
-      // Get the current date, today, and the day before yesterday
-      const today = moment().startOf('day');
-      const yesterday = moment().subtract(1, 'days').startOf('day');
-
-      // Check if the previous message date is different from the current message date
       if (!previousMessageDate || !messageDate.isSame(previousMessageDate, 'day')) {
         if (messageDate.isSame(today, 'day')) {
           return (
@@ -153,16 +138,15 @@ const ChatListItem = (props) => {
     );
   });
 
-
   const handleClick = () => {
     socket.emit('leave_chat', id);
-    navigate(`/inbox`)
-  }
+    navigate('/inbox');
+  };
 
   const goToVendorPage = () => {
     socket.emit('leave_chat', id);
-    navigate(`/vendors/${chat.vendor_id}`, {state: {vendor: allVendors[chat.vendor_id - 1], allProducts: allProducts}})
-  }
+    navigate(`/vendors/${chat.vendor_id}`, { state: { vendor: allVendors[chat.vendor_id - 1], allProducts } });
+  };
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
@@ -175,14 +159,25 @@ const ChatListItem = (props) => {
     <div className='flex flex-col min-h-screen font-body'>
       <div className='bg-navbar shadow-md px-8 pt-8 pb-4 flex flex-col flex-grow'>
         <div className='chatbox bg-[#EEECE9] flex flex-col h-75vh rounded-lg p-2'>
-          <FontAwesomeIcon icon={faCircleXmark} onClick={handleClick} className='absolute top-2 right-2 cursor-pointer' />
+          <FontAwesomeIcon
+            icon={faCircleXmark}
+            onClick={handleClick}
+            className='absolute top-2 right-2 cursor-pointer'
+          />
 
-          <div className='bg-[#EEECE9] rounded p-2 mb-4 flex flex-row items-center cursor-pointer' onClick={goToVendorPage}>
-            <img className='rounded-full h-16 w-16 object-cover' src={chat.contact_photo} alt='Contact' />
+          <div
+            className='bg-[#EEECE9] rounded p-2 mb-4 flex flex-row items-center cursor-pointer'
+            onClick={goToVendorPage}
+          >
+            <img
+              className='rounded-full h-16 w-16 object-cover'
+              src={chat.contact_photo}
+              alt='Contact'
+            />
             <h1 className='font-bold text-lg px-2'>{chat.contact_name}</h1>
           </div>
 
-        <div className='border-b-4 border-[#C6BAAB] w-auto'></div>
+          <div className='border-b-4 border-[#C6BAAB] w-auto'></div>
 
           <div className='flex flex-col flex-1 overflow-y-auto'>
             <ul className='flex flex-col'>
