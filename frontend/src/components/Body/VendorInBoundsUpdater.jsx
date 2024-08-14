@@ -1,11 +1,9 @@
 import { useEffect } from 'react';
 import { useMap } from 'react-leaflet';
+import L from 'leaflet'; 
 
 const VendorsInBoundsUpdater = (props) => {
-  const {
-    allVendors,
-    setVendors
-  } = props;
+  const { allVendors, setVendors } = props;
   const map = useMap();
 
   useEffect(() => {
@@ -36,6 +34,25 @@ const VendorsInBoundsUpdater = (props) => {
       });
 
       setVendors(vendorsInBounds);
+
+      // Check if vendor with id 12 is the only one in bounds
+      if (vendorsInBounds.length === 1 && vendorsInBounds[0].id === 12) {
+        const tileLayerUrl = `https://{s}.tile.thunderforest.com/spinal-map/{z}/{x}/{y}.png?apikey=${process.env.REACT_APP_THUNDERFOREST_API_KEY}`;
+        map.eachLayer(layer => {
+          if (layer instanceof L.TileLayer) {
+            map.removeLayer(layer);
+          }
+        });
+        L.tileLayer(tileLayerUrl).addTo(map);
+      } else {
+        const tileLayerUrl = `https://{s}.tile.thunderforest.com/neighbourhood/{z}/{x}/{y}.png?apikey=${process.env.REACT_APP_THUNDERFOREST_API_KEY}`;
+        map.eachLayer(layer => {
+          if (layer instanceof L.TileLayer) {
+            map.removeLayer(layer);
+          }
+        });
+        L.tileLayer(tileLayerUrl).addTo(map);
+      }
     };
 
     map.on('moveend', handleMoveEnd);
@@ -52,8 +69,6 @@ const VendorsInBoundsUpdater = (props) => {
 };
 
 export default VendorsInBoundsUpdater;
-
-
 
 
 
