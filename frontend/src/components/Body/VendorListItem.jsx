@@ -2,7 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const VendorListItem = (props) => {
-  const { vendorData, onClick, showBio } = props;
+  const {
+    vendorData,
+    onClick,
+    showBio
+  } = props;
 
   const handleClick = (event) => {
     event.preventDefault();

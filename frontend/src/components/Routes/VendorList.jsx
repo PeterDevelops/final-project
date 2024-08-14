@@ -24,7 +24,12 @@ const VendorList = (props) => {
 
   const renderVendorList = (vendorsArray) => {
     return vendorsArray.map((vendor) => (
-      <VendorListItem key={vendor.id} vendorData={vendor} onClick={() => handleVendorClick(vendor)} showBio={false}/>
+      <VendorListItem
+        key={vendor.id}
+        vendorData={vendor}
+        onClick={() => handleVendorClick(vendor)}
+        showBio={false}
+      />
     ));
   };
 
