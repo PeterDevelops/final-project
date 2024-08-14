@@ -42,7 +42,7 @@ const AddEditProduct = (props) => {
     }
   }, [productCategory, allProducts]);
 
-  const resetForm = () => {
+  const resetProductForm = () => {
     setProductName('');
     setProductDescription('');
     setProductPhotoUrl('');
@@ -64,7 +64,7 @@ const AddEditProduct = (props) => {
       setProductSubCategory(editProduct.sub_category || '');
       setVendorId(editProduct.vendor_id || '');
     } else {
-      resetForm();
+      resetProductForm();
     }
   }, [editProduct]);
 
