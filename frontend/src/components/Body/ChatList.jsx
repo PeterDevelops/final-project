@@ -22,7 +22,11 @@ const formatDate = (messageDateStr) => {
 };
 
 const ChatList = (props) => {
-  const { chat, user, allVendors, allProducts } = props;
+  const {
+    chat,
+    allVendors,
+    allProducts
+  } = props;
   const [messageData, setMessageData] = useState([]);
   const navigate = useNavigate();
 

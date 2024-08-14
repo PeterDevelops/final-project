@@ -49,7 +49,11 @@ const Inbox = (props) => {
   const chatListArr = () => {
     if (Array.isArray(chatData) && chatData.length > 0) {
       return chatData.map((chat) => (
-        <ChatList key={chat.chat_id} chat={chat} user={user} allVendors={allVendors} allProducts={allProducts} />
+        <ChatList
+          key={chat.chat_id}
+          chat={chat}
+          allVendors={allVendors}
+          allProducts={allProducts} />
       ));
     }
   }
