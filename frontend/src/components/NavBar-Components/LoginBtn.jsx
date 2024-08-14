@@ -5,7 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDoorClosed, faDoorOpen } from '@fortawesome/free-solid-svg-icons';
 
 const LoginBtn = (props) => {
-  const { user, setUser } = props
+  const {
+    user,
+    setUser
+  } = props
 
   const navigate = useNavigate();
 

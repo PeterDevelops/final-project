@@ -46,10 +46,6 @@ const NavBar = (props) => {
         </Link>
         <div className='flex items-center gap-2 mt-6'>
           <LoginBtn
-            products={products}
-            vendors={vendors}
-            locations={locations}
-            categories={categories}
             user={user}
             setUser={setUser}
           />
@@ -69,14 +65,10 @@ const NavBar = (props) => {
       {!noSearchBar.includes(location.pathname) && (
         <div className='pt-10'>
           <SearchBar
-            products={products}
             setProducts={setProducts}
             allProducts={allProducts}
-            vendors={vendors}
             setVendors={setVendors}
             allVendors={allVendors}
-            locations={locations}
-            categories={categories}
           />
         </div>
       )}
