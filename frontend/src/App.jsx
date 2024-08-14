@@ -219,18 +219,9 @@ function App({ location }) {
           />
           <Route path='/vendors/new' element={
             <AddEditVendor
-              products={products}
-              setProducts={setProducts}
-              allProducts={allProducts}
-              vendors={vendors}
-              setVendors={setVendors}
               allVendors={allVendors}
               setAllVendors={setAllVendors}
-              locations={locations}
-              categories={categories}
               user={user}
-              setUser={setUser}
-              cartItems={cartItems}
             />}
           />
           <Route path='/vendors/edit/:vendorId' element={
