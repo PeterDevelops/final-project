@@ -257,8 +257,8 @@ function App({ location }) {
           />}
           />
           <Route path='/chats/:id' element={
-            <ChatListItem user={user}
-              setUser={setUser}
+            <ChatListItem
+              user={user}
             />}
           />
         </Routes>
