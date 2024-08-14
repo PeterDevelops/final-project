@@ -147,29 +147,25 @@ function App({ location }) {
           />
           <Route path='/vendors' element={
             <VendorList
-            setVendors={setVendors}
-            allVendors={allVendors}
-            setProducts={setProducts}
-            allProducts={allProducts}
-            user={user}
+              setVendors={setVendors}
+              allVendors={allVendors}
+              setProducts={setProducts}
+              allProducts={allProducts}
+              user={user}
             />}
           />
           <Route path='/products' element={
             <ProductList
+              vendors={vendors}
+              allVendors={allVendors}
               products={products}
-              setProducts={setProducts}
               allProducts={allProducts}
               setAllProducts={setAllProducts}
-              vendors={vendors}
-              setVendors={setVendors}
-              allVendors={allVendors}
-              locations={locations}
               user={user}
-              setUser={setUser}
               cartItems={cartItems}
               setCartItems={setCartItems}
-              setQuantities={setQuantities}
               quantities={quantities}
+              setQuantities={setQuantities}
             />}
           />
           <Route path='/categories' element={

@@ -4,21 +4,15 @@ import ProductListItem from '../Body/ProductListItem'
 const ProductList = (props) => {
   const {
     vendors,
-    setVendors,
     allVendors,
     products,
-    setProducts,
     allProducts,
     setAllProducts,
-    locations,
-    categories,
     user,
-    setUser,
     cartItems,
     setCartItems,
     quantities,
     setQuantities,
-    showNavBar = true,
   } = props;
 
   // if statement required to not throw TypeError: products.map is not a function
