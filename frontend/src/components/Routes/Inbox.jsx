@@ -5,17 +5,9 @@ import ChatList from '../Body/ChatList';
 
 const Inbox = (props) => {
   const {
-    // products,
-    // setProducts,
     allProducts,
-    // vendors,
-    // setVendors,
     allVendors,
-    // locations,
-    // categories,
     user,
-    // setUser,
-    // cartItems,
   } = props;
   const [chatData, setChatData] = useState([]);
   // const navigate = useNavigate();

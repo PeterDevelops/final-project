@@ -140,16 +140,9 @@ function App({ location }) {
           />
           <Route path='/inbox' element={
             <Inbox
-              products={products}
-              setProducts={setProducts}
               allProducts={allProducts}
-              vendors={vendors}
-              setVendors={setVendors}
               allVendors={allVendors}
-              locations={locations}
               user={user}
-              setUser={setUser}
-              cartItems={cartItems}
             />}
           />
           <Route path='/vendors' element={
