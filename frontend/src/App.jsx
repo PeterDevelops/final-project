@@ -191,17 +191,11 @@ function App({ location }) {
           />
           <Route path='/locations' element={
             <LocationList
-              products={products}
-              setProducts={setProducts}
-              allProducts={allProducts}
-              vendors={vendors}
               setVendors={setVendors}
               allVendors={allVendors}
+              setProducts={setProducts}
+              allProducts={allProducts}
               locations={locations}
-              categories={categories}
-              user={user}
-              setUser={setUser}
-              cartItems={cartItems}
             />}
           />
           <Route path='/vendors/:vendorId' element={
