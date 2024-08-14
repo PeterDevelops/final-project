@@ -64,8 +64,7 @@ const OrderConfirmation = ({ products, vendors, locations, user, setUser, cartIt
           <ul className='mt-4 space-y-4'>
             {orderDetails.map((item) => (
               <li key={item.product_id} className='flex items-center justify-between border-b border-gray-400 pb-4'>
-                           
-                
+
                 <div className='flex items-center w-24'>
                   <img
                     src={item.product_photo_url}
