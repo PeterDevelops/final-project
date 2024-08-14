@@ -3,10 +3,17 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const PaymentForm = ({ userId, totalCost, orderData, orderItems, setCartItems, subtotal, pickupAddresses, alignment, deliveryDetails }) => {
-
-  console.log('aligntment OC: ', alignment);
-
+const PaymentForm = (props) => {
+  const {
+    userId,
+    orderData,
+    orderItems,
+    setCartItems,
+    subtotal,
+    pickupAddresses,
+    alignment,
+    deliveryDetails
+  } = props;
 
   const stripe = useStripe();
   const elements = useElements();

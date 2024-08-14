@@ -129,7 +129,6 @@ const Checkout = (props) => {
             <Elements stripe={stripePromise}>
               <PaymentForm
                 userId={user.id}
-                totalCost={totalCost}
                 orderData={orderData}
                 orderItems={orderItems}
                 setCartItems={setCartItems}
