@@ -3,19 +3,19 @@ import { useNavigate,useLocation } from 'react-router-dom';
 
 const AddEditProduct = (props) => {
   const {
-    products,
+    // products,
     setProducts,
     allProducts,
     setAllProducts,
     vendors,
     setVendors,
     allVendors,
-    setAllVendors,
-    locations,
+    // setAllVendors,
+    // locations,
     categories,
     user,
-    setUser,
-    cartItems,
+    // setUser,
+    // cartItems,
   } = props;
 
   const [productName, setProductName] = useState('');

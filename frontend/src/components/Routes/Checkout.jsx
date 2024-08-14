@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStore } from '@fortawesome/free-solid-svg-icons';
 import DeliveryToggle from '../Body/DeliveryToggle';
@@ -12,15 +12,15 @@ const stripePromise = loadStripe('pk_test_51PYBRI2KSndZDZT0m4PGzx0F7CHHo0eusCyVI
 
 const Checkout = (props) => {
   const {
-    products,
-    setProducts,
+    // products,
+    // setProducts,
     allProducts,
-    vendors,
-    setVendors,
+    // vendors,
+    // setVendors,
     allVendors,
-    locations,
+    // locations,
     user,
-    setUser,
+    // setUser,
     cartItems,
     totalCost,
     setCartItems,
@@ -28,7 +28,7 @@ const Checkout = (props) => {
     quantities,
   } = props;
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [alignment, setAlignment] = useState('pickup');
 
   const [deliveryDetails, setDeliveryDetails] = useState({

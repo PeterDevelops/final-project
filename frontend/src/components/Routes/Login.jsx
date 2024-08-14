@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,17 +6,17 @@ import { faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons';
 
 const Login = (props) => {
   const {
-    products,
-    setProducts,
-    allProducts,
-    vendors,
-    setVendors,
-    allVendors,
-    locations,
-    categories,
-    user,
+    // products,
+    // setProducts,
+    // allProducts,
+    // vendors,
+    // setVendors,
+    // allVendors,
+    // locations,
+    // categories,
+    // user,
     setUser,
-    cartItems,
+    // cartItems,
   } = props;
 
   const [email, setEmail] = useState('');

@@ -13,10 +13,10 @@ const PaymentForm = ({ userId, totalCost, orderData, orderItems, setCartItems, s
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const options = {
-    // passing the client secret obtained from the server
-    clientSecret: '{{CLIENT_SECRET}}',
-  };
+  // const options = {
+  //   // passing the client secret obtained from the server
+  //   clientSecret: '{{CLIENT_SECRET}}',
+  // };
 
   const cardStyle = {
     style: {

@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ChatList from '../Body/ChatList';
 
 const Inbox = (props) => {
   const {
-    products,
-    setProducts,
+    // products,
+    // setProducts,
     allProducts,
-    vendors,
-    setVendors,
+    // vendors,
+    // setVendors,
     allVendors,
-    locations,
-    categories,
+    // locations,
+    // categories,
     user,
-    setUser,
-    cartItems,
+    // setUser,
+    // cartItems,
   } = props;
   const [chatData, setChatData] = useState([]);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {

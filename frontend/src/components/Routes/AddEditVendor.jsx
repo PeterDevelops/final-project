@@ -3,18 +3,18 @@ import { useNavigate,useLocation } from 'react-router-dom';
 
 const AddEditVendor = (props) => {
   const {
-    products,
-    setProducts,
-    allProducts,
-    vendors,
-    setVendors,
+    // products,
+    // setProducts,
+    // allProducts,
+    // vendors,
+    // setVendors,
     allVendors,
     setAllVendors,
-    locations,
-    categories,
+    // locations,
+    // categories,
     user,
-    setUser,
-    cartItems,
+    // setUser,
+    // cartItems,
   } = props;
   const [vendorName, setVendorName] = useState('');
   const [vendorBio, setVendorBio] = useState('');

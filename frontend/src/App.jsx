@@ -110,7 +110,6 @@ function App({ location }) {
           user={user}
           setUser={setUser}
           cartItems={cartItems}
-          categories={categories}
         />
       )}
         <main className={mainClass}>
@@ -118,16 +117,12 @@ function App({ location }) {
         <Routes>
           <Route path='/' element={
             <Homepage
-              products={products}
               setProducts={setProducts}
               allProducts={allProducts}
               vendors={vendors}
               setVendors={setVendors}
               allVendors={allVendors}
               locations={locations}
-              user={user}
-              setUser={setUser}
-              cartItems={cartItems}
             />}
           />
           <Route path='/cart' element={

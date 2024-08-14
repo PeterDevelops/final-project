@@ -4,17 +4,12 @@ import LocationModal from '../LocationModal';
 
 const Homepage = (props) => {
   const {
-    products,
     setProducts,
     allProducts,
     vendors,
     setVendors,
     allVendors,
     locations,
-    categories,
-    user,
-    setUser,
-    cartItems
   } = props;
 
   const [showModal, setShowModal] = useState(true);

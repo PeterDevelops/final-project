@@ -39,7 +39,7 @@ const groupByVendor = (items, products, vendors) => {
 
 const Cart = (props) => {
   const {
-    vendors,
+    // vendors,
     allVendors,
     user,
     cartItems,
@@ -95,9 +95,9 @@ const Cart = (props) => {
 return (
     <div className='min-h-screen bg-main py-5'>
       {!user || !user.id ? (
-         <div className='flex justify-center mt-5'>
-         Please <button className='mx-1 font-bold text-blue-700'><Link to='/login'>login</Link></button> to view your cart.
-       </div>
+        <div className='flex justify-center mt-5'>
+          Please <button className='mx-1 font-bold text-blue-700'><Link to='/login'>login</Link></button> to view your cart.
+        </div>
       ) : (
         cartItems.length > 0 ? (
           <div>
@@ -156,7 +156,7 @@ return (
                 </button>
                 </div>
 
-              
+
               <Link to='/checkout'>
                 <div className='flex justify-center mb-4'>
                   <button className="text-sm px-4 py-2 bg-yellow-500 text-black rounded hover:bg-yellow-600">

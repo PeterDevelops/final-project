@@ -6,7 +6,6 @@ import {
   faAppleWhole,
   faSeedling,
   faStore,
-  faMapMarkerAlt,
   faDrumstickBite,
   faBreadSlice
 } from '@fortawesome/free-solid-svg-icons';
@@ -14,14 +13,14 @@ import { useNavigate } from 'react-router-dom';
 
 export default function SearchBar(props) {
   const {
-    products,
+    // products,
     setProducts,
     allProducts,
-    vendors,
+    // vendors,
     setVendors,
     allVendors,
-    locations,
-    categories
+    // locations,
+    // categories
   } = props;
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState('');
