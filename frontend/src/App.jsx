@@ -109,6 +109,7 @@ function App({ location }) {
           user={user}
           setUser={setUser}
           cartItems={cartItems}
+          categories={categories}
         />
       )}
         <main className={mainClass}>
@@ -226,53 +227,34 @@ function App({ location }) {
           />
           <Route path='/vendors/edit/:vendorId' element={
             <AddEditVendor
-              products={products}
-              setProducts={setProducts}
-              allProducts={allProducts}
-              vendors={vendors}
-              setVendors={setVendors}
               allVendors={allVendors}
               setAllVendors={setAllVendors}
-              locations={locations}
-              categories={categories}
               user={user}
-              setUser={setUser}
-              cartItems={cartItems}
             />}
           />
           <Route path='/products/new' element={
             <AddEditProduct
-              products={products}
               setProducts={setProducts}
               allProducts={allProducts}
               setAllProducts={setAllProducts}
               vendors={vendors}
               setVendors={setVendors}
               allVendors={allVendors}
-              setAllVendors={setAllVendors}
-              locations={locations}
               categories={categories}
               user={user}
-              setUser={setUser}
-              cartItems={cartItems}
             />}
           />
           <Route path='/products/edit/:productId' element={
             <AddEditProduct
-              products={products}
               setProducts={setProducts}
               allProducts={allProducts}
               setAllProducts={setAllProducts}
               vendors={vendors}
               setVendors={setVendors}
               allVendors={allVendors}
-              setAllVendors={setAllVendors}
-              locations={locations}
               categories={categories}
               user={user}
-              setUser={setUser}
-              cartItems={cartItems}
-            />}
+          />}
           />
           <Route path='/chats/:id' element={
             <ChatListItem user={user}
