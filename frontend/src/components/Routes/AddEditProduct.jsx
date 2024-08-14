@@ -57,6 +57,15 @@ const AddEditProduct = (props) => {
       setProductCategory(editProduct.category || '');
       setProductSubCategory(editProduct.sub_category || '');
       setVendorId(editProduct.vendor_id || '');
+    } else {
+      setProductName('');
+      setProductDescription('');
+      setProductPhotoUrl('');
+      setProductInventory('');
+      setProductPriceCents('');
+      setProductCategory('');
+      setProductSubCategory('');
+      setVendorId('');
     }
   }, [editProduct]);
 

@@ -2,3 +2,13 @@
 .leaflet-bottom {
   z-index: 499 !important;
 }
+
+.leaflet-popup-content p {
+  margin: .25rem 0rem
+}
+
+.leaflet-popup-content-wrapper {
+  padding: 1px 0px;
+  margin: 0px;
+  text-align: center;
+}

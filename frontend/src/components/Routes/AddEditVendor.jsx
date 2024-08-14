@@ -47,6 +47,7 @@ const AddEditVendor = (props) => {
 
   useEffect(() => {
     if (editVendor) {
+      // If editing, set fields to the vendor's data
       setVendorName(editVendor.name || '');
       setVendorBio(editVendor.bio || '');
       setVendorAddress(editVendor.address || '');
@@ -55,6 +56,16 @@ const AddEditVendor = (props) => {
       setVendorLongitude(editVendor.longitude || '');
       setVendorLatitude(editVendor.latitude || '');
       setVendorLogoUrl(editVendor.vendor_logo_url || '');
+    } else {
+      // If adding a new vendor, clear fields
+      setVendorName('');
+      setVendorBio('');
+      setVendorAddress('');
+      setVendorCity('');
+      setVendorProvince('');
+      setVendorLongitude('');
+      setVendorLatitude('');
+      setVendorLogoUrl('');
     }
   }, [editVendor]);
 

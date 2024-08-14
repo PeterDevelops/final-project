@@ -132,7 +132,7 @@ export default function SearchBar(props) {
       setInputValue('');
       setFilteredOptions([]);
       navigate('/products', { state: { allProducts } });
-    } else if (filteredOptions.length === 1) {
+    } else if (filteredOptions.length > 0) {
       handleOptionClick(filteredOptions[0]);
     }
   };

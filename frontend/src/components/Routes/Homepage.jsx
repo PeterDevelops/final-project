@@ -19,6 +19,7 @@ const Homepage = (props) => {
 
   const [showModal, setShowModal] = useState(true);
   const [allowUserLocation, setAllowUserLocation] = useState(false);
+  const [selectedLocation, setSelectedLocation] = useState(null);
 
   useEffect(() => {
     const userLocationChoice = localStorage.getItem('allowUserLocation');
@@ -43,6 +44,11 @@ const Homepage = (props) => {
     localStorage.setItem('allowUserLocation', 'false');
   };
 
+  const handleVendorClick = (location) => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setSelectedLocation(location);
+  };
+
   return (
     <div className='min-h-screen'>
       {showModal && <LocationModal onAccept={handleAccept} onDecline={handleDecline} />}
@@ -54,6 +60,8 @@ const Homepage = (props) => {
         vendors={vendors}
         setVendors={setVendors}
         allVendors={allVendors}
+        onVendorClick={handleVendorClick}
+        selectedLocation={selectedLocation}
       />
     </div>
   );

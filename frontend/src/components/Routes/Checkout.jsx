@@ -140,6 +140,8 @@ const Checkout = (props) => {
                 setCartItems={setCartItems}
                 subtotal={subtotal}
                 pickupAddresses={pickupAddresses}
+                alignment={alignment}
+                deliveryDetails={deliveryDetails}
               />
             </Elements>
           </div>

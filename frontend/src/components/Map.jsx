@@ -21,10 +21,13 @@ const Map = (props) => {
     vendors,
     setVendors,
     allVendors,
+    onVendorClick,
   } = props;
 
   const navigate = useNavigate();
   const [center, setCenter] = useState([49.277321, -122.888835]); // default center in Port Moody
+
+  console.log("All vendors", allVendors)
 
   useEffect(() => {
     if (allowUserLocation) {
@@ -33,7 +36,7 @@ const Map = (props) => {
           setCenter([position.coords.latitude, position.coords.longitude]);
         },
         (error) => {
-          console.error('Geolocation permission denied', error);
+          console.error('geolocation permission denied', error);
         }
       );
     }
@@ -45,13 +48,19 @@ const Map = (props) => {
     }
   }, [selectedLocation]);
 
+  // handle vendor click to center map on location instead of navigate to vendor profile
   const handleVendorClick = (vendor) => {
-    const filteredByVendor = allProducts.filter(product => product.vendor_id === vendor.id);
-    const currentVendor = vendor;
+    const vendorLocation = {
+      latitude: vendor.latitude,
+      longitude: vendor.longitude,
+    };
+    onVendorClick(vendorLocation);
+    // const filteredByVendor = allProducts.filter(product => product.vendor_id === vendor.id);
+    // const currentVendor = vendor;
 
-    setProducts(filteredByVendor);
-    setVendors([currentVendor]);
-    navigate(`/vendors/${currentVendor.id}`, { state: { allProducts, allVendors } });
+    // setProducts(filteredByVendor);
+    // setVendors([currentVendor]);
+    // navigate(`/vendors/${currentVendor.id}`, { state: { allProducts, allVendors } });
   };
 
   const vendorsOnMapList = () => {
@@ -64,7 +73,7 @@ const Map = (props) => {
 
   const handleNavigateToVendorProfile = (vendorId) => {
     if (vendorId) {
-      console.log('Button clicked, vendorId:', vendorId);
+      console.log('button clicked, vendorId:', vendorId);
       const filteredByVendor = allProducts.filter(product => product.vendor_id === vendorId);
       const currentVendor = allVendors.filter(vendor => vendor.id === vendorId);
       setVendors(currentVendor);
@@ -96,14 +105,26 @@ const Map = (props) => {
             icon={customIcon}
           >
             <Popup>
-              <div>
-                <h2>{location.name}</h2>
-                <p>{location.city}</p>
+              <div className="flex flex-col items-center ">
+                <h2 className="font-heading font-bold text-sm m-0 whitespace-nowrap">{location.name}</h2>
+                <div className="w-28 h-8 overflow-hidden">
+                  <img className="w-full h-full object-cover" src={location.vendor_logo_url} />
+                </div>
+                <p className="font-body text-[10px] text-wrap text-left"
+                  style={{
+                    display: '-webkit-box',
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden',
+                    WebkitLineClamp: '2', 
+                    textOverflow: 'ellipsis',
+                    maxHeight: '3rem', 
+                    lineHeight: '1rem', 
+                  }}>{location.bio}</p>
                 <button
                   onClick={() => handleNavigateToVendorProfile(location.id)}
-                  className='mt-2 px-3 py-1 bg-blue-500 text-white rounded'
+                  className='px-3 py-1.5 bg-yellow-500 text-black rounded font-body text-xs'
                 >
-                  View Vendor Profile
+                  Visit Booth
                 </button>
               </div>
             </Popup>
@@ -111,7 +132,7 @@ const Map = (props) => {
         ))}
       </MapContainer>
 
-      <div className='grid grid-cols-2 gap-1 mt-3 w-80vw mx-auto'>
+      <div className='grid grid-cols-2 gap-1 mt-2 w-80vw mx-auto'>
         {vendorsOnMapList()}
       </div>
     </>

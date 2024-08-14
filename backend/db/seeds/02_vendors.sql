@@ -1,5 +1,5 @@
 INSERT INTO vendors (name, bio, address, city, longitude, latitude, vendor_logo_url, admin_user)
-VALUES ('Fresh Harvest Produce', 'Offering the freshest fruits and vegetables, grown locally with sustainable practices.', '75 Front Street', 'Nanaimo, BC', -123.931348, 49.165265, '/images/vendor-logos/fresh-harvest-produce-high-resolution-logo.png', 1);
+VALUES ('Fresh Harvest Produce', 'Offering the freshest fruits and vegetables, grown locally with sustainable practices.', '101 Terminal Avenue', 'Nanaimo, BC', -123.940785, 49.168907, '/images/vendor-logos/fresh-harvest-produce-high-resolution-logo.png', 1);
 
 INSERT INTO vendors (name, bio, address, city, longitude, latitude, vendor_logo_url, admin_user)
 VALUES ('Golden Grain Bakery', 'Artisanal breads, pastries, and baked goods, made from organic grains and natural ingredients.', '1455 Quebec Street', 'Vancouver, BC', -123.099221, 49.272749, '/images/vendor-logos/golden-grain-bakery-high-resolution-logo.png', 2);
