@@ -147,16 +147,11 @@ function App({ location }) {
           />
           <Route path='/vendors' element={
             <VendorList
-              products={products}
-              setProducts={setProducts}
-              allProducts={allProducts}
-              vendors={vendors}
-              setVendors={setVendors}
-              allVendors={allVendors}
-              locations={locations}
-              user={user}
-              setUser={setUser}
-              cartItems={cartItems}
+            setVendors={setVendors}
+            allVendors={allVendors}
+            setProducts={setProducts}
+            allProducts={allProducts}
+            user={user}
             />}
           />
           <Route path='/products' element={
