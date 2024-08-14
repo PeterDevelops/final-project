@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStore } from '@fortawesome/free-solid-svg-icons';
 import DeliveryToggle from '../Body/DeliveryToggle';
@@ -66,7 +65,9 @@ const Checkout = (props) => {
       {cartItems.length > 0 ? (
         <div className='max-w-4xl mx-auto bg-listitem bg-opacity-60 p-6 rounded-lg shadow-lg'>
           <div className='flex justify-center mb-4'>
-            <DeliveryToggle alignment={alignment} setAlignment={setAlignment} />
+            <DeliveryToggle
+              alignment={alignment} setAlignment={setAlignment}
+            />
           </div>
 
           <div className='font-bold text-xl mb-4'>Order Summary</div>

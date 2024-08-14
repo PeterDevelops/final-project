@@ -3,7 +3,11 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 
-export default function DeliveryToggle({ alignment, setAlignment }) {
+export default function DeliveryToggle(props) {
+  const {
+    alignment,
+    setAlignment
+  } = props;
   const handleChange = (event, newAlignment) => {
     if (newAlignment !== null) {
       setAlignment(newAlignment);
