@@ -25,12 +25,12 @@ const ProductList = (props) => {
           allProducts={allProducts}
           setAllProducts={setAllProducts}
           user={user}
-          allVendors={allVendors}
           vendors={vendors}
+          allVendors={allVendors}
           cartItems={cartItems}
           setCartItems={setCartItems}
-          setQuantities={setQuantities}
           quantities={quantities}
+          setQuantities={setQuantities}
         />
       ));
     }
