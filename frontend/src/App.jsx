@@ -169,20 +169,14 @@ function App({ location }) {
           />
           <Route path='/checkout' element={
             <Checkout
-              products={products}
-              setProducts={setProducts}
               allProducts={allProducts}
-              vendors={vendors}
-              setVendors={setVendors}
               allVendors={allVendors}
-              locations={locations}
               user={user}
-              setUser={setUser}
               cartItems={cartItems}
-              totalCost={totalCost}
               setCartItems={setCartItems}
-              subtotal={subtotal}
+              totalCost={totalCost}
               quantities={quantities}
+              subtotal={subtotal}
             />}
           />
           <Route path='/order-confirmation' element={

@@ -12,15 +12,9 @@ const stripePromise = loadStripe('pk_test_51PYBRI2KSndZDZT0m4PGzx0F7CHHo0eusCyVI
 
 const Checkout = (props) => {
   const {
-    // products,
-    // setProducts,
     allProducts,
-    // vendors,
-    // setVendors,
     allVendors,
-    // locations,
     user,
-    // setUser,
     cartItems,
     totalCost,
     setCartItems,
