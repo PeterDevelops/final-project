@@ -42,6 +42,17 @@ const AddEditProduct = (props) => {
     }
   }, [productCategory, allProducts]);
 
+  const resetForm = () => {
+    setProductName('');
+    setProductDescription('');
+    setProductPhotoUrl('');
+    setProductInventory('');
+    setProductPriceCents('');
+    setProductCategory('');
+    setProductSubCategory('');
+    setVendorId('');
+  };
+
   useEffect(() => {
     if (editProduct) {
       setProductName(editProduct.name || '');
@@ -53,26 +64,14 @@ const AddEditProduct = (props) => {
       setProductSubCategory(editProduct.sub_category || '');
       setVendorId(editProduct.vendor_id || '');
     } else {
-      setProductName('');
-      setProductDescription('');
-      setProductPhotoUrl('');
-      setProductInventory('');
-      setProductPriceCents('');
-      setProductCategory('');
-      setProductSubCategory('');
-      setVendorId('');
+      resetForm();
     }
   }, [editProduct]);
 
   const handleSubCategoryChange = (e) => {
     const value = e.target.value;
-    if (value === 'new') {
-      setIsCreatingNewSubCategory(true);
-      setProductSubCategory('');
-    } else {
-      setIsCreatingNewSubCategory(false);
-      setProductSubCategory(value);
-    }
+    setIsCreatingNewSubCategory(value === 'new');
+    setProductSubCategory(value !== 'new' ? value : '');
   };
 
   const userVendors = allVendors.filter(vendor => vendor.admin_user === user.id);
@@ -97,23 +96,14 @@ const AddEditProduct = (props) => {
       price_cents: parseInt(productPriceCents, 10),
       vendor_id: vendorId,
       category: productCategory,
-      sub_category: productSubCategory
+      sub_category: productSubCategory,
+      ...(editProduct && { id: editProduct.id }),
     };
 
-    if (editProduct) {
-      productData.id = editProduct.id;
-    }
-
     try {
-      const response = editProduct ? await fetch('http://localhost:8080/api/products', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(productData),
-      })
-      : await fetch('http://localhost:8080/api/products', {
-        method: 'POST',
+      const method = editProduct ? 'PUT' : 'POST';
+      const response = await fetch('http://localhost:8080/api/products', {
+        method,
         headers: {
           'Content-Type': 'application/json',
         },
@@ -292,7 +282,7 @@ const AddEditProduct = (props) => {
         <div className='mt-6 flex justify-end'>
           <button
             type='submit'
-            className='px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50'
+            className='text-sm px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700'
           >
             {editProduct ? 'Update Product' : 'Add Product'}
           </button>
