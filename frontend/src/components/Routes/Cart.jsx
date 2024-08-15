@@ -156,7 +156,7 @@ return (
                 </button>
                 </div>
 
-              
+
               <Link to='/checkout'>
                 <div className='flex justify-center mb-4'>
                   <button className="text-sm px-4 py-2 bg-yellow-500 text-black rounded hover:bg-yellow-600">
@@ -172,7 +172,7 @@ return (
           <div className='flex flex-col items-center mt-6'>
             <div className='font-bold mb-4'>Your cart is empty.</div>
             <button
-              className='px-6 py-2 bg-blue-600 text-white rounded-md shadow'
+              className="text-sm px-4 py-2 bg-yellow-500 text-black rounded hover:bg-yellow-600"
               onClick={() => navigate('/')}
             >
               Go back to home page
