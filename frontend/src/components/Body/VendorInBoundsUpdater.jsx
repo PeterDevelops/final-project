@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 import { useMap } from 'react-leaflet';
+import L from 'leaflet';
 
-const VendorsInBoundsUpdater = ({ allVendors, setVendors }) => {
+const VendorsInBoundsUpdater = (props) => {
+  const { allVendors, setVendors } = props;
   const map = useMap();
 
   useEffect(() => {
@@ -10,12 +12,11 @@ const VendorsInBoundsUpdater = ({ allVendors, setVendors }) => {
 
       const bounds = map.getBounds();
       if (!bounds || typeof bounds.contains !== 'function') {
-        console.log('Invalid bounds');
+        console.error('Invalid bounds');
         return;
       }
 
       const vendorsInBounds = allVendors.filter((vendor) => {
-        // Convert latitude and longitude to numbers
         const lat = parseFloat(vendor.latitude);
         const lng = parseFloat(vendor.longitude);
 
@@ -25,8 +26,7 @@ const VendorsInBoundsUpdater = ({ allVendors, setVendors }) => {
         }
 
         try {
-          const inBounds = bounds.contains([lat, lng]);
-          return inBounds;
+          return bounds.contains([lat, lng]);
         } catch (error) {
           console.error('Error checking bounds for vendor:', vendor, error);
           return false;
@@ -34,11 +34,30 @@ const VendorsInBoundsUpdater = ({ allVendors, setVendors }) => {
       });
 
       setVendors(vendorsInBounds);
-    };
 
+      // Check if vendor with id 12 is the only one in bounds
+      if (vendorsInBounds.length === 1 && vendorsInBounds[0].id === 12) {
+        const tileLayerUrl = `https://{s}.tile.thunderforest.com/spinal-map/{z}/{x}/{y}.png?apikey=${process.env.REACT_APP_THUNDERFOREST_API_KEY}`;
+        map.eachLayer(layer => {
+          if (layer instanceof L.TileLayer) {
+            map.removeLayer(layer);
+          }
+        });
+        L.tileLayer(tileLayerUrl).addTo(map);
+      } else {
+        const tileLayerUrl = `https://{s}.tile.thunderforest.com/neighbourhood/{z}/{x}/{y}.png?apikey=${process.env.REACT_APP_THUNDERFOREST_API_KEY}`;
+        map.eachLayer(layer => {
+          if (layer instanceof L.TileLayer) {
+            map.removeLayer(layer);
+          }
+        });
+        L.tileLayer(tileLayerUrl).addTo(map);
+      }
+    };
 
     map.on('moveend', handleMoveEnd);
 
+    // Initial call to update vendors when component mounts
     handleMoveEnd();
 
     return () => {
@@ -50,6 +69,7 @@ const VendorsInBoundsUpdater = ({ allVendors, setVendors }) => {
 };
 
 export default VendorsInBoundsUpdater;
+
 
 
 

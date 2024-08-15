@@ -118,13 +118,13 @@ VALUES (4, 9, 'Good for you.', '2024-08-07T14:29:45.000Z');
 
 -- CHAT 10
 INSERT INTO messages (sender_id, chat_id, message, created_at)
-VALUES (3, 10, 'Hello, How are you?', '2024-08-05T14:27:32.000Z');
+VALUES (11, 10, 'Hello, How are you?', '2024-08-05T14:27:32.000Z');
 
 INSERT INTO messages (sender_id, chat_id, message, created_at)
 VALUES (4, 10, 'Hey! Ive been good. What about you?', '2024-08-06T14:29:32.000Z');
 
 INSERT INTO messages (sender_id, chat_id, message, created_at)
-VALUES (3, 10, 'Im doing fantastically!', '2024-08-07T14:29:32.000Z');
+VALUES (11, 10, 'Im doing fantastically!', '2024-08-07T14:29:32.000Z');
 
 INSERT INTO messages (sender_id, chat_id, message, created_at)
 VALUES (4, 10, 'Good for you.', '2024-08-07T14:29:45.000Z');
