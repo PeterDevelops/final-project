@@ -117,7 +117,7 @@ const VendorProfile = (props) => {
                 <div className='mt-4 flex justify-center'>
                   <button
                     onClick={handleEdit}
-                    className='bg-blue-500 text-white py-2 px-4 rounded mr-2'
+                    className='mr-2 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700'
                   >
                     Edit
                   </button>
@@ -132,7 +132,7 @@ const VendorProfile = (props) => {
                 <div className='mt-4 flex justify-center'>
                   <button
                     onClick={handleNavigateToChat}
-                    className='bg-green-500 text-white py-2 px-4 rounded text-sm'
+                    className='mr-2 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700'
                   >
                     Contact Vendor
                   </button>

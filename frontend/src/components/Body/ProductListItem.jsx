@@ -153,7 +153,7 @@ const ProductListItem = (props) => {
               <div className='flex space-x-2 mt-2'>
                 <button
                   onClick={handleEdit}
-                  className='text-xs bg-green-500 text-white py-1 px-2 rounded'
+                  className='text-xs bg-green-600 text-white py-1 px-2 rounded'
                 >
                   <FontAwesomeIcon icon={faPenToSquare} />
                 </button>
