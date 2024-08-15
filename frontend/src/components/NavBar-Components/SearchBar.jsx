@@ -149,7 +149,7 @@ export default function SearchBar(props) {
     <div className='p-4 max-w-xl mx-auto font-body'>
       <form onSubmit={handleSubmit} className='font-body'>
         <Autocomplete
-          id='grouped-demo'
+          id='search-bar'
           options={combinedData()}
           groupBy={(option) => option.category}
           getOptionLabel={(option) => option.name}
@@ -171,7 +171,7 @@ export default function SearchBar(props) {
             <TextField
               {...params}
               label='Search by Product Type or Vendor'
-              className='bg-gray-100 border-4 border-border shadow-md font-body border-4 border-border'
+              className='bg-gray-100 border-4 border-border shadow-md font-body'
               sx={{
                 borderRadius: '9999px',
                 '& .MuiOutlinedInput-root': {
@@ -179,11 +179,11 @@ export default function SearchBar(props) {
                   border: '2px solid #564225',
                 },
                 '& .MuiInputLabel-root.Mui-focused': {
-                  color: '#564225',
+                  color: '#e2e7de',
                   transform: 'translate(16px, -20px) scale(0.75)',
                 },
                 '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                  borderColor: '#4b5a3d',
+                  border: 'none',
                 },
               }}
               inputRef={inputRef}
