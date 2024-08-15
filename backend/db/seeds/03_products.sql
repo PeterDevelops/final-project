@@ -44,4 +44,18 @@ VALUES
 
 ('Pork Sausages', 'Flavorful pork sausages, great for grilling or frying.', 'https://images.unsplash.com/photo-1694192708309-56712aa0358a?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 30, 1299, 11, 'Meat', 'Pork'),
 
-('Ground Beef', 'Versatile ground beef, perfect for burgers or meat sauce.', 'https://plus.unsplash.com/premium_photo-1668616817422-4aa3e7ec72e7?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 50, 1099, 11, 'Meat', 'Beef');
+('Ground Beef', 'Versatile ground beef, perfect for burgers or meat sauce.', 'https://plus.unsplash.com/premium_photo-1668616817422-4aa3e7ec72e7?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 50, 1099, 11, 'Meat', 'Beef'),
+
+('Russet Potato', 'Classic russet potatoes, ideal for baking and mashing.', 'https://images.unsplash.com/photo-1596910547037-846b1980329f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 100, 199, 12, 'Vegetable', 'Potato'),
+
+('Yukon Gold Potato', 'Smooth, golden skin with a creamy texture, great for roasting.', 'https://plus.unsplash.com/premium_photo-1677528816982-673398569f03?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 80, 299, 12, 'Vegetable', 'Potato'),
+
+('Red Potato', 'Red-skinned potatoes with a firm texture, perfect for salads.', 'https://images.unsplash.com/photo-1617130094141-532436117aa1?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 90, 249, 12, 'Vegetable', 'Potato'),
+
+('Sweet Potato', 'Naturally sweet and versatile, great for baking and frying.', 'https://images.unsplash.com/photo-1570723735746-c9bd51bd7c40?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 70, 299, 12, 'Vegetable', 'Potato'),
+
+('Purple Potato', 'Vibrant purple potatoes with a rich, earthy flavor.', 'https://images.unsplash.com/photo-1609161307645-3ad8d7cafb55?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 60, 399, 12, 'Vegetable', 'Potato'),
+
+('Fingerling Potato', 'Small, finger-shaped potatoes with a nutty flavor.', 'https://images.unsplash.com/photo-1628236879201-783fa93fe7bd?q=80&w=2000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 50, 499, 12, 'Vegetable', 'Potato'),
+
+('Irish Cobbler Potato', 'An heirloom potato variety known for its creamy texture and rich flavor, perfect for mashing and soups.', 'https://pbs.twimg.com/profile_images/1560643311550996481/ExWs_bqG_400x400.jpg', 75, 349, 12, 'Vegetable', 'Potato');
