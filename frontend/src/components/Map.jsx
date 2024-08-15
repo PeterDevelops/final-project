@@ -88,7 +88,7 @@ const Map = (props) => {
         center={center}
         zoom={15}
         scrollWheelZoom={true}
-        className='h-35vh w-80vw mx-auto mb-6 border-2 border-custom-gray shadow-md rounded-lg mt-10'
+        className='h-35vh w-95vw mx-auto mb-6 border-2 border-custom-gray shadow-md rounded-lg mt-5'
         key={`${center[0]}-${center[1]}`}
       >
         <TileLayer
@@ -115,10 +115,10 @@ const Map = (props) => {
                     display: '-webkit-box',
                     WebkitBoxOrient: 'vertical',
                     overflow: 'hidden',
-                    WebkitLineClamp: '2', 
+                    WebkitLineClamp: '2',
                     textOverflow: 'ellipsis',
-                    maxHeight: '3rem', 
-                    lineHeight: '1rem', 
+                    maxHeight: '3rem',
+                    lineHeight: '1rem',
                   }}>{location.bio}</p>
                 <button
                   onClick={() => handleNavigateToVendorProfile(location.id)}
