@@ -9,21 +9,16 @@ const OrderConfirmation = (props) => {
   const [orderDetails, setOrderDetails] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
-  // const userId = user?.id;
   const orderId = location.state?.orderId;
   const pickupAddresses = location.state?.pickupAddresses || [];
   const alignment = location.state?.alignment || [];
   const deliveryDetails = location.state?.deliveryDetails || [];
-
-  console.log('deliveryType ', alignment);
-
 
   useEffect(() => {
     if (orderId) {
       axios.get(`/api/orders/order/${orderId}`)
         .then(response => {
           setOrderDetails(response.data);
-          console.log('OrderConfirmation:response.data:', response.data);
         })
         .catch(err => {
           console.error('Error retrieving order details', err);

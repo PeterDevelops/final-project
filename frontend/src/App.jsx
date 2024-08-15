@@ -70,7 +70,6 @@ function App({ location }) {
     useEffect(() => {
       axios.get('/api/categories')
       .then(response => {
-        // // console.log('fetched categories:', response.data)
         setCategories(response.data);
       })
       .catch(error => {
@@ -91,21 +90,15 @@ function App({ location }) {
   const shouldShowNavBar = !hiddenNavBarRoutes.some(route => location.pathname.startsWith(route));
 
   const mainClass = `bg-main font-body ${shouldShowNavBar ? (shouldShowSearchBar ? 'pt-navbar' : 'pt-navbar-no-search') : ''}`;
-  // console.log('Products Data---', products)
-  // console.log('Vendors Data---', vendors)
-  // console.log('categories in the App component: ------- ', categories)
-  // console.log('cartItems:App', cartItems);
+  
   return (
     <>
       {shouldShowNavBar && (
         <NavBar
-          products={products}
           setProducts={setProducts}
           allProducts={allProducts}
-          vendors={vendors}
           setVendors={setVendors}
           allVendors={allVendors}
-          locations={locations}
           user={user}
           setUser={setUser}
           cartItems={cartItems}
@@ -175,7 +168,6 @@ function App({ location }) {
               user={user}
               cartItems={cartItems}
               setCartItems={setCartItems}
-              totalCost={totalCost}
               quantities={quantities}
               subtotal={subtotal}
             />}

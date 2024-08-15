@@ -13,14 +13,10 @@ router.post("/", (req, res) => {
         ...item,
         order_id: orderId
       }));
-      // console.log('itemsWithOrderId:', itemsWithOrderId)
       return postOrderItems(itemsWithOrderId).then(orderItemsResult => {
         res.status(201).json({ orderId: orderId, orderItems: orderItemsResult })
       });
     })
-    // .then(orderItemsResult => {
-    //   res.status(201).json({ orderId: orderId, orderItems: orderItemsResult });
-    // })
     .catch((err) => {
       console.error('Error creating order:', err);
     });

@@ -1,5 +1,3 @@
-// path = localhost:8080/api/cart
-
 const express = require('express');
 const router = express.Router();
 const { getCartByUserId } = require('../db/queries/carts');
@@ -9,7 +7,6 @@ const { deleteCartByUserId } = require('../db/queries/carts');
 // get orders by user id
 router.get("/:userId", (req, res) => {
   const { userId } = req.params;
-  console.log('cookie user id:', req.cookies.secrets);
 
   getCartByUserId(userId)
     .then(results => {

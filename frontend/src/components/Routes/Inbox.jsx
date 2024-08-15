@@ -10,7 +10,6 @@ const Inbox = (props) => {
     user,
   } = props;
   const [chatData, setChatData] = useState([]);
-  // const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
@@ -41,8 +40,6 @@ const Inbox = (props) => {
         .catch(error => {
           console.error('Error retrieving inbox data:', error);
         });
-    } else {
-      console.log('Not logged in');
     }
   }, [user]);
 

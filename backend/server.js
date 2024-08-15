@@ -87,13 +87,6 @@ io.on("connection", (socket) => {
     console.log(`User ${socket.id} left chat ${chatId}`);
   });
   
-// data = {
-//  message: message, 
-//  created_at: moment().toISOString(), 
-//  sender_id: user.id, 
-//  user: user
-//}
-
   //websocket server listening for a message
   socket.on("send_message", (data) => {
     console.log(`Received message: ${JSON.stringify(data)}`);

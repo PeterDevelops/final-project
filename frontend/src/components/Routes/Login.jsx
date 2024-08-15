@@ -21,14 +21,9 @@ const Login = (props) => {
       setEmail(response.data.email);
       setPassword(response.data.hashed_password);
       setUser(response.data[0]);
-      // console.log('USER-----', response.data[0])
       navigate('/');
     }
   }
-
-  // useEffect(() => {
-  //   console.log('USER******', user)
-  // })
 
   return (
     <div className='relative h-screen'>

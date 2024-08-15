@@ -53,12 +53,6 @@ const Map = (props) => {
       longitude: vendor.longitude,
     };
     onVendorClick(vendorLocation);
-    // const filteredByVendor = allProducts.filter(product => product.vendor_id === vendor.id);
-    // const currentVendor = vendor;
-
-    // setProducts(filteredByVendor);
-    // setVendors([currentVendor]);
-    // navigate(`/vendors/${currentVendor.id}`, { state: { allProducts, allVendors } });
   };
 
   const vendorsOnMapList = () => {
@@ -71,7 +65,6 @@ const Map = (props) => {
 
   const handleNavigateToVendorProfile = (vendorId) => {
     if (vendorId) {
-      console.log('button clicked, vendorId:', vendorId);
       const filteredByVendor = allProducts.filter(product => product.vendor_id === vendorId);
       const currentVendor = allVendors.filter(vendor => vendor.id === vendorId);
       setVendors(currentVendor);
@@ -86,7 +79,7 @@ const Map = (props) => {
         center={center}
         zoom={15}
         scrollWheelZoom={true}
-        className='h-35vh w-80vw mx-auto mb-6 border-2 border-custom-gray shadow-md rounded-lg mt-10'
+        className='h-35vh mx-2 mt-4 border-2 border-custom-gray shadow-md rounded-lg'
         key={`${center[0]}-${center[1]}`}
       >
         <TileLayer

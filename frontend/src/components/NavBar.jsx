@@ -8,13 +8,10 @@ import { faShoppingBasket, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
 const NavBar = (props) => {
   const {
-    products,
     setProducts,
     allProducts,
-    vendors,
     setVendors,
     allVendors,
-    locations,
     categories,
     user,
     setUser,

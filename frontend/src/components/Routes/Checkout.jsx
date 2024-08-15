@@ -15,15 +15,12 @@ const Checkout = (props) => {
     allVendors,
     user,
     cartItems,
-    totalCost,
     setCartItems,
     subtotal,
     quantities,
   } = props;
 
-  // const navigate = useNavigate();
   const [alignment, setAlignment] = useState('pickup');
-
   const [deliveryDetails, setDeliveryDetails] = useState({
     address: '',
     city: '',
