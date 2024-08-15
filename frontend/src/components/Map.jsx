@@ -88,7 +88,7 @@ const Map = (props) => {
         center={center}
         zoom={15}
         scrollWheelZoom={true}
-        className='h-35vh w-95vw mx-auto mb-6 border-2 border-custom-gray shadow-md rounded-lg mt-5'
+        className='h-35vh mx-auto mb-6 border-2 border-custom-gray shadow-md rounded-lg'
         key={`${center[0]}-${center[1]}`}
       >
         <TileLayer
