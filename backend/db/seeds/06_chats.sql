@@ -10,4 +10,4 @@ INSERT INTO chats (user_id, contact_user_id) VALUES (2, 11);
 INSERT INTO chats (user_id, contact_user_id) VALUES (3, 4);
 INSERT INTO chats (user_id, contact_user_id) VALUES (3, 11);
 
-INSERT INTO chats (user_id, contact_user_id) VALUES (11, 4);
+INSERT INTO chats (user_id, contact_user_id) VALUES (12, 4);

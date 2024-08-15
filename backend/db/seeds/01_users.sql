@@ -30,3 +30,6 @@ VALUES ('Bob', 'bob@bob.com', '$2a$04$rZy8/2ffyS1goMg8iMPv2uWkQpNGit11Qgl8p/D5Mf
 
 INSERT INTO users (name, email, hashed_password, profile_photo_url, admin_status) 
 VALUES ('Guest', 'guest@rguest.com', '1234', 'https://plus.unsplash.com/premium_photo-1665413642334-3a30c7ac4df2?q=80&w=2565&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', false);
+
+INSERT INTO users (name, email, hashed_password, profile_photo_url, admin_status) 
+VALUES ('Francis', 'francis@francis.com', '1234', 'https://pbs.twimg.com/profile_images/1560643311550996481/ExWs_bqG_400x400.jpg', true);
