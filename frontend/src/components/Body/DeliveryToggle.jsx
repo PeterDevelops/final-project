@@ -2,12 +2,14 @@ import React from 'react';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
-
-export default function DeliveryToggle({ alignment, setAlignment }) {
+const DeliveryToggle = (props) => {
+  const {
+    alignment,
+    setAlignment
+  } = props;
   const handleChange = (event, newAlignment) => {
     if (newAlignment !== null) {
       setAlignment(newAlignment);
-
     }
   };
 
@@ -17,12 +19,12 @@ export default function DeliveryToggle({ alignment, setAlignment }) {
       value={alignment}
       exclusive
       onChange={handleChange}
-      aria-label="Platform"
+      aria-label="Delivery options"
     >
       <ToggleButton value="pickup">Pickup</ToggleButton>
-
       <ToggleButton value="delivery">Delivery</ToggleButton>
-
     </ToggleButtonGroup>
   );
-}
+};
+
+export default DeliveryToggle;

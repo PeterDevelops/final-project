@@ -4,15 +4,11 @@ import Map from '../Map';
 
 const LocationList = (props) => {
   const {
-    vendors,
     setVendors,
     allVendors,
-    products,
-    allProducts,
     setProducts,
+    allProducts,
     locations,
-    categories,
-    cartItems,
   } = props;
 
   const [selectedLocation, setSelectedLocation] = useState(null);
@@ -30,7 +26,8 @@ const LocationList = (props) => {
         <LocationListItem
           key={location.id}
           locationData={location}
-          onClick={handleLocationClick} />
+          onClick={handleLocationClick}
+        />
       ));
     }
   };

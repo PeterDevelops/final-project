@@ -4,17 +4,11 @@ import { useNavigate } from 'react-router-dom'
 
 const VendorList = (props) => {
   const {
-    vendors,
     setVendors,
     allVendors,
-    products,
     setProducts,
     allProducts,
-    locations,
-    categories,
     user,
-    setUser,
-    cartItems,
   } = props;
 
   const navigate = useNavigate();
@@ -30,7 +24,12 @@ const VendorList = (props) => {
 
   const renderVendorList = (vendorsArray) => {
     return vendorsArray.map((vendor) => (
-      <VendorListItem key={vendor.id} vendorData={vendor} onClick={() => handleVendorClick(vendor)} showBio={false}/>
+      <VendorListItem
+        key={vendor.id}
+        vendorData={vendor}
+        onClick={() => handleVendorClick(vendor)}
+        showBio={false}
+      />
     ));
   };
 

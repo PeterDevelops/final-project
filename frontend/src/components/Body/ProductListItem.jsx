@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import QuantityInput from './QuantityInput';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 const ProductListItem = (props) => {
@@ -17,19 +17,15 @@ const ProductListItem = (props) => {
     quantities,
     setQuantities
   } = props;
-
   const [quantity, setQuantity] = useState(() => {
     const existingItem = cartItems.find(item => item.product_id === productData.id);
     return existingItem ? existingItem.quantity : 1;
   });
 
-  const [isAdded, setIsAdded] = useState(() => {
-    return cartItems.some(item => item.product_id === productData.id);
-  });
+  const [isAdded, setIsAdded] = useState(() => cartItems.some(item => item.product_id === productData.id));
 
   const navigate = useNavigate();
   const vendor = allVendors.find(v => v.id === productData.vendor_id);
-  console.log("product list vendor id", productData.vendor_id)
 
   // Add or update item in cart
   const updateCart = (product, qty) => {
@@ -56,9 +52,10 @@ const ProductListItem = (props) => {
       };
       updatedCartItems = [...cartItems, newItem];
     }
+
     setCartItems(updatedCartItems);
 
-    // update quantities state
+    // Update quantities state
     const updatedQuantities = { ...quantities };
     updatedCartItems.forEach(item => {
       updatedQuantities[item.cart_item_id] = item.quantity;
@@ -79,7 +76,6 @@ const ProductListItem = (props) => {
   };
 
   const handleCartDelete = () => {
-    // Remove item from cart
     const updatedCartItems = cartItems.filter(item => item.product_id !== productData.id);
     setCartItems(updatedCartItems);
 
@@ -92,7 +88,6 @@ const ProductListItem = (props) => {
     });
     setQuantities(updatedQuantities);
 
-    // Reset isAdded
     setIsAdded(false);
   };
 
@@ -106,7 +101,7 @@ const ProductListItem = (props) => {
     if (productData && vendor) {
       const confirmed = window.confirm('Are you sure you want to delete this product?');
       if (confirmed) {
-        fetch(`/api/products`, {
+        fetch('/api/products', {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
@@ -133,8 +128,7 @@ const ProductListItem = (props) => {
   const isProductOwnedByUser = user && vendor && user.id === vendor.admin_user;
 
   return (
-    <article className='flex flex-col md:flex-row md:items-stretch border rounded-lg shadow-md bg-listitem bg-opacity-60 m-2 overflow-hidden '>
-
+    <article className='flex flex-col md:flex-row md:items-stretch border rounded-lg shadow-md bg-listitem bg-opacity-60 m-2 overflow-hidden'>
       {/* Image Section */}
       <div className='w-full md:w-1/3 h-36 md:h-auto'>
         <img
@@ -144,14 +138,14 @@ const ProductListItem = (props) => {
         />
       </div>
 
-      {/* Content Section  */}
+      {/* Content Section */}
       <div className='p-3 w-full md:w-2/3 flex flex-col flex-grow'>
         <div className='flex flex-col flex-grow'>
-          <h1 className='font-bold text-base text-left truncate ... text-ellipsis'>{productData.name}</h1>
+          <h1 className='font-bold text-base text-left truncate'>{productData.name}</h1>
           <p className='mt-2 text-xs'>{productData.description}</p>
           <div className='flex flex-row justify-between items-end mt-auto'>
-            <h3 className='text-md font-bold'>${(productData.price_cents / 100.00).toFixed(2)}</h3>
-            {/* Button Section  */}
+            <h3 className='text-md font-bold'>${(productData.price_cents / 100).toFixed(2)}</h3>
+            {/* Button Section */}
             {isProductOwnedByUser ? (
               <div className='flex space-x-2 mt-2'>
                 <button
@@ -166,7 +160,6 @@ const ProductListItem = (props) => {
                 >
                   <FontAwesomeIcon icon={faTrashCan} />
                 </button>
-
               </div>
             ) : (
               <div className='flex items-center space-x-2 mt-2'>
@@ -199,4 +192,3 @@ const ProductListItem = (props) => {
 };
 
 export default ProductListItem;
-

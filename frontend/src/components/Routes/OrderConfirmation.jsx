@@ -4,25 +4,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStore } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
-const OrderConfirmation = ({ products, vendors, locations, user, setUser, cartItems }) => {
+const OrderConfirmation = (props) => {
+  const { user } = props;
   const [orderDetails, setOrderDetails] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
-  const userId = user?.id;
   const orderId = location.state?.orderId;
   const pickupAddresses = location.state?.pickupAddresses || [];
   const alignment = location.state?.alignment || [];
   const deliveryDetails = location.state?.deliveryDetails || [];
-
-  console.log('deliveryType ', alignment);
-
 
   useEffect(() => {
     if (orderId) {
       axios.get(`/api/orders/order/${orderId}`)
         .then(response => {
           setOrderDetails(response.data);
-          console.log('OrderConfirmation:response.data:', response.data);
         })
         .catch(err => {
           console.error('Error retrieving order details', err);
@@ -69,8 +65,8 @@ const OrderConfirmation = ({ products, vendors, locations, user, setUser, cartIt
           <ul className='mt-4 space-y-4'>
             {orderDetails.map((item) => (
               <li key={item.product_id} className='flex items-center justify-between border-b border-gray-400 pb-4'>
-                           
-                
+
+
                 <div className='flex items-center w-24'>
                   <img
                     src={item.product_photo_url}

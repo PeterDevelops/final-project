@@ -3,20 +3,22 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const PaymentForm = ({ userId, totalCost, orderData, orderItems, setCartItems, subtotal, pickupAddresses, alignment, deliveryDetails }) => {
-
-  console.log('aligntment OC: ', alignment);
-
+const PaymentForm = (props) => {
+  const {
+    userId,
+    orderData,
+    orderItems,
+    setCartItems,
+    subtotal,
+    pickupAddresses,
+    alignment,
+    deliveryDetails
+  } = props;
 
   const stripe = useStripe();
   const elements = useElements();
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-
-  const options = {
-    // passing the client secret obtained from the server
-    clientSecret: '{{CLIENT_SECRET}}',
-  };
 
   const cardStyle = {
     style: {
@@ -35,23 +37,16 @@ const PaymentForm = ({ userId, totalCost, orderData, orderItems, setCartItems, s
     hidePostalCode: true,
   };
 
-
-
   const handleSubmit = async (event) => {
-    // We don't want to let default form submission happen here,
-    // which would refresh the page.
     event.preventDefault();
 
     if (!stripe || !elements) {
-      // Stripe.js hasn't yet loaded.
-      // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
 
     const cardElement = elements.getElement(CardElement);
 
     try {
-      // create a PaymentIntent on the server
       const response = await axios.post('api/stripe/create-payment-intent', {
         amount: Math.round(subtotal * 100),
         userId: userId
@@ -73,16 +68,10 @@ const PaymentForm = ({ userId, totalCost, orderData, orderItems, setCartItems, s
         return;
       }
 
-      // payment successful, create the order
       const orderResponse = await axios.post('api/orders', { orderData, orderItems });
-
-      // delete the cart and cart items
-      // await axios.delete(`/api/cart/${userId}`);
       const { orderId: newOrderId } = orderResponse.data;
-      // clear cartItems state
-      setCartItems([]);
 
-      // redirect to order confirmation page
+      setCartItems([]);
       navigate('/order-confirmation', {
         state: {
           orderId: newOrderId,
@@ -91,14 +80,11 @@ const PaymentForm = ({ userId, totalCost, orderData, orderItems, setCartItems, s
           deliveryDetails,
         }
       });
-    }
-    catch (error) {
+    } catch (error) {
       setError('Payment failed');
       console.error('Error:', error);
     }
-
-  }
-
+  };
 
   return (
     <form onSubmit={handleSubmit} className='space-y-4'>
@@ -116,23 +102,20 @@ const PaymentForm = ({ userId, totalCost, orderData, orderItems, setCartItems, s
           </button>
         </div>
 
-
         <div className='flex justify-center mb-4'>
           <button
-            className='text-sm px-4 py-2 bg-green-600 text-black rounded hover:bg-green-600'
+            className='text-sm px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700'
             type='submit'
             disabled={!stripe}
           >
             Pay
           </button>
         </div>
-
       </div>
 
       {error && <div className='text-red-500 text-center'>{error}</div>}
     </form>
   );
 };
-
 
 export default PaymentForm;

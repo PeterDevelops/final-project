@@ -4,8 +4,8 @@ const getAllChats = (userId) => {
   const queryString = `
     SELECT chat_id, contact_user_id, vendors.name AS contact_name, vendors.vendor_logo_url AS contact_photo, vendors.id AS vendor_id
       FROM (
-        SELECT chats.id AS chat_id, 
-        CASE 
+        SELECT chats.id AS chat_id,
+        CASE
         WHEN chats.contact_user_id = $1 THEN chats.user_id
         WHEN chats.contact_user_id <> $1 THEN chats.contact_user_id
         END AS contact_user_id
@@ -25,7 +25,7 @@ const getAllChats = (userId) => {
 const findAChat = (userId, vendorId) => {
   const chatQueryString = `
   SELECT * FROM (
-    SELECT * FROM chats WHERE user_id = $1 OR contact_user_id = $1) 
+    SELECT * FROM chats WHERE user_id = $1 OR contact_user_id = $1)
     AS relevant_chats WHERE user_id = $2 OR contact_user_id = $2; `;
 
   const vendorQueryString = `
@@ -40,7 +40,6 @@ const findAChat = (userId, vendorId) => {
   const vendorQuery = db.query(vendorQueryString, vendorQueryParams);
 
   const promiseArray = [chatQuery, vendorQuery];
-  console.log("promise array", promiseArray)
 
   return Promise.all(promiseArray)
     .then(results => {

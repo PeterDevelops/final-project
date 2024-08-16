@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStore } from '@fortawesome/free-solid-svg-icons';
 import DeliveryToggle from '../Body/DeliveryToggle';
@@ -12,25 +11,16 @@ const stripePromise = loadStripe('pk_test_51PYBRI2KSndZDZT0m4PGzx0F7CHHo0eusCyVI
 
 const Checkout = (props) => {
   const {
-    products,
-    setProducts,
     allProducts,
-    vendors,
-    setVendors,
     allVendors,
-    locations,
     user,
-    setUser,
     cartItems,
-    totalCost,
     setCartItems,
     subtotal,
     quantities,
   } = props;
 
-  const navigate = useNavigate();
   const [alignment, setAlignment] = useState('pickup');
-
   const [deliveryDetails, setDeliveryDetails] = useState({
     address: '',
     city: '',
@@ -57,7 +47,6 @@ const Checkout = (props) => {
     quantity: item.quantity,
   }));
 
-  // Get unique vendor pickup addresses
   const pickupAddresses = [...new Set(
     cartItems.map(item => {
       const product = allProducts.find(product => product.id === item.product_id);
@@ -71,8 +60,12 @@ const Checkout = (props) => {
     <div className='min-h-screen bg-main p-6'>
       {cartItems.length > 0 ? (
         <div className='max-w-4xl mx-auto bg-listitem bg-opacity-60 p-6 rounded-lg shadow-lg'>
+
           <div className='flex justify-center mb-4'>
-            <DeliveryToggle alignment={alignment} setAlignment={setAlignment} />
+            <DeliveryToggle
+              alignment={alignment}
+              setAlignment={setAlignment}
+            />
           </div>
 
           <div className='font-bold text-xl mb-4'>Order Summary</div>
@@ -134,7 +127,6 @@ const Checkout = (props) => {
             <Elements stripe={stripePromise}>
               <PaymentForm
                 userId={user.id}
-                totalCost={totalCost}
                 orderData={orderData}
                 orderItems={orderItems}
                 setCartItems={setCartItems}

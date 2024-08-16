@@ -5,27 +5,31 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import { useLocation } from 'react-router-dom';
 
-const QuantityInput = ({ defaultQuantity, onChange }) => {
+const QuantityInput = (props) => {
+  const {
+    defaultQuantity,
+    onChange
+  } = props;
   const [quantity, setQuantity] = useState(defaultQuantity);
   const location = useLocation();
   const noNumberInput = ['/checkout'];
 
   useEffect(() => {
     setQuantity(defaultQuantity);
-  }, [defaultQuantity])
+  }, [defaultQuantity]);
 
   const handleValueChange = (e) => {
-    setQuantity(e.value)
+    setQuantity(e.value);
     if (onChange) onChange(e.value);
-  }
+  };
 
   return (
     <PrimeReactProvider>
       {!noNumberInput.includes(location.pathname) && (
         <div className='flex items-center'>
           <button
-            className='text-black mx-2 w-0 h-2 rounded-sm flex items-center justify-center'
-            onClick={() => handleValueChange({ value: quantity - 1 })}
+            className='text-black mx-2 w-6 h-6 rounded-sm flex items-center justify-center'
+            onClick={() => handleValueChange({ value: Math.max(quantity - 1, 1) })}
             aria-label='Decrease quantity'
           >
             <i className='pi pi-minus text-xs'></i>
@@ -41,7 +45,7 @@ const QuantityInput = ({ defaultQuantity, onChange }) => {
             min={1}
           />
           <button
-            className='text-black mx-2 w-0 h-2 rounded-sm flex items-center justify-center'
+            className='text-black mx-2 w-6 h-6 rounded-sm flex items-center justify-center'
             onClick={() => handleValueChange({ value: quantity + 1 })}
             aria-label='Increase quantity'
           >

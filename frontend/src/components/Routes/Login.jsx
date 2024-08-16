@@ -1,24 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons';
 
 const Login = (props) => {
-  const {
-    products,
-    setProducts,
-    allProducts,
-    vendors,
-    setVendors,
-    allVendors,
-    locations,
-    categories,
-    user,
-    setUser,
-    cartItems,
-  } = props;
-
+  const { setUser } = props;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -34,14 +21,9 @@ const Login = (props) => {
       setEmail(response.data.email);
       setPassword(response.data.hashed_password);
       setUser(response.data[0]);
-      // console.log('USER-----', response.data[0])
       navigate('/');
     }
   }
-
-  // useEffect(() => {
-  //   console.log('USER******', user)
-  // })
 
   return (
     <div className='relative h-screen'>

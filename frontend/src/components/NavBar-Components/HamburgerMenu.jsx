@@ -12,7 +12,6 @@ const HamburgerMenu = (props) => {
     user,
     categories
   } = props;
-
   const [isOpen, setIsOpen] = useState(false);
   const [isProductsDropdownOpen, setIsProductsDropdownOpen] = useState(false);
   const [isVendorsDropdownOpen, setIsVendorsDropdownOpen] = useState(false);
@@ -23,9 +22,7 @@ const HamburgerMenu = (props) => {
   };
 
   const closeMenu = () => {
-    if (isOpen) {
-      setIsOpen(false);
-    }
+    if (isOpen) setIsOpen(false);
   };
 
   const handleProductsClick = () => {
@@ -45,8 +42,6 @@ const HamburgerMenu = (props) => {
   };
 
   const handleVendorClick = (vendor) => {
-    console.log('Vendor: ', vendor);
-
     setVendors([vendor]);
     const filteredProducts = allProducts.filter(product => product.vendor_id === vendor.id);
     setProducts(filteredProducts);
@@ -55,10 +50,7 @@ const HamburgerMenu = (props) => {
   };
 
   return (
-    <Menu
-      isOpen={isOpen}
-      onStateChange={handleMenuStateChange}
-    >
+    <Menu isOpen={isOpen} onStateChange={handleMenuStateChange}>
       <Link to='/' className='menu-item' onClick={closeMenu}>Home</Link>
 
       <div className='menu-item'>

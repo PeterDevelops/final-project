@@ -20,6 +20,7 @@ const VendorProfile = (props) => {
     setUser,
     cartItems,
     setCartItems,
+    quantities,
     setQuantities
   } = props;
 
@@ -106,9 +107,8 @@ const VendorProfile = (props) => {
       {vendor &&
         <>
 
-          <div 
+          <div
             className='vendor-profile flex flex-col items-center rounded-lg m-5 overflow-hidden'
- 
             >
             <div className='relative w-80 h-80'>
             <img src={vendor.vendor_logo_url} alt={vendor.name} className='object-cover object-center border shadow rounded-full w-full h-full' />
@@ -148,19 +148,14 @@ const VendorProfile = (props) => {
           </div>
           <ProductList
             products={products}
-            setProducts={setProducts}
             allProducts={allProducts}
             setAllProducts={setAllProducts}
             vendors={vendors}
-            setVendors={setVendors}
             allVendors={allVendors}
-            locations={locations}
-            categories={categories}
             user={user}
-            setUser={setUser}
-            showNavBar={false}
             cartItems={cartItems}
             setCartItems={setCartItems}
+            quantities={quantities}
             setQuantities={setQuantities}
           />
 

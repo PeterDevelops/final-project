@@ -3,19 +3,14 @@ import { useNavigate,useLocation } from 'react-router-dom';
 
 const AddEditProduct = (props) => {
   const {
-    products,
     setProducts,
     allProducts,
     setAllProducts,
     vendors,
     setVendors,
     allVendors,
-    setAllVendors,
-    locations,
     categories,
     user,
-    setUser,
-    cartItems,
   } = props;
 
   const [productName, setProductName] = useState('');
@@ -47,6 +42,17 @@ const AddEditProduct = (props) => {
     }
   }, [productCategory, allProducts]);
 
+  const resetProductForm = () => {
+    setProductName('');
+    setProductDescription('');
+    setProductPhotoUrl('');
+    setProductInventory('');
+    setProductPriceCents('');
+    setProductCategory('');
+    setProductSubCategory('');
+    setVendorId('');
+  };
+
   useEffect(() => {
     if (editProduct) {
       setProductName(editProduct.name || '');
@@ -58,26 +64,14 @@ const AddEditProduct = (props) => {
       setProductSubCategory(editProduct.sub_category || '');
       setVendorId(editProduct.vendor_id || '');
     } else {
-      setProductName('');
-      setProductDescription('');
-      setProductPhotoUrl('');
-      setProductInventory('');
-      setProductPriceCents('');
-      setProductCategory('');
-      setProductSubCategory('');
-      setVendorId('');
+      resetProductForm();
     }
   }, [editProduct]);
 
   const handleSubCategoryChange = (e) => {
     const value = e.target.value;
-    if (value === 'new') {
-      setIsCreatingNewSubCategory(true);
-      setProductSubCategory('');
-    } else {
-      setIsCreatingNewSubCategory(false);
-      setProductSubCategory(value);
-    }
+    setIsCreatingNewSubCategory(value === 'new');
+    setProductSubCategory(value !== 'new' ? value : '');
   };
 
   const userVendors = allVendors.filter(vendor => vendor.admin_user === user.id);
@@ -102,23 +96,14 @@ const AddEditProduct = (props) => {
       price_cents: parseInt(productPriceCents, 10),
       vendor_id: vendorId,
       category: productCategory,
-      sub_category: productSubCategory
+      sub_category: productSubCategory,
+      ...(editProduct && { id: editProduct.id }),
     };
 
-    if (editProduct) {
-      productData.id = editProduct.id;
-    }
-
     try {
-      const response = editProduct ? await fetch('http://localhost:8080/api/products', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(productData),
-      })
-      : await fetch('http://localhost:8080/api/products', {
-        method: 'POST',
+      const method = editProduct ? 'PUT' : 'POST';
+      const response = await fetch('http://localhost:8080/api/products', {
+        method,
         headers: {
           'Content-Type': 'application/json',
         },

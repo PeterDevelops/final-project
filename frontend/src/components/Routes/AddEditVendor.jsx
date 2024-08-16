@@ -1,20 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate,useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const AddEditVendor = (props) => {
   const {
-    products,
-    setProducts,
-    allProducts,
-    vendors,
-    setVendors,
     allVendors,
     setAllVendors,
-    locations,
-    categories,
     user,
-    setUser,
-    cartItems,
   } = props;
   const [vendorName, setVendorName] = useState('');
   const [vendorBio, setVendorBio] = useState('');
@@ -45,9 +36,19 @@ const AddEditVendor = (props) => {
     'YT'  // Yukon
   ];
 
+  const resetVendorForm = () => {
+    setVendorName('');
+    setVendorBio('');
+    setVendorAddress('');
+    setVendorCity('');
+    setVendorProvince('');
+    setVendorLongitude('');
+    setVendorLatitude('');
+    setVendorLogoUrl('');
+  }
+
   useEffect(() => {
     if (editVendor) {
-      // If editing, set fields to the vendor's data
       setVendorName(editVendor.name || '');
       setVendorBio(editVendor.bio || '');
       setVendorAddress(editVendor.address || '');
@@ -57,15 +58,7 @@ const AddEditVendor = (props) => {
       setVendorLatitude(editVendor.latitude || '');
       setVendorLogoUrl(editVendor.vendor_logo_url || '');
     } else {
-      // If adding a new vendor, clear fields
-      setVendorName('');
-      setVendorBio('');
-      setVendorAddress('');
-      setVendorCity('');
-      setVendorProvince('');
-      setVendorLongitude('');
-      setVendorLatitude('');
-      setVendorLogoUrl('');
+      resetVendorForm()
     }
   }, [editVendor]);
 
@@ -99,23 +92,14 @@ const AddEditVendor = (props) => {
       longitude: vendorLongitude,
       latitude: vendorLatitude,
       vendor_logo_url: vendorLogoUrl,
-      admin_user: user.id
+      admin_user: user.id,
+      ...(editVendor && { id: editVendor.id }),
     };
 
-    if (editVendor) {
-      vendorData.id = editVendor.id;
-    }
-
     try {
-      const response = editVendor ? await fetch('http://localhost:8080/api/vendors', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(vendorData),
-      })
-      : await fetch('http://localhost:8080/api/vendors', {
-        method: 'POST',
+      const method = editVendor ? 'PUT' : 'POST';
+      const response = await fetch('http://localhost:8080/api/vendors', {
+        method,
         headers: {
           'Content-Type': 'application/json',
         },

@@ -9,7 +9,6 @@ import Cart from './components/Routes/Cart';
 import Inbox from './components/Routes/Inbox';
 import VendorList from './components/Routes/VendorList';
 import ProductList from './components/Routes/ProductList';
-import CategoryList from './components/Routes/CategoryList';
 import Checkout from './components/Routes/Checkout';
 import Login from './components/Routes/Login';
 import LocationList from './components/Routes/LocationList';
@@ -71,7 +70,6 @@ function App({ location }) {
     useEffect(() => {
       axios.get('/api/categories')
       .then(response => {
-        // // console.log('fetched categories:', response.data)
         setCategories(response.data);
       })
       .catch(error => {
@@ -92,21 +90,15 @@ function App({ location }) {
   const shouldShowNavBar = !hiddenNavBarRoutes.some(route => location.pathname.startsWith(route));
 
   const mainClass = `bg-main font-body ${shouldShowNavBar ? (shouldShowSearchBar ? 'pt-navbar' : 'pt-navbar-no-search') : ''}`;
-  // console.log('Products Data---', products)
-  // console.log('Vendors Data---', vendors)
-  // console.log('categories in the App component: ------- ', categories)
-  // console.log('cartItems:App', cartItems);
+
   return (
     <>
       {shouldShowNavBar && (
         <NavBar
-          products={products}
           setProducts={setProducts}
           allProducts={allProducts}
-          vendors={vendors}
           setVendors={setVendors}
           allVendors={allVendors}
-          locations={locations}
           user={user}
           setUser={setUser}
           cartItems={cartItems}
@@ -118,245 +110,148 @@ function App({ location }) {
         <Routes>
           <Route path='/' element={
             <Homepage
-              products={products}
               setProducts={setProducts}
               allProducts={allProducts}
               vendors={vendors}
               setVendors={setVendors}
               allVendors={allVendors}
               locations={locations}
-              user={user}
-              setUser={setUser}
-              cartItems={cartItems}
             />}
           />
           <Route path='/cart' element={
             <Cart
-              products={products}
-              setProducts={setProducts}
               allProducts={allProducts}
-              vendors={vendors}
-              setVendors={setVendors}
               allVendors={allVendors}
-              locations={locations}
               user={user}
-              setUser={setUser}
               cartItems={cartItems}
-              totalCost={totalCost}
-              setQuantities={setQuantities}
-              quantities={quantities}
               setCartItems={setCartItems}
+              quantities={quantities}
+              setQuantities={setQuantities}
               setTotalCost={setTotalCost}
               subtotal={subtotal}
             />}
           />
           <Route path='/inbox' element={
             <Inbox
-              products={products}
-              setProducts={setProducts}
               allProducts={allProducts}
-              vendors={vendors}
-              setVendors={setVendors}
               allVendors={allVendors}
-              locations={locations}
               user={user}
-              setUser={setUser}
-              cartItems={cartItems}
             />}
           />
           <Route path='/vendors' element={
             <VendorList
-              products={products}
-              setProducts={setProducts}
-              allProducts={allProducts}
-              vendors={vendors}
               setVendors={setVendors}
               allVendors={allVendors}
-              locations={locations}
+              setProducts={setProducts}
+              allProducts={allProducts}
               user={user}
-              setUser={setUser}
-              cartItems={cartItems}
             />}
           />
           <Route path='/products' element={
             <ProductList
+              vendors={vendors}
+              allVendors={allVendors}
               products={products}
-              setProducts={setProducts}
               allProducts={allProducts}
               setAllProducts={setAllProducts}
-              vendors={vendors}
-              setVendors={setVendors}
-              allVendors={allVendors}
-              locations={locations}
               user={user}
-              setUser={setUser}
               cartItems={cartItems}
               setCartItems={setCartItems}
-              setQuantities={setQuantities}
               quantities={quantities}
-            />}
-          />
-          <Route path='/categories' element={
-            <CategoryList
-              products={products}
-              setProducts={setProducts}
-              allProducts={allProducts}
-              vendors={vendors}
-              setVendors={setVendors}
-              allVendors={allVendors}
-              locations={locations}
-              categories={categories}
-              user={user}
-              setUser={setUser}
-              cartItems={cartItems}
+              setQuantities={setQuantities}
             />}
           />
           <Route path='/checkout' element={
             <Checkout
-              products={products}
-              setProducts={setProducts}
               allProducts={allProducts}
-              vendors={vendors}
-              setVendors={setVendors}
               allVendors={allVendors}
-              locations={locations}
               user={user}
-              setUser={setUser}
               cartItems={cartItems}
-              totalCost={totalCost}
               setCartItems={setCartItems}
-              subtotal={subtotal}
               quantities={quantities}
+              subtotal={subtotal}
             />}
           />
           <Route path='/order-confirmation' element={
             <OrderConfirmation
-              products={products}
-              vendors={vendors}
-              locations={locations}
               user={user}
-              setUser={setUser}
-              cartItems={cartItems}
             />}
           />
           <Route path='/login' element={
             <Login
-              products={products}
-              setProducts={setProducts}
-              allProducts={allProducts}
-              vendors={vendors}
-              setVendors={setVendors}
-              allVendors={allVendors}
-              locations={locations}
-              categories={categories}
-              user={user}
               setUser={setUser}
-              cartItems={cartItems}
             />}
           />
           <Route path='/locations' element={
             <LocationList
-              products={products}
-              setProducts={setProducts}
-              allProducts={allProducts}
-              vendors={vendors}
               setVendors={setVendors}
               allVendors={allVendors}
+              setProducts={setProducts}
+              allProducts={allProducts}
               locations={locations}
-              categories={categories}
-              user={user}
-              setUser={setUser}
-              cartItems={cartItems}
             />}
           />
           <Route path='/vendors/:vendorId' element={
             <VendorProfile
-              products={products}
-              setProducts={setProducts}
-              allProducts={allProducts}
-              setAllProducts={setAllProducts}
               vendors={vendors}
               setVendors={setVendors}
               allVendors={allVendors}
               setAllVendors={setAllVendors}
+              products={products}
+              setProducts={setProducts}
+              allProducts={allProducts}
+              setAllProducts={setAllProducts}
               locations={locations}
               categories={categories}
               user={user}
               setUser={setUser}
               cartItems={cartItems}
               setCartItems={setCartItems}
+              quantities={quantities}
               setQuantities={setQuantities}
             />}
           />
           <Route path='/vendors/new' element={
             <AddEditVendor
-              products={products}
-              setProducts={setProducts}
-              allProducts={allProducts}
-              vendors={vendors}
-              setVendors={setVendors}
               allVendors={allVendors}
               setAllVendors={setAllVendors}
-              locations={locations}
-              categories={categories}
               user={user}
-              setUser={setUser}
-              cartItems={cartItems}
             />}
           />
           <Route path='/vendors/edit/:vendorId' element={
             <AddEditVendor
-              products={products}
-              setProducts={setProducts}
-              allProducts={allProducts}
-              vendors={vendors}
-              setVendors={setVendors}
               allVendors={allVendors}
               setAllVendors={setAllVendors}
-              locations={locations}
-              categories={categories}
               user={user}
-              setUser={setUser}
-              cartItems={cartItems}
             />}
           />
           <Route path='/products/new' element={
             <AddEditProduct
-              products={products}
               setProducts={setProducts}
               allProducts={allProducts}
               setAllProducts={setAllProducts}
               vendors={vendors}
               setVendors={setVendors}
               allVendors={allVendors}
-              setAllVendors={setAllVendors}
-              locations={locations}
               categories={categories}
               user={user}
-              setUser={setUser}
-              cartItems={cartItems}
             />}
           />
           <Route path='/products/edit/:productId' element={
             <AddEditProduct
-              products={products}
               setProducts={setProducts}
               allProducts={allProducts}
               setAllProducts={setAllProducts}
               vendors={vendors}
               setVendors={setVendors}
               allVendors={allVendors}
-              setAllVendors={setAllVendors}
-              locations={locations}
               categories={categories}
               user={user}
-              setUser={setUser}
-              cartItems={cartItems}
-            />}
+          />}
           />
           <Route path='/chats/:id' element={
-            <ChatListItem user={user}
-              setUser={setUser}
+            <ChatListItem
+              user={user}
             />}
           />
         </Routes>

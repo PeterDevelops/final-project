@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Icon } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import '../styles/Leaflet.css';
@@ -27,8 +27,6 @@ const Map = (props) => {
   const navigate = useNavigate();
   const [center, setCenter] = useState([49.277321, -122.888835]); // default center in Port Moody
 
-  console.log("All vendors", allVendors)
-
   useEffect(() => {
     if (allowUserLocation) {
       navigator.geolocation.getCurrentPosition(
@@ -55,12 +53,6 @@ const Map = (props) => {
       longitude: vendor.longitude,
     };
     onVendorClick(vendorLocation);
-    // const filteredByVendor = allProducts.filter(product => product.vendor_id === vendor.id);
-    // const currentVendor = vendor;
-
-    // setProducts(filteredByVendor);
-    // setVendors([currentVendor]);
-    // navigate(`/vendors/${currentVendor.id}`, { state: { allProducts, allVendors } });
   };
 
   const vendorsOnMapList = () => {
@@ -73,7 +65,6 @@ const Map = (props) => {
 
   const handleNavigateToVendorProfile = (vendorId) => {
     if (vendorId) {
-      console.log('button clicked, vendorId:', vendorId);
       const filteredByVendor = allProducts.filter(product => product.vendor_id === vendorId);
       const currentVendor = allVendors.filter(vendor => vendor.id === vendorId);
       setVendors(currentVendor);
@@ -96,7 +87,10 @@ const Map = (props) => {
           url={`https://{s}.tile.thunderforest.com/neighbourhood/{z}/{x}/{y}.png?apikey=${process.env.REACT_APP_THUNDERFOREST_API_KEY}`}
         />
 
-        <VendorsInBoundsUpdater allVendors={allVendors} setVendors={setVendors} />
+        <VendorsInBoundsUpdater
+          allVendors={allVendors}
+          setVendors={setVendors}
+        />
 
         {allVendors.map((location) => (
           <Marker

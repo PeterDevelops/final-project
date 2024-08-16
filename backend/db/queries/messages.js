@@ -7,20 +7,19 @@ const getAllMessages = (chatId) => {
 
   return db.query(queryString, queryParams)
     .then(results => results.rows)
-    .catch((err) => { 
+    .catch((err) => {
       console.error(err);
       throw new Error('Could not get all messages')})
 }
 
 const addMessage = (message, created_at, senderId, chatId) => {
   const queryString = `
-    INSERT INTO messages (message, created_at, sender_id, chat_id) 
+    INSERT INTO messages (message, created_at, sender_id, chat_id)
     VALUES ($1, $2, $3, $4) RETURNING *;`;
   const queryParams = [message, created_at, senderId, chatId];
 
   return db.query(queryString, queryParams)
   .then(result => {
-    console.log('Added Message Result: ', result);
     return result.rows[0];
   })
   .catch(err => {
@@ -36,7 +35,7 @@ const getLastMessage = (chatId) => {
 
   return db.query(queryString, queryParams)
     .then(results => results.rows)
-    .catch((err) => { 
+    .catch((err) => {
       console.error(err);
       throw new Error('Could not get all messages')})
 }

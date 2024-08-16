@@ -21,28 +21,30 @@ const CartListItem = (props) => {
     <div className='bg-white flex justify-between items-center p-4 mb-4 rounded-md shadow-md w-full max-w-4xl mx-auto'>
       <div className='flex items-center w-10/12'>
         <div className='w-16 h-16 overflow-hidden rounded-md'>
-        <img 
-          src={product_photo_url}
-          alt={product_name}
-          className='w-full h-full object-cover'
-        />
+          <img
+            src={product_photo_url}
+            alt={product_name}
+            className='w-full h-full object-cover'
+          />
         </div>
-        <span className='text-sm ml-4 flex-1 truncate whitespace-nowrap overflow-hidden max-w-[125px] sm:max-w-[200px] md:max-w-[250px] lg:max-w-[300px] xl:max-w-[350px]'>{product_name}</span>
+        <span className='text-sm ml-4 flex-1 truncate whitespace-nowrap overflow-hidden max-w-[125px] sm:max-w-[200px] md:max-w-[250px] lg:max-w-[300px] xl:max-w-[350px]'>
+          {product_name}
+        </span>
       </div>
 
       <div className='flex items-center space-x-2'>
         {!noQuantity.includes(location.pathname) && (
           <span className='font-bold text-xs'>Qty: {quantity}</span>
         )}
-        <QuantityInput defaultQuantity={quantity} onChange={onChange}/>
+        <QuantityInput defaultQuantity={quantity} onChange={onChange} />
 
         {!noDelete.includes(location.pathname) && (
-        <button
-        onClick={onDelete}
-        className='text-xs bg-red-500 text-white py-1 px-2 rounded'
-      >
-        <FontAwesomeIcon icon={faTrashCan} />
-        </button>
+          <button
+            onClick={onDelete}
+            className='text-xs bg-red-500 text-white py-1 px-2 rounded'
+          >
+            <FontAwesomeIcon icon={faTrashCan} />
+          </button>
         )}
       </div>
     </div>
