@@ -11,6 +11,17 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
+/**
+ * SearchBar component allows users to search for products or vendors.
+ *
+ * @param {Object} props - The component's props.
+ * @param {Function} props.setProducts - Function to update the list of products based on search.
+ * @param {Array} props.allProducts - Array of all available products.
+ * @param {Function} props.setVendors - Function to update the list of vendors based on search.
+ * @param {Array} props.allVendors - Array of all available vendors.
+ *
+ * @returns {JSX.Element} - The rendered SearchBar component.
+ */
 const SearchBar = (props) => {
   const {
     setProducts,
@@ -23,7 +34,12 @@ const SearchBar = (props) => {
   const [filteredOptions, setFilteredOptions] = useState([]);
   const inputRef = useRef(null);
 
-  // Helper function to get icon based on category
+  /**
+   * Gets the icon associated with a given category.
+   *
+   * @param {string} category - The category name.
+   * @returns {Object|null} - The FontAwesome icon for the category, or null if not found.
+   */
   const getIconForCategory = (category) => {
     const icons = {
       Vegetable: faSeedling,
@@ -35,7 +51,11 @@ const SearchBar = (props) => {
     return icons[category] || null;
   };
 
-  // Function to categorize products
+  /**
+   * Categorizes products by sub-category.
+   *
+   * @returns {Array} - Array of categorized products with unique sub-categories.
+   */
   const categorizeProducts = () => {
     if (!Array.isArray(allProducts) || !allProducts.length) return [];
 
@@ -58,7 +78,11 @@ const SearchBar = (props) => {
     return Object.values(subCategories);
   };
 
-  // Function to categorize vendors
+  /**
+   * Categorizes vendors with a default category and icon.
+   *
+   * @returns {Array} - Array of vendors categorized with a default icon.
+   */
   const categorizeVendors = () => {
     if (!Array.isArray(allVendors) || !allVendors.length) return [];
 
@@ -70,14 +94,22 @@ const SearchBar = (props) => {
     }));
   };
 
-  // Combine and sort data
+  /**
+   * Combines and sorts product and vendor data.
+   *
+   * @returns {Array} - Combined and sorted array of categorized products and vendors.
+   */
   const combinedData = () => {
     const productData = categorizeProducts();
     const vendorData = categorizeVendors();
     return [...productData, ...vendorData].sort((a, b) => a.category.localeCompare(b.category));
   };
 
-  // Handle option click
+  /**
+   * Handles click events on autocomplete options.
+   *
+   * @param {Object} option - The selected option from the autocomplete.
+   */
   const handleOptionClick = (option) => {
     if (inputRef.current) inputRef.current.blur();
 
@@ -93,7 +125,11 @@ const SearchBar = (props) => {
     }
   };
 
-  // Handle form submission
+  /**
+   * Handles form submission and redirects based on input value.
+   *
+   * @param {Object} event - The form submission event.
+   */
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -116,7 +152,12 @@ const SearchBar = (props) => {
     }
   };
 
-  // Handle input change
+  /**
+   * Handles changes to the input field and updates filtered options.
+   *
+   * @param {Object} event - The input change event.
+   * @param {string} newInputValue - The new input value.
+   */
   const handleInputChange = (event, newInputValue) => {
     setInputValue(newInputValue);
     const newFilteredOptions = combinedData().filter(option =>

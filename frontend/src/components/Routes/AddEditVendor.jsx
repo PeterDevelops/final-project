@@ -1,12 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
+/**
+ * Component for adding or editing a vendor.
+ *
+ * @param {Object} props - Component props
+ * @param {Array} props.allVendors - Array of all vendors
+ * @param {Function} props.setAllVendors - Function to set all vendors
+ * @param {Object} props.user - Current user object
+ * @returns {JSX.Element} The rendered component
+ */
 const AddEditVendor = (props) => {
   const {
     allVendors,
     setAllVendors,
     user,
   } = props;
+
+  // State variables for vendor details
   const [vendorName, setVendorName] = useState('');
   const [vendorBio, setVendorBio] = useState('');
   const [vendorAddress, setVendorAddress] = useState('');
@@ -20,6 +31,7 @@ const AddEditVendor = (props) => {
   const location = useLocation();
   const editVendor = location.state?.vendor || null;
 
+  // List of provinces for selection
   const provinces = [
     'AB', // Alberta
     'BC', // British Columbia
@@ -36,6 +48,9 @@ const AddEditVendor = (props) => {
     'YT'  // Yukon
   ];
 
+  /**
+   * Resets the vendor form to its initial state.
+   */
   const resetVendorForm = () => {
     setVendorName('');
     setVendorBio('');
@@ -45,8 +60,9 @@ const AddEditVendor = (props) => {
     setVendorLongitude('');
     setVendorLatitude('');
     setVendorLogoUrl('');
-  }
+  };
 
+  // Populate the form with existing vendor data if editing
   useEffect(() => {
     if (editVendor) {
       setVendorName(editVendor.name || '');
@@ -58,10 +74,15 @@ const AddEditVendor = (props) => {
       setVendorLatitude(editVendor.latitude || '');
       setVendorLogoUrl(editVendor.vendor_logo_url || '');
     } else {
-      resetVendorForm()
+      resetVendorForm();
     }
   }, [editVendor]);
 
+  /**
+   * Handles address change and updates geolocation based on the address.
+   *
+   * @param {Object} event - Event object
+   */
   const handleAddressChange = async (event) => {
     const address = event.target.value;
     setVendorAddress(address);
@@ -81,6 +102,11 @@ const AddEditVendor = (props) => {
     }
   };
 
+  /**
+   * Handles form submission for adding or editing a vendor.
+   *
+   * @param {Object} event - Form event object
+   */
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -117,6 +143,7 @@ const AddEditVendor = (props) => {
       } else {
         setAllVendors([...allVendors, data]);
       }
+
       navigate('/vendors');
 
     } catch (error) {
@@ -222,4 +249,3 @@ const AddEditVendor = (props) => {
 };
 
 export default AddEditVendor;
-

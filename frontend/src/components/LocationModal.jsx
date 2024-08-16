@@ -1,7 +1,18 @@
 import React from 'react';
 
+/**
+ * LocationModal component renders a modal asking the user for location access.
+ *
+ * @param {Object} props - Component props
+ * @param {Function} props.onAccept - Callback function to handle acceptance of location access
+ * @param {Function} props.onDecline - Callback function to handle decline of location access
+ * @returns {JSX.Element} The rendered modal component
+ */
 const LocationModal = (props) => {
-  const {onAccept, onDecline} = props;
+  const {
+    onAccept,
+    onDecline
+  } = props;
 
   return (
     <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-1000'>

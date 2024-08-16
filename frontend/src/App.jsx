@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
 import NavBar from './components/NavBar';
 import Homepage from './components/Routes/Homepage';
 import Cart from './components/Routes/Cart';
@@ -19,7 +18,15 @@ import AddEditVendor from './components/Routes/AddEditVendor';
 import AddEditProduct from './components/Routes/AddEditProduct';
 import ScrollToTop from './ScrollToTop';
 
+/**
+ * Main App component that handles routing and state management.
+ *
+ * @param {Object} props - Component props
+ * @param {Object} props.location - Current route location
+ * @returns {JSX.Element} The rendered component
+ */
 function App({ location }) {
+  // State variables for managing data
   const [products, setProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
   const [vendors, setVendors] = useState([]);
@@ -31,21 +38,21 @@ function App({ location }) {
   const [user, setUser] = useState(null);
   const [quantities, setQuantities] = useState({});
 
-  // a route to pull products data from the db (backend)
+  // Fetch products data from the backend
   useEffect(() => {
     axios.get('/api/products')
-    .then(response => {
-      setProducts(response.data);
+      .then(response => {
+        setProducts(response.data);
         setAllProducts(response.data);
       })
       .catch(error => {
         console.error('There was an error with products data!', error);
       });
-    }, []);
+  }, []);
 
-    // a route to pull vendors data from the db (backend)
-    useEffect(() => {
-      axios.get('/api/vendors')
+  // Fetch vendors data from the backend
+  useEffect(() => {
+    axios.get('/api/vendors')
       .then(response => {
         setVendors(response.data);
         setAllVendors(response.data);
@@ -53,46 +60,50 @@ function App({ location }) {
       .catch(error => {
         console.error('There was an error with vendor data!', error);
       });
-    }, []);
+  }, []);
 
-    // a route to pull location data from the db (backend)
-    useEffect(() => {
-      axios.get('/api/locations')
+  // Fetch location data from the backend
+  useEffect(() => {
+    axios.get('/api/locations')
       .then(response => {
         setLocations(response.data);
       })
       .catch(error => {
         console.error('There was an error with locations data!', error);
       });
-    }, []);
+  }, []);
 
-    // a route to pull all category data from the db (backend)
-    useEffect(() => {
-      axios.get('/api/categories')
+  // Fetch category data from the backend
+  useEffect(() => {
+    axios.get('/api/categories')
       .then(response => {
         setCategories(response.data);
       })
       .catch(error => {
         console.error('There was an error with category data!', error);
       });
-    }, []);
+  }, []);
 
-  // add cart item total
+  // Calculate the subtotal of cart items
   const subtotal = cartItems.reduce((acc, item) => {
     const quantity = quantities[item.cart_item_id] || 1;
     return acc + (item.price_cents * quantity / 100);
   }, 0);
 
+  // Determine whether to show the search bar based on current route
   const noSearchBar = ['/cart', '/checkout', '/inbox', '/chats', '/login', '/order-confirmation'];
   const shouldShowSearchBar = !noSearchBar.includes(location.pathname);
 
+  // Determine whether to show the NavBar based on current route
   const hiddenNavBarRoutes = ['/chats'];
   const shouldShowNavBar = !hiddenNavBarRoutes.some(route => location.pathname.startsWith(route));
 
+  // Determine the main class based on visibility of NavBar and search bar
   const mainClass = `bg-main font-body ${shouldShowNavBar ? (shouldShowSearchBar ? 'pt-navbar' : 'pt-navbar-no-search') : ''}`;
 
   return (
     <>
+      {/* Conditionally render the NavBar component */}
       {shouldShowNavBar && (
         <NavBar
           setProducts={setProducts}
@@ -105,9 +116,10 @@ function App({ location }) {
           categories={categories}
         />
       )}
-        <main className={mainClass}>
+      <main className={mainClass}>
         <ScrollToTop />
         <Routes>
+          {/* Route definitions */}
           <Route path='/' element={
             <Homepage
               setProducts={setProducts}
@@ -193,18 +205,14 @@ function App({ location }) {
           />
           <Route path='/vendors/:vendorId' element={
             <VendorProfile
-              vendors={vendors}
-              setVendors={setVendors}
-              allVendors={allVendors}
-              setAllVendors={setAllVendors}
               products={products}
               setProducts={setProducts}
               allProducts={allProducts}
               setAllProducts={setAllProducts}
-              locations={locations}
-              categories={categories}
+              vendors={vendors}
+              allVendors={allVendors}
+              setAllVendors={setAllVendors}
               user={user}
-              setUser={setUser}
               cartItems={cartItems}
               setCartItems={setCartItems}
               quantities={quantities}
@@ -247,7 +255,7 @@ function App({ location }) {
               allVendors={allVendors}
               categories={categories}
               user={user}
-          />}
+            />}
           />
           <Route path='/chats/:id' element={
             <ChatListItem
@@ -258,6 +266,6 @@ function App({ location }) {
       </main>
     </>
   );
-};
+}
 
 export default App;

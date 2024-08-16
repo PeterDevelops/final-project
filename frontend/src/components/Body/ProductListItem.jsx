@@ -4,6 +4,24 @@ import QuantityInput from './QuantityInput';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
+/**
+ * ProductListItem component represents a product in a list and allows interaction such as adding to cart,
+ * changing quantity, and editing or deleting the product if the user owns it.
+ *
+ * @param {Object} props - The component's props.
+ * @param {Object} props.productData - The data of the product being displayed.
+ * @param {Array} props.allProducts - List of all products.
+ * @param {Function} props.setAllProducts - Function to update the list of all products.
+ * @param {Object} props.user - The currently logged-in user.
+ * @param {Array} props.vendors - List of vendors.
+ * @param {Array} props.allVendors - List of all vendors.
+ * @param {Array} props.cartItems - List of items currently in the cart.
+ * @param {Function} props.setCartItems - Function to update the list of cart items.
+ * @param {Object} props.quantities - Object mapping cart item IDs to their quantities.
+ * @param {Function} props.setQuantities - Function to update the quantities state.
+ *
+ * @returns {JSX.Element} The rendered ProductListItem component.
+ */
 const ProductListItem = (props) => {
   const {
     productData,
@@ -17,6 +35,7 @@ const ProductListItem = (props) => {
     quantities,
     setQuantities
   } = props;
+
   const [quantity, setQuantity] = useState(() => {
     const existingItem = cartItems.find(item => item.product_id === productData.id);
     return existingItem ? existingItem.quantity : 1;
@@ -27,7 +46,12 @@ const ProductListItem = (props) => {
   const navigate = useNavigate();
   const vendor = allVendors.find(v => v.id === productData.vendor_id);
 
-  // Add or update item in cart
+  /**
+   * Updates the cart with the specified product and quantity.
+   *
+   * @param {Object} product - The product to be updated or added.
+   * @param {number} qty - The quantity of the product.
+   */
   const updateCart = (product, qty) => {
     const vendor = vendors.find(vendor => vendor.id === product.vendor_id);
     const itemExist = cartItems.find(item => item.product_id === product.id);
@@ -63,6 +87,9 @@ const ProductListItem = (props) => {
     setQuantities(updatedQuantities);
   };
 
+  /**
+   * Handles adding the product to the cart.
+   */
   const handleAddToCart = () => {
     if (!isAdded) {
       updateCart(productData, 1);
@@ -70,11 +97,19 @@ const ProductListItem = (props) => {
     }
   };
 
+  /**
+   * Handles changing the quantity of the product in the cart.
+   *
+   * @param {number} newQuantity - The new quantity of the product.
+   */
   const handleQuantityChange = (newQuantity) => {
     setQuantity(newQuantity);
     updateCart(productData, newQuantity);
   };
 
+  /**
+   * Handles removing the product from the cart.
+   */
   const handleCartDelete = () => {
     const updatedCartItems = cartItems.filter(item => item.product_id !== productData.id);
     setCartItems(updatedCartItems);
@@ -91,12 +126,18 @@ const ProductListItem = (props) => {
     setIsAdded(false);
   };
 
+  /**
+   * Handles navigating to the product edit page.
+   */
   const handleEdit = () => {
     if (productData && vendor) {
       navigate(`/products/edit/${productData.id}`, { state: { product: productData } });
     }
   };
 
+  /**
+   * Handles deleting the product from the backend and updating the product list.
+   */
   const handleDelete = () => {
     if (productData && vendor) {
       const confirmed = window.confirm('Are you sure you want to delete this product?');
@@ -122,8 +163,6 @@ const ProductListItem = (props) => {
       }
     }
   };
-
-
 
   const isProductOwnedByUser = user && vendor && user.id === vendor.admin_user;
 

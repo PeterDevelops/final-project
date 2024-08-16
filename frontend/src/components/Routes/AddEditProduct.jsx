@@ -1,6 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate,useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
+/**
+ * Component for adding or editing a product.
+ *
+ * @param {Object} props - Component props
+ * @param {Function} props.setProducts - Function to set the filtered products
+ * @param {Array} props.allProducts - Array of all products
+ * @param {Function} props.setAllProducts - Function to set all products
+ * @param {Array} props.vendors - Array of vendors
+ * @param {Function} props.setVendors - Function to set the filtered vendors
+ * @param {Array} props.allVendors - Array of all vendors
+ * @param {Array} props.categories - Array of product categories
+ * @param {Object} props.user - Current user object
+ * @returns {JSX.Element} The rendered component
+ */
 const AddEditProduct = (props) => {
   const {
     setProducts,
@@ -13,6 +27,7 @@ const AddEditProduct = (props) => {
     user,
   } = props;
 
+  // State variables for product details
   const [productName, setProductName] = useState('');
   const [productDescription, setProductDescription] = useState('');
   const [productPhotoUrl, setProductPhotoUrl] = useState('');
@@ -29,6 +44,7 @@ const AddEditProduct = (props) => {
   const location = useLocation();
   const editProduct = location.state?.product || null;
 
+  // Update subCategories when productCategory changes
   useEffect(() => {
     if (productCategory) {
       const uniqueSubCategories = [...new Set(
@@ -42,6 +58,9 @@ const AddEditProduct = (props) => {
     }
   }, [productCategory, allProducts]);
 
+  /**
+   * Resets the product form to initial state.
+   */
   const resetProductForm = () => {
     setProductName('');
     setProductDescription('');
@@ -53,6 +72,7 @@ const AddEditProduct = (props) => {
     setVendorId('');
   };
 
+  // Set form values based on editProduct state
   useEffect(() => {
     if (editProduct) {
       setProductName(editProduct.name || '');
@@ -68,14 +88,23 @@ const AddEditProduct = (props) => {
     }
   }, [editProduct]);
 
+  /**
+   * Handles changes to the sub-category selection.
+   *
+   * @param {Object} e - Event object
+   */
   const handleSubCategoryChange = (e) => {
     const value = e.target.value;
     setIsCreatingNewSubCategory(value === 'new');
     setProductSubCategory(value !== 'new' ? value : '');
   };
 
+  // Filter vendors associated with the current user
   const userVendors = allVendors.filter(vendor => vendor.admin_user === user.id);
 
+  /**
+   * Submits a new sub-category if it's not already in the list.
+   */
   const handleNewSubCategorySubmit = () => {
     if (newSubCategory && !subCategories.includes(newSubCategory)) {
       setSubCategories([...subCategories, newSubCategory]);
@@ -85,6 +114,11 @@ const AddEditProduct = (props) => {
     }
   };
 
+  /**
+   * Handles form submission for adding or editing a product.
+   *
+   * @param {Object} event - Form event object
+   */
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -129,13 +163,12 @@ const AddEditProduct = (props) => {
         return updatedProducts;
       });
 
-      navigate(`/vendors/${vendorId}`, {state: {vendors}});
+      navigate(`/vendors/${vendorId}`, { state: { vendors } });
 
     } catch (error) {
       console.error('Error:', error.message);
     }
   };
-
 
   return (
     <div className='relative h-screen'>
@@ -231,9 +264,9 @@ const AddEditProduct = (props) => {
               required
             >
               <option value='' disabled>Select a category</option>
-              {categories.map((categories, index) => (
-                <option key={index} value={categories.category}>
-                  {categories.category}
+              {categories.map((category, index) => (
+                <option key={index} value={category.category}>
+                  {category.category}
                 </option>
               ))}
             </select>
@@ -293,4 +326,3 @@ const AddEditProduct = (props) => {
 };
 
 export default AddEditProduct;
-
