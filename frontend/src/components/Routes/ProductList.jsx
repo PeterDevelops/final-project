@@ -3,11 +3,11 @@ import ProductListItem from '../Body/ProductListItem'
 
 const ProductList = (props) => {
   const {
-    vendors,
-    allVendors,
     products,
     allProducts,
     setAllProducts,
+    vendors,
+    allVendors,
     user,
     cartItems,
     setCartItems,

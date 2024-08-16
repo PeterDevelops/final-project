@@ -27,8 +27,6 @@ const Map = (props) => {
   const navigate = useNavigate();
   const [center, setCenter] = useState([49.277321, -122.888835]); // default center in Port Moody
 
-  console.log("All vendors", allVendors)
-
   useEffect(() => {
     if (allowUserLocation) {
       navigator.geolocation.getCurrentPosition(

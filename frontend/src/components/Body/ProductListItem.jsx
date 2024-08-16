@@ -26,7 +26,6 @@ const ProductListItem = (props) => {
 
   const navigate = useNavigate();
   const vendor = allVendors.find(v => v.id === productData.vendor_id);
-  console.log("product list vendor id", productData.vendor_id)
 
   // Add or update item in cart
   const updateCart = (product, qty) => {

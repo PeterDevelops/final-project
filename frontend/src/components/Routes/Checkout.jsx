@@ -47,7 +47,6 @@ const Checkout = (props) => {
     quantity: item.quantity,
   }));
 
-  // Get unique vendor pickup addresses
   const pickupAddresses = [...new Set(
     cartItems.map(item => {
       const product = allProducts.find(product => product.id === item.product_id);
@@ -61,9 +60,11 @@ const Checkout = (props) => {
     <div className='min-h-screen bg-main p-6'>
       {cartItems.length > 0 ? (
         <div className='max-w-4xl mx-auto bg-listitem bg-opacity-60 p-6 rounded-lg shadow-lg'>
+
           <div className='flex justify-center mb-4'>
             <DeliveryToggle
-              alignment={alignment} setAlignment={setAlignment}
+              alignment={alignment}
+              setAlignment={setAlignment}
             />
           </div>
 

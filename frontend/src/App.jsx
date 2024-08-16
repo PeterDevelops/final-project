@@ -90,7 +90,7 @@ function App({ location }) {
   const shouldShowNavBar = !hiddenNavBarRoutes.some(route => location.pathname.startsWith(route));
 
   const mainClass = `bg-main font-body ${shouldShowNavBar ? (shouldShowSearchBar ? 'pt-navbar' : 'pt-navbar-no-search') : ''}`;
-  
+
   return (
     <>
       {shouldShowNavBar && (
@@ -207,6 +207,7 @@ function App({ location }) {
               setUser={setUser}
               cartItems={cartItems}
               setCartItems={setCartItems}
+              quantities={quantities}
               setQuantities={setQuantities}
             />}
           />
