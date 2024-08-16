@@ -26,6 +26,7 @@ const ProductListItem = (props) => {
 
   const navigate = useNavigate();
   const vendor = allVendors.find(v => v.id === productData.vendor_id);
+  console.log("product list vendor id", productData.vendor_id)
 
   // Add or update item in cart
   const updateCart = (product, qty) => {
@@ -123,6 +124,8 @@ const ProductListItem = (props) => {
     }
   };
 
+
+
   const isProductOwnedByUser = user && vendor && user.id === vendor.admin_user;
 
   return (
@@ -163,7 +166,8 @@ const ProductListItem = (props) => {
               <div className='flex items-center space-x-2 mt-2'>
                 {!isAdded ? (
                   <button
-                    className='text-xs px-3 py-1 bg-yellow-500 text-black rounded hover:bg-yellow-600'
+                    style={{ backgroundColor: productData.vendor_id === 12 ? '#BB00BB' : '#FBBF24', color: 'black' }}
+                    className="text-xs px-3 py-1 rounded hover:opacity-75"
                     onClick={handleAddToCart}
                   >
                     Add To Cart

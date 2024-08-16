@@ -157,7 +157,7 @@ const SearchBar = (props) => {
                   transform: 'translate(16px, -20px) scale(0.75)',
                 },
                 '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                  border:'none',
+                  border: 'none',
                 },
               }}
               inputRef={inputRef}

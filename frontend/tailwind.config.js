@@ -16,6 +16,7 @@ module.exports = {
       },
       width: {
         '80vw': '80vw',
+        '95vw': '95vw',
       },
       colors: {
         'custom-gray': '#d1d5db',

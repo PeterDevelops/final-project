@@ -158,8 +158,9 @@ const Cart = (props) => {
                 </button>
               </div>
 
-              <Link to="/checkout">
-                <div className="flex justify-center mb-4">
+
+              <Link to='/checkout'>
+                <div className='flex justify-center mb-4'>
                   <button className="text-sm px-4 py-2 bg-yellow-500 text-black rounded hover:bg-yellow-600">
                     Checkout
                   </button>

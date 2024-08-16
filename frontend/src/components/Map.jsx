@@ -27,6 +27,8 @@ const Map = (props) => {
   const navigate = useNavigate();
   const [center, setCenter] = useState([49.277321, -122.888835]); // default center in Port Moody
 
+  console.log("All vendors", allVendors)
+
   useEffect(() => {
     if (allowUserLocation) {
       navigator.geolocation.getCurrentPosition(
@@ -79,7 +81,7 @@ const Map = (props) => {
         center={center}
         zoom={15}
         scrollWheelZoom={true}
-        className='h-35vh mx-2 mt-4 border-2 border-custom-gray shadow-md rounded-lg'
+        className='h-35vh mx-auto mb-6 border-2 border-custom-gray shadow-md rounded-lg'
         key={`${center[0]}-${center[1]}`}
       >
         <TileLayer
@@ -99,14 +101,26 @@ const Map = (props) => {
             icon={customIcon}
           >
             <Popup>
-              <div>
-                <h2>{location.name}</h2>
-                <p>{location.city}</p>
+              <div className="flex flex-col items-center ">
+                <h2 className="font-heading font-bold text-sm m-0 whitespace-nowrap">{location.name}</h2>
+                <div className="w-28 h-8 overflow-hidden">
+                  <img className="w-full h-full object-cover" src={location.vendor_logo_url} />
+                </div>
+                <p className="font-body text-[10px] text-wrap text-left"
+                  style={{
+                    display: '-webkit-box',
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden',
+                    WebkitLineClamp: '2',
+                    textOverflow: 'ellipsis',
+                    maxHeight: '3rem',
+                    lineHeight: '1rem',
+                  }}>{location.bio}</p>
                 <button
                   onClick={() => handleNavigateToVendorProfile(location.id)}
-                  className='mt-2 px-3 py-1 bg-blue-500 text-white rounded'
+                  className='px-3 py-1.5 bg-yellow-500 text-black rounded font-body text-xs'
                 >
-                  View Vendor Profile
+                  Visit Booth
                 </button>
               </div>
             </Popup>
@@ -114,7 +128,7 @@ const Map = (props) => {
         ))}
       </MapContainer>
 
-      <div className='grid grid-cols-2 gap-1 mt-3 w-80vw mx-auto'>
+      <div className='grid grid-cols-2 gap-1 mt-2 w-80vw mx-auto'>
         {vendorsOnMapList()}
       </div>
     </>

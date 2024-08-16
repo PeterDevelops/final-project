@@ -106,7 +106,10 @@ const VendorProfile = (props) => {
       {vendor &&
         <>
 
-          <div className='vendor-profile flex flex-col items-center rounded-lg m-5 overflow-hidden'>
+          <div 
+            className='vendor-profile flex flex-col items-center rounded-lg m-5 overflow-hidden'
+ 
+            >
             <div className='relative w-80 h-80'>
             <img src={vendor.vendor_logo_url} alt={vendor.name} className='object-cover object-center border shadow rounded-full w-full h-full' />
             </div>
@@ -132,10 +135,12 @@ const VendorProfile = (props) => {
                 <div className='mt-4 flex justify-center'>
                   <button
                     onClick={handleNavigateToChat}
-                    className='bg-green-500 text-white py-2 px-4 rounded text-sm'
+                    className='mr-2 px-4 py-2 text-white rounded'
+                    style={{ backgroundColor: vendor.id === 12 ? '#BB00BB' : 'green', color: 'white' }}
                   >
                     Contact Vendor
                   </button>
+
                 </div>
               )}
           </div>

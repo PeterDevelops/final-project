@@ -25,9 +25,11 @@ const VendorListItem = (props) => {
             className='w-full h-full object-cover'
           />
         </div>
-        <div className='p-2 w-full md:w-1/4 flex flex-col justify-center h-full bg-listitem bg-opacity-60'>
-          <h3 className='text-base text-center font-semibold'>{vendorData.name}</h3>
-          {showBio && <p className='mt-2 text-center'>{vendorData.bio}</p>}
+
+        {/* Name Section */}
+        <div className='w-full md:w-1/3 h-1/3 md:h-full flex flex-col justify-center bg-listitem bg-opacity-60 p-1'>
+          <h3 className='text-xs text-center font-bold truncate'>{vendorData.name}</h3>
+          {showBio && <p className='mt-1 text-center text-xs truncate'>{vendorData.bio}</p>}
         </div>
       </article>
     </Link>
@@ -35,4 +37,3 @@ const VendorListItem = (props) => {
 };
 
 export default VendorListItem;
-

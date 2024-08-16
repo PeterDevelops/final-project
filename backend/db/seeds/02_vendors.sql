@@ -30,3 +30,6 @@ VALUES ('Local Artisan Pottery', 'Exquisite pottery pieces, handcrafted by local
 
 INSERT INTO vendors (name, bio, address, city, longitude, latitude, vendor_logo_url, admin_user)
 VALUES ('Butcher’s Choice', 'Specializing in premium cuts of meat and fresh sausages.', '3299 Murray Street', 'Port Moody, BC', -122.887950, 49.276922, '/images/vendor-logos/butchers-choice-high-resolution-logo.png', 11);
+
+INSERT INTO vendors (name, bio, address, city, longitude, latitude, vendor_logo_url, admin_user)
+VALUES ('Francis''s Potato Palace', 'Oh Wow! Potatoes!', '1260 Remembrance Rd', 'Montreal, QC', -73.592930, 45.504618, '/images/vendor-logos/franciss-potato-palace-high-resolution-logo.png', 12);

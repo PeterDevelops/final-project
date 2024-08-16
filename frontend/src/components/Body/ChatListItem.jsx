@@ -4,10 +4,12 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import moment from 'moment';
-import io from 'socket.io-client';
+import NavBar from '../NavBar';
+//socket.io for the client side
+import io from 'socket.io-client'
 
-// Connect to backend socket server
-const socket = io.connect('http://localhost:8080');
+// connect to backend socket server without designating the url which will allow an ngrok connection
+const socket = io();
 
 const ChatListItem = (props) => {
   const { user } = props;
@@ -158,7 +160,7 @@ const ChatListItem = (props) => {
   return (
     <div className='flex flex-col min-h-screen font-body'>
       <div className='bg-navbar shadow-md px-8 pt-8 pb-4 flex flex-col flex-grow'>
-        <div className='chatbox bg-[#EEECE9] flex flex-col h-75vh rounded-lg p-2'>
+        <div className='chatbox bg-[#EEECE9] flex flex-col flex-1 rounded-lg p-2'>
           <FontAwesomeIcon
             icon={faCircleXmark}
             onClick={handleClick}
@@ -187,10 +189,10 @@ const ChatListItem = (props) => {
           </div>
         </div>
 
-        <div className='bg-navbar flex flex-row items-center justify-between rounded py-2 mt-4'>
+        <div className='bg-navbar flex flex-row items-center justify-between rounded'>
           <div className='bg-navbar flex-grow'>
             <textarea
-              className='w-full h-28 border border-gray-300 rounded-lg mt-4 p-2 resize-none overflow-auto'
+              className='w-full h-20 border border-gray-300 rounded-lg p-2 resize-none overflow-auto mt-6'
               onChange={(event) => setMessage(event.target.value)}
               value={message}
               placeholder='Message...'
@@ -199,7 +201,7 @@ const ChatListItem = (props) => {
           </div>
           <div className='flex-shrink ml-2'>
             <button
-              className='border-2 border-green-900 font-bold rounded-lg text-md px-5 py-2.5 text-center dark:border-green-900 dark:text-green-900 dark:hover:text-white dark:hover:bg-green-700'
+              className='border-2 border-green-900 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 mt-5'
               onClick={sendMessage}
             >
               Send
