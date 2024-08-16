@@ -23,6 +23,19 @@ const SearchBar = (props) => {
   const [filteredOptions, setFilteredOptions] = useState([]);
   const inputRef = useRef(null);
 
+  // Helper function to get icon based on category
+  const getIconForCategory = (category) => {
+    const icons = {
+      Vegetable: faSeedling,
+      Fruit: faAppleWhole,
+      Meat: faDrumstickBite,
+      Miscellaneous: faBreadSlice,
+      Vendor: faStore
+    };
+    return icons[category] || null;
+  };
+
+  // Function to categorize products
   const categorizeProducts = () => {
     if (!Array.isArray(allProducts) || !allProducts.length) return [];
 
@@ -45,6 +58,7 @@ const SearchBar = (props) => {
     return Object.values(subCategories);
   };
 
+  // Function to categorize vendors
   const categorizeVendors = () => {
     if (!Array.isArray(allVendors) || !allVendors.length) return [];
 
@@ -56,24 +70,14 @@ const SearchBar = (props) => {
     }));
   };
 
+  // Combine and sort data
   const combinedData = () => {
     const productData = categorizeProducts();
     const vendorData = categorizeVendors();
-
     return [...productData, ...vendorData].sort((a, b) => a.category.localeCompare(b.category));
   };
 
-  const getIconForCategory = (category) => {
-    switch (category) {
-      case 'Vegetable': return faSeedling;
-      case 'Fruit': return faAppleWhole;
-      case 'Meat': return faDrumstickBite;
-      case 'Miscellaneous': return faBreadSlice;
-      case 'Vendor': return faStore;
-      default: return null;
-    }
-  };
-
+  // Handle option click
   const handleOptionClick = (option) => {
     if (inputRef.current) inputRef.current.blur();
 
@@ -85,10 +89,11 @@ const SearchBar = (props) => {
     } else {
       const filteredBySubCategory = allProducts.filter(product => product.sub_category === option.name);
       setProducts(filteredBySubCategory);
-      navigate('/products', { state: { allProducts, allVendors } });
+      navigate('/products', { state: { allProducts } });
     }
   };
 
+  // Handle form submission
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -111,6 +116,7 @@ const SearchBar = (props) => {
     }
   };
 
+  // Handle input change
   const handleInputChange = (event, newInputValue) => {
     setInputValue(newInputValue);
     const newFilteredOptions = combinedData().filter(option =>
@@ -133,9 +139,9 @@ const SearchBar = (props) => {
           renderOption={(props, option) => (
             <li
               {...props}
-              key={option.key}
               className='flex items-center p-2 rounded-md cursor-pointer font-body'
               onClick={() => handleOptionClick(option)}
+              key={option.key}
             >
               <FontAwesomeIcon icon={option.icon} className='mr-2' />
               <span>{option.name}</span>
