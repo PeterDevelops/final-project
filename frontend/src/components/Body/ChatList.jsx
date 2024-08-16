@@ -3,6 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import moment from 'moment';
 
+/**
+ * Formats a given message date string into a human-readable format.
+ *
+ * @param {string} messageDateStr - The date string of the message.
+ * @returns {string} The formatted date string.
+ */
 const formatDate = (messageDateStr) => {
   const messageDate = moment.utc(messageDateStr).local(); // Convert date to local time
   const now = moment(); // Current local date
@@ -17,6 +23,16 @@ const formatDate = (messageDateStr) => {
   }
 };
 
+/**
+ * ChatList component displays a list of chat items with the latest message and contact information.
+ *
+ * @param {Object} props - The component's props.
+ * @param {Object} props.chat - The chat object containing chat details.
+ * @param {Array} props.allVendors - The list of all vendors.
+ * @param {Array} props.allProducts - The list of all products.
+ *
+ * @returns {JSX.Element} The rendered ChatList component.
+ */
 const ChatList = (props) => {
   const {
     chat,
@@ -24,9 +40,13 @@ const ChatList = (props) => {
     allProducts
   } = props;
 
+  // State to store the last message data
   const [messageData, setMessageData] = useState([]);
+
+  // Hook to navigate to different routes
   const navigate = useNavigate();
 
+  // Fetch the last message data when the chat ID changes
   useEffect(() => {
     axios.get(`/api/messages/last/${chat.chat_id}`)
       .then(response => {
@@ -37,6 +57,11 @@ const ChatList = (props) => {
       });
   }, [chat.chat_id]);
 
+  /**
+   * Handles click events to navigate to the detailed chat view.
+   *
+   * @param {number} id - The ID of the chat to navigate to.
+   */
   const handleClick = (id) => {
     navigate(`/chats/${id}`, {
       state: {
@@ -81,3 +106,4 @@ const ChatList = (props) => {
 };
 
 export default ChatList;
+

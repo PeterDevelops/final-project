@@ -3,6 +3,19 @@ import { slide as Menu } from 'react-burger-menu';
 import '../../styles/HamburgerMenu.scss';
 import { Link, useNavigate } from 'react-router-dom';
 
+/**
+ * HamburgerMenu is a component that provides a responsive hamburger menu with links and dropdowns for products and vendors.
+ *
+ * @param {Object} props - The component's props.
+ * @param {Function} props.setProducts - Function to set the list of products.
+ * @param {Array} props.allProducts - List of all available products.
+ * @param {Function} props.setVendors - Function to set the list of vendors.
+ * @param {Array} props.allVendors - List of all available vendors.
+ * @param {Object} [props.user] - Optional user object for determining admin privileges.
+ * @param {Array} props.categories - List of product categories.
+ *
+ * @returns {JSX.Element} - The rendered HamburgerMenu component.
+ */
 const HamburgerMenu = (props) => {
   const {
     setProducts,
@@ -12,35 +25,60 @@ const HamburgerMenu = (props) => {
     user,
     categories
   } = props;
+
   const [isOpen, setIsOpen] = useState(false);
   const [isProductsDropdownOpen, setIsProductsDropdownOpen] = useState(false);
   const [isVendorsDropdownOpen, setIsVendorsDropdownOpen] = useState(false);
   const navigate = useNavigate();
 
+  /**
+   * Handles changes to the menu state.
+   *
+   * @param {Object} state - The new state of the menu.
+   */
   const handleMenuStateChange = (state) => {
     setIsOpen(state.isOpen);
   };
 
+  /**
+   * Closes the menu if it is currently open.
+   */
   const closeMenu = () => {
     if (isOpen) setIsOpen(false);
   };
 
+  /**
+   * Handles clicking on the "Products" menu item, setting all products and closing the menu.
+   */
   const handleProductsClick = () => {
     setProducts(allProducts);
     closeMenu();
   };
 
+  /**
+   * Handles clicking on a category, filters products by category, and closes the menu.
+   *
+   * @param {string} category - The category to filter by.
+   */
   const handleCategoryClick = (category) => {
     const filteredProducts = allProducts.filter(product => product.category === category);
     setProducts(filteredProducts);
     closeMenu();
   };
 
+  /**
+   * Handles clicking on the "Vendors" menu item, setting all vendors and closing the menu.
+   */
   const handleVendorsClick = () => {
     setVendors(allVendors);
     closeMenu();
   };
 
+  /**
+   * Handles clicking on a vendor, filters products by vendor, navigates to the vendor detail page, and closes the menu.
+   *
+   * @param {Object} vendor - The vendor to filter by.
+   */
   const handleVendorClick = (vendor) => {
     setVendors([vendor]);
     const filteredProducts = allProducts.filter(product => product.vendor_id === vendor.id);

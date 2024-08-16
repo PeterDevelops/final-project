@@ -1,19 +1,28 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useState, useEffect } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStore } from '@fortawesome/free-solid-svg-icons';
-import axios from 'axios';
+import axios from 'axios'
 
+/**
+ * Component to display order confirmation details.
+ *
+ * @param {Object} props - The component props.
+ * @param {Object} props.user - The current user object.
+ * @returns {JSX.Element} The rendered component.
+ */
 const OrderConfirmation = (props) => {
   const { user } = props;
   const [orderDetails, setOrderDetails] = useState(null);
-  const navigate = useNavigate();
-  const location = useLocation();
+  const navigate = useNavigate();const location = useLocation();
   const orderId = location.state?.orderId;
   const pickupAddresses = location.state?.pickupAddresses || [];
   const alignment = location.state?.alignment || [];
   const deliveryDetails = location.state?.deliveryDetails || [];
 
+  /**
+   * useEffect to fetch order details when the component mounts or orderId changes.
+   */
   useEffect(() => {
     if (orderId) {
       axios.get(`/api/orders/order/${orderId}`)
@@ -24,20 +33,23 @@ const OrderConfirmation = (props) => {
           console.error('Error retrieving order details', err);
         });
     }
-  }, [orderId]);
+  }, [orderId]); // Dependency array containing orderId
 
+  // Display loading message if orderDetails is not an array (e.g., while waiting for data)
   if (!Array.isArray(orderDetails)) {
     return <div>Loading order details...</div>;
   }
 
+  // Calculate the total amount of the order
   const totalAmount = orderDetails.reduce(
-    (sum, item) => sum + item.quantity * item.price_cents / 100,
-    0
+    (sum, item) => sum + item.quantity * item.price_cents / 100,0
   );
 
   return (
     <div className='min-h-screen'>
       <div className='max-w-4xl mx-4 mb-12 p-6 bg-listitem bg-opacity-60 shadow-md rounded-md mt-10'>
+
+        {/* Header section */}
         <div className='mb-2'>
           <div className='text-xl font-semibold text-gray-800'>
             Thank you for your order, {user.name}!
@@ -45,6 +57,7 @@ const OrderConfirmation = (props) => {
           <p className='text-gray-600 mt-2'>Your order has been placed successfully.</p>
         </div>
 
+        {/* Order details section */}
         <div className='mb-2'>
           <h2 className='text-xl font-semibold text-gray-700'>ORDER DETAILS</h2>
           <div>
@@ -54,6 +67,7 @@ const OrderConfirmation = (props) => {
           </div>
         </div>
 
+        {/* Items purchased section */}
         <div className='mb-2'>
           <h3 className='text- font-semibold text-gray-700'>Items Purchased:</h3>
           <div className='flex items-center justify-between border-b border-gray-400 pb-4 mt-2'>
@@ -65,8 +79,6 @@ const OrderConfirmation = (props) => {
           <ul className='mt-4 space-y-4'>
             {orderDetails.map((item) => (
               <li key={item.product_id} className='flex items-center justify-between border-b border-gray-400 pb-4'>
-
-
                 <div className='flex items-center w-24'>
                   <img
                     src={item.product_photo_url}
@@ -88,6 +100,7 @@ const OrderConfirmation = (props) => {
           </div>
         </div>
 
+        {/* Pickup addresses section, conditionally rendered based on alignment */}
         {alignment === 'pickup' && pickupAddresses.length > 0 && (
           <div className='mb-4'>
             <h3 className='text-lg font-semibold text-gray-700 mt-6'>Pickup Addresses:</h3>
@@ -102,6 +115,7 @@ const OrderConfirmation = (props) => {
           </div>
         )}
 
+        {/* Delivery details section, conditionally rendered based on alignment */}
         {alignment === 'delivery' && (
           <div className='mb-4'>
             <h3 className='text-lg font-semibold text-gray-700'>Delivery Details</h3>
@@ -114,7 +128,7 @@ const OrderConfirmation = (props) => {
           </div>
         )}
 
-
+        {/* Button to navigate back to the home page */}
         <div className='mt-4 text-center'>
           <button
             className='px-6 py-2 bg-yellow-500 text-black rounded-md shadow'

@@ -3,6 +3,21 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+/**
+ * PaymentForm component handles the payment process using Stripe.
+ *
+ * @param {Object} props - The component's props.
+ * @param {string} props.userId - ID of the user making the payment.
+ * @param {Object} props.orderData - Data related to the order being placed.
+ * @param {Array} props.orderItems - List of items included in the order.
+ * @param {Function} props.setCartItems - Function to update the cart items after a successful payment.
+ * @param {number} props.subtotal - The subtotal amount of the order.
+ * @param {Array} props.pickupAddresses - List of pickup addresses (if applicable).
+ * @param {string} props.alignment - Delivery or pickup alignment option.
+ * @param {Object} props.deliveryDetails - Details related to delivery (if applicable).
+ *
+ * @returns {JSX.Element} The rendered PaymentForm component.
+ */
 const PaymentForm = (props) => {
   const {
     userId,
@@ -20,6 +35,7 @@ const PaymentForm = (props) => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
+  // Styling for the CardElement
   const cardStyle = {
     style: {
       base: {
@@ -37,6 +53,11 @@ const PaymentForm = (props) => {
     hidePostalCode: true,
   };
 
+  /**
+   * Handles form submission, processes payment, and updates the order status.
+   *
+   * @param {React.FormEvent<HTMLFormElement>} event - The form submission event.
+   */
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -47,13 +68,15 @@ const PaymentForm = (props) => {
     const cardElement = elements.getElement(CardElement);
 
     try {
+      // Create a PaymentIntent on the server
       const response = await axios.post('api/stripe/create-payment-intent', {
-        amount: Math.round(subtotal * 100),
+        amount: Math.round(subtotal * 100), // Convert to the smallest currency unit
         userId: userId
       });
 
       const { clientSecret } = response.data;
 
+      // Confirm the payment with Stripe
       const { error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
           card: cardElement,
@@ -68,9 +91,11 @@ const PaymentForm = (props) => {
         return;
       }
 
+      // Create the order in the backend
       const orderResponse = await axios.post('api/orders', { orderData, orderItems });
       const { orderId: newOrderId } = orderResponse.data;
 
+      // Clear cart and navigate to order confirmation page
       setCartItems([]);
       navigate('/order-confirmation', {
         state: {
