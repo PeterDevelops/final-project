@@ -56,9 +56,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<div style="text-align: center;">
+  <img src="backend/public/images/screenshots/homepage.png" alt="Home Page" />
+</div>
 
-Mrkt is a Virtual Farmers Market allowing users to shop local vendors from the comfort of home, and arrange for pick up or delivery of their items at a time convenient to them, while allowing vendors or local producers of any size to reach a large customer base with whatever staff and product output they already have.
+Mrkt is a Mobile Virtual Farmers Market allowing users to shop local vendors from the comfort of home, and arrange for pick up or delivery of their items at a time convenient to them, while allowing vendors or local producers of any size to reach a large customer base with whatever staff and product output they already have.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -141,6 +143,7 @@ Ensure you have Node.js and npm installed on your machine.
    ```sh
     npm start
    ```
+9. Open Developer Tools and set view to responsive with a width of 460px. Mrkt was designed to be viewed on a mobile device.
 
 Your application should now be running locally. The backend server will typically run on http://localhost:8080 and the frontend on http://localhost:3000.
 
@@ -184,7 +187,31 @@ This app is designed to help users discover and interact with local vendors thro
 <!-- Screenshots -->
 ## Screenshots
 
-Include Screenshots Here
+### Location View
+<div style="text-align: center;">
+  <img src="backend/public/images/screenshots/location.png" alt="Location View" />
+</div>
+
+### Vendor Profile
+<div style="text-align: center;">
+  <img src="backend/public/images/screenshots/vendor-profile.png" alt="Vendor Profile" />
+</div>
+
+### Cart View
+<div style="text-align: center;">
+  <img src="backend/public/images/screenshots/cart-view.png" alt="Cart View" />
+</div>
+
+### Checkout
+<div style="text-align: center;">
+  <img src="backend/public/images/screenshots/checkout.png" alt="Checkout" />
+</div>
+
+### Chat
+<div style="text-align: center;">
+  <img src="backend/public/images/screenshots/chat.png" alt="Chat" />
+</div>
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
