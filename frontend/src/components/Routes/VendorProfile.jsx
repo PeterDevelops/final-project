@@ -66,12 +66,11 @@ const VendorProfile = (props) => {
       const listOfProducts = location.state.allProducts;
       const vendorsProducts = listOfProducts.filter(
         (product) => product.vendor_id === vendor.id
-      ); // Filter products belonging to the current vendor
-      setAllProducts(location.state.allProducts); // Set all products
-      setProducts(vendorsProducts); // Set products specific to the vendor
+      );
+      setAllProducts(location.state.allProducts);
+      setProducts(vendorsProducts);
     }
-  }, [location.state.allProducts, vendor]); // Re-run if allProducts or vendor changes
-
+  }, [location.state.allProducts, vendor, setAllProducts, setProducts]);
   /**
    * Handles navigation to the vendor edit page.
    */
@@ -100,8 +99,8 @@ const VendorProfile = (props) => {
         })
           .then((response) => {
             if (response.ok) {
-              setAllVendors(allVendors.filter((v) => v.id !== vendor.id)); // Remove the vendor from the list
-              navigate('/vendors', { state: { allVendors } }); // Navigate back to the vendors list
+              setAllVendors(allVendors.filter((v) => v.id !== vendor.id));
+              navigate('/vendors', { state: { allVendors } });
             } else {
               console.error('Failed to delete vendor');
             }

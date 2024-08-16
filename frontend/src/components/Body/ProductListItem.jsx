@@ -172,7 +172,7 @@ const ProductListItem = (props) => {
       <div className='w-full md:w-1/3 h-36 md:h-auto'>
         <img
           src={productData.photo_url}
-          alt={`${productData.name} image`}
+          alt={`${productData.name}`}
           className='w-full h-full object-cover'
         />
       </div>

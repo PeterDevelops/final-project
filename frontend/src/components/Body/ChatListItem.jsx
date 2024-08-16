@@ -4,7 +4,6 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import moment from 'moment';
-import NavBar from '../NavBar';
 // socket.io for the client side
 import io from 'socket.io-client';
 
@@ -23,7 +22,7 @@ const ChatListItem = (props) => {
   const { user } = props;
   const { id } = useParams(); // Get chat ID from URL parameters
   const location = useLocation();
-  const { allProducts = [], chat = {}, vendor = {}, allVendors = [] } = location.state || {};
+  const { allProducts = [], chat = {}, allVendors = [] } = location.state || {};
 
   const navigate = useNavigate();
   const ref = useRef(null); // Reference for scrolling to the bottom
@@ -86,7 +85,7 @@ const ChatListItem = (props) => {
     return () => {
       socket.off('receive_message', handleReceiveMessage);
     };
-  }, [socket]);
+  }, []);
 
   /**
    * Renders message dividers based on message dates.

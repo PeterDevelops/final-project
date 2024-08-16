@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import axios from 'axios';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Homepage from './components/Routes/Homepage';
 import Cart from './components/Routes/Cart';
@@ -25,8 +24,12 @@ import ScrollToTop from './ScrollToTop';
  * @param {Object} props.location - Current route location
  * @returns {JSX.Element} The rendered component
  */
-function App({ location }) {
-  // State variables for managing data
+const App = (props) => {
+  const {
+    location,
+    Routes,
+    Route
+  } = props;
   const [products, setProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
   const [vendors, setVendors] = useState([]);
@@ -139,6 +142,7 @@ function App({ location }) {
               setCartItems={setCartItems}
               quantities={quantities}
               setQuantities={setQuantities}
+              totalCost={totalCost}
               setTotalCost={setTotalCost}
               subtotal={subtotal}
             />}
